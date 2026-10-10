@@ -285,7 +285,7 @@
         },
         {
           "path": "text-to-ui/scripts/skill-delivery.mjs",
-          "sha256": "c1ad5ab501e915644723b498d91c6a6f7c8cfcfae7d192d98391e7328463b606"
+          "sha256": "bd061ce545f5bcfffa6b5949805771480eabd2116e9153ce1412273226579804"
         },
         {
           "path": "text-to-ui/references/governance/major-version-update-checklist.md",

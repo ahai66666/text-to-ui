@@ -17,6 +17,8 @@ try {
   for (const file of ["pixso-native-scene-lib", "component-mapping-resolver", "coremail-semantic-adapter"]) {
     write(source, `scripts/${file}.mjs`, "export const ready = true;\n");
   }
+  write(source, "scripts/obsolete-helper/main.js", "obsolete helper\n");
+  write(source, "scripts/customized-helper/main.js", "obsolete helper with a local note\n");
   write(target, "scripts/pixso-native-scene-lib.mjs", "old local source");
   write(target, ".text-to-ui/run.json", "keep runtime state");
   write(target, "local-note.md", "keep extra local files");
@@ -24,6 +26,17 @@ try {
   assert.equal(fs.readFileSync(path.join(backup, "scripts/pixso-native-scene-lib.mjs"), "utf8"), "old local source");
   assert.equal(fs.readFileSync(path.join(target, ".text-to-ui/run.json"), "utf8"), "keep runtime state");
   assert.equal(fs.readFileSync(path.join(target, "local-note.md"), "utf8"), "keep extra local files");
+  write(target, "scripts/customized-helper/local-note.md", "preserve untracked data");
+  fs.rmSync(path.join(source, "scripts/obsolete-helper"), { recursive: true });
+  fs.rmSync(path.join(source, "scripts/customized-helper"), { recursive: true });
+  const removalBackup = path.join(temporary, "removal-backup");
+  syncSkill(source, target, removalBackup);
+  assert.equal(fs.existsSync(path.join(target, "scripts/obsolete-helper")), false);
+  assert.equal(fs.existsSync(path.join(target, "scripts/obsolete-helper/main.js")), false);
+  assert.equal(fs.readFileSync(path.join(removalBackup, "scripts/obsolete-helper/main.js"), "utf8"), "obsolete helper\n");
+  assert.equal(fs.existsSync(path.join(target, "scripts/customized-helper/main.js")), false);
+  assert.equal(fs.readFileSync(path.join(target, "scripts/customized-helper/local-note.md"), "utf8"), "preserve untracked data");
+  assert.equal(fs.readFileSync(path.join(removalBackup, "scripts/customized-helper/main.js"), "utf8"), "obsolete helper with a local note\n");
   // A file that was previously managed but disappeared from the canonical
   // source must be reported as drift; untracked local notes remain allowed.
   const manifest = JSON.parse(fs.readFileSync(path.join(target, ".delivery-manifest.json"), "utf8"));
@@ -41,7 +54,7 @@ try {
     write(root, "scripts/pixso-native-scene-lib.mjs", 'import { missing } from "./component-mapping-resolver.mjs";\n');
   }
   assert.throws(() => verifySkill(source, target), /Skill entry cannot load/);
-  console.log("Skill delivery tests passed: dependency drift, module linkage, backups, and local-state preservation.");
+  console.log("Skill delivery tests passed: stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });
 }

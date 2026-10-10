@@ -29,6 +29,56 @@ function staleManagedFiles(source, target) {
   const current = new Set(skillFiles(source));
   return [...previousManagedFiles(target)].filter(file => !current.has(file) && fs.existsSync(path.join(target, file)));
 }
+function pruneEmptyParentDirectories(target, directory) {
+  const root = path.resolve(target);
+  let current = path.resolve(directory);
+  while (current !== root && current.startsWith(`${root}${path.sep}`)) {
+    try {
+      fs.rmdirSync(current);
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        current = path.dirname(current);
+        continue;
+      }
+      if (error.code === "ENOTEMPTY" || error.code === "EEXIST") break;
+      throw error;
+    }
+    current = path.dirname(current);
+  }
+}
+function removeStaleManagedFiles(target, currentFiles, backupRoot) {
+  const root = path.resolve(target);
+  const backup = path.resolve(backupRoot);
+  const current = new Set(Object.keys(currentFiles));
+  const stale = [...previousManagedFiles(target)].filter(file => !current.has(file));
+  for (const file of stale) {
+    const targetFile = path.resolve(root, file);
+    if (!targetFile.startsWith(`${root}${path.sep}`)) {
+      throw new Error(`Refusing to remove an unsafe managed path: ${file}`);
+    }
+    let stat;
+    try {
+      stat = fs.lstatSync(targetFile);
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        pruneEmptyParentDirectories(root, path.dirname(targetFile));
+        continue;
+      }
+      throw error;
+    }
+    if (!stat.isFile() || stat.isSymbolicLink()) {
+      throw new Error(`Refusing to remove a non-regular stale managed file: ${file}`);
+    }
+    const backupFile = path.resolve(backup, file);
+    if (!backupFile.startsWith(`${backup}${path.sep}`)) {
+      throw new Error(`Refusing an unsafe delivery backup path: ${file}`);
+    }
+    fs.mkdirSync(path.dirname(backupFile), { recursive: true });
+    fs.copyFileSync(targetFile, backupFile);
+    fs.unlinkSync(targetFile);
+    pruneEmptyParentDirectories(root, path.dirname(targetFile));
+  }
+}
 function staleFilesFromManifest(target, manifestFile, currentFiles) {
   if (!fs.existsSync(manifestFile)) return [];
   try {
@@ -61,6 +111,7 @@ export function verifySkill(source, target) {
 }
 export function syncSkill(source, target, backupRoot) {
   const manifest = deliveryManifest(source);
+  removeStaleManagedFiles(target, manifest.files, backupRoot);
   syncFiles(source, target, manifest.files, backupRoot);
   fs.writeFileSync(path.join(target, ".delivery-manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   verifySkill(source, target);

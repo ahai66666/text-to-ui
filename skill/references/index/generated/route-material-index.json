@@ -438,7 +438,7 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "cb5aceecca48674dd72f5ecee3a17e8abb52eb0afd2158bde3d980b54319f277",
+      "materialsDigest": "ac4ec93cca7253aba2155ea74517ccae386fa4ddd930ba6be908c351ab00f231",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
@@ -498,7 +498,7 @@
           "path": "text-to-ui/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "426019bdb93619671d81ce0d736fcd77e824c91391680acf9427f18af87839a8"
+          "sha256": "330931ee647c4d5057bdb4d0f24187b002ca87e4c67f16b9ac4415d6fafe460f"
         },
         {
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
@@ -533,5 +533,5 @@
       ]
     }
   },
-  "indexDigest": "6e372294a92d8a208b924ff21015a5c68335916209010ed80cdd192f1eb30d45"
+  "indexDigest": "ffbeac0210904dad264c9ed186913e27102365725b91dc5a4193c54d48fa3d1c"
 }
