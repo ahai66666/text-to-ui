@@ -8,7 +8,7 @@
 
 ## 唯一 Skill 入口
 
-从 GitHub 克隆或下载完整仓库后，**选择仓库根目录导入**，入口是根目录的 [`SKILL.md`](SKILL.md)。`text-to-ui/` 只存放该入口引用的规则、脚本和资料；仓库不再提交第二份 `SKILL.md` 或 `skill/` 交付镜像。不要把内层 `text-to-ui/`、`packages/`、旧下载副本或本地生成的 `skill/` 作为完整仓库的导入入口。若工具要求所选目录名与 `name: text-to-ui` 一致，先把下载 ZIP 解压后的外层目录改名为 `text-to-ui`，再选择它。
+从 GitHub 克隆或下载完整仓库后，**选择仓库根目录导入**，入口是根目录的 [`SKILL.md`](SKILL.md)。内层 `skill-support/` 只存放该入口引用的规则、脚本和资料；仓库不再提交第二份 `SKILL.md` 或 `skill/` 交付镜像。不要把 `skill-support/`、`packages/`、旧下载副本或本地生成的 `skill/` 作为完整仓库的导入入口。若工具要求所选目录名与 `name: text-to-ui` 一致，先把下载 ZIP 解压后的外层目录改名为 `text-to-ui`，再选择它。
 
 可给其他 AI 工具的启动提示词：
 
@@ -145,7 +145,7 @@ Text-to-UI 将这些问题转化为可复用、可实现、可验证的系统能
 | 模块 | 职责 |
 | --- | --- |
 | `SKILL.md` | 仓库唯一可导入的 Skill 入口，负责路由和执行门禁 |
-| `text-to-ui/` | Skill 支持资料规范源：路由、设计规则、预览和脚本；不是第二个 Skill |
+| `skill-support/` | Skill 支持资料规范源：路由、设计规则、预览和脚本；不是第二个 Skill |
 | `packages/tokens/` | 跨设计与代码使用的 canonical Tokens |
 | `packages/icons/` | HTML、React、Vue 共用的语义图标 |
 | `packages/component-contracts/` | 统一组件身份、Variant、状态、插槽和适配规则 |
@@ -209,7 +209,7 @@ Pattern 是页面级组合契约，不是组件注册表条目。目前仓库提
 ```text
 text-to-ui/
 ├── SKILL.md                    # 唯一 Skill 导入入口
-├── text-to-ui/                 # 规则、索引、脚本和预览资料
+├── skill-support/              # 规则、索引、脚本和预览资料；不是 Skill 入口
 ├── packages/                   # 生产组件、Tokens、契约、图标和 Pixso 映射
 ├── apps/component-gallery/     # 正式组件画廊
 ├── fixtures/                   # 最小契约与回归测试输入
@@ -222,7 +222,7 @@ text-to-ui/
 
 完整仓库、独立 Skill 和生产组件包是三个不同概念：
 
-- 根目录 `SKILL.md` 与 `text-to-ui/` 支持资料共同构成规范源；不要在支持目录新增第二个 `SKILL.md`。
+- 根目录 `SKILL.md` 与 `skill-support/` 支持资料共同构成规范源；不要在支持目录新增第二个 `SKILL.md`。
 - `skill/` 仅在本机执行 `pnpm skill:sync` 后生成，GitHub 仓库不提交此镜像；独立 ZIP 从规范源打包。
 - `packages/` 才包含 HTML、React、Vue 的真实实现和共享设计系统能力。
 - 只安装 Skill 而没有组件包时，Skill 必须明确报告组件库不可用，不能静默生成视觉相似替代品。
@@ -230,7 +230,7 @@ text-to-ui/
 
 ### 在其他 AI 工具中导入 Skill
 
-选择仓库根目录；它顶层直接包含 `SKILL.md`、`pnpm-workspace.yaml`、`text-to-ui/` 和 `packages/`。不要选择内层 `text-to-ui/`，因为它没有 Skill 入口。独立 Skill ZIP 则选择解压后的 `text-to-ui/` 目录（顶层有 `SKILL.md`、`references/`、`scripts/`），并另外提供完整组件仓。两个交付包只能启用其中一个同名 Skill 入口。
+选择仓库根目录；它顶层直接包含 `SKILL.md`、`pnpm-workspace.yaml`、`skill-support/` 和 `packages/`。不要选择内层 `skill-support/`，因为它没有 Skill 入口。独立 Skill ZIP 则选择解压后的 `text-to-ui/` 目录（顶层有 `SKILL.md`、`references/`、`scripts/`），并另外提供完整组件仓。两个交付包只能启用其中一个同名 Skill 入口。
 
 独立 Skill 包可供工具发现规则和索引，但不包含 `packages/` 中的 HTML、React、Vue 组件与运行时。需要生成使用真实组件的页面时，还须提供完整 Monorepo 或兼容的组件包；缺少这些依赖时，应将组件能力标为不可用。
 
@@ -251,13 +251,13 @@ HTML / 浏览器最终计算样式
 
 | 路径 | 用途 | 是否包含运行缓存 |
 | --- | --- | --- |
-| `SKILL.md` + `text-to-ui/` | 唯一入口及其规则、导入编译器、映射和测试 | 否 |
+| `SKILL.md` + `skill-support/` | 唯一入口及其规则、导入编译器、映射和测试 | 否 |
 | `skill/` | 仅本机生成的独立安装镜像，不提交 GitHub | 否；`.text-to-ui/` 运行状态不发布 |
-| `text-to-ui/scripts/pixso-unified-agent-plugin/` | Pixso Unified Agent v2 插件源码，包含 `manifest.json` | 否 |
+| `skill-support/scripts/pixso-unified-agent-plugin/` | Pixso Unified Agent v2 插件源码，包含 `manifest.json` | 否 |
 | 使用者自行选择的插件目录 | 在 Pixso Developer Mode 加载该目录中的 `manifest.json`；目录不属于仓库 | 插件包 |
 | `packages/` | HTML、React、Vue 组件和共享设计系统源码 | 否 |
 
-插件源码位于 `text-to-ui/scripts/pixso-unified-agent-plugin/`。使用者可将构建后的插件包放在自行选择的位置，并在 Pixso Developer Mode 中加载该目录下的 `manifest.json`。如需由交付脚本同步到已存在的额外目录，设置 `TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT`（兼容变量 `TEXT_TO_UI_PLUGIN_DELIVERY_ROOT`）；未设置时不会写入任何机器专属目录。
+插件源码位于 `skill-support/scripts/pixso-unified-agent-plugin/`。使用者可将构建后的插件包放在自行选择的位置，并在 Pixso Developer Mode 中加载该目录下的 `manifest.json`。如需由交付脚本同步到已存在的额外目录，设置 `TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT`（兼容变量 `TEXT_TO_UI_PLUGIN_DELIVERY_ROOT`）；未设置时不会写入任何机器专属目录。
 
 插件包负责在已打开的 Pixso 文件中执行 Operation Plan，并持续监听本地桥接服务；Skill 负责采集 HTML、锁定几何、生成计划和提供规则。正常整页导入只使用插件执行，不与 MCP 整页绘制并行，也不读取旧计划、旧截图、旧 GUID 或旧画板作为新运行输入。插件代码/API 变更后需要重新加载插件包；规则、映射或页面内容变化只需要重新生成并发布新的 Operation Plan。
 
@@ -267,10 +267,10 @@ HTML / 浏览器最终计算样式
 
 ```bash
 pnpm services:start
-node text-to-ui/scripts/pixso-plugin-bridge.mjs status
-pnpm --dir text-to-ui pixso:plugin:build
+node skill-support/scripts/pixso-plugin-bridge.mjs status
+pnpm --dir skill-support pixso:plugin:build
 pnpm skill:sync
-pnpm --dir text-to-ui pixso:delivery:check
+pnpm --dir skill-support pixso:delivery:check
 ```
 
 `.text-to-ui/` 下的任务状态、归档计划、连接会话和临时结果只属于本机运行时，不应提交到 GitHub；审计截图和一次性回归输出也不属于 Skill 或插件发布包。

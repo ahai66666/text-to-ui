@@ -17,7 +17,7 @@ delivery mirror, preview, or task output. Resolve paths once before choosing a
 route:
 
 - In the complete repository, this file is at the repository root. Set
-  `REPO_ROOT` to this directory and `RULES_ROOT` to its `text-to-ui/` child.
+  `REPO_ROOT` to this directory and `RULES_ROOT` to its `skill-support/` child.
 - In the separately packaged Skill, this file is beside `references/` and
   `scripts/`. Set `RULES_ROOT` to this directory, then locate the complete
   repository separately and set `REPO_ROOT` to that repository root.
@@ -38,7 +38,7 @@ standalone Skill folder or claim production components were reused. See
 contract.
 
 Run repository checks from the Monorepo root. Invoke the route scripts from its
-canonical `text-to-ui/scripts/` directory (or from `RULES_ROOT/scripts/` with
+canonical `skill-support/scripts/` directory (or from `RULES_ROOT/scripts/` with
 `--repo` pointing to that root). The commands below show the Monorepo-root
 form. If the repository cannot be found, stop before route execution.
 
@@ -67,8 +67,8 @@ Use the route resolver and receipt verifier when executing a workflow:
 
 ```bash
 pnpm index:check
-node text-to-ui/scripts/resolve-workflow-route.mjs --route <workflow-route> --repo . --receipt-out <route-receipt.json>
-node text-to-ui/scripts/verify-route-materials.mjs --route <workflow-route> --repo . --receipt <route-receipt.json>
+node skill-support/scripts/resolve-workflow-route.mjs --route <workflow-route> --repo . --receipt-out <route-receipt.json>
+node skill-support/scripts/verify-route-materials.mjs --route <workflow-route> --repo . --receipt <route-receipt.json>
 ```
 
 Receipts verify that the selected material closure is current. They do not mean
@@ -171,7 +171,7 @@ user asks for an audit or release-readiness assessment.
 Start the managed Preview Hub, Component Gallery, and Pixso Bridge through:
 
 ```bash
-node text-to-ui/scripts/start-text-to-ui-services.mjs start
+node skill-support/scripts/start-text-to-ui-services.mjs start
 ```
 
 Do not start a per-page server on `4173` or terminate an unknown service to
@@ -189,7 +189,7 @@ approved source when the request is an import.
 ## 5. Skill maintenance and completion
 
 The normative entry is the repository-root `SKILL.md`; its supporting rules
-and scripts live in `text-to-ui/`. A separately installed copy is not an
+and scripts live in `skill-support/`. A separately installed copy is not an
 authoring source. For Skill maintenance, work in the repository, inspect
 existing changes, rebuild and validate
 the relevant indexes, and run source checks before synchronizing mirrors.

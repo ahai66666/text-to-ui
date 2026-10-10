@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 1,
+  "kind": "text-to-ui-route-material-manifest",
+  "generatedFrom": [
+    {
+      "path": "skill-support/references/routes/materials.source.json",
+      "sha256": "fc2200294c9f835893543312d740629db1cde442c6249ea08e3868868deec510"
+    },
+    {
+      "path": "skill-support/references/routes/index.json",
+      "sha256": "b39f4049bbf25392ce881ec294700e74335eab5bece4974c2972a8d5054099ca"
+    }
+  ],
+  "policy": {
+    "canonicalRoot": "skill-support",
+    "pathBasis": "repository-relative",
+    "missingMaterialIsBlocking": true,
+    "staleSnapshotIsBlocking": true
+  },
+  "routes": {
+    "existing-html-to-pixso": {
+      "id": "existing-html-to-pixso",
+      "dynamicMaterials": [],
+      "materialsDigest": "e778d447733b6e1284fcd3507f511a5e9f88f3aed9a3dd845dbc6dbd60908f9d",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/pixso-execution-invariants.md",
+          "role": "pixso-execution",
+          "required": true,
+          "sha256": "f4b8bd7dc649dbb432feaea94a044a0d5b9569e7baf1fcbc3985aae53c161453"
+        },
+        {
+          "path": "skill-support/references/pixso-fidelity-import-pipeline.md",
+          "role": "pixso-fidelity",
+          "required": true,
+          "sha256": "0ef07b9b12db4109d6af81c5035fec1ee54b5c254190a8f63766ad4cc25e03ba"
+        },
+        {
+          "path": "skill-support/references/pixso-import-details.md",
+          "role": "pixso-import",
+          "required": true,
+          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/existing-html-to-pixso.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "11a188975546b472da812dc3fb0e91decf901c12eebff8e1c4ffcb1a23b5d6a7"
+        }
+      ]
+    },
+    "new-page": {
+      "id": "new-page",
+      "dynamicMaterials": [
+        "pattern-references",
+        "task-route-domain-reference",
+        "titlebar-segments"
+      ],
+      "materialsDigest": "6230b475acf350e88e4c4a58a10c7c8db66caeb24aa80fc6d7aaf21c29bf64fa",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/pattern-runtime/README.md",
+          "role": "pattern-runtime-api",
+          "required": true,
+          "sha256": "60f1857092e2cb8b23cbf6101203f355f869c1b88dcc2d279aee9e9253207346"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/design-system/titlebar-scene-contracts.json",
+          "role": "titlebar-scene-contract",
+          "required": true,
+          "sha256": "56c53568f289e221dc8084f2377a5ee74b3ac6076e5146ae18ec1725b42c2565"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/page-composition.md",
+          "role": "page-composition",
+          "required": true,
+          "sha256": "0ee05a8c18ad9e15365348701e8807e0ea163d683ed3cc9ffded05b2baec527d"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/index/task-routes.source.json",
+          "role": "task-route-registry",
+          "required": true,
+          "sha256": "f6703979ad7e71f5f0d54d5924857886ae8fdcff50b62931190af54703a9195c"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/page-blueprint-design.md",
+          "role": "page-blueprint",
+          "required": true,
+          "sha256": "077311e7da77d04c3cca26512c27302aaaabf18e257bb7808f5e0e2592cf4309"
+        },
+        {
+          "path": "skill-support/references/page-design-guidance.md",
+          "role": "page-guidance",
+          "required": true,
+          "sha256": "de346aab0e0780bdd06ee879b0e5a6337c0a2279cdd39cf031fcff2285f89a86"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/new-page.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "d2134e11933e5417775214a78239989ee27c150ffa88fdc922e8f92977418b7c"
+        },
+        {
+          "path": "skill-support/references/workflows/fast-preview.md",
+          "role": "validation",
+          "required": true,
+          "sha256": "d5088dd9fca51a6829c4ca7c4cf2d067233339fb6772c30f7d527d44ed7df086"
+        }
+      ]
+    },
+    "micro-revision": {
+      "id": "micro-revision",
+      "dynamicMaterials": [],
+      "materialsDigest": "6b57e4743ee0ea06e9120e602dc02a17f5a38dfb7d6022cad90eaa5861f5e658",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/page-design-guidance.md",
+          "role": "page-guidance",
+          "required": true,
+          "sha256": "de346aab0e0780bdd06ee879b0e5a6337c0a2279cdd39cf031fcff2285f89a86"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/micro-revision.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "83bd316540b6fa83ab5c49a7671e51301d5bb886d0c645d254b343b6deae6452"
+        }
+      ]
+    },
+    "pixso-component-library": {
+      "id": "pixso-component-library",
+      "dynamicMaterials": [],
+      "materialsDigest": "3677981a4744291519b2cb1a23bc0089d349e00e42c98e57c4bb4835820d01d9",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/mapping-registry.md",
+          "role": "mapping-registry",
+          "required": true,
+          "sha256": "f86c1d1eae652847812676bfd27fae0fb469283c807fa42e894591df69f95fba"
+        },
+        {
+          "path": "skill-support/references/pixso-component-maintenance.md",
+          "role": "component-maintenance",
+          "required": true,
+          "sha256": "71df68438a96afc7cdae475fc0272bb9cd0825272e1da1809be32b6bbe2d1878"
+        },
+        {
+          "path": "skill-support/references/pixso-component-usage.md",
+          "role": "component-usage",
+          "required": true,
+          "sha256": "53f8011bab29630ce12948f1f8f53bab490016b9887918fe04ccae8898d5456b"
+        },
+        {
+          "path": "skill-support/references/pixso-execution-invariants.md",
+          "role": "pixso-execution",
+          "required": true,
+          "sha256": "f4b8bd7dc649dbb432feaea94a044a0d5b9569e7baf1fcbc3985aae53c161453"
+        },
+        {
+          "path": "skill-support/references/pixso-import-details.md",
+          "role": "pixso-import",
+          "required": true,
+          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+        },
+        {
+          "path": "skill-support/references/pixso-native-scene.md",
+          "role": "native-scene",
+          "required": true,
+          "sha256": "0ef5f0b25e5f4e2e8331a1aa9082c374a88b887a4fb9df049279751cc7e51256"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/pixso-component-library.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "6b24e47072f266965e719cbdbec48d2cc054735a714a87a8564b58466fd501e0"
+        }
+      ]
+    },
+    "converter-diagnosis": {
+      "id": "converter-diagnosis",
+      "dynamicMaterials": [],
+      "materialsDigest": "938761e2b44bdf94288fef29c03e7275d89585d4eb99780a894349fa6fbea554",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/pixso-execution-invariants.md",
+          "role": "pixso-execution",
+          "required": true,
+          "sha256": "f4b8bd7dc649dbb432feaea94a044a0d5b9569e7baf1fcbc3985aae53c161453"
+        },
+        {
+          "path": "skill-support/references/pixso-fidelity-import-pipeline.md",
+          "role": "pixso-fidelity",
+          "required": true,
+          "sha256": "0ef07b9b12db4109d6af81c5035fec1ee54b5c254190a8f63766ad4cc25e03ba"
+        },
+        {
+          "path": "skill-support/references/pixso-import-details.md",
+          "role": "pixso-import",
+          "required": true,
+          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+        },
+        {
+          "path": "skill-support/references/pixso-mcp.md",
+          "role": "pixso-diagnostic",
+          "required": true,
+          "sha256": "c27752b65cc0a5039f0e599a48eb0bbed1a6d406c317f470b41d320ca85b3a0f"
+        },
+        {
+          "path": "skill-support/references/pixso-native-scene.md",
+          "role": "native-scene",
+          "required": true,
+          "sha256": "0ef5f0b25e5f4e2e8331a1aa9082c374a88b887a4fb9df049279751cc7e51256"
+        },
+        {
+          "path": "skill-support/references/pixso-visual-parity.md",
+          "role": "visual-diagnostic",
+          "required": true,
+          "sha256": "f8dc07f1b897761c92fd9eca1115bea997b48fda2dd977d8d6fb5d101411a8e5"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/converter-diagnosis.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "918537c50d62a7a963cb0a4e9aeeef06b9035b7453e58b5794bb76d7af1c08ae"
+        }
+      ]
+    },
+    "skill-maintenance": {
+      "id": "skill-maintenance",
+      "dynamicMaterials": [],
+      "materialsDigest": "82284de775f6f3308ed989a82c7c91f3165f368b2d8f0b040fcde3c0706a8033",
+      "materials": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "role": "component-registry",
+          "required": true,
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "role": "token-registry",
+          "required": true,
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "role": "pattern-contract",
+          "required": true,
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/design-system/titlebar-scene-contracts.json",
+          "role": "titlebar-scene-contract",
+          "required": true,
+          "sha256": "56c53568f289e221dc8084f2377a5ee74b3ac6076e5146ae18ec1725b42c2565"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "role": "icon-registry",
+          "required": true,
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/references/components/page-composition.md",
+          "role": "page-composition",
+          "required": true,
+          "sha256": "0ee05a8c18ad9e15365348701e8807e0ea163d683ed3cc9ffded05b2baec527d"
+        },
+        {
+          "path": "skill-support/references/components/source-resolution.md",
+          "role": "component-resolution",
+          "required": true,
+          "sha256": "4d45ec5c4e484b525a3c3ef319cad4ffb2b4e3f1681ad7f3b695df49d1733a01"
+        },
+        {
+          "path": "skill-support/references/governance/major-version-update-checklist.md",
+          "role": "major-version-governance",
+          "required": true,
+          "sha256": "1fe2eb7a745b1ec4c378739c340c13e0d67dc059e93cf2ab44567192d95150b7"
+        },
+        {
+          "path": "skill-support/references/governance/skill-catalog-refresh.md",
+          "role": "skill-catalog-governance",
+          "required": true,
+          "sha256": "490f596be70efc995d9eda071430d6e82b2981479cc6f56920d9ebd5b005be5f"
+        },
+        {
+          "path": "skill-support/references/index/generated/skill-catalog-index.json",
+          "role": "skill-catalog-index",
+          "required": true,
+          "sha256": "0602082cc7f1586c72cb4258e7e5476d29eb1ca552afa2be9e294531f3943fb1"
+        },
+        {
+          "path": "skill-support/references/layouts/framework-layout-routing.md",
+          "role": "layout-routing",
+          "required": true,
+          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+        },
+        {
+          "path": "skill-support/references/pixso-execution-invariants.md",
+          "role": "pixso-execution",
+          "required": true,
+          "sha256": "f4b8bd7dc649dbb432feaea94a044a0d5b9569e7baf1fcbc3985aae53c161453"
+        },
+        {
+          "path": "skill-support/references/pixso-import-details.md",
+          "role": "pixso-import",
+          "required": true,
+          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+        },
+        {
+          "path": "skill-support/references/requirement-spec.md",
+          "role": "requirement-contract",
+          "required": true,
+          "sha256": "2af7b73b0ebbe69b46d70920ee1028e3b8b9ae2471cbe056ddf0e5e960ed4000"
+        },
+        {
+          "path": "skill-support/references/routes/skill-maintenance.md",
+          "role": "route-reference",
+          "required": true,
+          "sha256": "492431f27a33480bd84d0e422a87e4e3df944fa0270af2684e63f876e59980f2"
+        }
+      ]
+    }
+  },
+  "indexDigest": "cf7332b5fd369298569e1be09d6f4388a61a2e65b03f3391681a056dc1499d99"
+}

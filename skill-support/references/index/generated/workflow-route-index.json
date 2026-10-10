@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": [
+    {
+      "path": "skill-support/references/routes/index.json",
+      "sha256": "b39f4049bbf25392ce881ec294700e74335eab5bece4974c2972a8d5054099ca"
+    }
+  ],
+  "kind": "text-to-ui-workflow-route-index",
+  "routes": [
+    {
+      "id": "existing-html-to-pixso",
+      "description": "Import a named existing rendered HTML page into Pixso without redesign.",
+      "exactReferencesToRead": [
+        "references/routes/existing-html-to-pixso.md"
+      ]
+    },
+    {
+      "id": "new-page",
+      "description": "Create or materially redesign a page or flow.",
+      "exactReferencesToRead": [
+        "references/routes/new-page.md"
+      ]
+    },
+    {
+      "id": "micro-revision",
+      "description": "Apply one exact change without altering hierarchy or workflow.",
+      "exactReferencesToRead": [
+        "references/routes/micro-revision.md"
+      ]
+    },
+    {
+      "id": "pixso-component-library",
+      "description": "Build, repair, or synchronize Pixso component-library assets.",
+      "exactReferencesToRead": [
+        "references/routes/pixso-component-library.md"
+      ]
+    },
+    {
+      "id": "converter-diagnosis",
+      "description": "Diagnose a failed HTML-to-Pixso converter or import run.",
+      "exactReferencesToRead": [
+        "references/routes/converter-diagnosis.md"
+      ]
+    },
+    {
+      "id": "skill-maintenance",
+      "description": "Audit or repair Skill implementation, mapping governance, tests, and delivery mirrors.",
+      "exactReferencesToRead": [
+        "references/routes/skill-maintenance.md"
+      ]
+    }
+  ]
+}

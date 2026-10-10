@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
+import { verifySkill } from "../skill-support/scripts/skill-delivery.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const errors = [];
 if (fs.existsSync(path.join(root, "skill", "SKILL.md"))) {
-  try { verifySkill(path.join(root, "text-to-ui"), path.join(root, "skill")); }
+  try { verifySkill(path.join(root, "skill-support"), path.join(root, "skill")); }
   catch (error) { errors.push(error.message); }
 }
 
@@ -66,7 +66,7 @@ function relativeSourcePath(source) {
 }
 
 for (const directory of [
-  "text-to-ui",
+  "skill-support",
   "packages",
   "packages/tokens",
   "packages/component-contracts",
@@ -90,10 +90,10 @@ for (const file of [
   "pnpm-lock.yaml",
   "SKILL.md",
   "agents/openai.yaml",
-  "text-to-ui/README.md",
-  "text-to-ui/package.json",
-  "text-to-ui/assets/design-system/component-usage.schema.json",
-  "text-to-ui/references/component-package-integration.md",
+  "skill-support/README.md",
+  "skill-support/package.json",
+  "skill-support/assets/design-system/component-usage.schema.json",
+  "skill-support/references/component-package-integration.md",
   "packages/component-contracts/src/components.json",
   "apps/component-gallery/index.html",
 ]) {
@@ -104,9 +104,9 @@ const rootPackage = readJson("package.json") ?? {};
 const workspace = readText("pnpm-workspace.yaml");
 const rootReadme = readText("README.md");
 const canonicalSkill = readText("SKILL.md");
-const supportReadme = readText("text-to-ui/README.md");
-const workflowRoutes = readJson("text-to-ui/references/routes/index.json")?.routes ?? {};
-const requirementSpec = readText("text-to-ui/references/requirement-spec.md");
+const supportReadme = readText("skill-support/README.md");
+const workflowRoutes = readJson("skill-support/references/routes/index.json")?.routes ?? {};
+const requirementSpec = readText("skill-support/references/requirement-spec.md");
 
 assert(rootPackage.private === true, "root package must remain private");
 assert(rootPackage.packageManager === "pnpm@10.0.0", "root package must pin pnpm@10.0.0");
@@ -123,8 +123,9 @@ assert(rootReadme.includes("完整代码仓交付边界"), "root README must doc
 assert(rootReadme.includes("选择仓库根目录"), "root README must identify the only Skill import directory");
 assert(supportReadme.includes("它不是导入入口"), "support README must reject nested Skill import");
 assert(rootReadme.includes("pnpm delivery:validate"), "root README must document delivery:validate");
-assert(!exists("text-to-ui/SKILL.md"), "nested Skill entry must not exist");
-assert(!exists("text-to-ui/agents/openai.yaml"), "nested Skill interface metadata must not exist");
+assert(!exists("text-to-ui"), "obsolete nested text-to-ui directory must not exist");
+assert(!exists("skill-support/SKILL.md"), "nested Skill entry must not exist");
+assert(!exists("skill-support/agents/openai.yaml"), "nested Skill interface metadata must not exist");
 assert(canonicalSkill.includes("Lock the Skill entry"), "Skill must lock one entry before routing");
 assert(canonicalSkill.includes("RULES_ROOT"), "Skill must resolve support material root explicitly");
 for (const routeId of Object.keys(workflowRoutes)) {

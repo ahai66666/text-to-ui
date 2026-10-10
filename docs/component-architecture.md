@@ -30,7 +30,7 @@ pnpm dlx shadcn@latest init --preset b1aIcEaeG --base aria --template vite
 
 ## 视觉来源优先级
 
-组件包不重新发明一套 CSS。旧 Skill 的 `text-to-ui/preview/component-gallery.css`、`text-to-ui/assets/design-system/` Token 和 `fixtures/framework-component-contract/shared/` 组件规则是现阶段的视觉基线；`packages/component-styles/src/index.css` 是三个框架的 canonical CSS 入口，`packages/component-contracts/src/components.css` 只保留向后兼容导入。这样 HTML、React、Vue 共享同一套尺寸、字体、状态层、Surface 和图标语义。
+组件包不重新发明一套 CSS。旧 Skill 的 `skill-support/preview/component-gallery.css`、`skill-support/assets/design-system/` Token 和 `fixtures/framework-component-contract/shared/` 组件规则是现阶段的视觉基线；`packages/component-styles/src/index.css` 是三个框架的 canonical CSS 入口，`packages/component-contracts/src/components.css` 只保留向后兼容导入。这样 HTML、React、Vue 共享同一套尺寸、字体、状态层、Surface 和图标语义。
 
 `packages/component-contracts/src/components.json` 是组件契约唯一可编辑源。`components-runtime.js`、验收 manifest 和交付镜像都是确定性投影，文件头或校验会明确它们的生成来源；禁止直接维护这些副本。组件的公开身份始终是 `logicalName`，运行时 `id`、`fixtureId`、视觉选择器只服务内部渲染和测试，不能被业务页面或 Pixso 映射直接拼接使用。
 

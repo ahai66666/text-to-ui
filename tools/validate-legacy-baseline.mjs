@@ -6,8 +6,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const sourcePreview = path.join(root, "text-to-ui", "preview");
-const sourceDesignTokens = path.join(root, "text-to-ui", "assets", "design-system");
+const sourcePreview = path.join(root, "skill-support", "preview");
+const sourceDesignTokens = path.join(root, "skill-support", "assets", "design-system");
 const targetRoot = path.join(root, "apps", "component-gallery", "public", "legacy-skill");
 const manifestPath = path.join(targetRoot, ".baseline-manifest.json");
 const failures = [];

@@ -1,0 +1,4379 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": [
+    {
+      "path": "packages/component-contracts/src/components.json",
+      "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+    },
+    {
+      "path": "packages/component-contracts/src/parity-manifest.json",
+      "sha256": "1056fbc730013a0f2654ed27c4168209f7e897215e6ae0be534cd0b934ddbdb4"
+    },
+    {
+      "path": "skill-support/references/index/capability-aliases.source.json",
+      "sha256": "962c88715e8aa4b060dd120c8cb6fe989ac2299b3c08a978fb873f30a7dcec8a"
+    }
+  ],
+  "frameworkPackages": {
+    "html": "@text-to-ui/components-html",
+    "react": "@text-to-ui/components-react",
+    "vue": "@text-to-ui/components-vue"
+  },
+  "componentCount": 49,
+  "components": [
+    {
+      "id": "accordion",
+      "logicalName": "Accordion/Default",
+      "capabilities": [
+        "accordion",
+        "navigation"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "open"
+      ],
+      "states": [
+        "default",
+        "unfocus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "size",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "toggle",
+        "keyboard-activation",
+        "focus"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-right"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#accordion",
+      "canonicalSelector": "section#navigation [data-component=\"Accordion/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#accordion",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "accordion",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Accordion",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Accordion.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "alert",
+      "logicalName": "Alert/Default",
+      "capabilities": [
+        "alert",
+        "display"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "neutral"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "title",
+        "detail",
+        "expanded",
+        "contentId",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.subtitle-s",
+        "typography.body-m",
+        "spacing.component-gap",
+        "spacing.padding-alert-left",
+        "spacing.padding-alert-right",
+        "spacing.padding-button-sm-x",
+        "size.button-sm-height",
+        "size.icon-md",
+        "size.icon-sm",
+        "color.icon",
+        "color.primary"
+      ],
+      "iconAliases": [
+        "status/info",
+        "status/success",
+        "status/warning",
+        "status/danger",
+        "status/neutral",
+        "action/close"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#alert",
+      "canonicalSelector": "section#display [data-component=\"Alert/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#alert",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "alert",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Alert",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Alert.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "alert-dialog",
+      "logicalName": "Alert Dialog/Default",
+      "capabilities": [
+        "alert-dialog",
+        "containers"
+      ],
+      "category": "containers",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "danger"
+      ],
+      "states": [
+        "closed",
+        "open"
+      ],
+      "props": [
+        "open",
+        "title",
+        "description",
+        "confirmLabel",
+        "cancelLabel",
+        "statusIcon",
+        "onConfirm",
+        "onCancel",
+        "onOpenChange"
+      ],
+      "slots": [
+        "title",
+        "description",
+        "content",
+        "actions"
+      ],
+      "behaviors": [
+        "open",
+        "confirm",
+        "cancel",
+        "escape",
+        "focus-return",
+        "no-outside-dismiss"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "status/warning"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#alert-dialog",
+      "canonicalSelector": "section#containers [data-component=\"Alert Dialog/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#alert-dialog",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "alert-dialog",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#AlertDialog",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#AlertDialog",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "attachment",
+      "logicalName": "Attachment/Default",
+      "capabilities": [
+        "attachment",
+        "specialized"
+      ],
+      "category": "specialized",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "type",
+        "name",
+        "meta",
+        "leading",
+        "content",
+        "actions",
+        "disabled",
+        "onAction",
+        "onPreview",
+        "onDownload"
+      ],
+      "slots": [
+        "leading",
+        "title",
+        "content",
+        "description",
+        "actions",
+        "menu-trigger",
+        "menu"
+      ],
+      "slotContracts": {
+        "actions": {
+          "cardinality": "0..1",
+          "scope": "attachment-surface",
+          "defaultPlacement": "trailing-end",
+          "control": "attachment-action-menu",
+          "interaction": "open-attachment-action-menu",
+          "menuItems": [
+            "preview",
+            "download"
+          ]
+        },
+        "menu-trigger": {
+          "cardinality": "0..1",
+          "scope": "attachment-action-menu",
+          "defaultVisibility": "visible",
+          "iconAlias": "navigation/chevron-down",
+          "iconSize": "20px",
+          "ariaHasPopup": "menu"
+        },
+        "menu": {
+          "cardinality": "0..1",
+          "scope": "attachment-action-menu",
+          "role": "menu",
+          "items": [
+            "preview",
+            "download"
+          ],
+          "closeOn": [
+            "escape",
+            "outside-click",
+            "select"
+          ]
+        }
+      },
+      "behaviors": [
+        "open",
+        "select",
+        "preview",
+        "download",
+        "escape",
+        "outside-click",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface-muted",
+        "typography.subtitle-s",
+        "typography.body-s",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#attachment",
+      "canonicalSelector": "section#specialized [data-component=\"Attachment/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#attachment",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "attachment",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Attachment",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Attachment",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "avatar",
+      "logicalName": "Avatar/Default",
+      "capabilities": [
+        "avatar",
+        "display"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "description",
+        "checked",
+        "name",
+        "ariaLabel",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#avatar",
+      "canonicalSelector": "section#display [data-component=\"Avatar/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#avatar",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "avatar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Avatar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Avatar.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "badge",
+      "logicalName": "Badge/Default",
+      "capabilities": [
+        "badge",
+        "display"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "neutral"
+      ],
+      "states": [
+        "default",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "tone",
+        "disabled",
+        "className"
+      ],
+      "slots": [
+        "label"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "color.primary"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#badge",
+      "canonicalSelector": "section#display [data-component=\"Badge/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#badge",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "badge",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Badge",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Badge.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "breadcrumb",
+      "logicalName": "Breadcrumb/Default",
+      "capabilities": [
+        "breadcrumb",
+        "navigation"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#breadcrumb",
+      "canonicalSelector": "section#navigation [data-component=\"Breadcrumb/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#breadcrumb",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "breadcrumb",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Breadcrumb",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Breadcrumb.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "button",
+      "logicalName": "Button/Primary/Default",
+      "capabilities": [
+        "actions",
+        "button",
+        "icon-button",
+        "icon-text-button",
+        "text-button"
+      ],
+      "category": "actions",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "variant",
+        "size",
+        "mode",
+        "iconOnly",
+        "icon",
+        "iconSize",
+        "disabled",
+        "menuItems"
+      ],
+      "slots": [
+        "icon",
+        "label",
+        "trigger",
+        "menu"
+      ],
+      "behaviors": [
+        "click",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.primary",
+        "color.primary-text",
+        "color.text",
+        "size.button-height",
+        "size.button-sm-height",
+        "radius.button",
+        "spacing.padding-button-x",
+        "spacing.padding-button-sm-x",
+        "typography.body-m",
+        "typography.body-l"
+      ],
+      "iconAliases": [
+        "action/add",
+        "action/download",
+        "action/settings",
+        "action/close",
+        "navigation/chevron-down",
+        "action/refresh",
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#button",
+      "canonicalSelector": "section#actions [data-component=\"Button/Primary/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/button.html",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "button",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Button",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Button.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "calendar",
+      "logicalName": "Calendar/Default",
+      "capabilities": [
+        "calendar",
+        "choices"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "select",
+        "arrow-keys"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "spacing.content-inset"
+      ],
+      "iconAliases": [
+        "field/calendar"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#calendar",
+      "canonicalSelector": "section#choices [data-component=\"Calendar/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#calendar",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "calendar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Calendar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Calendar",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "checkbox",
+      "logicalName": "Checkbox/Default",
+      "capabilities": [
+        "checkbox",
+        "choices"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "choice/check"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#checkbox",
+      "canonicalSelector": "section#choices [data-component=\"Checkbox/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#checkbox",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "checkbox",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Checkbox",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Checkbox.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "chips",
+      "logicalName": "Chips/Default",
+      "capabilities": [
+        "actions",
+        "chips"
+      ],
+      "category": "actions",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "with-icon",
+        "closable"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "icon",
+        "closable",
+        "disabled",
+        "state",
+        "onClose"
+      ],
+      "slots": [
+        "leading",
+        "label",
+        "close"
+      ],
+      "slotContracts": {
+        "leading": {
+          "cardinality": "0..1",
+          "scope": "chips",
+          "iconSize": "16px"
+        },
+        "label": {
+          "cardinality": "1",
+          "scope": "chips",
+          "typographyRole": "body-m"
+        },
+        "close": {
+          "cardinality": "0..1",
+          "scope": "chips",
+          "control": "icon-button",
+          "iconAlias": "action/close",
+          "iconSize": "16px",
+          "requiresAccessibleName": true
+        }
+      },
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface-muted",
+        "color.state-layer-hover",
+        "color.state-layer-pressed",
+        "size.tag-height",
+        "spacing.padding-tag-x",
+        "typography.body-m",
+        "radius.tag"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#chips",
+      "canonicalSelector": "section#actions [data-component=\"Chips/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#chips",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "chips",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/Chips.jsx#Chips",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Chips.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "collapsible",
+      "logicalName": "Collapsible/Default",
+      "capabilities": [
+        "collapsible",
+        "navigation"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "open"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "title",
+        "detail",
+        "expanded",
+        "contentId",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "toggle",
+        "keyboard-activation",
+        "focus"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#collapsible",
+      "canonicalSelector": "section#navigation [data-component=\"Collapsible/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#collapsible",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "collapsible",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Collapsible",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Collapsible.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "color-picker",
+      "logicalName": "ColorPicker/Tablet",
+      "capabilities": [
+        "color-picker",
+        "colorpicker",
+        "display"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "value",
+        "defaultValue",
+        "disabled",
+        "state",
+        "className",
+        "onChange"
+      ],
+      "slots": [
+        "title",
+        "tabs",
+        "mode",
+        "hue",
+        "saturation",
+        "brightness",
+        "alpha",
+        "preview",
+        "eyedropper",
+        "hex",
+        "favorites"
+      ],
+      "behaviors": [
+        "select",
+        "input",
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.title-s",
+        "typography.body-l",
+        "typography.body-m",
+        "typography.body-s",
+        "spacing.component-gap",
+        "radius.card"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#color-picker",
+      "canonicalSelector": "section#display [data-component=\"ColorPicker/Tablet\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#color-picker",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "color-picker",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#ColorPicker",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#ColorPicker",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "combobox",
+      "logicalName": "Combobox/Default",
+      "capabilities": [
+        "combobox",
+        "input",
+        "select"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "open",
+        "select",
+        "escape",
+        "arrow-keys"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#combobox",
+      "canonicalSelector": "section#input [data-component=\"Combobox/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#combobox",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "combobox",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Combobox",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Combobox.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "context-menu",
+      "logicalName": "Context Menu/Default",
+      "capabilities": [
+        "actions",
+        "context-menu"
+      ],
+      "category": "actions",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#context-menu",
+      "canonicalSelector": "section#actions [data-component=\"Context Menu/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#context-menu",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "context-menu",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#ContextMenu",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#ContextMenu",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "date-picker",
+      "logicalName": "Date Picker/Default",
+      "capabilities": [
+        "choices",
+        "date-picker"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "open",
+        "select",
+        "escape"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "spacing.content-inset"
+      ],
+      "iconAliases": [
+        "field/calendar"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#date-picker",
+      "canonicalSelector": "section#choices [data-component=\"Date Picker/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#date-picker",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "date-picker",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#DatePicker",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#DatePicker",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "dialog",
+      "logicalName": "Dialog/Default",
+      "capabilities": [
+        "containers",
+        "dialog"
+      ],
+      "category": "containers",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "single",
+        "double",
+        "triple"
+      ],
+      "states": [
+        "closed",
+        "open"
+      ],
+      "props": [
+        "open",
+        "title",
+        "description",
+        "intent",
+        "actionLayout",
+        "confirmLabel",
+        "cancelLabel",
+        "thirdActionLabel",
+        "onConfirm",
+        "onCancel",
+        "onThirdAction",
+        "onOpenChange"
+      ],
+      "slots": [
+        "titlebar",
+        "description",
+        "content",
+        "actions"
+      ],
+      "slotContracts": {
+        "titlebar": {
+          "cardinality": "1",
+          "scope": "dialog-header",
+          "acceptedContent": "Dialog title slot",
+          "variants": [
+            "title-only",
+            "title-subtitle"
+          ],
+          "pixsoComponent": ".Title",
+          "pixsoVariants": {
+            "title-only": "2 Line=OFF",
+            "title-subtitle": "2 Line=ON"
+          }
+        },
+        "actions": {
+          "cardinality": "1",
+          "scope": "dialog-actions",
+          "acceptedContent": "Button instances",
+          "buttonCount": {
+            "min": 1,
+            "max": 3
+          },
+          "layouts": [
+            "one-button",
+            "two-buttons",
+            "three-buttons"
+          ],
+          "pixsoComponent": ".Dialog_Container",
+          "pixsoVariants": {
+            "one-button": "quantity=1_normal",
+            "two-buttons": [
+              "quantity=2_normal",
+              "quantity=2_emphasize"
+            ],
+            "three-buttons": "quantity=3_emphasize_port"
+          }
+        }
+      },
+      "behaviors": [
+        "open",
+        "confirm",
+        "cancel",
+        "escape",
+        "focus-return",
+        "no-outside-dismiss"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#dialog",
+      "canonicalSelector": "section#containers [data-component=\"Dialog/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#dialog",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "dialog",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Dialog",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Dialog",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "dropdown-menu",
+      "logicalName": "Dropdown Menu/Default",
+      "capabilities": [
+        "actions",
+        "dropdown-menu"
+      ],
+      "category": "actions",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "open",
+        "select",
+        "escape",
+        "arrow-keys"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#dropdown-menu",
+      "canonicalSelector": "section#actions [data-component=\"Dropdown Menu/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#dropdown-menu",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "dropdown-menu",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#DropdownMenu",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#DropdownMenu",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "field",
+      "logicalName": "Field/Default",
+      "capabilities": [
+        "field",
+        "input"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#field",
+      "canonicalSelector": "section#input [data-component=\"Field/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#field",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "field",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Field",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Field.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "form-field",
+      "logicalName": "Form Field/Default",
+      "capabilities": [
+        "containers",
+        "form-field"
+      ],
+      "category": "containers",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "input",
+        "select"
+      ],
+      "states": [
+        "default",
+        "error",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "required",
+        "error",
+        "disabled",
+        "state",
+        "surface",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "control",
+        "error"
+      ],
+      "behaviors": [
+        "slot-control",
+        "validation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.alert",
+        "typography.subtitle-s",
+        "typography.body-s",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#form-field",
+      "canonicalSelector": "section#containers [data-component=\"Form Field/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#form-field",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "form-field",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#FormField",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/FormField.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "hover-card",
+      "logicalName": "Hover Card/Default",
+      "capabilities": [
+        "display",
+        "hover-card"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "title",
+        "description",
+        "content",
+        "actions"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#hover-card",
+      "canonicalSelector": "section#display [data-component=\"Hover Card/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#hover-card",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "hover-card",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#HoverCard",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#HoverCard",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "input",
+      "logicalName": "Input/White Surface/Default",
+      "capabilities": [
+        "input"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "error",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "props": [
+        "value",
+        "placeholder",
+        "disabled",
+        "error"
+      ],
+      "slots": [
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "input",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "tokenRoles": [
+        "color.input-bg",
+        "color.text",
+        "color.border",
+        "size.input-height",
+        "radius.input",
+        "typography.body-l"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#input",
+      "canonicalSelector": "section#input [data-component=\"Input/White Surface/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/input.html",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "input",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Input",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Input.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "label",
+      "logicalName": "Label/Default",
+      "capabilities": [
+        "input",
+        "label"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-m",
+        "spacing.component-gap",
+        "spacing.padding-tag-x",
+        "size.tag-height"
+      ],
+      "iconAliases": [
+        "field/search"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#label",
+      "canonicalSelector": "section#input [data-component=\"Label/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#label",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "label",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Label",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Label.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "list-card",
+      "logicalName": "List Item/White Surface/Default",
+      "capabilities": [
+        "card",
+        "containers",
+        "list-card",
+        "list-item"
+      ],
+      "category": "containers",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "selected",
+        "unread"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "props": [
+        "title",
+        "description",
+        "meta",
+        "selected",
+        "unread"
+      ],
+      "slots": [
+        "leading",
+        "title",
+        "description",
+        "trailing"
+      ],
+      "behaviors": [
+        "select",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.surface",
+        "color.sidebar-selected",
+        "color.text",
+        "color.text-muted",
+        "size.list-item-height",
+        "radius.list-item",
+        "typography.body-l",
+        "typography.body-m"
+      ],
+      "iconAliases": [
+        "navigation/list"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#list-card",
+      "canonicalSelector": "section#containers [data-component=\"List Item/White Surface/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/list-card.html",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "list-card",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#ListCard",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/ListCard.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "menubar",
+      "logicalName": "Menubar/Default",
+      "capabilities": [
+        "menubar",
+        "navigation"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "label",
+        "value",
+        "items",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description",
+        "item-leading",
+        "item-label",
+        "item-trailing"
+      ],
+      "slotContracts": {
+        "item-leading": {
+          "cardinality": "0..1",
+          "scope": "menubar-item",
+          "iconSize": "24px",
+          "iconToken": "icon-size-lg",
+          "gapToken": "gap-menu-item-content",
+          "gap": "8px",
+          "source": "lucide"
+        },
+        "item-label": {
+          "cardinality": "1",
+          "scope": "menubar-item",
+          "typographyRole": "body-l"
+        },
+        "item-trailing": {
+          "cardinality": "0..1",
+          "scope": "menubar-item",
+          "iconAlias": "navigation/chevron-right",
+          "iconSize": "24px",
+          "iconToken": "icon-size-lg",
+          "activeWhen": "hasSubmenu",
+          "placement": "trailing-end"
+        }
+      },
+      "behaviors": [
+        "open",
+        "select",
+        "escape",
+        "arrow-keys",
+        "hover-submenu",
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "icon-size-lg",
+        "spacing.menu-item-content"
+      ],
+      "iconAliases": [
+        "navigation/grid",
+        "navigation/chevron-right"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#menubar",
+      "canonicalSelector": "section#navigation [data-component=\"Menubar/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#menubar",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "menubar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Menubar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Menubar",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "native-select",
+      "logicalName": "Native Select/Default",
+      "capabilities": [
+        "choices",
+        "native-select",
+        "select"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#native-select",
+      "canonicalSelector": "section#choices [data-component=\"Native Select/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#nativeSelect",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "native-select",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#NativeSelect",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/NativeSelect.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "number-selector",
+      "logicalName": "Number Selector/Default",
+      "capabilities": [
+        "input",
+        "number-selector"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "defaultValue",
+        "min",
+        "max",
+        "step",
+        "disabled",
+        "onChange"
+      ],
+      "slots": [
+        "label",
+        "decrement",
+        "value",
+        "increment"
+      ],
+      "behaviors": [
+        "input",
+        "increment",
+        "decrement",
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.surface",
+        "color.text",
+        "color.border",
+        "color.primary",
+        "size.input-height",
+        "radius.input",
+        "typography.body-l"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#number-selector",
+      "canonicalSelector": "section#input [data-component=\"Number Selector/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#numberSelector",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "number-selector",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#NumberSelector",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/NumberSelector.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "pagination",
+      "logicalName": "Pagination/Default",
+      "capabilities": [
+        "navigation",
+        "pagination"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "spacing.content-inset"
+      ],
+      "iconAliases": [
+        "navigation/back",
+        "navigation/forward"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#pagination",
+      "canonicalSelector": "section#navigation [data-component=\"Pagination/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#pagination",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "pagination",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Pagination",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Pagination.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "popover",
+      "logicalName": "Popover/Default",
+      "capabilities": [
+        "display",
+        "popover"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "title",
+        "description",
+        "content",
+        "actions"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#popover",
+      "canonicalSelector": "section#display [data-component=\"Popover/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#popover",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "popover",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Popover",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Popover",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "primary-navigation-item",
+      "logicalName": "Primary Navigation Item/Level 1",
+      "capabilities": [
+        "navigation",
+        "primary-navigation",
+        "primary-navigation-item"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "selected"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "ariaLabel",
+        "icon",
+        "selected",
+        "disabled",
+        "state",
+        "onSelect",
+        "className"
+      ],
+      "slots": [
+        "icon",
+        "tooltip"
+      ],
+      "slotContracts": {
+        "icon": {
+          "cardinality": "1",
+          "scope": "primary-navigation-item",
+          "displaySize": "24px",
+          "kind": "regular",
+          "source": "lucide"
+        }
+      },
+      "behaviors": [
+        "select",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.primary-level-unselected",
+        "color.sidebar-accent",
+        "color.sidebar-selected-text",
+        "color.focus-ring",
+        "size.icon-button",
+        "icon-size-lg",
+        "radius.icon-button"
+      ],
+      "iconAliases": [
+        "navigation/grid",
+        "field/calendar",
+        "navigation/mail-unread",
+        "action/settings"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#primary-navigation-item",
+      "canonicalSelector": "section#navigation [data-component=\"Primary Navigation Item/Level 1\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/primary-navigation-item.html",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "primary-navigation-item",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#PrimaryNavigationItem",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/PrimaryNavigationItem.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "progress",
+      "logicalName": "Progress/Default",
+      "capabilities": [
+        "display",
+        "progress"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "success",
+        "warning",
+        "danger",
+        "info"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "loading"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "color.primary"
+      ],
+      "iconAliases": [
+        "status/success"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#progress",
+      "canonicalSelector": "section#display [data-component=\"Progress/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#progress",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "progress",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Progress",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Progress.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "radio",
+      "logicalName": "Radio/Unselected/Default",
+      "capabilities": [
+        "choices",
+        "radio"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "unselected",
+        "selected"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "checked",
+        "defaultChecked",
+        "label",
+        "name",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "control",
+        "label"
+      ],
+      "behaviors": [
+        "select",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "color.primary",
+        "color.primary-text",
+        "size.indicator.radio-size",
+        "radius.full",
+        "spacing.gap.choice-label",
+        "typography.body-m"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#radio",
+      "canonicalSelector": "section#choices [data-component=\"Radio/Unselected/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#radio",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "radio",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Radio",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Radio.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "radio-group",
+      "logicalName": "Radio Group/Default",
+      "capabilities": [
+        "choices",
+        "radio-group"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "action/check"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#radio-group",
+      "canonicalSelector": "section#choices [data-component=\"Radio Group/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#radioGroup",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "radio-group",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#RadioGroup",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/RadioGroup.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "search",
+      "logicalName": "Search/White Surface/Default",
+      "capabilities": [
+        "input",
+        "search"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "focused",
+        "with-value",
+        "advanced-search"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "value",
+        "defaultValue",
+        "placeholder",
+        "disabled",
+        "state",
+        "surface",
+        "advancedSearch",
+        "advancedSearchLabel",
+        "onAdvancedSearch",
+        "onChange",
+        "onClear"
+      ],
+      "slots": [
+        "leading",
+        "value",
+        "clear",
+        "advanced-search"
+      ],
+      "slotContracts": {
+        "advanced-search": {
+          "cardinality": "0..1",
+          "scope": "search-query-builder",
+          "defaultPlacement": "trailing-after-clear",
+          "control": "small-text-button",
+          "variant": "ghost",
+          "size": "small",
+          "mode": "text",
+          "textColorToken": "color.text-muted",
+          "trailingInsetToken": "space/2",
+          "requiresAccessibleName": true,
+          "interaction": "open-advanced-search-layer",
+          "coexistenceOrder": [
+            "clear",
+            "advanced-search"
+          ]
+        }
+      },
+      "behaviors": [
+        "input",
+        "clear",
+        "advanced-search",
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.input-bg",
+        "color.text",
+        "color.icon",
+        "size.search-height",
+        "radius.search",
+        "spacing.padding-search-x",
+        "typography.body-l"
+      ],
+      "iconAliases": [
+        "field/search",
+        "action/close"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#search",
+      "canonicalSelector": "section#input [data-component=\"Search/White Surface/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#search",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "search",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Search",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Search.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "segmented-button",
+      "logicalName": "Segmented Button/Default",
+      "capabilities": [
+        "choices",
+        "segmented-button"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "props": [
+        "options",
+        "value",
+        "defaultValue",
+        "label",
+        "disabled",
+        "onChange"
+      ],
+      "slots": [
+        "option"
+      ],
+      "behaviors": [
+        "select",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.surface",
+        "color.text",
+        "color.primary",
+        "radius.tab",
+        "spacing.padding-segmented-control",
+        "typography.body-m"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#segmented-button",
+      "canonicalSelector": "section#choices [data-component=\"Segmented Button/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#segmentedButton",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "segmented-button",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#SegmentedButton",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/SegmentedButton.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "select",
+      "logicalName": "Select/Default",
+      "capabilities": [
+        "choices",
+        "select"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "navigation/chevron-down"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#select",
+      "canonicalSelector": "section#choices [data-component=\"Select/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#select",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "select",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Select",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Select.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "semi-modal",
+      "logicalName": "Semi-modal/Default",
+      "capabilities": [
+        "containers",
+        "semi-modal"
+      ],
+      "category": "containers",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "s",
+        "m",
+        "l",
+        "white",
+        "gray",
+        "non-modal",
+        "modal"
+      ],
+      "states": [
+        "closed",
+        "open"
+      ],
+      "props": [
+        "open",
+        "size",
+        "surface",
+        "mode",
+        "title",
+        "onConfirm",
+        "onCancel",
+        "onClose",
+        "onOpenChange"
+      ],
+      "slots": [
+        "title",
+        "description",
+        "content",
+        "actions",
+        "close"
+      ],
+      "slotContracts": {
+        "close": {
+          "cardinality": "1",
+          "scope": "semi-modal-header",
+          "control": "icon-button",
+          "iconAlias": "action/close",
+          "iconSize": "20px",
+          "trailingInsetToken": "space/5",
+          "trailingInset": "16px"
+        }
+      },
+      "behaviors": [
+        "open",
+        "confirm",
+        "cancel",
+        "close",
+        "escape",
+        "focus-return",
+        "no-outside-dismiss",
+        "modal-focus-trap"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "shadow.overlay",
+        "radius.card"
+      ],
+      "iconAliases": [
+        "action/close"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#semi-modal",
+      "canonicalSelector": "section#containers [data-component=\"Semi-modal/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#semi-modal",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "semi-modal",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#SemiModal",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#SemiModal",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "sidebar",
+      "logicalName": "Sidebar Item/Default",
+      "capabilities": [
+        "navigation",
+        "sidebar",
+        "sidebar-item"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default",
+        "selected",
+        "collapsed"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "icon",
+        "selected",
+        "collapsed",
+        "count",
+        "items",
+        "groups",
+        "ariaLabel"
+      ],
+      "slots": [
+        "leading",
+        "label",
+        "trailing"
+      ],
+      "behaviors": [
+        "select",
+        "keyboard-activation",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.sidebar-bg",
+        "color.sidebar-selected",
+        "color.text",
+        "color.primary",
+        "size.list-item-height",
+        "radius.list-item",
+        "typography.body-l"
+      ],
+      "iconAliases": [
+        "navigation/grid",
+        "navigation/recent",
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#sidebar",
+      "canonicalSelector": "section#navigation [data-component=\"Sidebar Item/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/sidebar.html",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "sidebar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Sidebar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Sidebar.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "slider",
+      "logicalName": "Slider/Default",
+      "capabilities": [
+        "choices",
+        "slider"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "style-1",
+        "style-2"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "control",
+        "value"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "action/more"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#slider",
+      "canonicalSelector": "section#choices [data-component=\"Slider/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#slider",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "slider",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#Slider",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#Slider",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "snackbar",
+      "logicalName": "Snackbar/Default",
+      "capabilities": [
+        "display",
+        "snackbar"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "title-only",
+        "title-subtitle"
+      ],
+      "states": [
+        "default"
+      ],
+      "props": [
+        "title",
+        "subtitle",
+        "actionLabel",
+        "leftArea",
+        "closable",
+        "onAction",
+        "onClose"
+      ],
+      "slots": [
+        "leading",
+        "title",
+        "subtitle",
+        "action",
+        "close"
+      ],
+      "slotContracts": {
+        "leading": {
+          "cardinality": "1",
+          "scope": "snackbar-main",
+          "iconAlias": "status/info",
+          "iconSize": "24px",
+          "source": "lucide"
+        },
+        "title": {
+          "cardinality": "1",
+          "scope": "snackbar-content",
+          "typographyRole": "subtitle-s"
+        },
+        "subtitle": {
+          "cardinality": "0..1",
+          "scope": "snackbar-content",
+          "typographyRole": "body-s",
+          "activeWhen": "variant=title-subtitle"
+        },
+        "action": {
+          "cardinality": "0..1",
+          "scope": "snackbar-actions",
+          "control": "small-button-slot",
+          "acceptedComponentContract": "button",
+          "requiredSize": "small",
+          "accepts": "any shared Button mode and variant at small size",
+          "defaultControl": "Button/Ghost/Default"
+        },
+        "close": {
+          "cardinality": "0..1",
+          "scope": "snackbar-actions",
+          "control": "icon-button",
+          "iconAlias": "action/close",
+          "iconSize": "20px",
+          "hotZone": "40px",
+          "requiresAccessibleName": true
+        }
+      },
+      "behaviors": [
+        "action",
+        "close"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "typography.subtitle-s",
+        "typography.body-s",
+        "typography.body-m",
+        "spacing.component-gap",
+        "color.primary",
+        "shadow.3",
+        "radius.5"
+      ],
+      "iconAliases": [
+        "status/info",
+        "action/close"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#snackbar",
+      "canonicalSelector": "section#display [data-component=\"Snackbar/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#snackbar",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "snackbar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Snackbar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Snackbar.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "sub-tabs",
+      "logicalName": "Sub Tabs/Default",
+      "capabilities": [
+        "navigation",
+        "sub-tabs"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "props": [
+        "tabs",
+        "value",
+        "defaultValue",
+        "disabled",
+        "onChange"
+      ],
+      "slots": [
+        "label",
+        "content"
+      ],
+      "behaviors": [
+        "select",
+        "arrow-keys",
+        "focus"
+      ],
+      "tokenRoles": [
+        "color.neutral-dark-05",
+        "color.text-muted",
+        "color.brand-10",
+        "color.brand-100",
+        "spacing.gap-subtab-item",
+        "spacing.space-5",
+        "radius.subtab",
+        "size.size-10",
+        "typography.subtitle-m"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#sub-tabs",
+      "canonicalSelector": "section#navigation [data-component=\"Sub Tabs/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#subTabs",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "sub-tabs",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#SubTabs",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/SubTabs.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "switch",
+      "logicalName": "Switch/Default",
+      "capabilities": [
+        "choices",
+        "switch"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "color.primary"
+      ],
+      "iconAliases": [
+        "action/check"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#switch",
+      "canonicalSelector": "section#choices [data-component=\"Switch/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#switch",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "switch",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Switch",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Switch.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "table",
+      "logicalName": "Table/Default",
+      "capabilities": [
+        "display",
+        "table"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "leading",
+        "title",
+        "description",
+        "content",
+        "trailing"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "spacing.content-inset"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#table",
+      "canonicalSelector": "section#display [data-component=\"Table/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#table",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "table",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Table",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Table.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "tabs",
+      "logicalName": "Tabs/Default",
+      "capabilities": [
+        "navigation",
+        "tabs"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "selected"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "select",
+        "arrow-keys",
+        "focus"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "color.primary"
+      ],
+      "iconAliases": [
+        "navigation/list"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#tabs",
+      "canonicalSelector": "section#navigation [data-component=\"Tabs/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#tabs",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "tabs",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Tabs",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Tabs.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "textarea",
+      "logicalName": "Textarea/Default",
+      "capabilities": [
+        "input",
+        "textarea"
+      ],
+      "category": "input",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "input",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [],
+      "contractPointer": "packages/component-contracts/src/components.json#textarea",
+      "canonicalSelector": "section#input [data-component=\"Textarea/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#textarea",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "textarea",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Textarea",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Textarea.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "time-picker",
+      "logicalName": "Time Picker/Default",
+      "capabilities": [
+        "choices",
+        "time-picker"
+      ],
+      "category": "choices",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "open",
+        "error"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help"
+      ],
+      "behaviors": [
+        "open",
+        "select",
+        "escape"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap",
+        "spacing.content-inset"
+      ],
+      "iconAliases": [
+        "field/clock"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#time-picker",
+      "canonicalSelector": "section#choices [data-component=\"Time Picker/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/advanced.js#time-picker",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "time-picker",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/advanced.jsx#TimePicker",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/advanced.js#TimePicker",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "titlebar",
+      "logicalName": "Titlebar/Default",
+      "capabilities": [
+        "navigation",
+        "titlebar"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "small",
+        "medium",
+        "large",
+        "xlarge"
+      ],
+      "states": [
+        "default",
+        "unfocus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "paneTitle",
+        "size",
+        "layout",
+        "paneRole",
+        "segmentRole",
+        "slots",
+        "showWindowControls",
+        "logoSrc",
+        "logoAlt",
+        "disabled",
+        "state",
+        "mainDetailActions",
+        "onMainContentAction",
+        "onMainDetailAction",
+        "onAction",
+        "className"
+      ],
+      "slots": [
+        "leading",
+        "label",
+        "secondary-pane-content",
+        "main-content-leading",
+        "main-content-title",
+        "main-detail-actions",
+        "actions"
+      ],
+      "slotContracts": {
+        "secondary-pane-content": {
+          "cardinality": "0..1",
+          "scope": "secondary-pane-titlebar",
+          "valueType": "registered-component-binding",
+          "activeWhen": {
+            "layout": "three-column",
+            "paneRole": "secondary-pane"
+          },
+          "allowedComponents": [
+            "Search/White Surface/Default"
+          ],
+          "defaultPlacement": "secondary-pane-titlebar-content",
+          "horizontalInsetToken": "space/5",
+          "horizontalInset": "16px",
+          "crossAxisAlignment": "center",
+          "verticalInset": "none",
+          "owner": "titlebar-component"
+        },
+        "main-content-leading": {
+          "cardinality": "0..1",
+          "scope": "main-content-pane-global",
+          "valueType": "action-object",
+          "activeWhen": {
+            "layout": "two-column",
+            "paneRole": "final-pane"
+          },
+          "defaultPlacement": "final-pane-leading-slot",
+          "gapToken": "space/2",
+          "gap": "4px",
+          "iconSize": "24px",
+          "allowedButtonVariants": [
+            "ghost"
+          ],
+          "allowedButtonTypes": [
+            "icon",
+            "icon-text-ghost"
+          ],
+          "fields": [
+            "id",
+            "label",
+            "icon",
+            "buttonType"
+          ]
+        },
+        "main-detail-actions": {
+          "cardinality": "0..n",
+          "scope": "main-detail-pane-global",
+          "defaultPlacement": "final-pane-leading-slot",
+          "layout": "compact-horizontal-group",
+          "leadingInsetToken": "layout/main-detail-action-leading-padding",
+          "overflow": {
+            "strategy": "collapse-to-more",
+            "triggerLogicalName": "Icon Button/Ghost/Default",
+            "triggerActionId": "more",
+            "triggerIconAlias": "action/more",
+            "triggerPosition": "last",
+            "eligibleButtonTypes": [
+              "icon",
+              "icon-text-ghost"
+            ],
+            "preserveMode": true,
+            "preserveOrder": true,
+            "fit": "available-width",
+            "staticBoard": {
+              "renderTrigger": true,
+              "renderMenu": false
+            }
+          },
+          "modePolicy": {
+            "type": "uniform-business-actions",
+            "allowedModes": [
+              "icon",
+              "icon-text"
+            ],
+            "mixedModes": "forbidden",
+            "overflowTriggerExcluded": true
+          },
+          "allowedButtonVariants": [
+            "ghost"
+          ],
+          "forbidden": [
+            "page-global-primary",
+            "card-action",
+            "field-action",
+            "section-action",
+            "selection-action",
+            "inline-action"
+          ],
+          "activeWhen": {
+            "layout": "three-column",
+            "paneRole": "final-pane"
+          },
+          "allowedButtonTypes": [
+            "icon",
+            "icon-text-ghost"
+          ],
+          "allowedButtonLogicalNames": [
+            "Icon Button/Ghost/Default",
+            "Icon Text Button/Ghost/Default"
+          ],
+          "buttonTypeContracts": {
+            "icon": {
+              "logicalName": "Icon Button/Ghost/Default",
+              "mode": "icon",
+              "requiredSlots": [
+                "icon"
+              ],
+              "forbiddenSlots": [
+                "label"
+              ]
+            },
+            "icon-text-ghost": {
+              "logicalName": "Icon Text Button/Ghost/Default",
+              "mode": "icon-text",
+              "requiredSlots": [
+                "icon",
+                "label"
+              ]
+            }
+          },
+          "valueType": "action-array"
+        },
+        "main-content-title": {
+          "cardinality": "0..1",
+          "scope": "main-content-pane-global",
+          "valueType": "text",
+          "activeWhen": {
+            "layout": "two-column",
+            "paneRole": "final-pane"
+          },
+          "defaultPlacement": "final-pane-leading-slot",
+          "leadingInsetToken": "layout/main-title-leading-padding"
+        },
+        "leading": {
+          "cardinality": "0..1",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ]
+        },
+        "label": {
+          "cardinality": "0..1",
+          "valueType": "text",
+          "activeRoles": [
+            "global",
+            "primary-navigation"
+          ]
+        },
+        "actions": {
+          "cardinality": "0..1",
+          "valueType": "boolean",
+          "activeRoles": [
+            "global",
+            "final-pane"
+          ],
+          "implementation": "component-owned-window-controls"
+        }
+      },
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.component-gap"
+      ],
+      "iconAliases": [
+        "window/minimize",
+        "window/maximize",
+        "window/close"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#titlebar",
+      "canonicalSelector": "section#navigation [data-component=\"Titlebar/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#titlebar",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "titlebar",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Titlebar",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Titlebar.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "tooltip",
+      "logicalName": "Tooltip/Default",
+      "capabilities": [
+        "display",
+        "tooltip"
+      ],
+      "category": "display",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "props": [
+        "label",
+        "value",
+        "disabled",
+        "state",
+        "className"
+      ],
+      "slots": [
+        "label",
+        "content",
+        "description"
+      ],
+      "behaviors": [
+        "focus",
+        "disabled"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.surface",
+        "color.border",
+        "typography.body-l",
+        "spacing.padding-tooltip",
+        "shadow.1",
+        "radius.tooltip"
+      ],
+      "iconAliases": [
+        "status/info"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#tooltip",
+      "canonicalSelector": "section#display [data-component=\"Tooltip/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#tooltip",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "tooltip",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#Tooltip",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/Tooltip.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    },
+    {
+      "id": "tree-view",
+      "logicalName": "Tree View/Default",
+      "capabilities": [
+        "navigation",
+        "tree",
+        "tree-view"
+      ],
+      "category": "navigation",
+      "status": "partial",
+      "sourceStrategy": "canonical-custom",
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "expanded",
+        "disabled"
+      ],
+      "props": [
+        "nodes",
+        "selectedId",
+        "expandedIds",
+        "defaultSelectedId",
+        "defaultExpandedIds",
+        "disabled",
+        "onSelect",
+        "onToggle"
+      ],
+      "slots": [
+        "node-leading",
+        "node-label",
+        "node-trailing"
+      ],
+      "behaviors": [
+        "select",
+        "toggle",
+        "arrow-keys",
+        "focus"
+      ],
+      "tokenRoles": [
+        "color.text",
+        "color.text-muted",
+        "color.surface",
+        "color.border",
+        "color.primary",
+        "spacing.menu-item-content",
+        "size.tree-item-height",
+        "radius.subtab",
+        "typography.body-l",
+        "typography.body-m"
+      ],
+      "iconAliases": [
+        "navigation/chevron-right",
+        "navigation/grid",
+        "object/file"
+      ],
+      "contractPointer": "packages/component-contracts/src/components.json#tree-view",
+      "canonicalSelector": "section#navigation [data-component=\"Tree View/Default\"]",
+      "frameworks": {
+        "html": {
+          "package": "@text-to-ui/components-html",
+          "source": "packages/components-html/src/index.js#treeView",
+          "exists": true,
+          "status": "partial",
+          "rendererKey": "tree-view",
+          "factoryImport": "renderHtmlComponent",
+          "styleImports": [
+            "@text-to-ui/tokens",
+            "@text-to-ui/components-html/styles.css",
+            "@text-to-ui/components-html/pattern-shell.css"
+          ]
+        },
+        "react": {
+          "package": "@text-to-ui/components-react",
+          "source": "packages/components-react/src/index.jsx#TreeView",
+          "exists": true,
+          "status": "partial"
+        },
+        "vue": {
+          "package": "@text-to-ui/components-vue",
+          "source": "packages/components-vue/src/TreeView.vue",
+          "exists": true,
+          "status": "partial"
+        }
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { syncSkill, verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
+import { syncSkill, verifySkill } from "../skill-support/scripts/skill-delivery.mjs";
 
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "text-to-ui-delivery-test-"));
 const source = path.join(temporary, "source");
@@ -43,7 +43,7 @@ try {
   }
   assert.throws(() => verifySkill(source, target), /Skill entry cannot load/);
   const repository = path.join(temporary, "repository");
-  const support = path.join(repository, "text-to-ui");
+  const support = path.join(repository, "skill-support");
   const generated = path.join(repository, "skill");
   write(repository, "SKILL.md", "---\nname: text-to-ui\ndescription: Repository entry.\n---\n");
   write(repository, "agents/openai.yaml", 'interface:\n  display_name: "Text to UI"\n');

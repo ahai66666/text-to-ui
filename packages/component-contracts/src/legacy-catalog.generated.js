@@ -1,4 +1,4 @@
-// Generated from text-to-ui/preview/component-gallery.html. Do not edit by hand.
+// Generated from skill-support/preview/component-gallery.html. Do not edit by hand.
 // Regenerate with: node tools/generate-legacy-component-catalog.mjs
 export const legacyCatalogComponentNames = Object.freeze([
   "Accordion",

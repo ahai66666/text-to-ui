@@ -22,7 +22,7 @@ const manifest = {
   categoryCount: new Set(registry.components.map((component) => component.category)).size,
   visualAuthority: [
     "Component/Design MD",
-    "text-to-ui/preview/component-gallery.html",
+    "skill-support/preview/component-gallery.html",
     "packages/tokens"
   ],
   readinessDimensions: registry.registryPolicy?.readinessDimensions ?? [

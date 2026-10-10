@@ -9,7 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = path.join(root, "packages/components-html/src/component-icons.svg");
 const xml = await fs.readFile(source, "utf8");
 const aliasRegistry = JSON.parse(await fs.readFile(
-  path.join(root, "text-to-ui/assets/icons/icon-aliases.json"),
+  path.join(root, "skill-support/assets/icons/icon-aliases.json"),
   "utf8"
 ));
 // Symbol ids flatten the semantic path (for example

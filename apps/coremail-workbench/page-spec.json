@@ -6,7 +6,7 @@
     ".",
     "../../packages/components-html",
     "../../packages/component-styles",
-    "../../text-to-ui/assets/design-system"
+    "../../skill-support/assets/design-system"
   ],
   "runtimeFramework": "html",
   "pixso": {
@@ -16,7 +16,7 @@
     "targetFrame": "Coremail Mail Workbench / v6 Native",
     "preserveExistingFrames": true,
     "pageData": "pixso/page-data.json",
-    "componentMap": "../../text-to-ui/assets/design-system/pixso-native-component-map.json",
+    "componentMap": "../../skill-support/assets/design-system/pixso-native-component-map.json",
     "visualSnapshot": "pixso/html-visual-snapshot.json"
   },
   "componentRegistry": "packages/component-contracts/src/components.json",

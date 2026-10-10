@@ -22,7 +22,7 @@ __pycache__/
 
 # One-off visual audit exports are local QA evidence, not reusable package
 # inputs. Keep curated conclusions in docs/ instead of publishing screenshots.
-text-to-ui/audits/
+skill-support/audits/
 
 # Local email/font probes and personal test documents
 _email_*

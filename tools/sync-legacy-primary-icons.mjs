@@ -3,10 +3,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildIconSymbol, loadIconRegistry } from "../text-to-ui/scripts/icon-tools.mjs";
+import { buildIconSymbol, loadIconRegistry } from "../skill-support/scripts/icon-tools.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const file = path.join(root, "text-to-ui/preview/component-gallery.html");
+const file = path.join(root, "skill-support/preview/component-gallery.html");
 const aliases = [
   "navigation/grid",
   "field/calendar",

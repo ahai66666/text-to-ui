@@ -17,7 +17,7 @@ Skill 记录兼容的组件包范围。Token 破坏变化会提升组件包 majo
 ```text
 SKILL.md                # 唯一 Skill 导入入口
 agents/openai.yaml      # Skill 界面元数据
-text-to-ui/             # Skill 规则、索引、脚本和预览规范源
+skill-support/          # Skill 规则、索引、脚本和预览规范源
 packages/               # 生产组件、Token、契约和 Pixso 映射
 apps/component-gallery/ # 正式组件画廊
 tools/                  # 生成与校验脚本
@@ -35,7 +35,7 @@ pnpm test
 
 独立 `text-to-ui-skill` ZIP 解压后应包含 `text-to-ui/` 文件夹，且该文件夹顶层直接具有 `SKILL.md`。下载完整仓库的源码 ZIP 时，跨工具导入应选择**仓库根目录**，其顶层直接具有唯一 `SKILL.md` 和 `packages/`。如工具要求目录名与 `name: text-to-ui` 一致，把源码 ZIP 解压后的外层目录改名为 `text-to-ui`。不要选择内层规则目录，也不要在同一工具中同时导入完整仓库和独立 Skill ZIP。
 
-在仓库根目录运行 `pnpm skill:package` 可从规范源生成按 `text-to-ui/package.json` 版本命名的 ZIP；`pnpm skill:package:check` 会临时打包、解压并核对入口和文件。手动运行 GitHub Actions 的 `release` 工作流并选择 `skill` 时，ZIP 会作为工作流 Artifact 上传；只有另行附加到 GitHub Release 后才是公开 Release 下载项。
+在仓库根目录运行 `pnpm skill:package` 可从规范源生成按 `skill-support/package.json` 版本命名的 ZIP；`pnpm skill:package:check` 会临时打包、解压并核对入口和文件。手动运行 GitHub Actions 的 `release` 工作流并选择 `skill` 时，ZIP 会作为工作流 Artifact 上传；只有另行附加到 GitHub Release 后才是公开 Release 下载项。
 
 独立 Skill 包只保证规则、索引、工具和预览资源可安装；它不携带 `packages/` 生产组件源码。`text-to-ui-components` 和 `text-to-ui-tokens` 需要作为兼容版本一起安装或作为 Monorepo workspace 依赖提供。
 

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "text-to-ui-route-material-manifest",
+  "description": "Canonical route material closure. Paths are repository-relative so the source Skill, repository mirror, installed Skill, and Pixso delivery can share one manifest.",
+  "baseMaterials": [
+    { "path": "skill-support/references/requirement-spec.md", "role": "requirement-contract" },
+    { "path": "skill-support/references/layouts/framework-layout-routing.md", "role": "layout-routing" },
+    { "path": "skill-support/references/components/source-resolution.md", "role": "component-resolution" },
+    { "path": "skill-support/assets/design-system/pattern-contracts.json", "role": "pattern-contract" },
+    { "path": "packages/component-contracts/src/components.json", "role": "component-registry" },
+    { "path": "packages/tokens/src/token-runtime-map.json", "role": "token-registry" },
+    { "path": "skill-support/assets/icons/icon-aliases.json", "role": "icon-registry" }
+  ],
+  "routes": {
+    "existing-html-to-pixso": {
+      "materials": [
+        { "path": "skill-support/references/routes/existing-html-to-pixso.md", "role": "route" },
+        { "path": "skill-support/references/pixso-import-details.md", "role": "pixso-import" },
+        { "path": "skill-support/references/pixso-execution-invariants.md", "role": "pixso-execution" },
+        { "path": "skill-support/references/pixso-fidelity-import-pipeline.md", "role": "pixso-fidelity" }
+      ]
+    },
+    "new-page": {
+      "materials": [
+        { "path": "skill-support/references/routes/new-page.md", "role": "route" },
+        { "path": "skill-support/references/index/task-routes.source.json", "role": "task-route-registry" },
+        { "path": "skill-support/references/page-design-guidance.md", "role": "page-guidance" },
+        { "path": "skill-support/references/page-blueprint-design.md", "role": "page-blueprint" },
+        { "path": "skill-support/references/components/page-composition.md", "role": "page-composition" },
+        { "path": "skill-support/assets/design-system/titlebar-scene-contracts.json", "role": "titlebar-scene-contract" },
+        { "path": "packages/pattern-runtime/README.md", "role": "pattern-runtime-api" },
+        { "path": "skill-support/references/workflows/fast-preview.md", "role": "validation" }
+      ],
+      "dynamicMaterials": ["pattern-references", "task-route-domain-reference", "titlebar-segments"]
+    },
+    "micro-revision": {
+      "materials": [
+        { "path": "skill-support/references/routes/micro-revision.md", "role": "route" },
+        { "path": "skill-support/references/page-design-guidance.md", "role": "page-guidance" }
+      ]
+    },
+    "pixso-component-library": {
+      "materials": [
+        { "path": "skill-support/references/routes/pixso-component-library.md", "role": "route" },
+        { "path": "skill-support/references/pixso-import-details.md", "role": "pixso-import" },
+        { "path": "skill-support/references/pixso-execution-invariants.md", "role": "pixso-execution" },
+        { "path": "skill-support/references/mapping-registry.md", "role": "mapping-registry" },
+        { "path": "skill-support/references/pixso-component-maintenance.md", "role": "component-maintenance" },
+        { "path": "skill-support/references/pixso-component-usage.md", "role": "component-usage" },
+        { "path": "skill-support/references/pixso-native-scene.md", "role": "native-scene" }
+      ]
+    },
+    "converter-diagnosis": {
+      "materials": [
+        { "path": "skill-support/references/routes/converter-diagnosis.md", "role": "route" },
+        { "path": "skill-support/references/pixso-import-details.md", "role": "pixso-import" },
+        { "path": "skill-support/references/pixso-execution-invariants.md", "role": "pixso-execution" },
+        { "path": "skill-support/references/pixso-fidelity-import-pipeline.md", "role": "pixso-fidelity" },
+        { "path": "skill-support/references/pixso-native-scene.md", "role": "native-scene" },
+        { "path": "skill-support/references/pixso-mcp.md", "role": "pixso-diagnostic" },
+        { "path": "skill-support/references/pixso-visual-parity.md", "role": "visual-diagnostic" }
+      ]
+    },
+    "skill-maintenance": {
+      "materials": [
+        { "path": "skill-support/references/routes/skill-maintenance.md", "role": "route" },
+        { "path": "skill-support/references/governance/major-version-update-checklist.md", "role": "major-version-governance" },
+        { "path": "skill-support/references/governance/skill-catalog-refresh.md", "role": "skill-catalog-governance" },
+        { "path": "skill-support/references/index/generated/skill-catalog-index.json", "role": "skill-catalog-index" },
+        { "path": "skill-support/references/components/page-composition.md", "role": "page-composition" },
+        { "path": "skill-support/assets/design-system/titlebar-scene-contracts.json", "role": "titlebar-scene-contract" },
+        { "path": "skill-support/references/pixso-import-details.md", "role": "pixso-import" },
+        { "path": "skill-support/references/pixso-execution-invariants.md", "role": "pixso-execution" }
+      ]
+    }
+  }
+}

@@ -6,8 +6,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const sourcePreview = path.join(root, "text-to-ui", "preview");
-const sourceDesignTokens = path.join(root, "text-to-ui", "assets", "design-system");
+const sourcePreview = path.join(root, "skill-support", "preview");
+const sourceDesignTokens = path.join(root, "skill-support", "assets", "design-system");
 const targetRoot = path.join(root, "apps", "component-gallery", "public", "legacy-skill");
 const targetPreview = path.join(targetRoot, "preview");
 const targetDesignTokens = path.join(targetRoot, "assets", "design-system");
@@ -36,7 +36,7 @@ const files = {};
 for (const relative of sourceFiles) files[relative] = await hashFile(path.join(targetRoot, relative));
 await fs.writeFile(path.join(targetRoot, ".baseline-manifest.json"), `${JSON.stringify({
   schemaVersion: 1,
-  source: "text-to-ui/preview + text-to-ui/assets/design-system",
+  source: "skill-support/preview + skill-support/assets/design-system",
   files
 }, null, 2)}\n`);
 

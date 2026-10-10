@@ -1,7 +1,7 @@
 import contracts from "../../packages/component-contracts/src/components-runtime.js";
 import { resolveComponentReadiness } from "../../packages/component-contracts/src/readiness-policy.js";
-import readinessPolicy from "../../text-to-ui/references/components/component-readiness-policy.json" with { type: "json" };
-import coreAcceptanceBatch from "../../text-to-ui/references/components/core-component-acceptance.json" with { type: "json" };
+import readinessPolicy from "../../skill-support/references/components/component-readiness-policy.json" with { type: "json" };
+import coreAcceptanceBatch from "../../skill-support/references/components/core-component-acceptance.json" with { type: "json" };
 
 export const coreIds = new Set(["button", "input", "search", "primary-navigation-item", "sidebar", "list-card", "titlebar", "textarea", "field", "form-field", "select", "combobox", "native-select", "checkbox", "radio", "radio-group", "switch", "segmented-button", "number-selector", "chips", "tabs", "sub-tabs", "tree-view", "accordion", "collapsible", "avatar", "badge", "table", "pagination", "breadcrumb", "progress", "label", "alert", "tooltip", "toast", "dialog", "alert-dialog", "semi-modal", "menubar", "context-menu", "dropdown-menu", "popover", "hover-card", "slider", "color-picker", "calendar", "date-picker", "time-picker", "attachment"]);
 const fullWidthPreviewIds = new Set(["titlebar", "button"]);

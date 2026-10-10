@@ -5,10 +5,10 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { skillFiles, verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
+import { skillFiles, verifySkill } from "../skill-support/scripts/skill-delivery.mjs";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const source = path.join(repository, "text-to-ui");
+const source = path.join(repository, "skill-support");
 const entryFile = path.join(repository, "SKILL.md");
 const metadataFile = path.join(repository, "agents", "openai.yaml");
 const version = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8")).version;

@@ -28,7 +28,7 @@ pnpm --filter @text-to-ui/coremail-workbench dev
 
 ## 修改规则
 
-1. 仓库根目录 `SKILL.md` 是唯一可导入入口，`text-to-ui/` 是规范支持资料；`skill/` 仅是本机生成的交付镜像，不提交，也不要在内层新增 `SKILL.md`。
+1. 仓库根目录 `SKILL.md` 是唯一可导入入口，`skill-support/` 是规范支持资料；`skill/` 仅是本机生成的交付镜像，不提交，也不要在内层新增 `SKILL.md`。
 2. HTML、React、Vue 必须实现同一份组件契约，不能用外观相似的临时标记替代真实源码。
 3. Pattern 是页面组合契约；组件适配器不得重新定义页面结构、插槽或布局策略。
 4. Token、组件、Pattern、Pixso 映射的生成文件必须由仓库脚本生成，并保持可重复。

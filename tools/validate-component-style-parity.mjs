@@ -4,15 +4,15 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
-const canonicalCss = read("text-to-ui/preview/component-gallery.css");
-const fixtureCss = read("text-to-ui/fixtures/framework-component-contract/shared/interactive-components.css");
+const canonicalCss = read("skill-support/preview/component-gallery.css");
+const fixtureCss = read("skill-support/fixtures/framework-component-contract/shared/interactive-components.css");
 const packageCss = read("packages/component-styles/src/index.css");
 const compatibilityCss = read("packages/component-contracts/src/components.css");
 const gallery = read("apps/component-gallery/index.html");
 const galleryCss = read("apps/component-gallery/gallery.css");
 const galleryRuntime = read("apps/component-gallery/preview.js");
 const contracts = JSON.parse(read("packages/component-contracts/src/components.json"));
-const iconAliases = JSON.parse(read("text-to-ui/assets/icons/icon-aliases.json"));
+const iconAliases = JSON.parse(read("skill-support/assets/icons/icon-aliases.json"));
 const sprite = read("packages/components-html/src/component-icons.svg");
 
 const failures = [];
@@ -98,7 +98,7 @@ const collectIconFiles = (directory) => fs.readdirSync(path.join(root, directory
   const relative = path.join(directory, entry.name);
   return entry.isDirectory() ? collectIconFiles(relative) : [relative];
 });
-const filledHarmonyFiles = collectIconFiles("text-to-ui/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
+const filledHarmonyFiles = collectIconFiles("skill-support/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
 if (filledHarmonyFiles.length) failures.push(`HarmonyOS Filled asset files remain: ${filledHarmonyFiles.length}`);
 
 for (const component of contracts.components) {

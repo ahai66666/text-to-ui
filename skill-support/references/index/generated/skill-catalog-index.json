@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "kind": "text-to-ui-skill-catalog-index",
+  "authority": "skill-support/references/governance/skill-catalog-refresh.md",
+  "policy": {
+    "canonicalSource": "SKILL.md + skill-support/",
+    "refreshBeforeMaintenance": true,
+    "missingOrHashDriftIsBlocking": true,
+    "mirrorsAreValidatedAfterCanonicalChecks": true
+  },
+  "derivedProducts": {
+    "generatedIndexes": "skill-support/references/index/generated/*.json",
+    "builder": "pnpm index:build",
+    "validator": "pnpm index:check"
+  },
+  "deliveryTargets": [
+    "skill/ (local generated mirror; Git-ignored)",
+    "$CODEX_HOME/skills/text-to-ui",
+    "TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT (optional user-selected directory)"
+  ],
+  "groups": [
+    {
+      "id": "routing-and-receipts",
+      "purpose": "Route selection, Context Packet material closure, and read-receipt verification.",
+      "files": [
+        {
+          "path": "skill-support/references/routes/index.json",
+          "sha256": "b39f4049bbf25392ce881ec294700e74335eab5bece4974c2972a8d5054099ca"
+        },
+        {
+          "path": "skill-support/references/routes/materials.source.json",
+          "sha256": "fc2200294c9f835893543312d740629db1cde442c6249ea08e3868868deec510"
+        },
+        {
+          "path": "skill-support/references/routes/skill-maintenance.md",
+          "sha256": "492431f27a33480bd84d0e422a87e4e3df944fa0270af2684e63f876e59980f2"
+        },
+        {
+          "path": "skill-support/scripts/resolve-workflow-route.mjs",
+          "sha256": "4db99022c36a3c483e7845659ef43b23062001e59c202a61cb8b52e0a527cd83"
+        },
+        {
+          "path": "skill-support/scripts/task-route-lib.mjs",
+          "sha256": "9e0b570fbb8c53de758032318a5a39c7892d49ab158da2821bdf2a2ab7ae1c09"
+        },
+        {
+          "path": "skill-support/scripts/resolve-context.mjs",
+          "sha256": "2c2816458a4435bff581b6c548938fa66750bbb1067de628b0753b05717a2d79"
+        },
+        {
+          "path": "skill-support/scripts/test-task-route-resolution.mjs",
+          "sha256": "faf6756278a5e9bf6ba5054452980c47f3c410e88d4f4657926d5732038ca035"
+        },
+        {
+          "path": "skill-support/scripts/verify-route-materials.mjs",
+          "sha256": "38f894fb8d7edf194ac8d30069e0f3ef5ddd8b98ad0cbd608804618ab0898d98"
+        },
+        {
+          "path": "skill-support/scripts/verify-context-materials.mjs",
+          "sha256": "8a04658346ac5e6a66ed60cfb1cef64e2af14a2564c855aee58740e052fc5b01"
+        }
+      ]
+    },
+    {
+      "id": "patterns-and-runtime",
+      "purpose": "Pattern contracts, Skeleton/Runtime renderers, deterministic Titlebar scenes, and Secondary Page composition.",
+      "files": [
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.json",
+          "sha256": "7c281c8924ddb4533422b34d680c196a2910147c39944b0d7061d3344babd93e"
+        },
+        {
+          "path": "skill-support/assets/design-system/pattern-contracts.schema.json",
+          "sha256": "30871a1c7620f1c58a7cc45c0025ea76755e4d0bb8db6b6247f88927a0231d4d"
+        },
+        {
+          "path": "skill-support/assets/design-system/titlebar-scene-contracts.json",
+          "sha256": "56c53568f289e221dc8084f2377a5ee74b3ac6076e5146ae18ec1725b42c2565"
+        },
+        {
+          "path": "packages/pattern-runtime/src/index.js",
+          "sha256": "8a268fb1cb3245fab52e2fd8929a5e996c31d3d7489d5cea26c33e751636adc3"
+        },
+        {
+          "path": "packages/pattern-runtime/src/styles.css",
+          "sha256": "48dc0ecdee316b4981ae597fc3faa1e0ffac23ca24098c87ecfb9e6f46aa96f0"
+        },
+        {
+          "path": "skill-support/scripts/resolve-pattern-contract.mjs",
+          "sha256": "1514c5f58ddb865879128b2a0d237fa95623998e215d0b422aae389a43bec52a"
+        },
+        {
+          "path": "skill-support/scripts/titlebar-scene.mjs",
+          "sha256": "dd5af1473e011ee4a3ea5f51e2bd3566979ab90e396ddf1cbcfe662583d7cf90"
+        },
+        {
+          "path": "skill-support/scripts/validate-pattern-contracts.mjs",
+          "sha256": "6d53ecbda62ac2a1483ef3acc707273e88896fd3f3a59ab6b268d55428a1971f"
+        },
+        {
+          "path": "skill-support/scripts/test-pattern-runtime.mjs",
+          "sha256": "c53b0ec20de51b644f2620b113c29d715117475b9ecc239c795f0000d031d65d"
+        },
+        {
+          "path": "skill-support/scripts/test-ui-scene-pattern-binding.mjs",
+          "sha256": "be63c4ad0f24d72f40acbc14af5d65d23e67f65a79b58561501cd1359de27ae8"
+        }
+      ]
+    },
+    {
+      "id": "component-contracts-and-adapters",
+      "purpose": "Component identity, Props, Slots, framework adapters, and registered reuse.",
+      "files": [
+        {
+          "path": "packages/component-contracts/src/components.json",
+          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+        },
+        {
+          "path": "packages/component-contracts/src/components-runtime.js",
+          "sha256": "aaf050917062057ca6e1ebc65bc5453431347ebbbe68f55d2bb99ca182ba4fe8"
+        },
+        {
+          "path": "packages/component-contracts/src/parity-manifest.json",
+          "sha256": "1056fbc730013a0f2654ed27c4168209f7e897215e6ae0be534cd0b934ddbdb4"
+        },
+        {
+          "path": "packages/component-contracts/src/titlebar-segments.js",
+          "sha256": "4f1d28923ad7a36db28eabcdc45d4c7e4816aafbefa122060b6edeeeae1e61bb"
+        },
+        {
+          "path": "skill-support/assets/design-system/framework-component-adapter-map.json",
+          "sha256": "2f52fc286d4b1301867fca179d0ca89ea4594f6201acdd3193bfa99b02bebb71"
+        },
+        {
+          "path": "skill-support/scripts/validate-framework-component-adapter-map.mjs",
+          "sha256": "d035c0a75dc3fc6736c23fd8b18113257ed030ecba732f35763725ef6d00c350"
+        },
+        {
+          "path": "skill-support/scripts/validate-runtime-component-reuse.mjs",
+          "sha256": "b330958b4de5f3e848484aa7b57a7d70a89aba410a3384949973cfd47c1989dc"
+        },
+        {
+          "path": "skill-support/scripts/validate-web-component-reuse.mjs",
+          "sha256": "eccf70097cc596245bac370fcdde8787a4e7ff8772419b68ade921655ee238b5"
+        }
+      ]
+    },
+    {
+      "id": "tokens-type-and-icons",
+      "purpose": "Semantic Token maps, colors, typography, layout, and icon aliases.",
+      "files": [
+        {
+          "path": "packages/tokens/src/token-runtime-map.json",
+          "sha256": "5f084420874b4f8147e1f8a6176e93343750a6f5db93d3a9e1e70a5eb14c84ff"
+        },
+        {
+          "path": "packages/tokens/src/tokens.colors.css",
+          "sha256": "00c25b283287b5c42ba5676efa11a497541710a3269c6e06c80fd19f28b4a94c"
+        },
+        {
+          "path": "packages/tokens/src/tokens.typography.css",
+          "sha256": "a41abd576aec72d5697aa9d4be5c7d7ed7df7373fd2121f9517741dd4ba66d06"
+        },
+        {
+          "path": "packages/tokens/src/tokens.layout.css",
+          "sha256": "6a6bd5f3be075de0797091a4c742f6f0af62c3cc3385a62119c6572a382e73ed"
+        },
+        {
+          "path": "packages/tokens/src/tokens.spacing.css",
+          "sha256": "75cc5f9781105b5037f32d6dab05e561ce03dbebdb419dcb3cb11c9f5063b506"
+        },
+        {
+          "path": "packages/tokens/src/tokens.icon.css",
+          "sha256": "e4f2e7f649a7d9842b53bba06de12812590b161495f68246c963f526442e5883"
+        },
+        {
+          "path": "skill-support/assets/icons/icon-aliases.json",
+          "sha256": "ca3cd2bd5020185fda34cfe4fde1b648537fba9e439f1605beac9c1ef54e7b78"
+        },
+        {
+          "path": "skill-support/assets/design-system/pixso-icon-map.json",
+          "sha256": "4a9544355cd80c0b9cc0910e99d8b952b38d9afcf56ab9ec71dd5a4db4050ab9"
+        },
+        {
+          "path": "skill-support/scripts/validate-page-token-usage.mjs",
+          "sha256": "639b09f9603c04b6acdec8c03213fc0d95ccae8ba874b70037a8187e13bc44b9"
+        },
+        {
+          "path": "skill-support/scripts/validate-pixso-icon-map.mjs",
+          "sha256": "5c2be8b7b70d05be41f856bd17033bb256c96037d1c0e145b4661dc0e3193c53"
+        }
+      ]
+    },
+    {
+      "id": "ui-scene-and-generation",
+      "purpose": "Shared UI Scene, page decision layers, compiler, and strict page generation.",
+      "files": [
+        {
+          "path": "skill-support/assets/design-system/ui-scene.schema.json",
+          "sha256": "c44acfaaaeb575258229b4eb6c66075e501df251a76f3bc94ee9547a485cabcc"
+        },
+        {
+          "path": "skill-support/assets/design-system/page-spec.schema.json",
+          "sha256": "a53184e2ad4033125fb62348a0a5c50704b2fe90fe744205b42ac65c20812a9a"
+        },
+        {
+          "path": "skill-support/scripts/page-ui-scene.mjs",
+          "sha256": "e15eed695f331526bb7bd1aca87df54b17a0ddfc8607e8e1d07f305f4ec7df49"
+        },
+        {
+          "path": "skill-support/scripts/compile-ui-scene.mjs",
+          "sha256": "c707272609f3d3ae3016c3d4297da4ed2e8be29c80790d3b2f473907632939c3"
+        },
+        {
+          "path": "skill-support/scripts/page-blueprint.mjs",
+          "sha256": "480c04c178afe24fd8c7357377d1295889e1be75bee88848df2a6714ecbaa75b"
+        },
+        {
+          "path": "skill-support/scripts/page-content-recipes.mjs",
+          "sha256": "0995389e0bb7bce1869f74458979bef44b45c941e7bba2e658a497d94b0c027c"
+        },
+        {
+          "path": "skill-support/scripts/generate-framework-page.mjs",
+          "sha256": "516aeafb8cd2bc9e7be582685d3ee972d3e55c200fcd012f084a113d634ea595"
+        },
+        {
+          "path": "skill-support/scripts/generate-compliant-page.mjs",
+          "sha256": "640b35033bce902c205c8aaa1a7649d254d76df83509cc42b9c31c79a6bedb18"
+        },
+        {
+          "path": "skill-support/scripts/test-framework-page-generation.mjs",
+          "sha256": "2328939aef43d1b2e3a0796436b384091c52337673553c51e8159f128b5ea754"
+        }
+      ]
+    },
+    {
+      "id": "gates-and-runtime-evidence",
+      "purpose": "Reuse, Token, layout, artifact, and browser Runtime evidence gates.",
+      "files": [
+        {
+          "path": "skill-support/scripts/validate-page-composite-boundaries.mjs",
+          "sha256": "ce6170379410a6f4bd9ae5b63d3ac0450227e53329b9c13a0a46a362c0bf0186"
+        },
+        {
+          "path": "skill-support/scripts/validate-page-css-boundaries.mjs",
+          "sha256": "104c3b9278442e6cff1584a8fa71fdeba0c416345b8228a31edcfdbf2e9849ac"
+        },
+        {
+          "path": "skill-support/scripts/validate-page-layout-binding.mjs",
+          "sha256": "2dc16cd8b3f1116405b6813770a4123cbb88fd927edaf567e57c8b4d37c9bdcb"
+        },
+        {
+          "path": "skill-support/scripts/verify-html-artifact.mjs",
+          "sha256": "1c1c6457c8f6203a4c5e7f685085a55da0b264c5b2a682b9d352c36851664494"
+        },
+        {
+          "path": "skill-support/scripts/stamp-framework-artifact.mjs",
+          "sha256": "765ecc3e5f952a8f2a16ef5f81b564a6041a52c884256ad220d032b2f0e38795"
+        },
+        {
+          "path": "tools/validate-runtime-evidence.mjs",
+          "sha256": "e851997db828452cc33521b34c262211c97c6f04a9c40ee534362baf953a4173"
+        },
+        {
+          "path": "skill-support/references/workflows/fast-preview.md",
+          "sha256": "d5088dd9fca51a6829c4ca7c4cf2d067233339fb6772c30f7d527d44ed7df086"
+        }
+      ]
+    },
+    {
+      "id": "delivery-mirrors",
+      "purpose": "Canonical delivery source, maintenance commands, and mirror synchronization implementation.",
+      "files": [
+        {
+          "path": "package.json",
+          "sha256": "ad313c5321eca83b733333a93bc5bf92e4ebe0f55f348ec61c250ad66f0ea225"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "9e9d2ae11d6e3114be4f73aca846b988fee56a1dc52c403b289b01e4fed38445"
+        },
+        {
+          "path": "skill-support/package.json",
+          "sha256": "e8c41535d7b0f5ffc6d7192f9ce2e44b3bdd9feb90cba174ca1cac284900187a"
+        },
+        {
+          "path": "skill-support/scripts/skill-delivery.mjs",
+          "sha256": "214281e1df630ee62987771b952bf3da4be73ee04e0a8dfd992bd07b2094f181"
+        },
+        {
+          "path": "skill-support/references/governance/major-version-update-checklist.md",
+          "sha256": "1fe2eb7a745b1ec4c378739c340c13e0d67dc059e93cf2ab44567192d95150b7"
+        },
+        {
+          "path": "skill-support/references/governance/skill-catalog-refresh.md",
+          "sha256": "490f596be70efc995d9eda071430d6e82b2981479cc6f56920d9ebd5b005be5f"
+        }
+      ]
+    },
+    {
+      "id": "gallery-preview-and-baseline",
+      "purpose": "Gallery/Preview source and visual baseline checks.",
+      "files": [
+        {
+          "path": "apps/component-gallery/runtime-catalog.js",
+          "sha256": "d70c6149c892af5439db1f3ac281410685bf1c4bd3112df68eff83ab35d0dfac"
+        },
+        {
+          "path": "apps/component-gallery/pattern-baseline.js",
+          "sha256": "68ea2ea78e7fcab5c384c5930a9170e3c1f4d2f000b48e599cc36647088d1fd5"
+        },
+        {
+          "path": "apps/component-gallery/preview.js",
+          "sha256": "2a2d7b16949bdf2baf5f406e2fcbc5ca85a5360699b9485a9ef8eaeeedc18804"
+        },
+        {
+          "path": "apps/component-gallery/gallery.css",
+          "sha256": "e865c5b1f24fb0c75eda5ceb2e403c83ae4ebdf5f7c529313b009412fa1f7f1f"
+        },
+        {
+          "path": "tools/test-gallery-readiness.mjs",
+          "sha256": "c0d7a49fef8ad268183b6c568d398772743c7beb6bbd390928e26715571af866"
+        },
+        {
+          "path": "tools/validate-legacy-baseline.mjs",
+          "sha256": "300acae8066256472aa0f20363304eb1731b046902b4900727f0cf54260e4149"
+        }
+      ]
+    }
+  ],
+  "digest": "490f596be70efc995d9eda071430d6e82b2981479cc6f56920d9ebd5b005be5f"
+}
