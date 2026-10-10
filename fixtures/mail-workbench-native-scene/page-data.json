@@ -6,7 +6,7 @@
     "name": "Harmony Mail",
     "logo": {
       "ref": "brand/harmony-mail-logo",
-      "path": "../../text-to-ui/assets/icons/harmonyos/catalog/regular/envelope.svg",
+      "path": "../../skill-support/assets/icons/harmonyos/catalog/regular/envelope.svg",
       "mimeType": "image/svg+xml",
       "fit": "FILL"
     }

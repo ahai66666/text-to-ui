@@ -20,14 +20,14 @@
 
 ## Pixso 插件源码与安装
 
-仓库中的规范源码目录：`text-to-ui/scripts/pixso-unified-agent-plugin/`。
+仓库中的规范源码目录：`skill-support/scripts/pixso-unified-agent-plugin/`。
 
 将构建后的插件包放在使用者自行选择的位置，并在 Pixso Developer Mode 中加载该目录下的 `manifest.json`。需要把插件包同步到已存在的额外目录时，设置 `TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT`；兼容变量 `TEXT_TO_UI_PLUGIN_DELIVERY_ROOT` 仍可用。未设置交付目录时，脚本不会访问机器专属目录。
 
 在 Monorepo 根目录构建并同步：
 
 ```bash
-pnpm --dir text-to-ui pixso:plugin:build
+pnpm --dir skill-support pixso:plugin:build
 pnpm skill:sync
 ```
 

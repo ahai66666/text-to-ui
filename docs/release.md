@@ -15,8 +15,9 @@ Skill 记录兼容的组件包范围。Token 破坏变化会提升组件包 majo
 完整代码仓必须同时包含：
 
 ```text
-text-to-ui/             # Skill 规范源
-skill/                  # Skill 交付镜像
+SKILL.md                # 唯一 Skill 导入入口
+agents/openai.yaml      # Skill 界面元数据
+skill-support/          # Skill 规则、索引、脚本和预览规范源
 packages/               # 生产组件、Token、契约和 Pixso 映射
 apps/component-gallery/ # 正式组件画廊
 tools/                  # 生成与校验脚本
@@ -32,21 +33,21 @@ pnpm test
 
 ### 独立发布包
 
-独立 `text-to-ui-skill` ZIP 解压后应包含 `text-to-ui/` 文件夹，且该文件夹顶层直接具有 `SKILL.md`。下载完整仓库的源码 ZIP 时，跨工具导入推荐选择“解压后的仓库目录”中的 `text-to-ui/`，而不是仓库最外层。规范源目录名与 `SKILL.md` 中的 `name: text-to-ui` 一致；`skill/` 是交付镜像，按顶层 `SKILL.md` 识别的工具可发现它，但校验目录名的工具可能拒绝。
+独立 `text-to-ui-skill` ZIP 解压后应包含 `text-to-ui/` 文件夹，且该文件夹顶层直接具有 `SKILL.md`。下载完整仓库的源码 ZIP 时，跨工具导入应选择**仓库根目录**，其顶层直接具有唯一 `SKILL.md` 和 `packages/`。如工具要求目录名与 `name: text-to-ui` 一致，把源码 ZIP 解压后的外层目录改名为 `text-to-ui`。不要选择内层规则目录，也不要在同一工具中同时导入完整仓库和独立 Skill ZIP。
 
-在仓库根目录运行 `pnpm skill:package` 可生成按 `skill/package.json` 版本命名的 ZIP；`pnpm skill:package:check` 会临时打包、解压并核对入口和文件。手动运行 GitHub Actions 的 `release` 工作流并选择 `skill` 时，ZIP 会作为工作流 Artifact 上传；只有另行附加到 GitHub Release 后才是公开 Release 下载项。
+在仓库根目录运行 `pnpm skill:package` 可从规范源生成按 `skill-support/package.json` 版本命名的 ZIP；`pnpm skill:package:check` 会临时打包、解压并核对入口和文件。手动运行 GitHub Actions 的 `release` 工作流并选择 `skill` 时，ZIP 会作为工作流 Artifact 上传；只有另行附加到 GitHub Release 后才是公开 Release 下载项。
 
 独立 Skill 包只保证规则、索引、工具和预览资源可安装；它不携带 `packages/` 生产组件源码。`text-to-ui-components` 和 `text-to-ui-tokens` 需要作为兼容版本一起安装或作为 Monorepo workspace 依赖提供。
 
-因此，独立安装 Skill 后只能确认“规则已安装”；只有组件包也可发现并通过契约校验时，才能声称使用了注册组件。仓库克隆不会自动完成 Skill 注册，宿主环境仍需按自身的导入方式启用 `skill/`。
+因此，独立安装 Skill 后只能确认“规则已安装”；只有组件包也可发现并通过契约校验时，才能声称使用了注册组件。仓库克隆不会自动完成 Skill 注册，宿主环境仍需按自身的导入方式启用仓库根目录入口。
 
 ### 发布门禁
 
-`pnpm delivery:validate` 会阻止以下情况进入发布流程：规范源和交付镜像的关键文件不一致、组件契约缺少任一 HTML/React/Vue 源入口、workspace 或正式画廊缺失、根 README 未声明完整仓库边界。
+`pnpm delivery:validate` 会阻止以下情况进入发布流程：唯一入口缺失或内层出现第二入口、本机生成镜像（若存在）与规范源不一致、组件契约缺少任一 HTML/React/Vue 源入口、workspace 或正式画廊缺失、根 README 未声明完整仓库边界。
 
 ## 多人复用的上传边界
 
-公开 Git 仓库应提交所有可复用、可审查和可重现的工程内容：Skill 规范源与镜像、HTML/React/Vue 组件、Tokens、组件契约、Pattern、Pixso 映射、组件画廊、示例应用、Fixtures、生成器、校验器、文档、锁文件和 CI 配置。确定性生成文件可以提交，但必须使用仓库相对路径，并在文件头或文档中标记生成来源。
+公开 Git 仓库应提交所有可复用、可审查和可重现的工程内容：唯一 Skill 入口与规范源、HTML/React/Vue 组件、Tokens、组件契约、Pattern、Pixso 映射、组件画廊、示例应用、Fixtures、生成器、校验器、文档、锁文件和 CI 配置。本机 `skill/` 镜像不提交；确定性生成文件可以提交，但必须使用仓库相对路径，并在文件头或文档中标记生成来源。
 
 以下内容不属于可复用工程，不应提交：`node_modules`、构建目录、缓存、`.text-to-ui/` 运行状态、登录/连接会话、机器绝对路径、临时截图、一次性测试输出、个人测试文档和任何密钥。需要展示的审计结论应整理为不含敏感信息的 Markdown；可重放的 Pixso Scene 或 Operation Plan 应先清理本机路径和易失字段，再作为示例输入提交。
 

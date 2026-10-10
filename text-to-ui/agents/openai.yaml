@@ -1,4 +1,0 @@
-interface:
-  display_name: "Text to UI"
-  short_description: "Build HarmonyOS PC pages from registered framework runtime adapters"
-  default_prompt: "Use $text-to-ui to build my HarmonyOS PC tool. First validate the PC framework layout and apply the component source order: real framework component, matching contract, then Token-based custom work only when both are absent. Produce an early interactive browser preview after minimum blocking checks, pause for my comments and explicit direction approval, then run complete release validation and show me the validated final page again."

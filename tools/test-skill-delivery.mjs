@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { syncSkill, verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
+import { syncSkill, verifySkill } from "../skill-support/scripts/skill-delivery.mjs";
 
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "text-to-ui-delivery-test-"));
 const source = path.join(temporary, "source");
@@ -14,6 +14,7 @@ const write = (root, file, content) => {
 };
 try {
   write(source, "package.json", '{"version":"test"}');
+  write(source, "SKILL.md", "---\nname: text-to-ui\ndescription: Test Skill delivery.\n---\n");
   for (const file of ["pixso-native-scene-lib", "component-mapping-resolver", "coremail-semantic-adapter"]) {
     write(source, `scripts/${file}.mjs`, "export const ready = true;\n");
   }
@@ -54,7 +55,20 @@ try {
     write(root, "scripts/pixso-native-scene-lib.mjs", 'import { missing } from "./component-mapping-resolver.mjs";\n');
   }
   assert.throws(() => verifySkill(source, target), /Skill entry cannot load/);
-  console.log("Skill delivery tests passed: stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
+  const repository = path.join(temporary, "repository");
+  const support = path.join(repository, "skill-support");
+  const generated = path.join(repository, "skill");
+  write(repository, "SKILL.md", "---\nname: text-to-ui\ndescription: Repository entry.\n---\n");
+  write(repository, "agents/openai.yaml", 'interface:\n  display_name: "Text to UI"\n');
+  write(support, "package.json", '{"version":"test"}');
+  for (const file of ["pixso-native-scene-lib", "component-mapping-resolver", "coremail-semantic-adapter"]) {
+    write(support, `scripts/${file}.mjs`, "export const ready = true;\n");
+  }
+  syncSkill(support, generated, path.join(temporary, "repository-backup"));
+  assert.equal(fs.readFileSync(path.join(generated, "SKILL.md"), "utf8"), fs.readFileSync(path.join(repository, "SKILL.md"), "utf8"));
+  assert.equal(fs.readFileSync(path.join(generated, "agents/openai.yaml"), "utf8"), fs.readFileSync(path.join(repository, "agents/openai.yaml"), "utf8"));
+  assert(!fs.existsSync(path.join(support, "SKILL.md")));
+  console.log("Skill delivery tests passed: root entry, stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });
 }

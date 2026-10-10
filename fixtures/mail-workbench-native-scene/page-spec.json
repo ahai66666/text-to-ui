@@ -9,7 +9,7 @@
     "targetFrame": "Harmony Mail Workbench / Regression Fixture",
     "preserveExistingFrames": true,
     "pageData": "page-data.json",
-    "componentMap": "../../text-to-ui/assets/design-system/pixso-native-component-map.json",
+    "componentMap": "../../skill-support/assets/design-system/pixso-native-component-map.json",
     "visualSnapshot": "html-visual-snapshot.json"
   },
   "componentRegistry": "../../packages/component-contracts/src/components.json",

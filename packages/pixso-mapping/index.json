@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedFrom": "text-to-ui/assets/design-system/mapping-registry.json",
+  "generatedFrom": "skill-support/assets/design-system/mapping-registry.json",
   "readOnly": true,
   "policy": {
     "resolveGuidsAtRuntime": true,

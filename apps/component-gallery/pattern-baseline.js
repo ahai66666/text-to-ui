@@ -1,4 +1,4 @@
-import patternRegistry from "../../text-to-ui/assets/design-system/pattern-contracts.json";
+import patternRegistry from "../../skill-support/assets/design-system/pattern-contracts.json";
 import { createTitlebarSegments, renderHtmlComponent } from "../../packages/components-html/src/index.js";
 import { createPatternRuntime, createSecondaryPageRuntime } from "../../packages/pattern-runtime/src/index.js";
 import "./pattern-framework.css";

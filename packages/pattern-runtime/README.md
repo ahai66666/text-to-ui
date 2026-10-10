@@ -4,7 +4,7 @@ The callable web Pattern boundary. It resolves a canonical Pattern Contract,
 owns the shell geometry, and accepts page content through declared slots.
 
 ```js
-import registry from "../../text-to-ui/assets/design-system/pattern-contracts.json";
+import registry from "../../skill-support/assets/design-system/pattern-contracts.json";
 import { createPatternRuntime } from "@text-to-ui/pattern-runtime";
 
 const runtime = createPatternRuntime({

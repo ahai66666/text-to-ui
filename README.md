@@ -6,6 +6,18 @@
 
 > 项目定位：一个面向 HarmonyOS PC 的 Text-to-UI 设计开发协同系统，包含需求分析 Skill、多框架 UI 组件库、设计系统、Pixso 映射、组件画廊和自动验证流程。
 
+## 唯一 Skill 入口
+
+从 GitHub 克隆或下载完整仓库后，**选择仓库根目录导入**，入口是根目录的 [`SKILL.md`](SKILL.md)。`skill-support/` 只存放该入口引用的规则、脚本和资料；仓库不再提交第二份 `SKILL.md` 或 `skill/` 交付镜像。不要把内层 `skill-support/`、`packages/`、旧下载副本或本地生成的 `skill/` 作为完整仓库的导入入口。若工具要求所选目录名与 `name: text-to-ui` 一致，先把下载 ZIP 解压后的外层目录改名为 `text-to-ui`，再选择它。
+
+可给其他 AI 工具的启动提示词：
+
+```text
+请加载我所选完整仓库根目录的 SKILL.md。先按其中的入口规则锁定 REPO_ROOT 与 RULES_ROOT，只选择一个工作流路由，读取该路由资料并验证回执；缺少组件包、路由资料或确认门禁时请停止并说明，不要改用旧流程或其他 Skill 副本。
+```
+
+独立 Skill ZIP 仍可由 `pnpm skill:package` 构建；它是单独的规则包，**不含**完整仓库的生产组件。完整仓库导入和独立 ZIP 导入是两种不同交付方式，不应在同一工具中同时启用为两个同名 Skill。
+
 ## 系统如何工作
 
 ```text
@@ -115,32 +127,27 @@ Text-to-UI 将这些问题转化为可复用、可实现、可验证的系统能
 
 ## 设计与开发协作流程
 
-默认采用 HTML-first 闭环：
+先按任务选择工作流路由，再在路由允许的范围内选择 HTML-first、Pixso-first 或直接 HTML 等执行方式：
 
 ```text
-文字需求
-  ↓
-需求分析与方案确认
-  ↓
-读取设计系统和组件契约
-  ↓
-生成 HTML 结构初稿并进行浏览器检查
-  ↓
-导入 Pixso，进行视觉调整和设计确认
-  ↓
-基于确认结果生成最终页面
-  ↓
-HTML / React / Vue 运行时与自动校验
+根目录 SKILL.md → 锁定规则根目录和完整组件仓
+  → 选择工作流路由并验证资料回执
+  → 新页面先完成 page-blueprint.json 与方案确认
+  → 复用契约、Token、Pattern 和真实框架组件
+  → 生成并检查早期浏览器预览
+  → 按所选路由继续 Pixso 或最终交付验证
 ```
 
-根据任务也可以选择 Pixso-first 或 Direct HTML。无论采用哪种流程，页面结构、组件选择、状态和 Token 都应来自同一份规则系统；不能把 Pixso 普通图层宣称为已注册组件实例，也不能把 HTML 外观相似物冒充 React 或 Vue 源组件。
+六个工作流路由是 `existing-html-to-pixso`、`new-page`、`micro-revision`、`pixso-component-library`、`converter-diagnosis` 和 `skill-maintenance`。HTML-first、Pixso-first 和直接 HTML 是执行方式，不是可绕开路由或 Blueprint 门禁的旧版工作流。无论采用哪种方式，页面结构、组件选择、状态和 Token 都应来自同一份规则系统；不能把 Pixso 普通图层宣称为已注册组件实例，也不能把 HTML 外观相似物冒充 React 或 Vue 源组件。
+
+其他 AI 使用时，应从根目录 `SKILL.md` 进入，再读取所选路由生成的 Context Packet：`exactReferencesToRead` 定位任务与 Pattern 规范，`componentReadMap` 为每个选定能力列出精确组件契约及 HTML／React／Vue 目标源码。`card` 不自动映射为列表项；未登记的仪表盘或设置页业务卡片按页面级组合处理。路由回执会校验组件选择、就绪规则和已选实现文件，避免规范更新后仍读取旧资料。
 
 ## 核心模块
 
 | 模块 | 职责 |
 | --- | --- |
-| `text-to-ui/` | Skill 规范源；定义需求分析、页面组织、设计系统复用和验证流程 |
-| `skill/` | 可独立安装和发布的 Skill 交付镜像 |
+| `SKILL.md` | 仓库唯一可导入的 Skill 入口，负责路由和执行门禁 |
+| `skill-support/` | Skill 支持资料规范源：路由、设计规则、预览和脚本；不是第二个 Skill |
 | `packages/tokens/` | 跨设计与代码使用的 canonical Tokens |
 | `packages/icons/` | HTML、React、Vue 共用的语义图标 |
 | `packages/component-contracts/` | 统一组件身份、Variant、状态、插槽和适配规则 |
@@ -202,9 +209,9 @@ Pattern 是页面级组合契约，不是组件注册表条目。目前仓库提
 ## 完整代码仓交付边界
 
 ```text
-text-to-ui-monorepo/
-├── text-to-ui/                 # Skill 唯一规范源
-├── skill/                      # Skill 可安装交付镜像
+text-to-ui/
+├── SKILL.md                    # 唯一 Skill 导入入口
+├── skill-support/              # 规则、索引、脚本和预览资料
 ├── packages/                   # 生产组件、Tokens、契约、图标和 Pixso 映射
 ├── apps/component-gallery/     # 正式组件画廊
 ├── fixtures/                   # 最小契约与回归测试输入
@@ -217,15 +224,15 @@ text-to-ui-monorepo/
 
 完整仓库、独立 Skill 和生产组件包是三个不同概念：
 
-- `text-to-ui/` 是 Skill 唯一规范源。规则修改应先发生在这里，再同步到 `skill/`。
-- `skill/` 是可独立安装的规则包，但它本身不是生产组件库。
+- 根目录 `SKILL.md` 与 `skill-support/` 支持资料共同构成规范源；不要在支持目录新增第二个 `SKILL.md`。
+- `skill/` 仅在本机执行 `pnpm skill:sync` 后生成，GitHub 仓库不提交此镜像；独立 ZIP 从规范源打包。
 - `packages/` 才包含 HTML、React、Vue 的真实实现和共享设计系统能力。
 - 只安装 Skill 而没有组件包时，Skill 必须明确报告组件库不可用，不能静默生成视觉相似替代品。
 - 克隆仓库不会自动把 Skill 注册到 AI 工具；仍需按宿主工具的方式导入 Skill 文件夹，并为组件复用提供完整仓库或已发布包。
 
 ### 在其他 AI 工具中导入 Skill
 
-部分工具只检查所选文件夹顶层是否存在 `SKILL.md`，也有工具要求文件夹名与其中的 `name: text-to-ui` 一致。下载 GitHub 仓库源码 ZIP 并解压后，推荐选择“解压后的仓库目录”中的 `text-to-ui/`；独立 Skill ZIP 解压后同样选择 `text-to-ui/`。所选文件夹应直接包含 `SKILL.md`、`references/` 和 `scripts/`。仓库内的 `skill/` 是交付镜像，按顶层文件识别的工具也能发现它，但跨工具导入推荐使用 `text-to-ui/`。具体导入入口由所用工具提供。
+选择仓库根目录；它顶层直接包含 `SKILL.md`、`pnpm-workspace.yaml`、`skill-support/` 和 `packages/`。不要选择内层 `skill-support/`，因为它没有 Skill 入口。独立 Skill ZIP 则选择解压后的 `text-to-ui/` 目录（顶层有 `SKILL.md`、`references/`、`scripts/`），并另外提供完整组件仓。两个交付包只能启用其中一个同名 Skill 入口。
 
 独立 Skill 包可供工具发现规则和索引，但不包含 `packages/` 中的 HTML、React、Vue 组件与运行时。需要生成使用真实组件的页面时，还须提供完整 Monorepo 或兼容的组件包；缺少这些依赖时，应将组件能力标为不可用。
 
@@ -246,13 +253,13 @@ HTML / 浏览器最终计算样式
 
 | 路径 | 用途 | 是否包含运行缓存 |
 | --- | --- | --- |
-| `text-to-ui/` | Skill 唯一规范源、导入编译器、映射规则和测试 | 否 |
-| `skill/` | 可独立安装的 Skill 同步镜像 | 否；`.text-to-ui/` 运行状态不发布 |
-| `text-to-ui/scripts/pixso-unified-agent-plugin/` | Pixso Unified Agent v2 插件源码，包含 `manifest.json` | 否 |
+| `SKILL.md` + `skill-support/` | 唯一入口及其规则、导入编译器、映射和测试 | 否 |
+| `skill/` | 仅本机生成的独立安装镜像，不提交 GitHub | 否；`.text-to-ui/` 运行状态不发布 |
+| `skill-support/scripts/pixso-unified-agent-plugin/` | Pixso Unified Agent v2 插件源码，包含 `manifest.json` | 否 |
 | 使用者自行选择的插件目录 | 在 Pixso Developer Mode 加载该目录中的 `manifest.json`；目录不属于仓库 | 插件包 |
 | `packages/` | HTML、React、Vue 组件和共享设计系统源码 | 否 |
 
-插件源码位于 `text-to-ui/scripts/pixso-unified-agent-plugin/`。在 Pixso Developer Mode 中加载该目录下的 `manifest.json`；如需使用仓库外的插件目录，可将构建后的插件包放到自行选择的位置，并设置 `TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT`（兼容变量 `TEXT_TO_UI_PLUGIN_DELIVERY_ROOT`）。仓库文档只记录相对源码位置，不包含个人电脑路径；未设置外部目录时不会写入机器专属位置。
+插件源码位于 `skill-support/scripts/pixso-unified-agent-plugin/`。在 Pixso Developer Mode 中加载该目录下的 `manifest.json`；如需使用仓库外的插件目录，可将构建后的插件包放到自行选择的位置，并设置 `TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT`（兼容变量 `TEXT_TO_UI_PLUGIN_DELIVERY_ROOT`）。仓库文档只记录相对源码位置，不包含个人电脑路径；未设置外部目录时不会写入机器专属位置。
 
 插件包负责在已打开的 Pixso 文件中执行 Operation Plan，并持续监听本地桥接服务；Skill 负责采集 HTML、锁定几何、生成计划和提供规则。正常整页导入只使用插件执行，不与 MCP 整页绘制并行，也不读取旧计划、旧截图、旧 GUID 或旧画板作为新运行输入。插件代码/API 变更后需要重新加载插件包；规则、映射或页面内容变化只需要重新生成并发布新的 Operation Plan。
 
@@ -262,10 +269,10 @@ HTML / 浏览器最终计算样式
 
 ```bash
 pnpm services:start
-node text-to-ui/scripts/pixso-plugin-bridge.mjs status
-pnpm --dir text-to-ui pixso:plugin:build
+node skill-support/scripts/pixso-plugin-bridge.mjs status
+pnpm --dir skill-support pixso:plugin:build
 pnpm skill:sync
-pnpm --dir text-to-ui pixso:delivery:check
+pnpm --dir skill-support pixso:delivery:check
 ```
 
 `.text-to-ui/` 下的任务状态、归档计划、连接会话和临时结果只属于本机运行时，不应提交到 GitHub；审计截图和一次性回归输出也不属于 Skill 或插件发布包。
@@ -275,8 +282,8 @@ pnpm --dir text-to-ui pixso:delivery:check
 环境要求：Node.js 22、pnpm 10。
 
 ```bash
-git clone https://github.com/ahai66666/text-to-ui-monorepo.git
-cd text-to-ui-monorepo
+git clone https://github.com/ahai66666/text-to-ui.git
+cd text-to-ui
 pnpm install
 pnpm test
 ```

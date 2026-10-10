@@ -4,10 +4,10 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const target = path.join(root, "packages/components-html/src/component-icons.svg");
-const lucideIconDir = path.join(root, "text-to-ui/node_modules/.pnpm/lucide@1.24.0/node_modules/lucide/dist/esm/icons");
+const lucideIconDir = path.join(root, "skill-support/node_modules/.pnpm/lucide@1.24.0/node_modules/lucide/dist/esm/icons");
 // The registry is the canonical source of semantic aliases. Building only a
 // hand-picked subset silently removed valid Titlebar/feedback/picker icons.
-const aliasRegistry = JSON.parse(await fs.readFile(path.join(root, "text-to-ui/assets/icons/icon-aliases.json"), "utf8"));
+const aliasRegistry = JSON.parse(await fs.readFile(path.join(root, "skill-support/assets/icons/icon-aliases.json"), "utf8"));
 const lucideAliases = Object.fromEntries(Object.entries(aliasRegistry.aliases)
   .filter(([, definition]) => definition.source === "lucide")
   .map(([alias, definition]) => [alias, definition.name]));
@@ -28,7 +28,7 @@ for (const [alias, source] of Object.entries(lucideAliases)) {
 // aliases. This prevents a future sprite rebuild from silently replacing a
 // design-supplied mark with a generic check icon.
 for (const [alias, definition] of Object.entries(aliasRegistry.aliases).filter(([, item]) => item.source === "asset")) {
-  const assetPath = path.join(root, "text-to-ui", definition.path);
+  const assetPath = path.join(root, "skill-support", definition.path);
   const asset = await fs.readFile(assetPath, "utf8");
   const match = asset.match(/<svg\b([^>]*)>([\s\S]*?)<\/svg>/i);
   if (!match) throw new Error(`Invalid SVG asset for ${alias}: ${definition.path}`);

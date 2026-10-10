@@ -10,7 +10,7 @@ const gallery = read("apps/component-gallery/index.html");
 const galleryCss = read("apps/component-gallery/gallery.css");
 const galleryRuntime = read("apps/component-gallery/preview.js");
 const contracts = JSON.parse(read("packages/component-contracts/src/components.json"));
-const iconAliases = JSON.parse(read("text-to-ui/assets/icons/icon-aliases.json"));
+const iconAliases = JSON.parse(read("skill-support/assets/icons/icon-aliases.json"));
 const sprite = read("packages/components-html/src/component-icons.svg");
 
 const failures = [];
@@ -94,7 +94,7 @@ const collectIconFiles = (directory) => fs.readdirSync(path.join(root, directory
   const relative = path.join(directory, entry.name);
   return entry.isDirectory() ? collectIconFiles(relative) : [relative];
 });
-const filledHarmonyFiles = collectIconFiles("text-to-ui/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
+const filledHarmonyFiles = collectIconFiles("skill-support/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
 if (filledHarmonyFiles.length) failures.push(`HarmonyOS Filled asset files remain: ${filledHarmonyFiles.length}`);
 
 for (const component of contracts.components) {
