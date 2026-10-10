@@ -16,7 +16,7 @@
   "deliveryTargets": [
     "skill/",
     "$CODEX_HOME/skills/text-to-ui",
-    "TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT (optional user-selected directory)"
+    "$TEXT_TO_UI_PLUGIN_DELIVERY_ROOT"
   ],
   "groups": [
     {
@@ -83,7 +83,7 @@
         },
         {
           "path": "packages/pattern-runtime/src/styles.css",
-          "sha256": "48dc0ecdee316b4981ae597fc3faa1e0ffac23ca24098c87ecfb9e6f46aa96f0"
+          "sha256": "f4502c91b7b40f519fa1c857aaf226d259bce18d75964b6722b28cdc93fa8128"
         },
         {
           "path": "text-to-ui/scripts/resolve-pattern-contract.mjs",
@@ -99,7 +99,7 @@
         },
         {
           "path": "text-to-ui/scripts/test-pattern-runtime.mjs",
-          "sha256": "c53b0ec20de51b644f2620b113c29d715117475b9ecc239c795f0000d031d65d"
+          "sha256": "937a2e1b70c990aa839f59d4a5601352a0c882b8b437313114a07cddef299bd3"
         },
         {
           "path": "text-to-ui/scripts/test-ui-scene-pattern-binding.mjs",
@@ -113,19 +113,19 @@
       "files": [
         {
           "path": "packages/component-contracts/src/components.json",
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/component-contracts/src/components-runtime.js",
-          "sha256": "aaf050917062057ca6e1ebc65bc5453431347ebbbe68f55d2bb99ca182ba4fe8"
+          "sha256": "442d0f430f9245481361971cedd0f9e9b86631f8ac02696acacad17e1ae22184"
         },
         {
           "path": "packages/component-contracts/src/parity-manifest.json",
-          "sha256": "0d44c57dcffac663b9a784b1640d6c06f1e7a254c9a5fc70b79983a2e2f4323a"
+          "sha256": "d110f224486f90f2cbdefdbaf0a6b8b17a09ba8f0a0df83fc4fe86d62b3eee5c"
         },
         {
           "path": "packages/component-contracts/src/titlebar-segments.js",
-          "sha256": "4f1d28923ad7a36db28eabcdc45d4c7e4816aafbefa122060b6edeeeae1e61bb"
+          "sha256": "33d7405df065c923d968a3e19abcd9c2ac76de02c1e8dc0a881e3245d2208b36"
         },
         {
           "path": "text-to-ui/assets/design-system/framework-component-adapter-map.json",
@@ -137,7 +137,7 @@
         },
         {
           "path": "text-to-ui/scripts/validate-runtime-component-reuse.mjs",
-          "sha256": "b330958b4de5f3e848484aa7b57a7d70a89aba410a3384949973cfd47c1989dc"
+          "sha256": "c1f638adf61ae79e8b64c9566fd8ea89c3f82ff818d51ca60f9e3c2f5e1d6b47"
         },
         {
           "path": "text-to-ui/scripts/validate-web-component-reuse.mjs",
@@ -221,7 +221,7 @@
         },
         {
           "path": "text-to-ui/scripts/generate-framework-page.mjs",
-          "sha256": "d7b57c1c2b7e997595eafbf6d2b173f9ab46f59619f8591ffcf6f594cf0aa140"
+          "sha256": "f32d8cbe803963635b1c513b3256050f944f4192afff09f9f4d6872e12985840"
         },
         {
           "path": "text-to-ui/scripts/generate-compliant-page.mjs",
@@ -229,7 +229,7 @@
         },
         {
           "path": "text-to-ui/scripts/test-framework-page-generation.mjs",
-          "sha256": "53105ac1be6599afd7df79d5e0499b12812e721845cdbe4ec43d19ed01eea335"
+          "sha256": "5400344414193be5f4283aa368650f71f0546da7d10a96015d38066cfdc79e43"
         }
       ]
     },
@@ -243,7 +243,7 @@
         },
         {
           "path": "text-to-ui/scripts/validate-page-css-boundaries.mjs",
-          "sha256": "104c3b9278442e6cff1584a8fa71fdeba0c416345b8228a31edcfdbf2e9849ac"
+          "sha256": "a8090327a47eec6e7b14d67267b6b4f6bb132db750bbf45e342f4520fec9ff6e"
         },
         {
           "path": "text-to-ui/scripts/validate-page-layout-binding.mjs",
@@ -273,19 +273,19 @@
       "files": [
         {
           "path": "package.json",
-          "sha256": "4874f74b84bf9e30b6fb28a8ffbb4c3775bd2ab04c07c3c3d41d4c72c3959c60"
+          "sha256": "02c8cc047e08b15cbfe45e08f673efeed4f3789886d0608b5698dab06ce5b122"
         },
         {
           "path": "text-to-ui/SKILL.md",
-          "sha256": "79dfa582c51ef0facd2807ee3df1f71476dc8606bc6210d6c930b7927fff4b82"
+          "sha256": "18a71550481768437f71ac8254af05a6f9227db75348ef48ecf01c0ca636139a"
         },
         {
           "path": "text-to-ui/package.json",
-          "sha256": "409be0648300dbdf9919f534b109aa0c244cb956b8a603ace3c01e14d3cb7e71"
+          "sha256": "72df0b8e827418599b07af04ac135412b638c03e643af17b3cd773339e65e805"
         },
         {
           "path": "text-to-ui/scripts/skill-delivery.mjs",
-          "sha256": "be49e8198c12f17210c5e66094eb6c7ee8e28686634e9c80260647d89382b159"
+          "sha256": "c1ad5ab501e915644723b498d91c6a6f7c8cfcfae7d192d98391e7328463b606"
         },
         {
           "path": "text-to-ui/references/governance/major-version-update-checklist.md",
@@ -307,15 +307,15 @@
         },
         {
           "path": "apps/component-gallery/pattern-baseline.js",
-          "sha256": "af13ea4d8cd103aca6a33bf19e388af8c100108ebf7c4318bb37e9aa4cc090b0"
+          "sha256": "f41e8c60960dcc60b260729f9148fc5cdb9861c453384f1e42bdf4669fd62ccc"
         },
         {
           "path": "apps/component-gallery/preview.js",
-          "sha256": "2a2d7b16949bdf2baf5f406e2fcbc5ca85a5360699b9485a9ef8eaeeedc18804"
+          "sha256": "9a75fc4543671f81dae52e5b3329ac0c78f6cf1f56d469944a5558f70a0acebb"
         },
         {
           "path": "apps/component-gallery/gallery.css",
-          "sha256": "e865c5b1f24fb0c75eda5ceb2e403c83ae4ebdf5f7c529313b009412fa1f7f1f"
+          "sha256": "39be5157cb3e4562538ba86df8fdaff69e6e7de9e915858175b598536446e1f1"
         },
         {
           "path": "tools/test-gallery-readiness.mjs",

@@ -1,6 +1,6 @@
 import { createApp, h, onBeforeUnmount, onMounted, ref } from "vue";
 import { createTitlebarPreviewScenes } from "../../packages/component-contracts/src/titlebar-segments.js";
-import { Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Titlebar, Textarea, Field, FormField, Select, Combobox, NativeSelect, Checkbox, Radio, RadioGroup, Switch, SegmentedButton, NumberSelector, Chips, Tabs, SubTabs, TreeView, Accordion, Collapsible, Avatar, Badge, Table, DataTable, Pagination, Breadcrumb, Progress, Empty, Label, Alert, Tooltip, Toast, Icon } from "../../packages/components-vue/src/index.js?rev=20260907-1";
+import { Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Titlebar, Textarea, Field, FormField, Select, Combobox, NativeSelect, Checkbox, Radio, RadioGroup, Switch, SegmentedButton, NumberSelector, Chips, Tabs, SubTabs, TreeView, Accordion, Collapsible, Avatar, Badge, Table, DataTable, Pagination, Breadcrumb, Progress, Empty, Label, Alert, Tooltip, Toast, Icon } from "../../packages/components-vue/src/index.js?rev=20260928-3";
 import { AlertDialog, Attachment, Calendar, Chart, ColorPicker, ContextMenu, DatePicker, Dialog, DropdownMenu, HoverCard, InputOtp, Kbd, Menubar, Popover, Slider, SemiModal, TimePicker } from "../../packages/components-vue/src/advanced.js?rev=20260812-1";
 import * as Generated from "../../packages/components-vue/src/generated/index.js?rev=20260810-1";
 import { cardClass, comparisonMetaFor, componentTitle, coreIds, feedbackSpecimensFor, readinessInfoFor, runtimeCategories } from "./runtime-catalog.js";
@@ -101,11 +101,11 @@ const RuntimeChips = (props) => h("div", { class: "tui-runtime-chips-gallery", "
 const RuntimeSearchGallery = {
   props: { setStatus: Function },
   setup(props) {
-    const whiteValue = ref(""); const grayValue = ref("");
-    const sample = (surface, value) => h(Search, { placeholder: "搜索项目", surface, advancedSearch: true, modelValue: value.value, "onUpdate:modelValue": (next) => { value.value = next; props.setStatus?.("Search · 已输入"); }, onClear: () => { value.value = ""; props.setStatus?.("Search · 已清除"); }, "onAdvanced-search": () => props.setStatus?.("Search · 高级搜索") });
-    return () => h("div", { class: "tui-runtime-surface-pair" }, [
-      h("div", { "data-surface-context": "white" }, [h("span", { class: "tui-runtime-surface-label" }, "白色内容面 · 灰色搜索面 · 高级搜索槽位"), sample("white", whiteValue)]),
-      h("div", { "data-surface-context": "gray" }, [h("span", { class: "tui-runtime-surface-label" }, "灰色内容面 · 白色搜索面 · 高级搜索槽位"), sample("gray", grayValue)])
+    const whiteValue = ref(""); const whiteScope = ref("全部"); const grayValue = ref(""); const grayScope = ref("全部");
+    const sample = (surface, value, scope) => h(Search, { placeholder: "搜索项目", surface, scope: scope.value, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, modelValue: value.value, "onScope-change": (next) => { scope.value = next; props.setStatus?.(`Search · 范围：${next}`); }, "onUpdate:modelValue": (next) => { value.value = next; props.setStatus?.("Search · 已输入"); }, onClear: () => { value.value = ""; props.setStatus?.("Search · 已清除"); }, "onAdvanced-search": () => props.setStatus?.("Search · 高级") });
+    return () => h("div", { class: "tui-runtime-surface-pair tui-runtime-search-pair" }, [
+      h("div", { "data-surface-context": "white" }, [h("span", { class: "tui-runtime-surface-label" }, "白色内容面 · 灰色搜索面 · Search · Scoped + 高级"), sample("white", whiteValue, whiteScope)]),
+      h("div", { "data-surface-context": "gray" }, [h("span", { class: "tui-runtime-surface-label" }, "灰色内容面 · 白色搜索面 · Search · Scoped + 高级"), h(Search, { placeholder: "搜索项目", surface: "gray", modelValue: grayValue.value, scope: grayScope.value, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, "onScope-change": (next) => { grayScope.value = next; props.setStatus?.(`Search · 范围：${next}`); }, "onAdvanced-search": () => props.setStatus?.("Search · 高级"), "onUpdate:modelValue": (next) => { grayValue.value = next; props.setStatus?.("Search · 已输入"); }, onClear: () => { grayValue.value = ""; props.setStatus?.("Search · 已清除"); } })])
     ]);
   }
 };
@@ -174,9 +174,13 @@ const RuntimeSemiModal = {
 const runtimeCore = (id, setStatus, component) => {
   if (id === "button") return h(RuntimeStructuralButton, { setStatus });
   if (id === "chips") return h(RuntimeChips, { setStatus });
-  if (id === "input") return h("div", { class: "tui-runtime-surface-pair" }, [
-    h("div", { key: "white", "data-surface-context": "white" }, [h("span", { class: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "white" })]),
-    h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { class: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "gray" })])
+  if (id === "input") return h("div", { class: "tui-runtime-core-gallery" }, [
+    h("p", { class: "tui-runtime-note", key: "note" }, "标准 Input 按内容面映射白/灰 surface；Tag Entry 是一个通用变体，仅展示一份，实际使用同样通过 surface=white/gray 复用。Enter 打开建议，选择后转为可移除标签；未选择的文本可保留。"),
+    h("div", { class: "tui-runtime-surface-pair", key: "default-inputs" }, [
+      h("div", { key: "white", "data-surface-context": "white" }, [h("span", { class: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "white" })]),
+      h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { class: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "gray" })])
+    ]),
+    h(Input, { key: "tag-entry", variant: "tag-entry", surface: "gray", label: "参与成员", placeholder: "输入姓名后按 Enter", options: ["林娜", "王昊", "陈佳", "周明"], defaultTags: ["林娜"] })
   ]);
   if (id === "search") return h(RuntimeSearchGallery, { setStatus });
   if (id === "primary-navigation-item") return h(RuntimePrimaryNavigationGallery, { setStatus });

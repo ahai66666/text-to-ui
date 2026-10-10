@@ -27,16 +27,6 @@ importers:
         specifier: ^7.0.0
         version: 7.3.6
 
-  apps/coremail-workbench:
-    dependencies:
-      '@text-to-ui/components-html':
-        specifier: workspace:*
-        version: link:../../packages/components-html
-    devDependencies:
-      vite:
-        specifier: ^7.0.0
-        version: 7.3.6
-
   packages/component-contracts: {}
 
   packages/component-styles:

@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "page": "Harmony Mail Workbench / Regression Fixture",
+  "stateId": "harmony-mail-inbox-expanded-default-v6",
+  "brand": {
+    "name": "Harmony Mail",
+    "logo": {
+      "ref": "brand/harmony-mail-logo",
+      "path": "../../text-to-ui/assets/icons/harmonyos/catalog/regular/envelope.svg",
+      "mimeType": "image/svg+xml",
+      "fit": "FILL"
+    }
+  },
+  "primaryAction": {
+    "label": "写邮件"
+  },
+  "accounts": [
+    {
+      "id": "me",
+      "email": "me@example.invalid",
+      "folders": [
+        {
+          "label": "收件箱",
+          "icon": "navigation/inbox",
+          "count": 28,
+          "selected": true
+        },
+        {
+          "label": "未读邮件",
+          "icon": "navigation/mail-unread",
+          "count": 12
+        },
+        {
+          "label": "旗标邮件",
+          "icon": "navigation/starred",
+          "count": 4
+        },
+        {
+          "label": "草稿",
+          "icon": "navigation/drafts",
+          "count": 3
+        },
+        {
+          "label": "已发送",
+          "icon": "navigation/sent"
+        },
+        {
+          "label": "已删除邮件",
+          "icon": "navigation/deleted"
+        },
+        {
+          "label": "垃圾邮件",
+          "icon": "navigation/spam",
+          "count": 2
+        },
+        {
+          "label": "发件箱",
+          "icon": "navigation/outbox"
+        },
+        {
+          "label": "存档",
+          "icon": "navigation/archive"
+        }
+      ]
+    },
+    {
+      "id": "ea",
+      "email": "ea@example.invalid",
+      "folders": [
+        {
+          "label": "收件箱",
+          "icon": "navigation/inbox",
+          "count": 8
+        },
+        {
+          "label": "未读邮件",
+          "icon": "navigation/mail-unread",
+          "count": 3
+        },
+        {
+          "label": "旗标邮件",
+          "icon": "navigation/starred"
+        },
+        {
+          "label": "草稿",
+          "icon": "navigation/drafts"
+        },
+        {
+          "label": "已发送",
+          "icon": "navigation/sent"
+        },
+        {
+          "label": "已删除邮件",
+          "icon": "navigation/deleted"
+        },
+        {
+          "label": "垃圾邮件",
+          "icon": "navigation/spam"
+        },
+        {
+          "label": "发件箱",
+          "icon": "navigation/outbox"
+        },
+        {
+          "label": "存档",
+          "icon": "navigation/archive"
+        }
+      ]
+    }
+  ],
+  "primaryApps": [
+    {
+      "label": "邮件",
+      "icon": "primary-level/mail",
+      "selected": true
+    },
+    {
+      "label": "日历",
+      "icon": "primary-level/calendar"
+    },
+    {
+      "label": "通讯录",
+      "icon": "primary-level/contacts"
+    },
+    {
+      "label": "设置",
+      "icon": "primary-level/settings"
+    }
+  ],
+  "mailList": {
+    "title": "收件箱",
+    "total": 55,
+    "unread": 12,
+    "items": [
+      {
+        "group": "今天",
+        "sender": "林简",
+        "email": "linjian@example.invalid",
+        "subject": "Q2 路线评审会：材料更新与会前确认",
+        "summary": "路线评审材料已更新至 v4，请在会议开始前完成阅读并确认行动项。",
+        "time": "10:42",
+        "unread": true,
+        "flagged": true,
+        "attachments": 1,
+        "safe": true
+      },
+      {
+        "group": "今天",
+        "sender": "Example Mail 项目组",
+        "subject": "设计系统 v2.4 发布清单",
+        "summary": "组件规范、无障碍检查和回归范围已经合并到本轮发布清单。",
+        "time": "09:26",
+        "unread": true,
+        "attachments": 3,
+        "done": true
+      },
+      {
+        "group": "今天",
+        "sender": "Harmony Mail 安全中心",
+        "subject": "邮箱登录安全报告",
+        "summary": "过去 7 天未发现异常登录，账号安全状态良好。",
+        "time": "08:15",
+        "safe": true
+      },
+      {
+        "group": "昨天",
+        "sender": "周亦航",
+        "subject": "Re: HarmonyOS PC 三栏布局走查",
+        "summary": "已按讨论结果更新复合导航结构，一级入口固定在左栏底部。",
+        "time": "18:37",
+        "unread": true,
+        "attachments": 2
+      },
+      {
+        "group": "昨天",
+        "sender": "产品设计中心",
+        "subject": "01 月体验指标周报",
+        "summary": "邮件处理效率提升 12%，搜索无结果率下降至 3.1%。",
+        "time": "16:04",
+        "flagged": true,
+        "attachments": 1
+      },
+      {
+        "group": "昨天",
+        "sender": "行政服务",
+        "subject": "春节值班表确认",
+        "summary": "请在本周五前确认个人值班安排，如需调整请直接回复。",
+        "time": "11:20",
+        "done": true
+      },
+      {
+        "group": "01月07日 周三",
+        "sender": "财务共享中心",
+        "subject": "2026 年差旅报销标准调整",
+        "summary": "新版标准将于 2 月 1 日执行，请查看附件中的变更对照表。",
+        "time": "17:10",
+        "attachments": 2
+      },
+      {
+        "group": "01月07日 周三",
+        "sender": "市场品牌部",
+        "subject": "Example Mail 品牌资源更新",
+        "summary": "品牌图标、产品截图和演示模板已经同步至共享空间。",
+        "time": "14:52",
+        "flagged": true,
+        "safe": true
+      },
+      {
+        "group": "01月07日 周三",
+        "sender": "人力资源部",
+        "subject": "年度学习计划填写提醒",
+        "summary": "请于 1 月 15 日前完成个人学习计划并提交直属负责人。",
+        "time": "09:34"
+      },
+      {
+        "group": "更早日期",
+        "sender": "研发效能平台",
+        "subject": "十二月代码质量月报",
+        "summary": "主干构建成功率 98.7%，遗留风险项共 6 个。",
+        "time": "01月05日",
+        "attachments": 1,
+        "done": true
+      },
+      {
+        "group": "更早日期",
+        "sender": "Harmony Mail 服务",
+        "subject": "邮箱容量使用已达 68%",
+        "summary": "可清理大附件邮件或将历史邮件移动至存档。",
+        "time": "01月03日"
+      }
+    ]
+  },
+  "detailActions": [
+    {
+      "id": "reply",
+      "label": "回复",
+      "icon": "action/reply",
+      "buttonType": "icon-text-ghost"
+    },
+    {
+      "id": "reply-all",
+      "label": "回复全部",
+      "icon": "action/reply-all",
+      "buttonType": "icon-text-ghost"
+    },
+    {
+      "id": "forward",
+      "label": "转发",
+      "icon": "action/forward",
+      "buttonType": "icon-text-ghost"
+    },
+    {
+      "id": "archive",
+      "label": "存档",
+      "icon": "action/archive",
+      "buttonType": "icon"
+    },
+    {
+      "id": "delete",
+      "label": "删除",
+      "icon": "action/delete",
+      "buttonType": "icon"
+    },
+    {
+      "id": "unread",
+      "label": "标记未读",
+      "icon": "action/mark-unread",
+      "buttonType": "icon"
+    },
+    {
+      "id": "more",
+      "label": "更多操作",
+      "icon": "action/more",
+      "buttonType": "icon"
+    },
+    {
+      "id": "help",
+      "label": "帮助",
+      "icon": "status/info",
+      "buttonType": "icon"
+    }
+  ],
+  "detail": {
+    "subject": "Q2 路线评审会：材料更新与会前确认",
+    "sender": {
+      "name": "林简",
+      "initials": "林",
+      "email": "linjian@example.invalid"
+    },
+    "time": "2026-01-09 10:42",
+    "flagged": true,
+    "recipients": "赵博海 <me@example.invalid>、产品设计中心",
+    "recipientMore": "+其他 101 人",
+    "size": "4.8 MB",
+    "cc": "周亦航、林晓薇、Example Mail 项目组",
+    "meeting": {
+      "dateLabel": "JAN 09",
+      "title": "Q2 路线评审会",
+      "status": "已接受",
+      "time": "2026-01-09 · 15:00–17:00",
+      "location": "线上会议",
+      "locationIcon": "object/device",
+      "actionLabel": "加入会议"
+    },
+    "attachments": [
+      {
+        "type": "PPTX",
+        "name": "Q2_路线评审_v4.pptx",
+        "meta": "8.2 MB · 安全",
+        "previewLabel": "预览",
+        "downloadLabel": "下载",
+        "safe": true
+      }
+    ],
+    "attachmentTotalSize": "8.2 MB",
+    "attachmentSafeLabel": "安全",
+    "paragraphs": [
+      "博海，你好：",
+      "Q2 路线评审材料已经更新至第四版。请在今天下午的评审会前完成阅读，并重点确认桌面端邮件工作台、跨端日程协作与 AI 助手三个方向。"
+    ],
+    "orderedItems": [
+      "确认三栏工作台的导航层级和默认宽度。",
+      "核对会议、附件与历史邮件在阅读流中的优先级。",
+      "补充下一阶段需要进入验证的风险项。"
+    ],
+    "focusTitle": "本轮重点",
+    "roadmap": {
+      "defaultVisible": false,
+      "title": "Q2 产品路线图",
+      "steps": [
+        "体验基线",
+        "协同能力",
+        "AI 助手"
+      ]
+    },
+    "bullets": [
+      "邮件列表支持日期分组与状态快速识别。",
+      "会议邀请和附件保持在正文之前，减少查找成本。",
+      "AI 摘要必须可追溯到原始邮件内容。"
+    ],
+    "table": {
+      "title": "本轮负责人",
+      "columns": [
+        "模块",
+        "负责人",
+        "当前状态"
+      ],
+      "rows": [
+        [
+          "邮件工作台",
+          "林简",
+          "待评审"
+        ],
+        [
+          "日程协作",
+          "周亦航",
+          "已确认"
+        ],
+        [
+          "AI 邮件助手",
+          "赵博海",
+          "需补充"
+        ]
+      ]
+    },
+    "conclusion": "完整的决策记录可查看 Q2 路线决策文档。谢谢。",
+    "history": {
+      "title": "展开历史邮件（3 封）",
+      "date": "2026-01-07 · 产品路线初审",
+      "copy": "初版材料已完成，请各模块负责人补充范围和风险。",
+      "icon": "navigation/chevron-right",
+      "expanded": false
+    },
+    "quote": {
+      "defaultVisible": false,
+      "text": "上次评审结论：优先确保用户在三栏 Shell 内完成浏览、选择和处理，避免因打开新页面丢失列表上下文。",
+      "byline": "— 周亦航，2026-01-07 18:23"
+    },
+    "ai": {
+      "defaultVisible": false,
+      "title": "AI 邮件助手",
+      "description": "根据当前邮件生成 · 内容仅供参考",
+      "todos": [
+        "会前阅读 Q2 路线评审 v4 · 今天 15:00 前",
+        "补充 AI 助手风险项 · 评审会中确认",
+        "回复林简确认参会 · 建议现在处理"
+      ]
+    }
+  }
+}

@@ -60,12 +60,16 @@ const permanentExecutorOperations = new Set([
   "create-icon-slot", "create-instance", "create-image", "create-rectangle",
   "create-ellipse", "create-line", "hydrate-icon",
 ]);
+const scriptPath = fileURLToPath(import.meta.url);
 const configuredPluginDeliveryPath = process.env.TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT
-  ?? process.env.TEXT_TO_UI_PLUGIN_DELIVERY_ROOT;
+  ?? process.env.TEXT_TO_UI_PLUGIN_DELIVERY_ROOT
+  ?? null;
+const scriptDirectory = path.dirname(scriptPath);
 const pluginDeliveryPath = configuredPluginDeliveryPath
   ? path.resolve(configuredPluginDeliveryPath)
-  : null;
-const scriptPath = fileURLToPath(import.meta.url);
+  : path.basename(scriptDirectory) === "scripts"
+    ? path.join(scriptDirectory, "pixso-unified-agent-plugin")
+    : scriptDirectory;
 const componentSyncRoot = process.env.TEXT_TO_UI_COMPONENT_SYNC_ROOT
   ? path.resolve(process.env.TEXT_TO_UI_COMPONENT_SYNC_ROOT)
   : path.resolve(path.dirname(scriptPath), "..");
@@ -480,7 +484,7 @@ function readState() {
   if (!fs.existsSync(stateFile)) return { revision: "", plan: null, requiredRuntimeVersion: minimumPluginRuntimeVersion };
   let stored;
   try { stored = JSON.parse(fs.readFileSync(stateFile, "utf8")); }
-  catch {
+  catch (error) {
     clearCurrentPublication();
     return { revision: "", plan: null, requiredRuntimeVersion: minimumPluginRuntimeVersion };
   }

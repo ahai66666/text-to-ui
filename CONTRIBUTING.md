@@ -20,12 +20,6 @@ pnpm gallery:build
 pnpm --filter @text-to-ui/component-gallery dev
 ```
 
-Coremail 示例：
-
-```bash
-pnpm --filter @text-to-ui/coremail-workbench dev
-```
-
 ## 修改规则
 
 1. `text-to-ui/` 是 Skill 唯一规范源；先修改它，再同步到 `skill/`。

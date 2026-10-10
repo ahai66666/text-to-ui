@@ -3,11 +3,11 @@
   "generatedFrom": [
     {
       "path": "packages/component-contracts/src/components.json",
-      "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+      "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
     },
     {
       "path": "packages/component-contracts/src/parity-manifest.json",
-      "sha256": "0d44c57dcffac663b9a784b1640d6c06f1e7a254c9a5fc70b79983a2e2f4323a"
+      "sha256": "d110f224486f90f2cbdefdbaf0a6b8b17a09ba8f0a0df83fc4fe86d62b3eee5c"
     },
     {
       "path": "text-to-ui/references/index/capability-aliases.source.json",
@@ -58,7 +58,7 @@
         "focus"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -1017,7 +1017,7 @@
         "focus"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -1835,7 +1835,8 @@
       "variants": [
         "default",
         "error",
-        "disabled"
+        "disabled",
+        "tag-entry"
       ],
       "states": [
         "default",
@@ -1848,27 +1849,43 @@
         "value",
         "placeholder",
         "disabled",
-        "error"
+        "error",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags",
+        "surface"
       ],
       "slots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ],
       "behaviors": [
         "input",
         "focus",
         "disabled",
-        "error"
+        "error",
+        "filter",
+        "select",
+        "remove"
       ],
       "tokenRoles": [
         "color.input-bg",
+        "color.icon",
         "color.text",
+        "color.text-muted",
+        "color.text-subtle",
         "color.border",
         "size.input-height",
         "radius.input",
-        "typography.body-l"
+        "typography.body-l",
+        "typography.body-m"
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#input",
@@ -2840,14 +2857,19 @@
       "sourceStrategy": "canonical-custom",
       "variants": [
         "default",
-        "focused",
-        "with-value",
-        "advanced-search"
+        "advanced-search",
+        "scoped-search",
+        "scoped-advanced-search"
       ],
       "states": [
         "default",
-        "hover",
         "focus",
+        "typing",
+        "filled",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "props": [
@@ -2857,6 +2879,11 @@
         "disabled",
         "state",
         "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
         "advancedSearch",
         "advancedSearchLabel",
         "onAdvancedSearch",
@@ -2864,14 +2891,48 @@
         "onClear"
       ],
       "slots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",
         "advanced-search"
       ],
       "slotContracts": {
+        "scope-selector": {
+          "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "scopeOptions",
+            "scope",
+            "defaultScope",
+            "scopeLabel",
+            "onScopeChange"
+          ],
+          "scope": "search-query-builder",
+          "defaultPlacement": "leading-before-search-icon",
+          "control": "dropdown-menu",
+          "defaultLabel": "搜索范围",
+          "defaultValue": "first-scope-option",
+          "dividerToken": "color.border",
+          "interaction": "change-search-scope",
+          "coexistenceOrder": [
+            "scope-selector",
+            "leading",
+            "value",
+            "clear",
+            "advanced-search"
+          ]
+        },
         "advanced-search": {
           "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "advancedSearch",
+            "advancedSearchLabel",
+            "onAdvancedSearch"
+          ],
           "scope": "search-query-builder",
           "defaultPlacement": "trailing-after-clear",
           "control": "small-text-button",
@@ -2890,6 +2951,7 @@
       },
       "behaviors": [
         "input",
+        "scope-select",
         "clear",
         "advanced-search",
         "focus",
@@ -3979,26 +4041,48 @@
         "segmentRole",
         "slots",
         "showWindowControls",
+        "showLogo",
         "logoSrc",
         "logoAlt",
         "disabled",
         "state",
         "mainDetailActions",
-        "onMainContentAction",
         "onMainDetailAction",
         "onAction",
         "className"
       ],
       "slots": [
+        "logo",
         "leading",
         "label",
         "secondary-pane-content",
-        "main-content-leading",
         "main-content-title",
         "main-detail-actions",
         "actions"
       ],
       "slotContracts": {
+        "logo": {
+          "cardinality": "0..1",
+          "scope": "titlebar-logo",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation",
+            "secondary-pane",
+            "final-pane"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "visibilityProp": "showLogo",
+          "defaultVisibility": {
+            "global": true,
+            "primary-navigation": true,
+            "secondary-pane": false,
+            "final-pane": false
+          }
+        },
         "secondary-pane-content": {
           "cardinality": "0..1",
           "scope": "secondary-pane-titlebar",
@@ -4142,7 +4226,8 @@
           "fields": [
             "src",
             "alt"
-          ]
+          ],
+          "deprecatedAliasFor": "logo"
         },
         "label": {
           "cardinality": "0..1",
@@ -4171,6 +4256,8 @@
         "color.surface",
         "color.border",
         "typography.body-l",
+        "typography.subtitle-m",
+        "typography.title-s",
         "spacing.component-gap"
       ],
       "iconAliases": [

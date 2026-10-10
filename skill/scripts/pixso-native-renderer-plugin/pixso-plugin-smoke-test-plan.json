@@ -109,11 +109,6 @@
       "role": "body-m"
     },
     {
-      "op": "ensure-style",
-      "styleRef": "$style/Effect/Foundation/shadow-2",
-      "role": "shadow-2"
-    },
-    {
       "op": "create-frame",
       "nodeId": "plugin-smoke-root",
       "parentId": null,
@@ -149,9 +144,6 @@
         },
         "radius": {
           "ref": "$variable/radius/12"
-        },
-        "effectStyle": {
-          "ref": "$style/Effect/Foundation/shadow-2"
         }
       },
       "metadata": {

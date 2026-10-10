@@ -12,6 +12,7 @@ import { readPageContentRecipes } from "./page-content-recipes.mjs";
 import { materialSnapshot } from "./route-material-lib.mjs";
 import { normalizePageUiScene } from "./page-ui-scene.mjs";
 import { validatePageTokenUsage } from "./page-token-usage-lib.mjs";
+import { findPageViewportBoundaryFailures } from "./page-viewport-boundary.mjs";
 import { resolveTitlebarScene, titlebarScenePreset } from "./titlebar-scene.mjs";
 
 const args = process.argv.slice(2);
@@ -494,6 +495,8 @@ if (pageCssPath) {
   // The validator is a CLI by design; keep this generation-time equivalent
   // small and explicit so an invalid page never reaches a preview artifact.
   const css = fs.readFileSync(cssFile, "utf8");
+  const viewportFailures = findPageViewportBoundaryFailures(css);
+  if (viewportFailures.length) throw new Error(`Page CSS viewport boundary preflight failed for '${cssFile}':\n${viewportFailures.map((failure) => `- ${failure}`).join("\n")}`);
   const forbiddenPatternSelectors = /(?:\[data-(?:pattern|tui-pane-role|pattern-region|pattern-shell-slot)|\.tui-(?:pattern|runtime-card|sidebar|titlebar)\b)/;
   if (forbiddenPatternSelectors.test(css)) throw new Error(`Page CSS '${cssFile}' overrides Pattern-owned selectors`);
   if (/(?:^|,)\s*(?:html|body|main|#app)\b[^{}]*\{[^}]*\b(?:width|height)\s*:\s*\d+(?:\.\d+)?px\b/is.test(css) || /(?:^|,)\s*(?:html|body|main|#app)\b[^{}]*\{[^}]*\btransform\s*:\s*scale\s*\(/is.test(css)) throw new Error(`Page CSS '${cssFile}' fixes or scales the HTML runtime canvas; use responsive layout and reserve 1728×1152 for Pixso import only`);
@@ -504,7 +507,7 @@ if (pageCssPath) {
   const shellLikeSelector = /(?:^|[.#\s>])[^,]*\b(?:pattern|pane|titlebar)\b/i;
   const strokeProperty = /\b(?:border(?:-(?:top|right|bottom|left|inline-start|inline-end|block-start|block-end))?|outline|box-shadow)\s*:/i;
   const persistentOutline = /\boutline(?:-(?:color|style|width|offset))?\s*:\s*(?!0(?:px)?\b|none\b|var\(--color-focus-ring\b)/i;
-  const dividerSelector = /(?:^|[.#\s>])[^,]*\b(?:divider|separator)\b/i;
+  const dividerSelector = /(?:^|[.#\s>])[^,]*\b(?:divider|separator|resizer|splitter|resize-handle|drag-divider)\b/i;
   for (const match of css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const selector = match[1].trim();
     const body = match[2];
@@ -517,7 +520,7 @@ if (pageCssPath) {
     }
     if (shellLikeSelector.test(selector) && strokeProperty.test(body)) cssBoundaryFailures.push(`shell-like selector '${selector}' cannot add a border, outline, or shadow; Runtime owns structural divider edges`);
     if (!/:focus-visible\b/i.test(selector) && persistentOutline.test(body)) cssBoundaryFailures.push(`outline is reserved for :focus-visible component states: '${selector}'`);
-    if (dividerSelector.test(selector) && strokeProperty.test(body) && !/var\(\s*--layout-navigation-divider-width\b/i.test(body)) cssBoundaryFailures.push(`divider/separator '${selector}' must use --layout-navigation-divider-width`);
+    if (dividerSelector.test(selector) && strokeProperty.test(body) && !/var\(\s*--layout-navigation-divider-width\b/i.test(body)) cssBoundaryFailures.push(`divider/separator/resizer '${selector}' must use --layout-navigation-divider-width`);
   }
   if (cssBoundaryFailures.length) throw new Error(`Page CSS stroke boundary preflight failed for '${cssFile}':\n${cssBoundaryFailures.map((failure) => `- ${failure}`).join("\n")}`);
   const tokenReport = validatePageTokenUsage({ sourcePaths: [cssFile], projectRoot: context.repository.root, layoutContract });

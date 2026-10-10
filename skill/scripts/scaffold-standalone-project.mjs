@@ -48,7 +48,7 @@ const writeNew = (name, content) => { const file = path.join(projectRoot, name);
 writeNew('pnpm-workspace.yaml', 'packages:\n  - "."\n');
 const entry = valueFor('--entry') || './generated-entry.js';
 if (path.isAbsolute(entry) || entry.split(/[\\/]/).includes('..')) throw new Error('--entry must be inside the project');
-writeNew('index.html', '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>工作台</title><style>html,body,#app{margin:0;width:100%;height:100%}body{overflow:hidden}</style></head><body><div id="app"></div><script type="module" src="./main.js"></script></body></html>');
+writeNew('index.html', '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>工作台</title><style>html,body,#app{margin:0;padding:0;width:100%;height:100%}body{overflow:hidden}</style></head><body><div id="app"></div><script type="module" src="./main.js"></script></body></html>');
 writeNew('main.js', `import { mountGeneratedPage } from ${JSON.stringify(entry.startsWith('./') ? entry : './' + entry)};\nmountGeneratedPage();\n`);
 writeNew('vite.config.mjs', `import { defineConfig } from 'vite';
 export default defineConfig({ base: './', plugins: [{

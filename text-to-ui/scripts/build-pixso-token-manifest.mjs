@@ -461,8 +461,6 @@ for (const [name, style] of Object.entries(source.typography.styles)) {
 
 const effectStyles = {};
 for (const [name, shadow] of Object.entries(source.shadow)) {
-  // Policy metadata describes where shadows may be used; it is not an effect
-  // token and must not be interpreted as one when building Pixso styles.
   if (name === "roles" || name === "usagePolicy") continue;
   effectStyles[`Effect/Foundation/${name}`] = {
     type: "effect",

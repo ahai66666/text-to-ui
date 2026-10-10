@@ -35,9 +35,22 @@ for (const region of expectedRegions) {
   else if (item.display === "none" || !item.bounds || item.bounds.width <= 0 || item.bounds.height <= 0) failures.push(`runtime Pattern region is not visibly laid out: ${region}`);
   const expectedGeometry = manifest.layout?.geometry?.regions?.[region];
   if (item && expectedGeometry) {
-    const expectedBody = insetToPixels(expectedGeometry.scrollBody?.inset);
-    const actualBody = item.scrollBody?.padding;
-    if (!actualBody || Object.entries(expectedBody ?? {}).some(([key, value]) => value !== null && actualBody[key] !== value)) failures.push(`runtime Pattern region '${region}' scroll-body inset does not match the Pattern contract`);
+    if (manifest.layout.pattern === "pattern-b-three-pane" && region === "primary-navigation") {
+      // Pattern B splits its navigation inset between the pane's top edge and
+      // the scrollable Sidebar slot. Comparing only scroll-body padding would
+      // miss this visible geometry (or incorrectly demand a second inset).
+      const sidebarSlot = item.slots?.find((slot) => slot.id === "secondary-navigation-content");
+      const expectedInline = insetToPixels(expectedGeometry.surfaceInset);
+      if (!sidebarSlot || sidebarSlot.padding?.paddingInlineStart !== expectedInline?.paddingInlineStart || sidebarSlot.padding?.paddingInlineEnd !== expectedInline?.paddingInlineEnd) failures.push("runtime Pattern B Sidebar slot must own one 16px horizontal inset");
+      if (item.padding?.paddingBlockStart !== "8px") failures.push("runtime Pattern B primary-navigation pane must own the 8px top inset");
+      if (item.scrollBody?.padding?.paddingInlineStart !== "0px" || item.scrollBody?.padding?.paddingInlineEnd !== "0px") failures.push("runtime Pattern B navigation scroll body must not add a second horizontal inset");
+      const actionSlot = item.slots?.find((slot) => slot.id === "global-primary-action");
+      if (actionSlot && (actionSlot.padding?.paddingInlineStart !== "16px" || actionSlot.padding?.paddingInlineEnd !== "16px")) failures.push("runtime Pattern B global primary action must keep its single 16px inset");
+    } else {
+      const expectedBody = insetToPixels(expectedGeometry.scrollBody?.inset);
+      const actualBody = item.scrollBody?.padding;
+      if (!actualBody || Object.entries(expectedBody ?? {}).some(([key, value]) => value !== null && actualBody[key] !== value)) failures.push(`runtime Pattern region '${region}' scroll-body inset does not match the Pattern contract`);
+    }
     if (expectedGeometry.title?.kind === "pane-segment" && (!item.title || item.title.bounds?.height !== 64)) failures.push(`runtime Pattern region '${region}' title segment does not preserve the canonical 64px title layer`);
   }
 }

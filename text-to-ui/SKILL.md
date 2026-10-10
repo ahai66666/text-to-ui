@@ -76,6 +76,12 @@ width, and design for the user's task rather than the component list.
 Read `references/page-design-guidance.md` and
 `references/page-blueprint-design.md` as directed by that route.
 
+**Mandatory Gate 0: analyze and build the page blueprint.** Before page
+generation, create the required `page-blueprint.json` from the task model,
+selected Pattern, data entities, content groups, states, interactions, success
+criteria, and recovery paths. The blueprint is the design decision layer;
+bindings implement those decisions and must not replace or reinterpret them.
+
 When resolving task context, use the canonical task route ID when the request
 is ambiguous. `--task-route <route-id>` selects a specific task route while
 preserving the original `--task` description. Ambiguous terms must return their
@@ -114,6 +120,16 @@ the entire component or Token registry when a targeted entry is sufficient.
 - Page CSS uses canonical Tokens and styles declared business-content groups.
   It must not override component internals, add a second pane inset, or redraw
   Pattern-owned borders, dividers, Titlebars, or navigation.
+- If a Pattern boundary is draggable, keep its visible separator as the same
+  single `--layout-navigation-divider-width` (0.5px) stroke in `--color-border`
+  as a fixed boundary. The pointer/keyboard hit target may be wider but remains
+  transparent; resize behavior and the separator belong to Pattern Runtime,
+  not page CSS.
+- Pattern B pane spacing is renderer-owned beyond the Titlebar: the primary
+  pane supplies its top rhythm and Sidebar slot inset, the Secondary List
+  scroll body supplies its 16px/8px/0px surface inset, and Main Detail supplies
+  its 24px/16px/0px content inset. Page groups fill these areas without another
+  pane-padding wrapper. Verify computed pane and slot insets in rendered HTML.
 - Parent composition owns spacing between disclosure instances: second-level
   Sidebar groups use a `--space-5` (16px) gap, and repeated Accordion or
   Collapsible instances use the `tui-disclosure-group` wrapper with the same

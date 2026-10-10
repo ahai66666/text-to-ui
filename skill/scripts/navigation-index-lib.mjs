@@ -86,7 +86,7 @@ export function locateMonorepo({ start = process.cwd(), explicitRepo } = {}) {
   attempted.push(scriptRoot);
   if (isMonorepoRoot(scriptRoot)) return { root: scriptRoot, strategy: 'skill-source', attempted };
   const home = process.env.HOME;
-  const boundedRoots = [path.dirname(path.resolve(start)), home && path.join(home, 'Documents'), home && path.join(home, 'Desktop', '资源管理', '我的代码仓')].filter(Boolean);
+  const boundedRoots = [path.dirname(path.resolve(start)), home && path.join(home, 'Documents'), home && path.join(home, 'Desktop')].filter(Boolean);
   for (const base of [...new Set(boundedRoots)]) {
     attempted.push(`${base} (depth<=3)`);
     const found = scanForRoot(base, 3);

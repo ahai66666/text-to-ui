@@ -1,11 +1,14 @@
 import React from "react";
 import "./styles.css";
 import { Icon, contract } from "./shared.jsx";
+import { DropdownMenu } from "./advanced.jsx";
+import { Chips } from "./Chips.jsx";
 import { resolveTitlebarSegment } from "@text-to-ui/component-contracts/titlebar-segments";
 export { createTitlebarSegments } from "@text-to-ui/component-contracts/titlebar-segments";
-export { Chips } from "./Chips.jsx";
+export { Chips };
 
 const defaultTitlebarLogoSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='4' fill='%230A59F7'/%3E%3Ctext x='12' y='17' text-anchor='middle' font-family='Arial,sans-serif' font-size='14' font-weight='700' fill='white'%3ET%3C/text%3E%3C/svg%3E";
+const searchSupportedStates = new Set(["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"]);
 
 const buttonLogicalName = ({ variant, mode, iconOnly = false }) => {
   if (mode === "icon-text") return "Button/Icon Text/Default";
@@ -26,7 +29,77 @@ export function Button({ label, children, variant = "primary", size = "standard"
   </button>;
 }
 
-export function Input({ value, defaultValue, placeholder = "请输入内容", disabled = false, error = false, state, surface = "white", onChange, ...props }) {
+function TagEntryInput({ id, value, defaultValue, placeholder = "输入文本后按 Enter 选择", label = "成员", options = [], tags, defaultTags = [], disabled = false, error = false, state, surface = "white", onChange, onTagsChange, onFocus, onBlur, onKeyDown, ...inputProps }) {
+  const generatedId = React.useId();
+  const inputId = id ?? `${generatedId}-input`;
+  const labelId = `${generatedId}-label`;
+  const menuId = `${generatedId}-suggestions`;
+  const [internalQuery, setInternalQuery] = React.useState(defaultValue ?? "");
+  const query = value === undefined ? internalQuery : String(value ?? "");
+  const [internalTags, setInternalTags] = React.useState(() => Array.isArray(defaultTags) ? defaultTags.map(String) : []);
+  const selectedTags = Array.isArray(tags) ? tags.map(String) : internalTags;
+  const [open, setOpen] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(-1);
+  const [focused, setFocused] = React.useState(false);
+  const inputRef = React.useRef(null);
+  const normalizedOptions = Array.isArray(options) ? options.filter((option) => option !== null && option !== undefined && String(option).trim()).map(String) : [];
+  const selectedKeys = new Set(selectedTags.map((tag) => tag.toLocaleLowerCase()));
+  const filteredOptions = normalizedOptions.filter((option) => !selectedKeys.has(option.toLocaleLowerCase()) && (!query.trim() || option.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())));
+  const resolvedState = disabled ? "disabled" : state ?? (error ? "error" : focused ? "focus" : "default");
+  const updateTags = (nextTags) => {
+    if (tags === undefined) setInternalTags(nextTags);
+    onTagsChange?.(nextTags);
+  };
+  const updateQuery = (nextQuery, event) => {
+    if (value === undefined) setInternalQuery(nextQuery);
+    onChange?.(event);
+    setActiveIndex(-1);
+  };
+  const selectOption = (option) => {
+    if (selectedKeys.has(option.toLocaleLowerCase())) return;
+    updateTags([...selectedTags, option]);
+    if (value === undefined) setInternalQuery("");
+    setActiveIndex(-1);
+    setOpen(false);
+    inputRef.current?.focus();
+  };
+  const onInputKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (!open) setOpen(true);
+      else if (activeIndex >= 0 && filteredOptions[activeIndex]) selectOption(filteredOptions[activeIndex]);
+    } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(true);
+        setActiveIndex(event.key === "ArrowDown" ? 0 : filteredOptions.length - 1);
+      } else if (filteredOptions.length > 0) {
+        setActiveIndex((current) => event.key === "ArrowDown" ? (current + 1) % filteredOptions.length : current < 0 ? filteredOptions.length - 1 : (current - 1 + filteredOptions.length) % filteredOptions.length);
+      }
+    } else if (event.key === "Escape" && open) {
+      event.preventDefault();
+      setOpen(false);
+      setActiveIndex(-1);
+    }
+    onKeyDown?.(event);
+  };
+  return <div className="tui-component tui-input tui-input--tag-entry" {...contract("input", "Input/Tag Entry/Default", "tag-entry", resolvedState, { "data-surface": surface })} role="group" aria-labelledby={labelId} onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) { setFocused(false); setOpen(false); setActiveIndex(-1); } }}>
+    <label className="tui-input-tag-entry__label" id={labelId} htmlFor={inputId} data-slot="label" data-typography-role="body-l">{label}</label>
+    <div className="tui-input-tag-entry__editor">
+      <div className="tui-input-tag-entry__tags" data-slot="tags" role="list" aria-label={`${label}已选`}>
+        {selectedTags.map((tag, index) => <Chips key={`${tag}-${index}`} label={tag} icon="" closable disabled={disabled} onClose={() => { updateTags(selectedTags.filter((_, tagIndex) => tagIndex !== index)); inputRef.current?.focus(); }} role="listitem" />)}
+      </div>
+      <input {...inputProps} id={inputId} ref={inputRef} className={`tui-input-tag-entry__input${inputProps.className ? ` ${inputProps.className}` : ""}`} data-slot="value" data-typography-role="body-l" type="text" role="combobox" aria-autocomplete="list" aria-expanded={open} aria-controls={menuId} aria-labelledby={labelId} aria-activedescendant={open && activeIndex >= 0 && filteredOptions[activeIndex] ? `${menuId}-option-${activeIndex + 1}` : undefined} aria-invalid={error || state === "error" ? "true" : undefined} autoComplete="off" value={query} placeholder={placeholder} disabled={disabled} onChange={(event) => updateQuery(event.target.value, event)} onFocus={(event) => onFocus?.(event)} onBlur={(event) => onBlur?.(event)} onKeyDown={onInputKeyDown} />
+      <div id={menuId} className="tui-advanced-menu__panel tui-input-tag-entry__menu" role="listbox" aria-label={`${label}建议`} hidden={!open}>
+        {filteredOptions.map((option, index) => <button key={`${option}-${index}`} id={`${menuId}-option-${index + 1}`} className="tui-advanced-menu__item" type="button" role="option" aria-selected={activeIndex === index} data-typography-role="body-l" onMouseDown={(event) => event.preventDefault()} onMouseEnter={() => setActiveIndex(index)} onClick={() => selectOption(option)}>{option}</button>)}
+        {filteredOptions.length === 0 && <div className="tui-input-tag-entry__empty">无匹配项</div>}
+      </div>
+    </div>
+  </div>;
+}
+
+export function Input({ value, defaultValue, placeholder = "请输入内容", disabled = false, error = false, state, surface = "white", variant = "default", label = "成员", options = [], tags, defaultTags = [], onTagsChange, onChange, ...props }) {
+  if (variant === "tag-entry") return <TagEntryInput {...props} id={props.id} value={value} defaultValue={defaultValue} placeholder={placeholder} label={label} options={options} tags={tags} defaultTags={defaultTags} disabled={disabled} error={error} state={state} surface={surface} onChange={onChange} onTagsChange={onTagsChange} />;
   const [focused, setFocused] = React.useState(false);
   const resolvedState = disabled ? "disabled" : state ?? (error ? "error" : focused ? "focus" : "default");
   return <label className="tui-component tui-input" data-surface={surface} {...contract("input", "Input/White Surface/Default", "default", resolvedState)}>
@@ -34,17 +107,27 @@ export function Input({ value, defaultValue, placeholder = "请输入内容", di
   </label>;
 }
 
-export function Search({ value, defaultValue = "", placeholder = "搜索", disabled = false, state = "default", surface = "white", advancedSearch = false, advancedSearchLabel = "高级搜索", onAdvancedSearch, onChange, onClear, ...props }) {
+export function Search({ value, defaultValue = "", placeholder = "搜索", disabled = false, state = "default", surface = "white", advancedSearch = false, advancedSearchLabel = "高级", scope, defaultScope, scopeOptions = [], scopeLabel = "搜索范围", onScopeChange, onAdvancedSearch, onChange, onClear, ...props }) {
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const currentValue = value === undefined ? internalValue : value;
   const hasValue = Boolean(currentValue);
+  const normalizedScopeOptions = Array.isArray(scopeOptions) ? scopeOptions.filter(Boolean) : [];
+  const scoped = normalizedScopeOptions.length > 0;
+  const [internalScope, setInternalScope] = React.useState(defaultScope ?? normalizedScopeOptions[0] ?? "");
+  const currentScope = scope === undefined ? internalScope : scope;
   const [focused, setFocused] = React.useState(false);
-  const resolvedState = disabled ? "disabled" : state === "default" && focused ? "focus" : state;
-  return <label className="tui-component tui-search" data-surface={surface} {...contract("search", "Search/White Surface/Default", advancedSearch ? "advanced-search" : hasValue ? "with-value" : "default", resolvedState)}>
-    <span data-slot="leading"><Icon name="field/search" /></span>
-    <input {...props} type="search" value={currentValue} placeholder={placeholder} disabled={disabled} onChange={(event) => { if (value === undefined) setInternalValue(event.target.value); onChange?.(event); }} onFocus={(event) => { setFocused(true); props.onFocus?.(event); }} onBlur={(event) => { setFocused(false); props.onBlur?.(event); }} data-slot="value" data-typography-role="body-l" />
-    {hasValue && <button className="tui-icon-button" type="button" aria-label="清除" onClick={(event) => { if (value === undefined) setInternalValue(""); onClear?.(event); }} data-slot="clear"><Icon name="action/close" /></button>}
-    {advancedSearch && <Button className="tui-search__advanced" label={advancedSearchLabel} variant="ghost" size="small" mode="text" type="button" aria-label={advancedSearchLabel} aria-haspopup="dialog" disabled={disabled} onClick={onAdvancedSearch} data-slot="advanced-search" data-typography-role="body-m" />}
+  const requestedState = searchSupportedStates.has(state) ? state : "default";
+  const isDisabled = disabled || requestedState === "disabled";
+  const resolvedState = isDisabled ? "disabled" : requestedState !== "default" ? requestedState : focused ? hasValue ? "typing" : "focus" : hasValue ? "filled" : "default";
+  const variant = scoped ? advancedSearch ? "scoped-advanced-search" : "scoped-search" : advancedSearch ? "advanced-search" : "default";
+  return <label className="tui-component tui-search" data-surface={surface} {...contract("search", scoped ? "Search/Scoped/Default" : "Search/White Surface/Default", variant, resolvedState)}>
+    {scoped && <DropdownMenu className="tui-search__scope" slotName="scope-selector" compact hideLabel label={scopeLabel} value={currentScope} items={normalizedScopeOptions} ariaLabel={scopeLabel} disabled={isDisabled} onSelect={(next, event) => { if (scope === undefined) setInternalScope(next); onScopeChange?.(next, event); }} />}
+    <span className="tui-search__input-region" data-search-input-region>
+      <span data-slot="leading"><Icon name="field/search" /></span>
+      <input {...props} type="search" value={currentValue} placeholder={placeholder} disabled={isDisabled} onChange={(event) => { if (value === undefined) setInternalValue(event.target.value); onChange?.(event); }} onFocus={(event) => { setFocused(true); props.onFocus?.(event); }} onBlur={(event) => { setFocused(false); props.onBlur?.(event); }} data-slot="value" data-typography-role="body-l" />
+      {hasValue && <button className="tui-icon-button" type="button" aria-label="清除" disabled={isDisabled} onClick={(event) => { if (value === undefined) setInternalValue(""); onClear?.(event); }} data-slot="clear"><Icon name="action/close" /></button>}
+      {advancedSearch && <Button className="tui-search__advanced" label={advancedSearchLabel} variant="ghost" size="small" mode="text" type="button" aria-label={advancedSearchLabel} aria-haspopup="dialog" disabled={isDisabled} onClick={onAdvancedSearch} data-slot="advanced-search" data-typography-role="body-m" />}
+    </span>
   </label>;
 }
 
@@ -105,7 +188,7 @@ export function ListCard({ title = "项目设置", description = "", supporting 
 }
 
 export function Titlebar(options = {}) {
-  let { label = "项目空间", paneTitle = "项目内容", size = "large", state = "default", disabled = false, layout, paneRole, mainContentLeading, mainDetailActions = [], secondaryPaneContent, onMainContentAction, onMainDetailAction, onAction, logoSrc = defaultTitlebarLogoSrc, logoAlt = "", showWindowControls, segmentRole, slots, children, ...props } = resolveTitlebarSegment(options);
+  let { label = "项目空间", paneTitle = "项目内容", size = "large", state = "default", disabled = false, layout, paneRole, mainContentLeading, mainDetailActions = [], secondaryPaneContent, onMainContentAction, onMainDetailAction, onAction, showLogo, logoSrc = defaultTitlebarLogoSrc, logoAlt = "", showWindowControls, segmentRole, slots, children, ...props } = resolveTitlebarSegment(options);
   if (paneRole === "main-detail" || paneRole === "main-content") paneRole = "final-pane";
   const actions = [
     ["minimize", "最小化"],
@@ -120,8 +203,9 @@ export function Titlebar(options = {}) {
     return type;
   };
   return <header className="tui-component tui-titlebar" {...contract("titlebar", "Titlebar/Default", size, disabled ? "disabled" : state, { "data-size": size, "data-layout": layout, "data-pane-role": paneRole })} {...props}>
-    {(paneRole === "global" || paneRole === "primary-navigation") && <span className="tui-titlebar__brand" data-slot="leading"><img className="tui-titlebar__logo" src={logoSrc} alt={logoAlt} aria-hidden={logoAlt ? undefined : true} /><span data-slot="label" data-typography-role="subtitle-m">{label}</span></span>}
-    {children ?? <>{paneRole === "secondary-pane" && secondaryPaneContent && <div className="tui-titlebar__secondary-content" data-slot="secondary-pane-content" data-component-slot="registered-component"><Search {...(secondaryPaneContent.props ?? {})} /></div>}{layout === "two-column" && isFinalPane && mainContentLeading && <div className="tui-titlebar__pane-leading" data-slot="main-content-leading" data-action-scope="main-content-pane-global"><Button label={mainContentLeading.label} variant="ghost" size="standard" mode={mainContentLeading.buttonType === "icon-text-ghost" ? "icon-text" : "icon"} logicalName={mainContentLeading.buttonType === "icon-text-ghost" ? "Icon Text Button/Ghost/Default" : "Icon Button/Ghost/Default"} icon={mainContentLeading.icon} iconSize={24} className="tui-titlebar__pane-leading-action" type="button" data-slot="main-content-leading-action" data-action={mainContentLeading.id} data-button-type={mainContentLeading.buttonType ?? "icon"} disabled={disabled || mainContentLeading.disabled} onClick={() => onMainContentAction?.(mainContentLeading.id)} /></div>}{(layout === "two-column" || layout === "standalone") && isFinalPane && <strong className="tui-titlebar__pane-title" data-slot="main-content-title" data-action-scope="main-content-pane-global" data-typography-role="title-s">{paneTitle}</strong>}{layout === "three-column" && isFinalPane && mainDetailActions.length > 0 && <div className="tui-titlebar__pane-actions" data-slot="main-detail-actions" data-action-scope="main-detail-pane-global" aria-label="Main Detail 栏级操作">{mainDetailActions.map((action) => {
+    {(paneRole === "global" || paneRole === "primary-navigation") && <span className="tui-titlebar__brand" data-slot="leading">{showLogo && <span className="tui-titlebar__logo-slot" data-slot="logo"><img className="tui-titlebar__logo" src={logoSrc} alt={logoAlt} aria-hidden={logoAlt ? undefined : true} /></span>}<span data-slot="label" data-typography-role="subtitle-m">{label}</span></span>}
+    {paneRole !== "global" && paneRole !== "primary-navigation" && showLogo && <span className="tui-titlebar__logo-slot" data-slot="logo"><img className="tui-titlebar__logo" src={logoSrc} alt={logoAlt} aria-hidden={logoAlt ? undefined : true} /></span>}
+    {children ?? <>{paneRole === "secondary-pane" && secondaryPaneContent && <div className="tui-titlebar__secondary-content" data-slot="secondary-pane-content" data-component-slot="registered-component"><Search {...(secondaryPaneContent.props ?? {})} /></div>}{layout === "two-column" && isFinalPane && mainContentLeading && <div className="tui-titlebar__pane-leading" data-slot="main-content-leading" data-action-scope="main-content-pane-global"><Button label={mainContentLeading.label} variant="ghost" size="standard" mode={mainContentLeading.buttonType === "icon-text-ghost" ? "icon-text" : "icon"} logicalName={mainContentLeading.buttonType === "icon-text-ghost" ? "Icon Text Button/Ghost/Default" : "Icon Button/Ghost/Default"} icon={mainContentLeading.icon} iconSize={24} className="tui-titlebar__pane-leading-action" type="button" data-slot="main-content-leading-action" data-action={mainContentLeading.id} data-button-type={mainContentLeading.buttonType ?? "icon"} disabled={disabled || mainContentLeading.disabled} onClick={() => onMainContentAction?.(mainContentLeading.id)} /></div>}{(layout === "two-column" || layout === "standalone") && isFinalPane && <strong className="tui-titlebar__pane-title" data-slot="main-content-title" data-action-scope="main-content-pane-global" data-typography-role={size === "small" ? "subtitle-m" : "title-s"}>{paneTitle}</strong>}{layout === "three-column" && isFinalPane && mainDetailActions.length > 0 && <div className="tui-titlebar__pane-actions" data-slot="main-detail-actions" data-action-scope="main-detail-pane-global" aria-label="Main Detail 栏级操作">{mainDetailActions.map((action) => {
       const buttonType = titlebarActionType(action);
       const iconOnly = buttonType === "icon";
       return <Button key={action.id} label={action.label} variant="ghost" mode={iconOnly ? "icon" : "icon-text"} logicalName={iconOnly ? "Icon Button/Ghost/Default" : "Icon Text Button/Ghost/Default"} icon={action.icon ?? "action/more"} className={`tui-titlebar__pane-action${iconOnly ? "" : " tui-titlebar__pane-action--text"}`} type="button" data-slot="main-detail-action" data-action={action.id} data-button-type={buttonType} aria-label={action.label} disabled={disabled || action.disabled} onClick={() => onMainDetailAction?.(action.id)} />;

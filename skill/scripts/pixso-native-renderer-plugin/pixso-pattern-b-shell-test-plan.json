@@ -170,11 +170,6 @@
       "role": "body-m"
     },
     {
-      "op": "ensure-style",
-      "styleRef": "$style/Effect/Foundation/shadow-2",
-      "role": "shadow-2"
-    },
-    {
       "op": "create-frame",
       "nodeId": "shell-root",
       "parentId": null,
@@ -199,9 +194,6 @@
         },
         "radius": {
           "ref": "$variable/radius/16"
-        },
-        "effectStyle": {
-          "ref": "$style/Effect/Foundation/shadow-2"
         }
       },
       "metadata": {

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import { findPageViewportBoundaryFailures } from "./page-viewport-boundary.mjs";
 
 const args = process.argv.slice(2);
 const valueFor = (flag) => { const index = args.indexOf(flag); return index >= 0 ? args[index + 1] : null; };
@@ -14,7 +15,7 @@ const canvasRoot = /(?:^|,)\s*(?:html|body|main|#app|\[data-tui-pattern\]|\.tui-
 const shellLikeSelector = /(?:^|[.#\s>])[^,]*\b(?:pattern|pane|titlebar)\b/i;
 const strokeProperty = /\b(?:border(?:-(?:top|right|bottom|left|inline-start|inline-end|block-start|block-end))?|outline|box-shadow)\s*:/i;
 const persistentOutline = /\boutline(?:-(?:color|style|width|offset))?\s*:\s*(?!0(?:px)?\b|none\b|var\(--color-focus-ring\b)/i;
-const dividerSelector = /(?:^|[.#\s>])[^,]*\b(?:divider|separator)\b/i;
+const dividerSelector = /(?:^|[.#\s>])[^,]*\b(?:divider|separator|resizer|splitter|resize-handle|drag-divider)\b/i;
 const failures = [];
 const files = sources.flatMap((source) => {
   const resolved = path.resolve(source);
@@ -23,6 +24,7 @@ const files = sources.flatMap((source) => {
 });
 for (const file of files) {
   const css = fs.readFileSync(file, "utf8");
+  for (const failure of findPageViewportBoundaryFailures(css)) failures.push(`${path.relative(process.cwd(), file)} ${failure}`);
   for (const match of css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const selector = match[1].trim();
     const body = match[2];
@@ -33,7 +35,7 @@ for (const file of files) {
       failures.push(`${path.relative(process.cwd(), file)} page CSS outline is reserved for :focus-visible component states: '${selector}'`);
     }
     if (dividerSelector.test(selector) && strokeProperty.test(body) && !/var\(\s*--layout-navigation-divider-width\b/i.test(body)) {
-      failures.push(`${path.relative(process.cwd(), file)} divider/separator strokes must use --layout-navigation-divider-width: '${selector}'`);
+      failures.push(`${path.relative(process.cwd(), file)} divider/separator/resizer strokes must use --layout-navigation-divider-width: '${selector}'`);
     }
   }
   const lines = css.split("\n");

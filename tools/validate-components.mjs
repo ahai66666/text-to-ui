@@ -79,6 +79,13 @@ for (const component of contracts.components) {
 
 const titlebar = contracts.components.find((component) => component.id === "titlebar");
 const mainDetailActions = titlebar?.slotContracts?.["main-detail-actions"];
+if (JSON.stringify(titlebar?.textRolesByVariant?.small) !== JSON.stringify(["title:subtitle-m"])) failures.push("Titlebar/Default: S title must use Subtitle_M");
+for (const size of ["medium", "large", "xlarge"]) {
+  if (JSON.stringify(titlebar?.textRolesByVariant?.[size]) !== JSON.stringify(["title:title-s"])) failures.push(`Titlebar/Default: ${size} title must retain Title_S`);
+}
+for (const role of ["typography.subtitle-m", "typography.title-s"]) {
+  if (!titlebar?.tokenRoles?.includes(role)) failures.push(`Titlebar/Default: ${role} token role is required`);
+}
 if (!titlebar?.slots?.includes("main-detail-actions")) failures.push("Titlebar/Default: main-detail-actions slot is required");
 if (!titlebar?.props?.includes("mainDetailActions") || !titlebar?.props?.includes("onMainDetailAction")) failures.push("Titlebar/Default: multi-action framework props are required");
 if (mainDetailActions?.cardinality !== "0..n" || mainDetailActions?.scope !== "main-detail-pane-global" || mainDetailActions?.defaultPlacement !== "final-pane-leading-slot") failures.push("Titlebar/Default: Main Detail action slot cardinality, scope, and placement are invalid");

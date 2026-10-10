@@ -892,6 +892,7 @@
       }
     }
     function setMetadata(node, operation) {
+      if (operation.metadata?.defaultVisibility === "hidden") node.visible = false;
       writePluginMeta(node, "text-to-ui-scene-id", operation.nodeId ?? "");
       writePluginMeta(node, "text-to-ui-region", operation.region ?? "");
       const runId = planRunId(state.plan);
@@ -950,6 +951,8 @@
           // Older Pixso builds may expose the property but not allow the
           // reference assignment. Readback will report the missing binding.
         }
+        const defaultValue = component.componentPropertyDefinitions?.[key]?.defaultValue;
+        if (typeof defaultValue === "string" && node.characters !== defaultValue) node.characters = defaultValue;
       }
     }
     function isLegacyIconFontText(textNode) {
@@ -1803,6 +1806,7 @@
           // previous fast path skipped them entirely, so a library built by
           // an older renderer kept top-aligned icon geometry forever.
           if (operation.op === "create-icon-slot") repairExistingIconSlot(operation, existing, plan);
+          if (operation.metadata?.defaultVisibility === "hidden") existing.visible = false;
           continue;
         }
         const parent = operation.parentId ? state.nodes.get(operation.parentId) : page;
@@ -1868,6 +1872,12 @@
           if (!findComponentPropertyKey(node, property)) issues.push(`missing-component-property:${contract.logicalName ?? operation.name}:${property}`);
         }
         if (!readPluginMeta(node, "text-to-ui-component-source")) issues.push(`missing-component-source:${contract.logicalName ?? operation.name}`);
+      }
+      for (const operation of plan.operations ?? []) {
+        if (operation.metadata?.defaultVisibility !== "hidden") continue;
+        const node = state.nodes.get(operation.nodeId);
+        if (!node) issues.push(`missing-default-hidden-node:${operation.nodeId}`);
+        else if (node.visible !== false) issues.push(`default-visibility:${operation.nodeId}:visible/hidden`);
       }
       for (const operation of plan.operations ?? []) {
         if (operation.op !== "hydrate-icon") continue;

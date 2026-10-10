@@ -58,14 +58,6 @@ pnpm test
 pnpm gallery:build
 ```
 
-Coremail 的 Pixso MCP 备用计划可按需重生成：
-
-```bash
-pnpm pixso:scene:coremail
-pnpm pixso:operation-plan:coremail
-pnpm pixso:mcp-plan:coremail
-```
-
-MCP 计划会按模块裁剪 Token/Style 资源，并使用仓库内的压缩运行时；每个调用都经过 150 KB 上限校验。这样干净克隆后仍可复现计划，不依赖某台机器上的运行时路径。
+邮件工作台只保留在 `fixtures/mail-workbench-native-scene/` 中的精简回归输入，用于验证 Pixso 原生场景适配器；它不是可运行的示例应用。生成的场景、操作计划、MCP 调用批次和本地预览产物不作为产品源码发布。
 
 组件、Skill 和示例应用通过分支与 Pull Request 合并，`main` 只接收通过 CI 和评审的变更。GitHub 源码公开、GitHub Release 和 npm 包发布是三个独立动作，不能用“代码已上传”替代版本发布。

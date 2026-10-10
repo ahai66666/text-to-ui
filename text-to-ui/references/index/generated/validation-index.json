@@ -3,7 +3,7 @@
   "generatedFrom": [
     {
       "path": "package.json",
-      "sha256": "4874f74b84bf9e30b6fb28a8ffbb4c3775bd2ab04c07c3c3d41d4c72c3959c60"
+      "sha256": "02c8cc047e08b15cbfe45e08f673efeed4f3789886d0608b5698dab06ce5b122"
     }
   ],
   "modes": {
@@ -54,12 +54,9 @@
     "contracts:validate": "node tools/validate-components.mjs",
     "styles:validate": "node tools/validate-component-style-parity.mjs",
     "pixso:mapping:test": "node tools/expand-pixso-mapping.mjs --check && node tools/test-pixso-mapping.mjs",
-    "pixso:scene:coremail": "node text-to-ui/scripts/generate-pixso-scene.mjs --page-spec apps/coremail-workbench/page-spec.json --layout-contract apps/coremail-workbench/pixso/layout-contract.json --page-data apps/coremail-workbench/pixso/page-data.json --component-map text-to-ui/assets/design-system/mapping-registry.json --out apps/coremail-workbench/pixso/pixso-scene.json --stats-out apps/coremail-workbench/pixso/scene-stats.json",
-    "pixso:operation-plan:coremail": "node text-to-ui/scripts/generate-pixso-operation-plan.mjs --scene apps/coremail-workbench/pixso/pixso-scene.json --component-map text-to-ui/assets/design-system/mapping-registry.json --out apps/coremail-workbench/pixso/pixso-operation-plan.json && node text-to-ui/scripts/prepare-pixso-operation-batches.mjs --plan apps/coremail-workbench/pixso/pixso-operation-plan.json --out apps/coremail-workbench/pixso/pixso-operation-batches.json",
     "pixso:scene:test": "node text-to-ui/scripts/test-pixso-native-scene.mjs && node text-to-ui/scripts/test-pixso-two-phase-icons.mjs && node text-to-ui/scripts/test-pixso-image-runtime.mjs",
     "components:business-props:test": "node text-to-ui/scripts/test-html-business-props.mjs",
     "components:titlebar-actions:test": "node text-to-ui/scripts/test-titlebar-action-contract.mjs",
-    "pixso:mcp-plan:coremail": "node text-to-ui/scripts/prepare-pixso-mcp-batches.mjs --plan apps/coremail-workbench/pixso/pixso-operation-plan.json --out apps/coremail-workbench/pixso/pixso-mcp-call-plan.json",
     "pixso:import-fast-path:test": "node text-to-ui/scripts/test-pixso-import-run.mjs && node text-to-ui/scripts/test-pixso-capture-bundle.mjs && node text-to-ui/scripts/test-pixso-import-fast-path.mjs",
     "tokens:validate": "node text-to-ui/scripts/build-pixso-token-manifest.mjs --check && node text-to-ui/scripts/build-token-runtime-map.mjs --check && node text-to-ui/scripts/build-dual-output-token-map.mjs --check",
     "mappings:validate": "node text-to-ui/scripts/validate-mapping-registry.mjs && node text-to-ui/scripts/validate-framework-pixso-parity.mjs",
@@ -76,6 +73,7 @@
     "layout:binding:test": "node text-to-ui/scripts/test-validate-page-layout-binding.mjs",
     "layout:markers:test": "node text-to-ui/scripts/test-validate-layout-markers.mjs",
     "layout:route:test": "node text-to-ui/scripts/test-resolve-context-pattern-gate.mjs",
+    "task:route:test": "node text-to-ui/scripts/test-task-route-resolution.mjs",
     "patterns:validate": "node text-to-ui/scripts/validate-pattern-contracts.mjs",
     "patterns:resolution:test": "node text-to-ui/scripts/test-pattern-contract-resolution.mjs",
     "patterns:runtime:test": "node text-to-ui/scripts/test-pattern-runtime.mjs",
@@ -87,6 +85,8 @@
     "page:blueprint:test": "node text-to-ui/scripts/test-page-blueprint.mjs",
     "page:design-discovery:test": "node text-to-ui/scripts/test-design-discovery.mjs",
     "components:titlebar:test": "node text-to-ui/scripts/test-titlebar-segments.mjs",
+    "components:search:test": "node text-to-ui/scripts/test-search-scoped.mjs",
+    "components:disclosure:test": "node text-to-ui/scripts/test-disclosure-spacing.mjs",
     "page:blueprint:validate": "node text-to-ui/scripts/validate-page-blueprint.mjs",
     "page:content-recipes:test": "node text-to-ui/scripts/test-page-content-recipes.mjs",
     "page:content-recipes:validate": "node text-to-ui/scripts/validate-page-content-recipes.mjs",

@@ -12,7 +12,7 @@ const defaultTitlebarLogoSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.o
 
 import { generatedHtmlComponents } from "./generated/index.js";
 import { iconMarkup } from "./icon-map.js";
-import { advancedHtmlComponents } from "./advanced.js";
+import { advancedHtmlComponents, dropdownMenu } from "./advanced.js";
 import { resolveTitlebarSegment, createTitlebarPreviewScenes } from "@text-to-ui/component-contracts/titlebar-segments";
 export { createTitlebarSegments } from "@text-to-ui/component-contracts/titlebar-segments";
 export { bindTitlebarOverflow } from "./titlebar-overflow.js";
@@ -83,7 +83,43 @@ const renderSplitDropdown = ({ label = "导出文件", iconName = "action/downlo
   return `<div class="tui-component tui-split-button${iconOnly ? " tui-split-button--icon" : ""}" data-component="button" data-logical-component="${logicalName}" data-variant="ghost" data-state="${state}" data-mode="split-dropdown" data-framework="html"><div class="tui-split-button__control">${main}${trigger}</div><div class="tui-button-dropdown__menu" role="menu" hidden>${menu}</div></div>`;
 };
 
-const inputState = ({ surface = "white", state = "default", placeholder = "项目名称", disabled = false, value = "" } = {}) => {
+let nextInputTagEntryId = 0;
+
+const renderInputTagChip = (label) => `<span class="tui-component tui-chip tui-input-tag-entry__chip" data-component="chips" data-logical-component="Chips/Default" data-variant="text-only-closable" data-state="default" data-framework="html" data-tag-value="${escapeHtml(label)}"><span class="tui-chip__leading" data-slot="leading"></span><span class="tui-chip__label" data-slot="label" data-typography-role="body-m">${escapeHtml(label)}</span><button class="tui-chip__close" data-slot="close" data-remove-tag type="button" aria-label="移除 ${escapeHtml(label)}">${icon("action/close", "", { size: 16 })}</button></span>`;
+
+const inputTagEntryState = ({ surface = "white", state = "default", label = "成员", placeholder = "输入文本后按 Enter 选择", disabled = false, value = "", options = [], tags = [], id } = {}) => {
+  const resolvedState = disabled ? "disabled" : state;
+  const inputId = id ?? `tui-input-tag-entry-${++nextInputTagEntryId}`;
+  const labelId = `${inputId}-label`;
+  const listboxId = `${inputId}-suggestions`;
+  const suggestions = Array.isArray(options) ? options.filter((option) => option !== null && option !== undefined && String(option).trim()) : [];
+  const selectedTags = Array.isArray(tags) ? tags.map(String) : [];
+  const chips = selectedTags.map(renderInputTagChip).join("");
+  const optionsMarkup = suggestions.map((option, index) => {
+    const text = String(option);
+    return `<button id="${escapeHtml(listboxId)}-option-${index + 1}" class="tui-advanced-menu__item" type="button" role="option" aria-selected="false" data-option-value="${escapeHtml(text)}" data-typography-role="body-l">${escapeHtml(text)}</button>`;
+  }).join("");
+  const valueAttr = value ? ` value="${escapeHtml(value)}"` : "";
+  const componentAttrs = attrs(
+    "input",
+    "Input/Tag Entry/Default",
+    "tag-entry",
+    resolvedState,
+    ` data-surface="${escapeHtml(surface)}" data-input-tag-entry`
+  );
+  return [
+    `<div class="tui-component tui-input tui-input--tag-entry" ${componentAttrs} role="group" aria-labelledby="${escapeHtml(labelId)}">`,
+    `<label class="tui-input-tag-entry__label" id="${escapeHtml(labelId)}" for="${escapeHtml(inputId)}" data-slot="label" data-typography-role="body-l">${escapeHtml(label)}</label>`,
+    `<div class="tui-input-tag-entry__editor">`,
+    `<div class="tui-input-tag-entry__tags" data-slot="tags" role="list" aria-label="${escapeHtml(label)}已选">${chips}</div>`,
+    `<input id="${escapeHtml(inputId)}" class="tui-input-tag-entry__input" data-slot="value" data-typography-role="body-l" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="${escapeHtml(listboxId)}" aria-labelledby="${escapeHtml(labelId)}" autocomplete="off" placeholder="${escapeHtml(placeholder)}"${valueAttr}${disabled ? " disabled" : ""} />`,
+    `<div id="${escapeHtml(listboxId)}" class="tui-advanced-menu__panel tui-input-tag-entry__menu" role="listbox" aria-label="${escapeHtml(label)}建议" hidden>${optionsMarkup}<div class="tui-input-tag-entry__empty" data-empty-state hidden>无匹配项</div></div>`,
+    `</div></div>`
+  ].join("");
+};
+
+const inputState = ({ surface = "white", state = "default", placeholder = "项目名称", disabled = false, value = "", variant = "default", ...options } = {}) => {
+  if (variant === "tag-entry") return inputTagEntryState({ surface, state, placeholder, disabled, value, ...options });
   const resolvedState = disabled ? "disabled" : state;
   // Surface describes the host context; the logical component remains the
   // single contract entry used by React and Vue.
@@ -92,10 +128,181 @@ const inputState = ({ surface = "white", state = "default", placeholder = "项�
   return `<label class="tui-component tui-input" ${attrs("input", logicalName, "default", resolvedState, ` data-surface="${surface}"`)}><input data-slot="value" data-typography-role="body-l" type="text" placeholder="${escapeHtml(placeholder)}" aria-label="${escapeHtml(placeholder)}"${valueAttr}${disabled ? " disabled" : ""}${state === "error" ? " aria-invalid=\"true\"" : ""} /></label>`;
 };
 
-const searchState = ({ surface = "white", state = "default", placeholder = "搜索项目", disabled = false, value = "", advancedSearch = false, advancedSearchLabel = "高级搜索" } = {}) => {
-  const resolvedState = disabled ? "disabled" : state;
+export function bindInputTagEntry(root = document) {
+  if (!root?.addEventListener) return () => {};
+  const ownerDocument = root.ownerDocument ?? (root.nodeType === 9 ? root : globalThis.document);
+  const getEntry = (target) => target?.closest?.("[data-input-tag-entry]");
+  const getInput = (entry) => entry?.querySelector(".tui-input-tag-entry__input");
+  const getOptions = (entry) => [...(entry?.querySelectorAll('.tui-input-tag-entry__menu [role="option"]') ?? [])].filter((option) => !option.hidden);
+  const getSelectedTags = (entry) => [...(entry?.querySelectorAll("[data-tag-value]") ?? [])].map((tag) => tag.dataset.tagValue ?? "");
+  const emitTags = (entry) => entry.dispatchEvent(new CustomEvent("inputtagchange", { bubbles: true, detail: { tags: getSelectedTags(entry) } }));
+
+  const clearActive = (entry) => {
+    entry.__tuiInputTagActiveIndex = -1;
+    entry.querySelectorAll('.tui-input-tag-entry__menu [role="option"]').forEach((option) => option.setAttribute("aria-selected", "false"));
+    getInput(entry)?.removeAttribute("aria-activedescendant");
+  };
+  const refreshOptions = (entry) => {
+    const input = getInput(entry);
+    const query = String(input?.value ?? "").trim().toLocaleLowerCase();
+    const selected = new Set(getSelectedTags(entry).map((tag) => tag.toLocaleLowerCase()));
+    let visibleCount = 0;
+    entry.querySelectorAll('.tui-input-tag-entry__menu [role="option"]').forEach((option) => {
+      const value = option.dataset.optionValue ?? option.textContent.trim();
+      const visible = !selected.has(value.toLocaleLowerCase()) && (!query || value.toLocaleLowerCase().includes(query));
+      option.hidden = !visible;
+      if (visible) visibleCount += 1;
+    });
+    const empty = entry.querySelector("[data-empty-state]");
+    if (empty) empty.hidden = visibleCount > 0;
+    clearActive(entry);
+    return getOptions(entry);
+  };
+  const setOpen = (entry, open) => {
+    const input = getInput(entry);
+    const menu = entry.querySelector(".tui-input-tag-entry__menu");
+    if (!input || !menu) return;
+    if (open) refreshOptions(entry);
+    menu.hidden = !open;
+    input.setAttribute("aria-expanded", String(open));
+    entry.dataset.menuOpen = String(open);
+    if (!open) clearActive(entry);
+  };
+  const setActive = (entry, index) => {
+    const options = getOptions(entry);
+    if (options.length === 0) return clearActive(entry);
+    const normalizedIndex = (index + options.length) % options.length;
+    clearActive(entry);
+    entry.__tuiInputTagActiveIndex = normalizedIndex;
+    options[normalizedIndex].setAttribute("aria-selected", "true");
+    getInput(entry)?.setAttribute("aria-activedescendant", options[normalizedIndex].id);
+  };
+  const selectOption = (entry, option) => {
+    const value = option.dataset.optionValue ?? option.textContent.trim();
+    if (!value || getSelectedTags(entry).some((tag) => tag.toLocaleLowerCase() === value.toLocaleLowerCase())) return;
+    const tags = entry.querySelector('[data-slot="tags"]');
+    if (!tags) return;
+    tags.insertAdjacentHTML("beforeend", renderInputTagChip(value));
+    const input = getInput(entry);
+    if (input) {
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    }
+    setOpen(entry, false);
+    emitTags(entry);
+  };
+
+  const onPointerDown = (event) => {
+    const option = event.target.closest?.('.tui-input-tag-entry__menu [role="option"]');
+    if (option && !option.hidden) {
+      // Commit on pointer down so focus never leaves the input before the
+      // option can be chosen; keyboard activation remains handled on Enter.
+      event.preventDefault();
+      const entry = getEntry(option);
+      if (entry && root.contains(entry)) selectOption(entry, option);
+      return;
+    }
+    if (event.target.closest?.("[data-remove-tag]")) event.preventDefault();
+  };
+  const onClick = (event) => {
+    const entry = getEntry(event.target);
+    if (!entry || !root.contains(entry)) return;
+    const option = event.target.closest?.('.tui-input-tag-entry__menu [role="option"]');
+    if (option && !option.hidden) {
+      event.preventDefault();
+      selectOption(entry, option);
+      return;
+    }
+    const removeButton = event.target.closest?.("[data-remove-tag]");
+    if (removeButton) {
+      event.preventDefault();
+      removeButton.closest("[data-tag-value]")?.remove();
+      refreshOptions(entry);
+      getInput(entry)?.focus();
+      emitTags(entry);
+    }
+  };
+  const onInput = (event) => {
+    if (!event.target.matches?.(".tui-input-tag-entry__input")) return;
+    const entry = getEntry(event.target);
+    if (entry?.dataset.menuOpen === "true") refreshOptions(entry);
+  };
+  const onKeyDown = (event) => {
+    const input = event.target;
+    if (!input.matches?.(".tui-input-tag-entry__input")) return;
+    const entry = getEntry(input);
+    if (!entry) return;
+    const open = entry.dataset.menuOpen === "true";
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(entry, true);
+        return;
+      }
+      const active = getOptions(entry)[entry.__tuiInputTagActiveIndex ?? -1];
+      if (active) selectOption(entry, active);
+      return;
+    }
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(entry, true);
+        const options = getOptions(entry);
+        setActive(entry, event.key === "ArrowDown" ? 0 : options.length - 1);
+        return;
+      }
+      const options = getOptions(entry);
+      const currentIndex = entry.__tuiInputTagActiveIndex ?? -1;
+      setActive(entry, event.key === "ArrowDown" ? currentIndex + 1 : currentIndex < 0 ? options.length - 1 : currentIndex - 1);
+      return;
+    }
+    if (event.key === "Escape" && open) {
+      event.preventDefault();
+      setOpen(entry, false);
+    }
+  };
+  const onFocusOut = (event) => {
+    const entry = getEntry(event.target);
+    if (entry && root.contains(entry) && !entry.contains(event.relatedTarget)) setOpen(entry, false);
+  };
+  const onDocumentPointerDown = (event) => {
+    for (const entry of root.querySelectorAll("[data-input-tag-entry]")) {
+      if (!entry.contains(event.target)) setOpen(entry, false);
+    }
+  };
+
+  root.addEventListener("pointerdown", onPointerDown);
+  // Handle option/removal clicks before the gallery's delegated menu handler
+  // can close the shared select menu and make the clicked option hidden.
+  root.addEventListener("click", onClick, true);
+  root.addEventListener("input", onInput);
+  root.addEventListener("keydown", onKeyDown);
+  root.addEventListener("focusout", onFocusOut);
+  ownerDocument?.addEventListener("pointerdown", onDocumentPointerDown);
+  return () => {
+    root.removeEventListener("pointerdown", onPointerDown);
+    root.removeEventListener("click", onClick, true);
+    root.removeEventListener("input", onInput);
+    root.removeEventListener("keydown", onKeyDown);
+    root.removeEventListener("focusout", onFocusOut);
+    ownerDocument?.removeEventListener("pointerdown", onDocumentPointerDown);
+  };
+}
+
+const searchSupportedStates = new Set(["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"]);
+const searchState = ({ surface = "white", state = "default", placeholder = "搜索项目", disabled = false, value = "", advancedSearch = false, advancedSearchLabel = "高级", scope, defaultScope, scopeOptions = [], scopeLabel = "搜索范围" } = {}) => {
+  const requestedState = searchSupportedStates.has(state) ? state : "default";
+  const isDisabled = disabled || requestedState === "disabled";
+  const resolvedState = isDisabled ? "disabled" : requestedState !== "default" ? requestedState : value ? "filled" : "default";
   const valueAttr = value ? ` value="${escapeHtml(value)}"` : "";
-  return `<label class="tui-component tui-search" ${attrs("search", "Search/White Surface/Default", advancedSearch ? "advanced-search" : value ? "with-value" : "default", resolvedState, ` data-surface="${surface}"`)}><span data-slot="leading">${icon("field/search", "", { size: 16 })}</span><input data-slot="value" data-typography-role="body-l" type="search" placeholder="${escapeHtml(placeholder)}" aria-label="${escapeHtml(placeholder)}"${valueAttr}${disabled ? " disabled" : ""} /><button class="tui-icon-button" data-slot="clear" type="button" aria-label="清除"${value ? "" : " hidden"}>${icon("action/close", "", { size: 16 })}</button>${advancedSearch ? `<button class="tui-component tui-button tui-button--ghost tui-search__advanced" data-component="button" data-logical-component="Button/Ghost/Default" data-variant="ghost" data-state="${resolvedState}" data-framework="html" data-mode="text" data-size="small" data-slot="advanced-search" type="button" aria-label="${escapeHtml(advancedSearchLabel)}" aria-haspopup="dialog"${disabled ? " disabled" : ""}><span data-slot="label" data-typography-role="body-m">${escapeHtml(advancedSearchLabel)}</span></button>` : ""}</label>`;
+  const options = Array.isArray(scopeOptions) ? scopeOptions.filter(Boolean) : [];
+  const scoped = options.length > 0;
+  const selectedScope = scope ?? defaultScope ?? options[0] ?? "";
+  const scopeSelector = scoped ? dropdownMenu({ label: scopeLabel, value: selectedScope, items: options, className: "tui-search__scope", slotName: "scope-selector", ariaLabel: scopeLabel, disabled: isDisabled, hideLabel: true, compact: true, scopeOptions: true }) : "";
+  const variant = scoped ? advancedSearch ? "scoped-advanced-search" : "scoped-search" : advancedSearch ? "advanced-search" : "default";
+  const logicalName = scoped ? "Search/Scoped/Default" : "Search/White Surface/Default";
+  return `<label class="tui-component tui-search" ${attrs("search", logicalName, variant, resolvedState, ` data-surface="${surface}"`)}>${scopeSelector}<span class="tui-search__input-region" data-search-input-region><span data-slot="leading">${icon("field/search", "", { size: 16 })}</span><input data-slot="value" data-typography-role="body-l" type="search" placeholder="${escapeHtml(placeholder)}" aria-label="${escapeHtml(placeholder)}"${valueAttr}${isDisabled ? " disabled" : ""} /><button class="tui-icon-button" data-slot="clear" type="button" aria-label="清除"${isDisabled ? " disabled" : ""}${value ? "" : " hidden"}>${icon("action/close", "", { size: 16 })}</button>${advancedSearch ? `<button class="tui-component tui-button tui-button--ghost tui-search__advanced" data-component="button" data-logical-component="Button/Ghost/Default" data-variant="ghost" data-state="${resolvedState}" data-framework="html" data-mode="text" data-size="small" data-slot="advanced-search" type="button" aria-label="${escapeHtml(advancedSearchLabel)}" aria-haspopup="dialog"${isDisabled ? " disabled" : ""}><span data-slot="label" data-typography-role="body-m">${escapeHtml(advancedSearchLabel)}</span></button>` : ""}</span></label>`;
 };
 
 const titlebarActionType = (action) => {
@@ -146,7 +353,7 @@ const normalizeTitlebarActions = (actions = [], actionOverflow = {}) => {
 };
 
 const titlebarState = (options = {}) => {
-  let { label = "项目空间", paneTitle = "项目内容", size = "large", state = "default", disabled = false, layout, paneRole, mainContentLeading, mainDetailActions = [], secondaryPaneContent, actionOverflow = {}, logoSrc = defaultTitlebarLogoSrc, logoAlt = "", showWindowControls } = resolveTitlebarSegment(options);
+  let { label = "项目空间", paneTitle = "项目内容", size = "large", state = "default", disabled = false, layout, paneRole, mainContentLeading, mainDetailActions = [], secondaryPaneContent, actionOverflow = {}, showLogo, logoSrc = defaultTitlebarLogoSrc, logoAlt = "", showWindowControls } = resolveTitlebarSegment(options);
   // Pattern region names are public API; preserve the legacy styling role.
   if (paneRole === "main-detail" || paneRole === "main-content") paneRole = "final-pane";
   const controlIconSize = size === "small" ? 16 : 24;
@@ -168,15 +375,17 @@ const titlebarState = (options = {}) => {
   }).join("")}<button class="tui-component tui-button tui-button--icon tui-titlebar__pane-action tui-titlebar__overflow-trigger" type="button" ${attrs("button", "Icon Button/Ghost/Default", "ghost", disabled ? "disabled" : "default", ` data-mode="icon" data-size="standard" data-slot="main-detail-action" data-action="more" data-button-type="icon" data-overflow-trigger="true" data-overflow-item="false" aria-label="${escapeHtml(actionModel.trigger.label)}" aria-haspopup="menu" aria-expanded="false"`)}${disabled ? " disabled" : ""}>${buttonContent({ label: actionModel.trigger.label, iconName: actionModel.trigger.icon, mode: "icon", size: "standard" })}</button><div class="tui-titlebar__overflow-menu" role="menu" hidden>${actionModel.business.map((action) => `<button class="tui-titlebar__overflow-item" type="button" role="menuitem" data-overflow-menu-item="true" data-action="${escapeHtml(action.id)}"${disabled || action.disabled ? " disabled" : ""}>${icon(action.icon ?? "action/more", "", { size: 20 })}<span data-slot="label">${escapeHtml(action.label ?? action.id)}</span></button>`).join("")}</div></div>` : "";
   const contentLeadingType = mainContentLeading?.buttonType ?? "icon";
   const contentLeadingSlot = paneRole === "final-pane" && layout === "two-column" && mainContentLeading ? `<div class="tui-titlebar__pane-leading" data-slot="main-content-leading" data-action-scope="main-content-pane-global"><button class="tui-component tui-button${contentLeadingType === "icon" ? " tui-button--icon" : ""} tui-titlebar__pane-leading-action" type="button" ${attrs("button", contentLeadingType === "icon" ? "Icon Button/Ghost/Default" : "Icon Text Button/Ghost/Default", "ghost", disabled || mainContentLeading.disabled ? "disabled" : "default", ` data-mode="${contentLeadingType === "icon" ? "icon" : "icon-text"}" data-size="standard" data-slot="main-content-leading-action" data-action="${escapeHtml(mainContentLeading.id)}" data-button-type="${escapeHtml(contentLeadingType)}" aria-label="${escapeHtml(mainContentLeading.label)}"`)}${disabled || mainContentLeading.disabled ? " disabled" : ""}><span data-slot="icon">${icon(mainContentLeading.icon, "", { size: 24 })}</span>${contentLeadingType === "icon-text-ghost" ? `<span data-slot="label" data-typography-role="body-l">${escapeHtml(mainContentLeading.label)}</span>` : ""}</button></div>` : "";
-  const paneTitleSlot = paneRole === "final-pane" && (layout === "two-column" || layout === "standalone") ? `<strong class="tui-titlebar__pane-title" data-slot="main-content-title" data-action-scope="main-content-pane-global" data-typography-role="title-s">${escapeHtml(paneTitle)}</strong>` : "";
+  const paneTitleTypographyRole = size === "small" ? "subtitle-m" : "title-s";
+  const paneTitleSlot = paneRole === "final-pane" && (layout === "two-column" || layout === "standalone") ? `<strong class="tui-titlebar__pane-title" data-slot="main-content-title" data-action-scope="main-content-pane-global" data-typography-role="${paneTitleTypographyRole}">${escapeHtml(paneTitle)}</strong>` : "";
   const secondaryContentSlot = paneRole === "secondary-pane" && secondaryPaneContent ? `<div class="tui-titlebar__secondary-content" data-slot="secondary-pane-content" data-component-slot="registered-component">${searchState(secondaryPaneContent.props ?? {})}</div>` : "";
-  const brand = paneRole === "global" || paneRole === "primary-navigation" ? `<span class="tui-titlebar__brand" data-slot="leading"><img class="tui-titlebar__logo" src="${escapeHtml(logoSrc)}" alt="${escapeHtml(logoAlt)}" aria-hidden="${logoAlt ? "false" : "true"}" /><span data-slot="label" data-typography-role="subtitle-m">${escapeHtml(label)}</span></span>` : "";
+  const logoSlot = showLogo ? `<span class="tui-titlebar__logo-slot" data-slot="logo"><img class="tui-titlebar__logo" src="${escapeHtml(logoSrc ?? defaultTitlebarLogoSrc)}" alt="${escapeHtml(logoAlt)}" aria-hidden="${logoAlt ? "false" : "true"}" /></span>` : "";
+  const brand = paneRole === "global" || paneRole === "primary-navigation" ? `<span class="tui-titlebar__brand" data-slot="leading">${logoSlot}<span data-slot="label" data-typography-role="subtitle-m">${escapeHtml(label)}</span></span>` : "";
   const windowActions = showWindowControls ? `<div class="tui-titlebar__actions" data-slot="actions" data-component="titlebar-controls" data-logical-component="Titlebar Controls/Normal" data-size="medium">${[
     ["minimize", "最小化"],
     ["maximize", "最大化"],
     ["close", "关闭"]
   ].map(([action, text]) => renderButton({ label: text, variant: "ghost", size: "standard", mode: "icon", logicalName: "Icon Button/Ghost/Default", icon: `window/${action}`, iconSize: controlIconSize, disabled, className: "tui-titlebar__action", extraAttrs: ` data-slot="titlebar-action" data-action="${action}" data-button-type="icon"` })).join("")}</div>` : "";
-  return `<header class="tui-component tui-titlebar" ${attrs("titlebar", "Titlebar/Default", size, disabled ? "disabled" : state)} data-size="${escapeHtml(size)}" data-layout="${escapeHtml(layout)}" data-pane-role="${escapeHtml(paneRole)}">${brand}${secondaryContentSlot}${contentLeadingSlot}${paneTitleSlot}${paneActions}${windowActions}</header>`;
+  return `<header class="tui-component tui-titlebar" ${attrs("titlebar", "Titlebar/Default", size, disabled ? "disabled" : state)} data-size="${escapeHtml(size)}" data-layout="${escapeHtml(layout)}" data-pane-role="${escapeHtml(paneRole)}">${brand}${paneRole !== "global" && paneRole !== "primary-navigation" ? logoSlot : ""}${secondaryContentSlot}${contentLeadingSlot}${paneTitleSlot}${paneActions}${windowActions}</header>`;
 };
 
 const textareaState = ({ surface = "white", state = "default", label = "项目说明", value = "统一 HarmonyOS PC 客户端中的布局、组件与交互规则。", disabled = false } = {}) => `<label class="tui-component tui-textarea" ${attrs("textarea", "Textarea/Default", "default", disabled ? "disabled" : state, ` data-surface="${surface}"`)}><span data-slot="label" data-typography-role="body-m">${escapeHtml(label)}</span><textarea data-slot="value" data-typography-role="body-l" rows="3" placeholder="请输入内容"${disabled ? " disabled" : ""}${state === "error" ? " aria-invalid=\"true\"" : ""}>${escapeHtml(value)}</textarea><span data-slot="help" data-typography-role="body-s">支持多行输入，最多 500 字</span></label>`;
@@ -385,8 +594,13 @@ export function renderRuntimeHtmlComponent(id, options = {}) {
     };
     return `<div class="tui-runtime-structural-grid tui-runtime-structural-grid--button" data-runtime-component="button">${specimens.map((specimen) => `<div class="tui-runtime-structural-cell" data-specimen="${escapeHtml(specimen.id)}"><span class="tui-runtime-surface-label">${escapeHtml(specimen.id)}</span>${sample(specimen)}</div>`).join("")}</div>`;
   }
-  if (id === "input") return `<div class="tui-runtime-surface-pair"><div data-surface-context="white"><span class="tui-runtime-surface-label">白色内容面 · 灰色输入面</span>${inputState({ surface: "white", state: "default", placeholder: "项目名称" })}</div><div data-surface-context="gray"><span class="tui-runtime-surface-label">灰色内容面 · 白色输入面</span>${inputState({ surface: "gray", state: "default", placeholder: "项目名称" })}</div></div>`;
-  if (id === "search") return `<div class="tui-runtime-surface-pair"><div data-surface-context="white"><span class="tui-runtime-surface-label">白色内容面 · 灰色搜索面 · 高级搜索槽位</span>${searchState({ surface: "white", state: "default", placeholder: "搜索项目", advancedSearch: true })}</div><div data-surface-context="gray"><span class="tui-runtime-surface-label">灰色内容面 · 白色搜索面 · 高级搜索槽位</span>${searchState({ surface: "gray", state: "default", placeholder: "搜索项目", advancedSearch: true })}</div></div>`;
+  if (id === "input") {
+    const surfaces = ["white", "gray"];
+    const basic = surfaces.map((surface) => `<div data-surface-context="${surface}"><span class="tui-runtime-surface-label">${surface === "white" ? "白色内容面 · 灰色输入面" : "灰色内容面 · 白色输入面"}</span>${inputState({ surface, state: "default", placeholder: "项目名称" })}</div>`).join("");
+    const tagEntry = inputState({ surface: "gray", variant: "tag-entry", label: "参与成员", placeholder: "输入姓名后按 Enter", options: ["林娜", "王昊", "陈佳", "周明"], tags: ["林娜"] });
+    return `<div class="tui-runtime-core-gallery"><p class="tui-runtime-note">Tag Entry 是一个通用变体：按内容面设置 surface="white" 或 "gray" 即可复用；此处直接展示组件。自由文本可保留，Enter 打开建议，方向键或点击选项后生成可移除标签。</p><div class="tui-runtime-surface-pair">${basic}</div>${tagEntry}</div>`;
+  }
+  if (id === "search") return `<div class="tui-runtime-surface-pair tui-runtime-search-pair"><div data-surface-context="white"><span class="tui-runtime-surface-label">白色内容面 · 灰色搜索面 · Search · Scoped + 高级</span>${searchState({ surface: "white", state: "default", placeholder: "搜索项目", scopeOptions: ["全部", "标题", "内容"], advancedSearch: true })}</div><div data-surface-context="gray"><span class="tui-runtime-surface-label">灰色内容面 · 白色搜索面 · Search · Scoped + 高级</span>${searchState({ surface: "gray", state: "default", placeholder: "搜索项目", scopeOptions: ["全部", "标题", "内容"], advancedSearch: true })}</div></div>`;
   if (id === "primary-navigation-item") return `<div class="tui-runtime-core-gallery tui-runtime-primary-navigation-gallery"><p class="tui-runtime-note">一级导航使用独立的原生 Primary Navigation Item；Pattern 只负责把它放入底部对齐的 primary-navigation-shell。</p>${renderPrimaryNavigationItemGallery()}</div>`;
   if (id === "sidebar") {
     const item = (label, state, iconName, count = "") => `<button class="tui-sidebar-item" type="button" data-state="${state}"><span data-slot="leading">${icon(iconName)}</span><span data-slot="label" data-typography-role="body-l">${label}</span>${count ? `<span class="tui-sidebar-item__count" data-slot="trailing" data-typography-role="body-m">${count}</span>` : ""}</button>`;
@@ -573,7 +787,7 @@ export function collectHtmlComponentEvidence(root = document) {
     }
   });
   const patternStyle = patternRoot ? getComputedStyle(patternRoot) : null;
-  const patternRegions = patternRoot ? [...patternRoot.querySelectorAll(":scope > [data-pattern-region], :scope > [data-ui-region]")].map((node) => {
+  const patternRegions = patternRoot ? [...patternRoot.querySelectorAll(":scope > [data-pattern-region], :scope > [data-ui-region], [data-tui-pane-role]")].map((node) => {
     const style = getComputedStyle(node);
     const readBoxStyle = (candidate) => {
       if (!candidate) return null;
@@ -588,13 +802,15 @@ export function collectHtmlComponentEvidence(root = document) {
     const titleSegment = node.querySelector(":scope > [data-pattern-title-segment]");
     const scrollBody = node.querySelector(":scope > [data-pattern-scroll-body]");
     return {
-      region: node.getAttribute("data-pattern-region") ?? node.getAttribute("data-ui-region"),
+      region: node.getAttribute("data-pattern-region") ?? node.getAttribute("data-ui-region") ?? node.getAttribute("data-tui-pane-role"),
       display: style.display,
       overflowX: style.overflowX,
       overflowY: style.overflowY,
       bounds: rectEvidence(node),
+      padding: readBoxStyle(node),
       title: titleSegment ? { bounds: rectEvidence(titleSegment), padding: readBoxStyle(titleSegment) } : null,
-      scrollBody: scrollBody ? { bounds: rectEvidence(scrollBody), padding: readBoxStyle(scrollBody), overflowY: getComputedStyle(scrollBody).overflowY } : null
+      scrollBody: scrollBody ? { bounds: rectEvidence(scrollBody), padding: readBoxStyle(scrollBody), overflowY: getComputedStyle(scrollBody).overflowY } : null,
+      slots: [...node.querySelectorAll(".tui-pattern-runtime__slot[data-pattern-slot]")].map((slot) => ({ id: slot.getAttribute("data-pattern-slot"), bounds: rectEvidence(slot), padding: readBoxStyle(slot) }))
     };
   }) : [];
   const interactiveSelector = "button, input, select, textarea, a[href], [role='button'], [role='checkbox'], [role='radio'], [role='switch'], [role='tab'], [role='menuitem'], [contenteditable='true']";

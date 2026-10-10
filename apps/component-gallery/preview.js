@@ -106,10 +106,10 @@ const loadRuntimeFramework = async (framework) => {
   setStatus(`正在加载 ${framework.toUpperCase()} 真实运行时…`);
   try {
     const module = framework === "html"
-      ? await import("./runtime-html.js?rev=20260812-1")
+      ? await import("./runtime-html.js?rev=20260928-5")
       : framework === "react"
-        ? await import("./runtime-react.jsx?rev=20260812-1")
-        : await import("./runtime-vue.js?rev=20260812-1");
+        ? await import("./runtime-react.jsx?rev=20260928-3")
+        : await import("./runtime-vue.js?rev=20260928-4");
     const mount = module[`mount${framework[0].toUpperCase()}${framework.slice(1)}Runtime`];
     if (typeof mount !== "function") throw new Error(`缺少 ${framework} runtime mount`);
     runtimeUnmount = mount(runtimeMount, { onStatus: setStatus });

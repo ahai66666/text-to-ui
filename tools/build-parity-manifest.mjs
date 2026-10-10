@@ -47,6 +47,7 @@ const manifest = {
       requiredVariants: component.specimens ?? component.variants ?? ["default"],
       behaviorChecks: component.behaviors ?? [],
       textRoles: component.textRoles ?? [],
+      ...(component.textRolesByVariant ? { textRolesByVariant: component.textRolesByVariant } : {}),
       iconSlots: component.iconSlots ?? [],
       tokenRoles: component.tokenRoles ?? [],
       props: component.props ?? [],

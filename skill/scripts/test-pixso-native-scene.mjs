@@ -7,11 +7,12 @@ import { collectSceneStats, compileOperationPlan, loadComponentMap, loadTokenRes
 import { buildCoremailScene, validateCoremailSecondaryListScene } from "./coremail-semantic-adapter.mjs";
 
 const repo = path.resolve(fileURLToPath(new URL("../..", import.meta.url)));
-const pageSpec = readJson(path.join(repo, "apps/coremail-workbench/page-spec.json"));
-const layoutContract = readJson(path.join(repo, "apps/coremail-workbench/pixso/layout-contract.json"));
-const pageDataPath = path.join(repo, "apps/coremail-workbench/pixso/page-data.json");
+const fixtureRoot = path.join(repo, "fixtures/mail-workbench-native-scene");
+const pageSpec = readJson(path.join(fixtureRoot, "page-spec.json"));
+const layoutContract = readJson(path.join(fixtureRoot, "layout-contract.json"));
+const pageDataPath = path.join(fixtureRoot, "page-data.json");
 const pageData = readJson(pageDataPath);
-const visualSnapshot = readJson(path.join(repo, "apps/coremail-workbench/pixso/html-visual-snapshot.json"));
+const visualSnapshot = readJson(path.join(fixtureRoot, "html-visual-snapshot.json"));
 const iconAliases = readJson(path.join(repo, "text-to-ui/assets/icons/icon-aliases.json")).aliases;
 const componentMap = loadComponentMap(path.join(repo, "text-to-ui/assets/design-system/pixso-native-component-map.json"));
 const tokens = loadTokenResources();
@@ -70,7 +71,7 @@ assert.deepEqual(findNode(sceneRoot, "pane-secondary-list")?.style?.strokeEdges,
 assert.deepEqual(findNode(sceneRoot, "global-detail-title-segment")?.style?.strokeEdges, ["bottom"], "detail segment must own the titlebar bottom divider");
 assert.equal(findNode(sceneRoot, "pane-primary-navigation")?.style?.fill?.name, "neutral-dark/05", "surface owners must retain their explicit surface Token");
 assert.equal(findNode(sceneRoot, "brand-logo")?.type, "image", "brand logo must remain a raster image node");
-assert.equal(scene.resources.images?.[0]?.ref, "brand/coremail-logo");
+assert.equal(scene.resources.images?.[0]?.ref, "brand/harmony-mail-logo");
 assert.ok(scene.resources.images?.[0]?.dataBase64?.length > 100, "raster image bytes must be embedded in the Scene resource packet");
 assert.equal(findNode(sceneRoot, "global-detail-title-segment")?.layout?.distribution, "SPACE_BETWEEN", "detail segment must distribute pane actions and window controls");
 assert.equal(findNode(sceneRoot, "detail-titlebar-actions")?.children?.length, pageData.detailActions.length, "all detail actions must be expanded into the HTML action slot");
@@ -130,7 +131,7 @@ assert.ok(stats.icons > 10);
 const plan = compileOperationPlan(scene, { componentMap, tokens });
 assert.equal(plan.kind, "pixso-operation-plan");
 assert.equal(plan.execution.resolveGuidsAtRuntime, true);
-assert.equal(plan.execution.targetPage, "coremail");
+assert.equal(plan.execution.targetPage, "mail-workbench-fixture");
 assert.equal(plan.execution.preserveExistingFrames, true);
 assert.equal(plan.execution.minimumRuntimeVersion, "5.0.0");
 assert.equal(plan.execution.agentContract.protocolVersion, 4);
@@ -166,7 +167,7 @@ assert.deepEqual(plan.operations.find((operation) => operation.nodeId === "refre
 assert.ok(plan.operations.filter((operation) => operation.op === "create-instance").every((operation) => operation.componentRef.componentSetName));
 assert.ok(plan.operations.some((operation) => operation.source === "native-composition"));
 assert.ok(plan.operations.some((operation) => operation.op === "ensure-variable"));
-assert.ok(plan.operations.some((operation) => operation.op === "ensure-image" && operation.imageRef?.ref === "brand/coremail-logo"));
+assert.ok(plan.operations.some((operation) => operation.op === "ensure-image" && operation.imageRef?.ref === "brand/harmony-mail-logo"));
 assert.ok(plan.operations.some((operation) => operation.op === "create-image" && operation.nodeId === "brand-logo"));
 assert.ok(plan.operations.some((operation) => operation.nodeId === "detail-titlebar-reply" && operation.op === "create-instance"));
 assert.ok(plan.operations.some((operation) => operation.nodeId === "window-close" && operation.op === "create-instance"));

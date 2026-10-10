@@ -21,13 +21,13 @@
     "existing-html-to-pixso": {
       "id": "existing-html-to-pixso",
       "dynamicMaterials": [],
-      "materialsDigest": "ebe053b4ac4c354ce6ca8ff1e7374046a4815409acfe796cfb21549e596e25a8",
+      "materialsDigest": "e741e78625cd523711cbf32414d124ac79cdc33d2bcd0c372b3855f2e7947777",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -57,7 +57,7 @@
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/pixso-execution-invariants.md",
@@ -98,19 +98,19 @@
         "task-route-domain-reference",
         "titlebar-segments"
       ],
-      "materialsDigest": "9f191906dd25208d3bcb081d8ab0197aece44e8687c21891decf048bdc4c4dd8",
+      "materialsDigest": "071ac9dac22b745f8405b6c1ee1a9dfbd4f17388ea5a11e8c23846c62ce555f2",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/pattern-runtime/README.md",
           "role": "pattern-runtime-api",
           "required": true,
-          "sha256": "851c3909f4d966e15ad0f005d11ad82a8ea9c3ccc1abbca01167158ea31e809e"
+          "sha256": "3982a8774a6bbd8c07d0e0aa530256a72cc1e44aafc19c60fc83ef5f2fcde541"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -140,7 +140,7 @@
           "path": "text-to-ui/references/components/page-composition.md",
           "role": "page-composition",
           "required": true,
-          "sha256": "0ee05a8c18ad9e15365348701e8807e0ea163d683ed3cc9ffded05b2baec527d"
+          "sha256": "d9f1da679bbcfa834c002b86d01eadb2e47afe671277e7beac3cb1e9c9276a06"
         },
         {
           "path": "text-to-ui/references/components/source-resolution.md",
@@ -158,7 +158,7 @@
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/page-blueprint-design.md",
@@ -182,7 +182,7 @@
           "path": "text-to-ui/references/routes/new-page.md",
           "role": "route-reference",
           "required": true,
-          "sha256": "d2134e11933e5417775214a78239989ee27c150ffa88fdc922e8f92977418b7c"
+          "sha256": "e532baad814d309fbe6c38728c639721d3581e535cb526b53d541d1224d8ebc8"
         },
         {
           "path": "text-to-ui/references/workflows/fast-preview.md",
@@ -195,13 +195,13 @@
     "micro-revision": {
       "id": "micro-revision",
       "dynamicMaterials": [],
-      "materialsDigest": "5928a2e0fd7f2cb476210deac239f53a69ba5d8e604436b043b2b8a4ba717611",
+      "materialsDigest": "2172a04333a43565af01842afa4194514880900764c6ae886a67c1d37b9f6f71",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -231,7 +231,7 @@
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/page-design-guidance.md",
@@ -256,13 +256,13 @@
     "pixso-component-library": {
       "id": "pixso-component-library",
       "dynamicMaterials": [],
-      "materialsDigest": "7b54b2ef9913564cf5ed4e5a9d0a3080557517d23235cb1f62f9d535ca42d95e",
+      "materialsDigest": "938c39b31e7f7e39008a5d422cee06d8b776cf95a99ed3f97ebcf2409253b8d6",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -292,7 +292,7 @@
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/mapping-registry.md",
@@ -347,13 +347,13 @@
     "converter-diagnosis": {
       "id": "converter-diagnosis",
       "dynamicMaterials": [],
-      "materialsDigest": "cbe2688eb649ad2e139ec979b7713447412f356f337fc400d2a509c1af50c4b3",
+      "materialsDigest": "184a75a9e258e023756f064efa73007c5af6aebcfa7acc1648d216655c716f86",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -383,7 +383,7 @@
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/pixso-execution-invariants.md",
@@ -438,13 +438,13 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "c86c6080f56f81301ff61a8366af5082c6a74db3f0ea687b5395582985b0a37c",
+      "materialsDigest": "cb5aceecca48674dd72f5ecee3a17e8abb52eb0afd2158bde3d980b54319f277",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "f0e4c4f40a27a3b54b81be7f6cafc0a831b7eaacd1e4686a68fba311d2362c37"
+          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -474,7 +474,7 @@
           "path": "text-to-ui/references/components/page-composition.md",
           "role": "page-composition",
           "required": true,
-          "sha256": "0ee05a8c18ad9e15365348701e8807e0ea163d683ed3cc9ffded05b2baec527d"
+          "sha256": "d9f1da679bbcfa834c002b86d01eadb2e47afe671277e7beac3cb1e9c9276a06"
         },
         {
           "path": "text-to-ui/references/components/source-resolution.md",
@@ -498,13 +498,13 @@
           "path": "text-to-ui/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "6375ce08cf8cfd07d4e0f0740654d6964849a5356376a24a96a6605a8bb72b68"
+          "sha256": "426019bdb93619671d81ce0d736fcd77e824c91391680acf9427f18af87839a8"
         },
         {
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
           "role": "layout-routing",
           "required": true,
-          "sha256": "665bb81d7279c38afd3947f034e0b54da81a8b00375d311224445be53fc4d777"
+          "sha256": "517b2b1fce737dca1649b18ff2de707cf4980b3e828e93d56f98dbf4f437e01d"
         },
         {
           "path": "text-to-ui/references/pixso-execution-invariants.md",
@@ -533,5 +533,5 @@
       ]
     }
   },
-  "indexDigest": "042a16f2b889917f0a93cab6556fcdb509e11d885b3a1b98df24cfed76892c8e"
+  "indexDigest": "6e372294a92d8a208b924ff21015a5c68335916209010ed80cdd192f1eb30d45"
 }

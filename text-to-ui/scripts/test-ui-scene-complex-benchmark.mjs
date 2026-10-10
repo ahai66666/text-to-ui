@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { compileUiScene, loadComponentMap, loadTokenResources, readJson } from "./ui-scene-lib.mjs";
 
 const repo = path.resolve(fileURLToPath(new URL("../..", import.meta.url)));
-const uiScene = readJson(path.join(repo, "apps/coremail-workbench/pixso/ui-scene-complex-benchmark.json"));
+const uiScene = readJson(path.join(repo, "fixtures/mail-workbench-native-scene/ui-scene-complex-benchmark.json"));
 const componentMap = loadComponentMap(path.join(repo, "text-to-ui/assets/design-system/pixso-native-component-map.json"));
 const { pixsoScene, plan } = compileUiScene(uiScene, { componentMap, tokens: loadTokenResources() });
 const operations = new Map(plan.operations.filter((operation) => operation.nodeId).map((operation) => [operation.nodeId, operation]));

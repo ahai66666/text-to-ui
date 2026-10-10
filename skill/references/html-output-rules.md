@@ -9,6 +9,7 @@ Use this reference before implementing the final HTML/CSS.
 - Use semantic HTML: `main`, `section`, `form`, `label`, `input`, `button`, `nav`, `article` where appropriate.
 - Make controls real elements, not only decorative divs.
 - Target HarmonyOS PC desktop application windows. Support approved desktop window sizes; do not add mobile behavior unless the platform contract changes.
+- Render the application edge-to-edge in the browser viewport. Keep `html`, `body`, and `#app` at zero margin/padding with no centered or max-width outer canvas, preview backdrop, border, radius, or shadow. Put backgrounds and cards inside the page's Pattern/content regions, not around the application. The Pixso import board is not HTML layout CSS.
 - Use CSS variables that map to the style library or `design.md` tokens.
 - For reusable or dual-output work, copy mappings from
   `assets/design-system/dual-output-token-map.json` into `page-spec.json`.

@@ -86,7 +86,7 @@ const rendererOptions = {
   "Checkbox/Default": { label: "标记为完成", description: "同步到任务记录", checked: false }
 };
 const evidence = { schemaVersion: 1, url: "fixture://html-strict-list-detail", pattern: manifest.layout.pattern, structureDigest: manifest.layout.structureDigest, stylesheets: [{ href: "./src/page.css", loaded: true, ruleCount: 5 }], patternLayout: { display: "grid", regions: [
-  { region: "primary-navigation", display: "block", bounds: { x: 0, y: 0, width: 240, height: 720 }, scrollBody: { padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px", paddingBlockStart: "16px", paddingBlockEnd: "16px" }, overflowY: "auto" } },
+  { region: "primary-navigation", display: "block", bounds: { x: 0, y: 0, width: 240, height: 720 }, padding: { paddingBlockStart: "8px" }, scrollBody: { padding: { paddingInlineStart: "0px", paddingInlineEnd: "0px", paddingBlockStart: "0px", paddingBlockEnd: "0px" }, overflowY: "auto" }, slots: [{ id: "secondary-navigation-content", padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px" } }, { id: "global-primary-action", padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px" } }] },
   { region: "secondary-list", display: "block", bounds: { x: 240, y: 0, width: 360, height: 720 }, title: { bounds: { x: 240, y: 0, width: 360, height: 64 }, padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px", paddingBlockStart: "0px", paddingBlockEnd: "0px" } }, scrollBody: { padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px", paddingBlockStart: "8px", paddingBlockEnd: "0px" }, overflowY: "auto" } },
   { region: "main-detail", display: "block", bounds: { x: 600, y: 0, width: 600, height: 720 }, title: { bounds: { x: 600, y: 0, width: 600, height: 64 }, padding: { paddingInlineStart: "16px", paddingInlineEnd: "16px", paddingBlockStart: "0px", paddingBlockEnd: "0px" } }, scrollBody: { padding: { paddingInlineStart: "24px", paddingInlineEnd: "24px", paddingBlockStart: "16px", paddingBlockEnd: "0px" }, overflowY: "auto" } }
 ] }, customRegions: [], contractRegions: [], unclassifiedInteractive: [], components: [] };
@@ -113,6 +113,13 @@ result = run("text-to-ui/scripts/verify-fast-preview.mjs", ["--context", context
 assert.equal(result.status, 0, result.stderr);
 result = run("text-to-ui/scripts/validate-runtime-component-reuse.mjs", ["--manifest", manifestPath, "--evidence", evidencePath]);
 assert.equal(result.status, 0, result.stderr);
+const wrongInsetEvidencePath = path.join(temp, "runtime-evidence-wrong-inset.json");
+const wrongInsetEvidence = structuredClone(evidence);
+wrongInsetEvidence.patternLayout.regions[0].slots[0].padding.paddingInlineStart = "24px";
+fs.writeFileSync(wrongInsetEvidencePath, JSON.stringify(wrongInsetEvidence));
+result = run("text-to-ui/scripts/validate-runtime-component-reuse.mjs", ["--manifest", manifestPath, "--evidence", wrongInsetEvidencePath]);
+assert.notEqual(result.status, 0, "Pattern B Sidebar inset drift must fail runtime verification");
+assert.match(result.stderr, /Sidebar slot must own one 16px horizontal inset/);
 const handwrittenEvidencePath = path.join(temp, "runtime-evidence-handwritten.json");
 fs.writeFileSync(handwrittenEvidencePath, JSON.stringify({ ...evidence, unclassifiedInteractive: [{ tag: "button", role: null, label: "手写按钮" }] }, null, 2));
 result = run("text-to-ui/scripts/verify-fast-preview.mjs", ["--context", contextPath, "--layout-contract", layoutPath, "--page-spec", pageSpecPath, "--component-usage", manifestPath, "--framework-manifest", frameworkManifestPath, "--artifact", "fixtures/html-strict-list-detail/index.html", "--runtime-evidence", handwrittenEvidencePath, "--project-root", repo]);

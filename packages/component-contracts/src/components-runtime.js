@@ -28,7 +28,7 @@ export default {
         "description"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -1554,7 +1554,7 @@ export default {
         "description"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -2856,7 +2856,8 @@ export default {
       "variants": [
         "default",
         "error",
-        "disabled"
+        "disabled",
+        "tag-entry"
       ],
       "states": [
         "default",
@@ -2869,21 +2870,34 @@ export default {
         "value",
         "placeholder",
         "disabled",
-        "error"
+        "error",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags",
+        "surface"
       ],
       "slots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ],
       "tokenRoles": [
         "color.input-bg",
+        "color.icon",
         "color.text",
+        "color.text-muted",
+        "color.text-subtle",
         "color.border",
         "size.input-height",
         "radius.input",
-        "typography.body-l"
+        "typography.body-l",
+        "typography.body-m"
       ],
       "source": "canonical-custom",
       "status": "partial",
@@ -2923,7 +2937,7 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "tag-entry 是同一个 Input 的结构变体，不按白色/灰色 surface 拆成不同组件；左侧标题使用 Body_L/二级文本色，右侧下划线槽位的提示文本使用 Body_L/三级文本色，输入值使用一级文本色。外层、标题和 Chips 不提供 hover 反馈或扩大热区；hover 仅使右侧槽位下划线从 color.border 变为 color.icon（一级图标色），不改变外层底色、边框或布局。建议列表复用 Dropdown Menu 的面板和菜单项视觉样式（面板含 shadow-2），但保留 combobox/listbox 与 option 语义，不作为命令菜单。HTML、React、Vue 均支持 surface=white|gray。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 310,
@@ -2943,6 +2957,12 @@ export default {
           "variant": "default",
           "state": "default",
           "surface": "gray"
+        },
+        {
+          "id": "tag-entry",
+          "variant": "tag-entry",
+          "state": "default",
+          "surface": "white"
         }
       ],
       "fixtureId": "fixture-input",
@@ -2963,13 +2983,20 @@ export default {
         "input",
         "focus",
         "disabled",
-        "error"
+        "error",
+        "filter",
+        "select",
+        "remove"
       ],
       "textRoles": [
         "value:body-l",
         "placeholder:body-l",
         "label:body-m",
-        "help:body-s"
+        "help:body-s",
+        "tag-entry-label:body-l",
+        "tag-entry-value:body-l",
+        "tag-entry-placeholder:body-l",
+        "tag-entry-tag:body-m"
       ],
       "iconAliases": [],
       "iconSlots": [],
@@ -4329,14 +4356,19 @@ export default {
       "logicalName": "Search/White Surface/Default",
       "variants": [
         "default",
-        "focused",
-        "with-value",
-        "advanced-search"
+        "advanced-search",
+        "scoped-search",
+        "scoped-advanced-search"
       ],
       "states": [
         "default",
-        "hover",
         "focus",
+        "typing",
+        "filled",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "props": [
@@ -4346,6 +4378,11 @@ export default {
         "disabled",
         "state",
         "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
         "advancedSearch",
         "advancedSearchLabel",
         "onAdvancedSearch",
@@ -4353,6 +4390,7 @@ export default {
         "onClear"
       ],
       "slots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",
@@ -4409,7 +4447,7 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "Search 严格对齐 Pixso 的九态与两种内容面：Default、Focus、Typing、Filled、Hover-left、Hover-right、Pressed-left、Pressed-right、Disabled；不支持 Error。左侧搜索范围与右侧输入区是独立交互热区；搜索范围使用 Dropdown Menu。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 311,
@@ -4439,14 +4477,18 @@ export default {
       "sizing": "fill",
       "allowedStates": [
         "default",
-        "hover",
         "focus",
+        "typing",
         "filled",
-        "error",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "behaviors": [
         "input",
+        "scope-select",
         "clear",
         "advanced-search",
         "focus",
@@ -4454,32 +4496,63 @@ export default {
       ],
       "textRoles": [
         "value:body-l",
-        "placeholder:body-l"
+        "placeholder:body-l",
+        "scope:body-l",
+        "advanced:body-m"
       ],
       "iconSlots": [
         {
           "alias": "field/search",
           "displaySizes": [
-            16,
-            20,
-            24
+            16
           ],
           "kind": "regular"
         },
         {
           "alias": "action/close",
           "displaySizes": [
-            16,
-            20,
-            24
+            16
           ],
           "kind": "regular"
         }
       ],
       "iconSemantic": "field/search",
       "slotContracts": {
+        "scope-selector": {
+          "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "scopeOptions",
+            "scope",
+            "defaultScope",
+            "scopeLabel",
+            "onScopeChange"
+          ],
+          "scope": "search-query-builder",
+          "defaultPlacement": "leading-before-search-icon",
+          "control": "dropdown-menu",
+          "defaultLabel": "搜索范围",
+          "defaultValue": "first-scope-option",
+          "dividerToken": "color.border",
+          "interaction": "change-search-scope",
+          "coexistenceOrder": [
+            "scope-selector",
+            "leading",
+            "value",
+            "clear",
+            "advanced-search"
+          ]
+        },
         "advanced-search": {
           "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "advancedSearch",
+            "advancedSearchLabel",
+            "onAdvancedSearch"
+          ],
           "scope": "search-query-builder",
           "defaultPlacement": "trailing-after-clear",
           "control": "small-text-button",
@@ -6196,26 +6269,48 @@ export default {
         "segmentRole",
         "slots",
         "showWindowControls",
+        "showLogo",
         "logoSrc",
         "logoAlt",
         "disabled",
         "state",
         "mainDetailActions",
-        "onMainContentAction",
         "onMainDetailAction",
         "onAction",
         "className"
       ],
       "slots": [
+        "logo",
         "leading",
         "label",
         "secondary-pane-content",
-        "main-content-leading",
         "main-content-title",
         "main-detail-actions",
         "actions"
       ],
       "slotContracts": {
+        "logo": {
+          "cardinality": "0..1",
+          "scope": "titlebar-logo",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation",
+            "secondary-pane",
+            "final-pane"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "visibilityProp": "showLogo",
+          "defaultVisibility": {
+            "global": true,
+            "primary-navigation": true,
+            "secondary-pane": false,
+            "final-pane": false
+          }
+        },
         "secondary-pane-content": {
           "cardinality": "0..1",
           "scope": "secondary-pane-titlebar",
@@ -6359,7 +6454,8 @@ export default {
           "fields": [
             "src",
             "alt"
-          ]
+          ],
+          "deprecatedAliasFor": "logo"
         },
         "label": {
           "cardinality": "0..1",
@@ -6409,6 +6505,8 @@ export default {
         "color.surface",
         "color.border",
         "typography.body-l",
+        "typography.subtitle-m",
+        "typography.title-s",
         "spacing.component-gap"
       ],
       "source": "canonical-custom",
@@ -6518,6 +6616,20 @@ export default {
         "description:body-m",
         "help:body-s"
       ],
+      "textRolesByVariant": {
+        "small": [
+          "title:subtitle-m"
+        ],
+        "medium": [
+          "title:title-s"
+        ],
+        "large": [
+          "title:title-s"
+        ],
+        "xlarge": [
+          "title:title-s"
+        ]
+      },
       "iconSlots": [
         {
           "alias": "window/minimize",

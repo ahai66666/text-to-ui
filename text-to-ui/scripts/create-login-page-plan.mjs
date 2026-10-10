@@ -4,14 +4,12 @@ import { fileURLToPath } from "node:url";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const sourcePlanPath = process.argv[2]
-  ?? process.env.TEXT_TO_UI_SOURCE_PLAN
-  ?? path.join(repository, "apps/coremail-workbench/pixso/pixso-operation-plan.json");
+  ?? process.env.TEXT_TO_UI_SOURCE_PLAN;
 const outputRoot = process.argv[3]
   ?? process.env.TEXT_TO_UI_OUTPUT_ROOT
   ?? path.join(repository, "outputs/login-pages");
-if (!fs.existsSync(sourcePlanPath)) {
-  throw new Error(`Source Pixso operation plan not found: ${sourcePlanPath}. Pass the plan as the first argument or set TEXT_TO_UI_SOURCE_PLAN.`);
-}
+if (!sourcePlanPath) throw new Error("A source Pixso operation plan is required. Pass it as the first argument or set TEXT_TO_UI_SOURCE_PLAN.");
+if (!fs.existsSync(sourcePlanPath)) throw new Error(`Source Pixso operation plan not found: ${sourcePlanPath}. Pass the plan as the first argument or set TEXT_TO_UI_SOURCE_PLAN.`);
 const sourcePlan = JSON.parse(fs.readFileSync(sourcePlanPath, "utf8"));
 
 const stamp = new Date().toISOString().replace(/[-:TZ.]/g, "").slice(0, 14);

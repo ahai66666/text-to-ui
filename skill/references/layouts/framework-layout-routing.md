@@ -40,8 +40,14 @@ title layer: fixed Button (`global-primary-action`), scrollable Sidebar
 mask inside its own bounded scroll region. The primary rail is outside this
 region and must never scroll away or be masked. The legacy
 `primary-navigation-shell` slot is optional, not a second Sidebar container.
-The Sidebar slot's internal padding is `space/4` (16px) on all four sides;
+The Sidebar slot's horizontal padding is `space/5` (16px) on both sides;
 empty optional legacy slots must not create additional spacing.
+In Runtime, the primary pane owns the 8px top rhythm while the scroll body
+keeps zero horizontal padding; `secondary-navigation-content` owns the one
+16px horizontal Sidebar inset. Do not add another padded page wrapper around
+that slot. The Secondary List scroll body owns 16px horizontal, 8px top, and
+0px bottom insets; Main Detail owns 24px horizontal, 16px top, and 0px bottom.
+These are computed-layout acceptance checks, not suggestions for page CSS.
 The `primary-navigation-bottom` slot is a responsive distribution row owned by
 the Runtime. When it contains four level-one icon items, the slot fills the
 available width, each direct item wrapper receives an equal flexible track,

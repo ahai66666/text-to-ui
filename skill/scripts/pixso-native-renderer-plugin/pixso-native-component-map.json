@@ -181,6 +181,80 @@
       "iconColorSource": "variant-content"
     },
     {
+      "logicalName": "Input/Tag Entry/Default",
+      "rendererKey": "input",
+      "pixsoName": "Input/Tag Entry/Default",
+      "componentSetName": "Input/Tag Entry/Default",
+      "pixsoSpecKey": "Input/Tag Entry/Default",
+      "availability": "mapped",
+      "variant": {},
+      "supportedProps": [
+        "value",
+        "placeholder",
+        "disabled",
+        "error",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags",
+        "surface"
+      ],
+      "supportedSlots": [
+        "label",
+        "leading",
+        "value",
+        "trailing",
+        "help",
+        "tags",
+        "suggestions"
+      ],
+      "contentColor": {
+        "text": "$variable/neutral-dark/90",
+        "icon": "$variable/neutral-dark/90"
+      },
+      "iconColorSource": "variant-content"
+    },
+    {
+      "logicalName": "Search/Scoped/Default",
+      "rendererKey": "search",
+      "pixsoName": "Search/Scoped/Default",
+      "componentSetName": "Search/Scoped/Default",
+      "pixsoSpecKey": "Search/Scoped/Default",
+      "availability": "mapped",
+      "variant": {},
+      "supportedProps": [
+        "value",
+        "defaultValue",
+        "placeholder",
+        "disabled",
+        "state",
+        "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
+        "advancedSearch",
+        "advancedSearchLabel",
+        "onAdvancedSearch",
+        "onChange",
+        "onClear"
+      ],
+      "supportedSlots": [
+        "scope-selector",
+        "leading",
+        "value",
+        "clear",
+        "advanced-search"
+      ],
+      "contentColor": {
+        "text": "$variable/neutral-dark/90",
+        "icon": "$variable/neutral-dark/90"
+      },
+      "iconColorSource": "variant-content"
+    },
+    {
       "logicalName": "Checkbox/Unchecked/Default",
       "rendererKey": "checkbox",
       "pixsoName": "CheckBox",
@@ -729,7 +803,7 @@
       "availability": "excluded",
       "pixsoName": null,
       "componentSetName": null,
-      "mappingReason": "按当前 Text-to-UI 映射范围保留框架实现，但不映射为 Pixso 组件。"
+      "mappingReason": "保留 HTML/框架组件契约；Pixso 页面需要菜单时按 Token 直接组合普通节点，不导入、创建或引用可复用 Dropdown Menu 主组件。"
     },
     {
       "logicalName": "Field/Default",
@@ -833,13 +907,21 @@
         "placeholder",
         "surface",
         "error",
-        "disabled"
+        "disabled",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags"
       ],
       "supportedSlots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ],
       "contentColor": {
         "text": "$variable/neutral-dark/90",
@@ -1016,16 +1098,22 @@
         "value",
         "defaultValue",
         "placeholder",
+        "disabled",
+        "state",
         "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
         "advancedSearch",
         "advancedSearchLabel",
-        "state",
         "onAdvancedSearch",
         "onChange",
-        "onClear",
-        "disabled"
+        "onClear"
       ],
       "supportedSlots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",

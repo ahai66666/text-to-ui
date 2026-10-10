@@ -1,7 +1,7 @@
 import React from "react";
 import { createTitlebarPreviewScenes } from "../../packages/component-contracts/src/titlebar-segments.js";
 import { createRoot } from "react-dom/client";
-import { Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Titlebar, Textarea, Field, FormField, Select, Combobox, NativeSelect, Checkbox, Radio, RadioGroup, Switch, SegmentedButton, NumberSelector, Chips, Tabs, SubTabs, TreeView, Accordion, Collapsible, Avatar, Badge, Table, DataTable, Pagination, Breadcrumb, Progress, Empty, Label, Alert, Tooltip, Toast, Icon } from "../../packages/components-react/src/index.jsx?rev=20260907-1";
+import { Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Titlebar, Textarea, Field, FormField, Select, Combobox, NativeSelect, Checkbox, Radio, RadioGroup, Switch, SegmentedButton, NumberSelector, Chips, Tabs, SubTabs, TreeView, Accordion, Collapsible, Avatar, Badge, Table, DataTable, Pagination, Breadcrumb, Progress, Empty, Label, Alert, Tooltip, Toast, Icon } from "../../packages/components-react/src/index.jsx?rev=20260928-2";
 import { AlertDialog, Attachment, Calendar, Chart, ColorPicker, ContextMenu, DatePicker, Dialog, DropdownMenu, HoverCard, InputOtp, Kbd, Menubar, Popover, Slider, SemiModal, TimePicker } from "../../packages/components-react/src/advanced.jsx?rev=20260812-1";
 import * as Generated from "../../packages/components-react/src/generated/index.jsx?rev=20260810-1";
 import { cardClass, comparisonMetaFor, componentTitle, coreIds, feedbackSpecimensFor, readinessInfoFor, runtimeCategories, runtimeComponents, specimensFor } from "./runtime-catalog.js";
@@ -102,11 +102,13 @@ const RuntimeChips = ({ setStatus }) => h("div", { className: "tui-runtime-chips
 
 function RuntimeSearchGallery({ setStatus }) {
   const [whiteValue, setWhiteValue] = React.useState("");
+  const [whiteScope, setWhiteScope] = React.useState("全部");
   const [grayValue, setGrayValue] = React.useState("");
-  const sample = (surface, value, setValue) => h(Search, { placeholder: "搜索项目", surface, advancedSearch: true, value, onChange: (event) => { setValue(event.target.value); setStatus("Search · 已输入"); }, onClear: () => { setValue(""); setStatus("Search · 已清除"); }, onAdvancedSearch: () => setStatus("Search · 高级搜索") });
-  return h("div", { className: "tui-runtime-surface-pair" }, [
-    h("div", { key: "white", "data-surface-context": "white" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色搜索面 · 高级搜索槽位"), sample("white", whiteValue, setWhiteValue)]),
-    h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色搜索面 · 高级搜索槽位"), sample("gray", grayValue, setGrayValue)])
+  const [grayScope, setGrayScope] = React.useState("全部");
+  const sample = (surface, value, setValue, scope, setScope) => h(Search, { placeholder: "搜索项目", surface, scope, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, value, onScopeChange: (next) => { setScope(next); setStatus(`Search · 范围：${next}`); }, onChange: (event) => { setValue(event.target.value); setStatus("Search · 已输入"); }, onClear: () => { setValue(""); setStatus("Search · 已清除"); }, onAdvancedSearch: () => setStatus("Search · 高级") });
+  return h("div", { className: "tui-runtime-surface-pair tui-runtime-search-pair" }, [
+    h("div", { key: "white", "data-surface-context": "white" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色搜索面 · Search · Scoped + 高级"), sample("white", whiteValue, setWhiteValue, whiteScope, setWhiteScope)]),
+    h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色搜索面 · Search · Scoped + 高级"), h(Search, { placeholder: "搜索项目", surface: "gray", value: grayValue, scope: grayScope, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, onScopeChange: (next) => { setGrayScope(next); setStatus(`Search · 范围：${next}`); }, onAdvancedSearch: () => setStatus("Search · 高级"), onChange: (event) => { setGrayValue(event.target.value); setStatus("Search · 已输入"); }, onClear: () => { setGrayValue(""); setStatus("Search · 已清除"); } })])
   ]);
 }
 
@@ -164,9 +166,13 @@ function RuntimeSemiModal({ setStatus }) {
 const runtimeCore = (id, setStatus, component) => {
   if (id === "button") return h(RuntimeStructuralButton, { setStatus });
   if (id === "chips") return h(RuntimeChips, { setStatus });
-  if (id === "input") return h("div", { className: "tui-runtime-surface-pair" }, [
-    h("div", { key: "white", "data-surface-context": "white" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "white" })]),
-    h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "gray" })])
+  if (id === "input") return h("div", { className: "tui-runtime-core-gallery" }, [
+    h("p", { className: "tui-runtime-note", key: "note" }, "标准 Input 按内容面映射白/灰 surface；Tag Entry 是一个通用变体，仅展示一份，实际使用同样通过 surface=white/gray 复用。Enter 打开建议，选择后转为可移除标签；未选择的文本可保留。"),
+    h("div", { className: "tui-runtime-surface-pair", key: "default-inputs" }, [
+      h("div", { key: "white", "data-surface-context": "white" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "白色内容面 · 灰色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "white" })]),
+      h("div", { key: "gray", "data-surface-context": "gray" }, [h("span", { className: "tui-runtime-surface-label", key: "label" }, "灰色内容面 · 白色输入面"), h(Input, { key: "input", placeholder: "项目名称", surface: "gray" })])
+    ]),
+    h(Input, { key: "tag-entry", variant: "tag-entry", surface: "gray", label: "参与成员", placeholder: "输入姓名后按 Enter", options: ["林娜", "王昊", "陈佳", "周明"], defaultTags: ["林娜"] })
   ]);
   if (id === "search") return h(RuntimeSearchGallery, { setStatus });
   if (id === "primary-navigation-item") return h(RuntimePrimaryNavigationGallery, { setStatus });

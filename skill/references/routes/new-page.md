@@ -144,6 +144,15 @@ or `transform: scale(...)` on `html`, `body`, `main`, `#app`, or the Pattern
 root. The 1728×1152 board is an import-only Pixso capture setting, never page
 layout CSS.
 
+Generated HTML must display the application directly against the browser
+viewport, without an outside preview background, centered board, or decorative
+page frame. Keep `html`, `body`, and `#app` full-viewport hosts with zero outer
+margin and padding; do not give them a max-width/height, border, radius, or
+shadow. Pattern and its panes own the visible page surfaces. A background or
+card inside a business content region is still allowed. The Pixso capture
+board and the component-gallery preview backdrop must not be copied into the
+browser-delivered page.
+
 Resolve components in framework component → canonical contract → Token-based
 custom order. HTML, React, and Vue must use the renderer contract returned by
 the Context Packet and must retain the same Pattern/structure digests. For HTML,

@@ -86,6 +86,20 @@
         "description:body-m",
         "help:body-s"
       ],
+      "textRolesByVariant": {
+        "small": [
+          "title:subtitle-m"
+        ],
+        "medium": [
+          "title:title-s"
+        ],
+        "large": [
+          "title:title-s"
+        ],
+        "xlarge": [
+          "title:title-s"
+        ]
+      },
       "iconSlots": [
         {
           "alias": "window/minimize",
@@ -120,6 +134,8 @@
         "color.surface",
         "color.border",
         "typography.body-l",
+        "typography.subtitle-m",
+        "typography.title-s",
         "spacing.component-gap"
       ],
       "props": [
@@ -131,25 +147,66 @@
         "segmentRole",
         "slots",
         "showWindowControls",
+        "showLogo",
         "logoSrc",
         "logoAlt",
         "disabled",
         "state",
         "mainDetailActions",
-        "onMainContentAction",
         "onMainDetailAction",
         "onAction",
         "className"
       ],
       "slots": [
+        "logo",
         "leading",
         "label",
-        "main-content-leading",
+        "secondary-pane-content",
         "main-content-title",
         "main-detail-actions",
         "actions"
       ],
       "slotContracts": {
+        "logo": {
+          "cardinality": "0..1",
+          "scope": "titlebar-logo",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation",
+            "secondary-pane",
+            "final-pane"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "visibilityProp": "showLogo",
+          "defaultVisibility": {
+            "global": true,
+            "primary-navigation": true,
+            "secondary-pane": false,
+            "final-pane": false
+          }
+        },
+        "secondary-pane-content": {
+          "cardinality": "0..1",
+          "scope": "secondary-pane-titlebar",
+          "valueType": "registered-component-binding",
+          "activeWhen": {
+            "layout": "three-column",
+            "paneRole": "secondary-pane"
+          },
+          "allowedComponents": [
+            "Search/White Surface/Default"
+          ],
+          "defaultPlacement": "secondary-pane-titlebar-content",
+          "horizontalInsetToken": "space/5",
+          "horizontalInset": "16px",
+          "crossAxisAlignment": "center",
+          "verticalInset": "none",
+          "owner": "titlebar-component"
+        },
         "main-content-leading": {
           "cardinality": "0..1",
           "scope": "main-content-pane-global",
@@ -275,7 +332,8 @@
           "fields": [
             "src",
             "alt"
-          ]
+          ],
+          "deprecatedAliasFor": "logo"
         },
         "label": {
           "cardinality": "0..1",
@@ -300,6 +358,14 @@
           "surfaceInset": "16px",
           "contentAxis": "24px",
           "scrollWrapperPadding": "16px 16px"
+        },
+        "secondaryPaneTitlebar": {
+          "horizontalInsetToken": "space/5",
+          "horizontalInset": "16px",
+          "crossAxisAlignment": "center",
+          "verticalInset": "none",
+          "contentOwner": "titlebar-component",
+          "contentSlot": "secondary-pane-content"
         },
         "mainDetailPane": {
           "paddingInline": "24px",
@@ -1151,7 +1217,7 @@
         }
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -1232,7 +1298,7 @@
         }
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -2768,40 +2834,66 @@
           "variant": "default",
           "state": "default",
           "surface": "gray"
+        },
+        {
+          "id": "tag-entry",
+          "variant": "tag-entry",
+          "state": "default",
+          "surface": "white"
         }
       ],
       "behaviorChecks": [
         "input",
         "focus",
         "disabled",
-        "error"
+        "error",
+        "filter",
+        "select",
+        "remove"
       ],
       "textRoles": [
         "value:body-l",
         "placeholder:body-l",
         "label:body-m",
-        "help:body-s"
+        "help:body-s",
+        "tag-entry-label:body-l",
+        "tag-entry-value:body-l",
+        "tag-entry-placeholder:body-l",
+        "tag-entry-tag:body-m"
       ],
       "iconSlots": [],
       "tokenRoles": [
         "color.input-bg",
+        "color.icon",
         "color.text",
+        "color.text-muted",
+        "color.text-subtle",
         "color.border",
         "size.input-height",
         "radius.input",
-        "typography.body-l"
+        "typography.body-l",
+        "typography.body-m"
       ],
       "props": [
         "value",
         "placeholder",
         "disabled",
-        "error"
+        "error",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags",
+        "surface"
       ],
       "slots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ],
       "slotContracts": {},
       "layoutRules": {},
@@ -2836,10 +2928,13 @@
       "sizing": "fill",
       "allowedStates": [
         "default",
-        "hover",
         "focus",
+        "typing",
         "filled",
-        "error",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "requiredVariants": [
@@ -2858,6 +2953,7 @@
       ],
       "behaviorChecks": [
         "input",
+        "scope-select",
         "clear",
         "advanced-search",
         "focus",
@@ -2865,24 +2961,22 @@
       ],
       "textRoles": [
         "value:body-l",
-        "placeholder:body-l"
+        "placeholder:body-l",
+        "scope:body-l",
+        "advanced:body-m"
       ],
       "iconSlots": [
         {
           "alias": "field/search",
           "displaySizes": [
-            16,
-            20,
-            24
+            16
           ],
           "kind": "regular"
         },
         {
           "alias": "action/close",
           "displaySizes": [
-            16,
-            20,
-            24
+            16
           ],
           "kind": "regular"
         }
@@ -2903,6 +2997,11 @@
         "disabled",
         "state",
         "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
         "advancedSearch",
         "advancedSearchLabel",
         "onAdvancedSearch",
@@ -2910,14 +3009,48 @@
         "onClear"
       ],
       "slots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",
         "advanced-search"
       ],
       "slotContracts": {
+        "scope-selector": {
+          "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "scopeOptions",
+            "scope",
+            "defaultScope",
+            "scopeLabel",
+            "onScopeChange"
+          ],
+          "scope": "search-query-builder",
+          "defaultPlacement": "leading-before-search-icon",
+          "control": "dropdown-menu",
+          "defaultLabel": "搜索范围",
+          "defaultValue": "first-scope-option",
+          "dividerToken": "color.border",
+          "interaction": "change-search-scope",
+          "coexistenceOrder": [
+            "scope-selector",
+            "leading",
+            "value",
+            "clear",
+            "advanced-search"
+          ]
+        },
         "advanced-search": {
           "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "advancedSearch",
+            "advancedSearchLabel",
+            "onAdvancedSearch"
+          ],
           "scope": "search-query-builder",
           "defaultPlacement": "trailing-after-clear",
           "control": "small-text-button",

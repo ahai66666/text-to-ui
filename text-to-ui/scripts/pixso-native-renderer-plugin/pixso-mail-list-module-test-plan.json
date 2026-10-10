@@ -169,11 +169,6 @@
       "role": "body-s"
     },
     {
-      "op": "ensure-style",
-      "styleRef": "$style/Effect/Foundation/shadow-2",
-      "role": "shadow-2"
-    },
-    {
       "op": "create-frame",
       "nodeId": "mail-list-root",
       "parentId": null,
@@ -194,9 +189,6 @@
         },
         "radius": {
           "ref": "$variable/radius/16"
-        },
-        "effectStyle": {
-          "ref": "$style/Effect/Foundation/shadow-2"
         }
       },
       "metadata": {

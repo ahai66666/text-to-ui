@@ -1,0 +1,1018 @@
+{
+  "schemaVersion": 1,
+  "kind": "text-to-ui-scene",
+  "source": {
+    "stateId": "harmony-mail-inbox-expanded-default-v6",
+    "purpose": "cross-renderer-complex-structure-benchmark",
+    "fixture": "mail-workbench-native-scene"
+  },
+  "page": {
+    "name": "Text-to-UI / Complex Structure Benchmark",
+    "targetPage": "harmony-mail",
+    "viewport": {
+      "width": 1000,
+      "height": 520
+    },
+    "pattern": "pattern-b-three-pane",
+    "stateScope": "default-visible"
+  },
+  "nodes": [
+    {
+      "id": "benchmark-root",
+      "name": "Complex structure benchmark",
+      "type": "frame",
+      "region": "global",
+      "layout": {
+        "direction": "HORIZONTAL",
+        "width": 1000,
+        "height": 520,
+        "primaryAlign": "MIN",
+        "counterAlign": "MIN",
+        "clipsContent": true
+      },
+      "style": {
+        "background": {
+          "kind": "token",
+          "token": "neutral-light/100"
+        },
+        "radiusToken": "radius/16",
+        "shadowRole": "shadow-2"
+      },
+      "children": [
+        {
+          "id": "benchmark-primary",
+          "name": "Primary navigation pane",
+          "type": "frame",
+          "region": "primary-navigation",
+          "layout": {
+            "direction": "VERTICAL",
+            "width": {
+              "mode": "fixed",
+              "token": "layout/primary-width"
+            },
+            "height": "fill",
+            "primaryAlign": "MIN",
+            "counterAlign": "MIN",
+            "clipsContent": true
+          },
+          "style": {
+            "background": {
+              "kind": "token",
+              "token": "neutral-dark/05"
+            },
+            "borderToken": "border/subtle"
+          },
+          "children": [
+            {
+              "id": "benchmark-primary-titlebar",
+              "name": "Primary Titlebar",
+              "type": "component",
+              "region": "primary-navigation",
+              "layout": {
+                "direction": "HORIZONTAL",
+                "width": "fill",
+                "height": {
+                  "mode": "fixed",
+                  "token": "size/titlebar"
+                },
+                "padding": {
+                  "left": "space/5",
+                  "right": "space/5"
+                },
+                "primaryAlign": "MIN",
+                "counterAlign": "CENTER",
+                "clipsContent": false
+              },
+              "style": {
+                "background": {
+                  "kind": "transparent"
+                }
+              },
+              "component": {
+                "logicalName": "Titlebar/L/Normal",
+                "rendererKey": "titlebar",
+                "reuse": "preferred",
+                "state": "default",
+                "props": {
+                  "label": "Harmony Mail",
+                  "paneRole": "primary-navigation",
+                  "size": "large",
+                  "layout": "three-column"
+                },
+                "slots": {
+                  "label": "Harmony Mail"
+                },
+                "fallbackRecipe": "titlebar"
+              },
+              "children": [
+                {
+                  "id": "benchmark-brand",
+                  "name": "Harmony Mail",
+                  "type": "text",
+                  "region": "primary-navigation",
+                  "content": "Harmony Mail",
+                  "layout": {
+                    "direction": "VERTICAL",
+                    "width": "hug",
+                    "height": "hug",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "MIN",
+                    "clipsContent": false
+                  },
+                  "style": {
+                    "textColorToken": "text/primary",
+                    "textRole": "subtitle-m"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "benchmark-nav-list",
+              "name": "Navigation states",
+              "type": "frame",
+              "region": "primary-navigation",
+              "layout": {
+                "direction": "VERTICAL",
+                "width": "fill",
+                "height": "hug",
+                "padding": {
+                  "left": "space/4",
+                  "right": "space/4",
+                  "top": "space/5"
+                },
+                "gap": "space/2",
+                "primaryAlign": "MIN",
+                "counterAlign": "MIN",
+                "clipsContent": false
+              },
+              "style": {
+                "background": {
+                  "kind": "transparent"
+                }
+              },
+              "children": [
+                {
+                  "id": "benchmark-nav-selected",
+                  "name": "Selected inbox",
+                  "type": "component",
+                  "region": "primary-navigation",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "fill",
+                    "height": {
+                      "mode": "fixed",
+                      "token": "size/control"
+                    },
+                    "padding": {
+                      "left": "space/4",
+                      "right": "space/4"
+                    },
+                    "gap": "space/3",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "CENTER",
+                    "clipsContent": true
+                  },
+                  "style": {
+                    "background": {
+                      "kind": "token",
+                      "token": "brand/10"
+                    },
+                    "radiusToken": "radius/08"
+                  },
+                  "component": {
+                    "logicalName": "Sidebar Item/Default",
+                    "rendererKey": "sidebar",
+                    "reuse": "preferred",
+                    "state": "selected",
+                    "props": {
+                      "label": "收件箱",
+                      "icon": "navigation/inbox",
+                      "count": 28,
+                      "selected": true
+                    },
+                    "slots": {
+                      "leading": "navigation/inbox",
+                      "label": "收件箱",
+                      "trailing": 28
+                    },
+                    "fallbackRecipe": "sidebar-item"
+                  },
+                  "children": [
+                    {
+                      "id": "benchmark-nav-selected-icon",
+                      "name": "Inbox icon",
+                      "type": "icon",
+                      "region": "primary-navigation",
+                      "semanticIcon": "navigation/inbox",
+                      "iconSize": 20,
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": {
+                          "mode": "fixed",
+                          "token": "size/icon"
+                        },
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/icon"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {
+                        "textColorToken": "icon/primary"
+                      }
+                    },
+                    {
+                      "id": "benchmark-nav-selected-label",
+                      "name": "Selected label",
+                      "type": "text",
+                      "region": "primary-navigation",
+                      "content": "收件箱",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "fill",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false,
+                        "maxLines": 1,
+                        "overflow": "truncate"
+                      },
+                      "style": {
+                        "textColorToken": "icon/primary",
+                        "textRole": "body-l"
+                      }
+                    },
+                    {
+                      "id": "benchmark-nav-selected-count",
+                      "name": "Selected count",
+                      "type": "text",
+                      "region": "primary-navigation",
+                      "content": "28",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "hug",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false
+                      },
+                      "style": {
+                        "textColorToken": "text/secondary",
+                        "textRole": "body-m"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "benchmark-nav-default",
+                  "name": "Unselected mail",
+                  "type": "component",
+                  "region": "primary-navigation",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "fill",
+                    "height": {
+                      "mode": "fixed",
+                      "token": "size/control"
+                    },
+                    "padding": {
+                      "left": "space/4",
+                      "right": "space/4"
+                    },
+                    "gap": "space/3",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "CENTER",
+                    "clipsContent": true
+                  },
+                  "style": {
+                    "background": {
+                      "kind": "transparent"
+                    },
+                    "radiusToken": "radius/08"
+                  },
+                  "component": {
+                    "logicalName": "Sidebar Item/Default",
+                    "rendererKey": "sidebar",
+                    "reuse": "preferred",
+                    "state": "default",
+                    "props": {
+                      "label": "未读邮件",
+                      "icon": "navigation/mail-unread",
+                      "count": 12,
+                      "selected": false
+                    },
+                    "slots": {
+                      "leading": "navigation/mail-unread",
+                      "label": "未读邮件",
+                      "trailing": 12
+                    },
+                    "fallbackRecipe": "sidebar-item"
+                  },
+                  "children": [
+                    {
+                      "id": "benchmark-nav-default-icon",
+                      "name": "Mail icon",
+                      "type": "icon",
+                      "region": "primary-navigation",
+                      "semanticIcon": "navigation/mail-unread",
+                      "iconSize": 20,
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": {
+                          "mode": "fixed",
+                          "token": "size/icon"
+                        },
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/icon"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {
+                        "textColorToken": "icon/default"
+                      }
+                    },
+                    {
+                      "id": "benchmark-nav-default-label",
+                      "name": "Default label",
+                      "type": "text",
+                      "region": "primary-navigation",
+                      "content": "未读邮件",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "fill",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false,
+                        "maxLines": 1,
+                        "overflow": "truncate"
+                      },
+                      "style": {
+                        "textColorToken": "text/primary",
+                        "textRole": "body-l"
+                      }
+                    },
+                    {
+                      "id": "benchmark-nav-default-count",
+                      "name": "Default count",
+                      "type": "text",
+                      "region": "primary-navigation",
+                      "content": "12",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "hug",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false
+                      },
+                      "style": {
+                        "textColorToken": "text/secondary",
+                        "textRole": "body-m"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "benchmark-secondary",
+          "name": "Secondary list pane",
+          "type": "frame",
+          "region": "secondary-list",
+          "layout": {
+            "direction": "VERTICAL",
+            "width": {
+              "mode": "fixed",
+              "token": "layout/secondary-width"
+            },
+            "height": "fill",
+            "primaryAlign": "MIN",
+            "counterAlign": "MIN",
+            "clipsContent": true
+          },
+          "style": {
+            "background": {
+              "kind": "token",
+              "token": "neutral-light/100"
+            },
+            "border": {
+              "token": "border/subtle",
+              "edges": [
+                "left",
+                "right"
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "benchmark-secondary-titlebar",
+              "name": "Secondary Titlebar",
+              "type": "component",
+              "region": "secondary-list",
+              "layout": {
+                "direction": "HORIZONTAL",
+                "width": "fill",
+                "height": {
+                  "mode": "fixed",
+                  "token": "size/titlebar"
+                },
+                "padding": {
+                  "left": "space/5",
+                  "right": "space/5"
+                },
+                "gap": "space/2",
+                "primaryAlign": "MIN",
+                "counterAlign": "CENTER",
+                "clipsContent": true
+              },
+              "style": {
+                "background": {
+                  "kind": "token",
+                  "token": "neutral-light/100"
+                }
+              },
+              "component": {
+                "logicalName": "Titlebar/L/Normal",
+                "rendererKey": "titlebar",
+                "reuse": "preferred",
+                "state": "default",
+                "props": {
+                  "label": "",
+                  "paneRole": "secondary-list",
+                  "size": "large",
+                  "layout": "three-column"
+                },
+                "slots": {},
+                "fallbackRecipe": "titlebar"
+              },
+              "children": [
+                {
+                  "id": "benchmark-dropdown",
+                  "name": "Mailbox scope",
+                  "type": "component",
+                  "region": "secondary-list",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "hug",
+                    "height": {
+                      "mode": "fixed",
+                      "token": "size/control"
+                    },
+                    "primaryAlign": "CENTER",
+                    "counterAlign": "CENTER",
+                    "clipsContent": true
+                  },
+                  "style": {},
+                  "component": {
+                    "logicalName": "Selection Dropdown/Default",
+                    "rendererKey": "selection-dropdown",
+                    "reuse": "required",
+                    "state": "default",
+                    "props": {
+                      "label": "全部",
+                      "variant": "secondary",
+                      "menuItems": [
+                        "全部",
+                        "未读邮件"
+                      ],
+                      "disabled": false
+                    },
+                    "slots": {
+                      "label": "全部",
+                      "trigger": "navigation/chevron-down"
+                    },
+                    "fallbackRecipe": "selection-dropdown"
+                  },
+                  "children": []
+                },
+                {
+                  "id": "benchmark-search",
+                  "name": "Mail search",
+                  "type": "component",
+                  "region": "secondary-list",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "fill",
+                    "height": {
+                      "mode": "fixed",
+                      "token": "size/control"
+                    },
+                    "minWidth": 120,
+                    "padding": {
+                      "left": "space/4",
+                      "right": "space/3"
+                    },
+                    "gap": "space/3",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "CENTER",
+                    "clipsContent": true
+                  },
+                  "style": {
+                    "background": {
+                      "kind": "token",
+                      "token": "neutral-dark/05"
+                    },
+                    "radiusToken": "radius/08"
+                  },
+                  "component": {
+                    "logicalName": "Search/White Surface/Default",
+                    "rendererKey": "search",
+                    "reuse": "native",
+                    "state": "advanced-search",
+                    "props": {
+                      "placeholder": "搜索邮件",
+                      "value": "",
+                      "surface": "white",
+                      "advancedSearch": true,
+                      "advancedSearchLabel": "高级"
+                    },
+                    "slots": {
+                      "leading": "field/search",
+                      "value": "",
+                      "advanced-search": "高级"
+                    },
+                    "fallbackRecipe": "search"
+                  },
+                  "children": [
+                    {
+                      "id": "benchmark-search-icon",
+                      "name": "Search icon",
+                      "type": "icon",
+                      "region": "secondary-list",
+                      "semanticIcon": "field/search",
+                      "iconSize": 16,
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": 16,
+                        "height": 16,
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {
+                        "textColorToken": "icon/default"
+                      }
+                    },
+                    {
+                      "id": "benchmark-search-placeholder",
+                      "name": "Search placeholder",
+                      "type": "text",
+                      "region": "secondary-list",
+                      "content": "搜索邮件",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "fill",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false,
+                        "maxLines": 1,
+                        "overflow": "truncate"
+                      },
+                      "style": {
+                        "textColorToken": "text/muted",
+                        "textRole": "body-m"
+                      }
+                    },
+                    {
+                      "id": "benchmark-search-advanced",
+                      "name": "Advanced search",
+                      "type": "text",
+                      "region": "secondary-list",
+                      "content": "高级",
+                      "layout": {
+                        "direction": "VERTICAL",
+                        "width": "hug",
+                        "height": "hug",
+                        "primaryAlign": "MIN",
+                        "counterAlign": "MIN",
+                        "clipsContent": false
+                      },
+                      "style": {
+                        "textColorToken": "icon/primary",
+                        "textRole": "body-m"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "benchmark-secondary-body",
+              "name": "Secondary body",
+              "type": "frame",
+              "region": "secondary-list",
+              "layout": {
+                "direction": "VERTICAL",
+                "width": "fill",
+                "height": "fill",
+                "padding": {
+                  "left": "space/5",
+                  "right": "space/5",
+                  "top": "space/5"
+                },
+                "gap": "space/3",
+                "primaryAlign": "MIN",
+                "counterAlign": "MIN",
+                "clipsContent": true
+              },
+              "style": {
+                "background": {
+                  "kind": "transparent"
+                }
+              },
+              "children": [
+                {
+                  "id": "benchmark-inbox-title",
+                  "name": "Inbox title",
+                  "type": "text",
+                  "region": "secondary-list",
+                  "content": "收件箱",
+                  "layout": {
+                    "direction": "VERTICAL",
+                    "width": "fill",
+                    "height": "hug",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "MIN",
+                    "clipsContent": false
+                  },
+                  "style": {
+                    "textColorToken": "text/primary",
+                    "textRole": "title-s"
+                  }
+                },
+                {
+                  "id": "benchmark-inbox-description",
+                  "name": "Inbox description",
+                  "type": "text",
+                  "region": "secondary-list",
+                  "content": "多行文字用于验证父级完成后的文本重排与截断不会把右侧工具推出画板。",
+                  "layout": {
+                    "direction": "VERTICAL",
+                    "width": "fill",
+                    "height": "hug",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "MIN",
+                    "clipsContent": true,
+                    "maxLines": 2,
+                    "overflow": "truncate"
+                  },
+                  "style": {
+                    "textColorToken": "text/secondary",
+                    "textRole": "body-m"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "benchmark-detail",
+          "name": "Main detail pane",
+          "type": "frame",
+          "region": "main-detail",
+          "layout": {
+            "direction": "VERTICAL",
+            "width": "fill",
+            "height": "fill",
+            "minWidth": 320,
+            "primaryAlign": "MIN",
+            "counterAlign": "MIN",
+            "clipsContent": true
+          },
+          "style": {
+            "background": {
+              "kind": "token",
+              "token": "neutral-light/100"
+            }
+          },
+          "children": [
+            {
+              "id": "benchmark-detail-titlebar",
+              "name": "Detail Titlebar",
+              "type": "component",
+              "region": "main-detail",
+              "layout": {
+                "direction": "HORIZONTAL",
+                "width": "fill",
+                "height": {
+                  "mode": "fixed",
+                  "token": "size/titlebar"
+                },
+                "padding": {
+                  "left": "space/5",
+                  "right": "space/5"
+                },
+                "gap": "space/2",
+                "primaryAlign": "MIN",
+                "counterAlign": "CENTER",
+                "distribution": "SPACE_BETWEEN",
+                "clipsContent": true
+              },
+              "style": {
+                "background": {
+                  "kind": "token",
+                  "token": "neutral-light/100"
+                }
+              },
+              "component": {
+                "logicalName": "Titlebar/L/Normal",
+                "rendererKey": "titlebar",
+                "reuse": "preferred",
+                "state": "default",
+                "props": {
+                  "label": "",
+                  "paneRole": "main-detail",
+                  "size": "large",
+                  "layout": "three-column",
+                  "mainDetailActions": [
+                    "reply",
+                    "reply-all",
+                    "forward"
+                  ]
+                },
+                "slots": {
+                  "main-detail-actions": "reply reply-all forward"
+                },
+                "fallbackRecipe": "titlebar"
+              },
+              "children": [
+                {
+                  "id": "benchmark-detail-actions",
+                  "name": "Message actions",
+                  "type": "frame",
+                  "region": "main-detail",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "hug",
+                    "height": "hug",
+                    "gap": "space/2",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "CENTER",
+                    "clipsContent": false
+                  },
+                  "style": {
+                    "background": {
+                      "kind": "transparent"
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "benchmark-reply",
+                      "name": "Reply",
+                      "type": "component",
+                      "region": "main-detail",
+                      "layout": {
+                        "direction": "HORIZONTAL",
+                        "width": "hug",
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/control"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {},
+                      "component": {
+                        "logicalName": "Icon Text Button/Ghost/Default",
+                        "rendererKey": "button",
+                        "reuse": "required",
+                        "state": "default",
+                        "props": {
+                          "label": "回复",
+                          "variant": "ghost",
+                          "size": "standard",
+                          "mode": "icon-text",
+                          "disabled": false
+                        },
+                        "slots": {
+                          "icon": "action/reply",
+                          "label": "回复"
+                        },
+                        "fallbackRecipe": "button"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "benchmark-reply-all",
+                      "name": "Reply all",
+                      "type": "component",
+                      "region": "main-detail",
+                      "layout": {
+                        "direction": "HORIZONTAL",
+                        "width": "hug",
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/control"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {},
+                      "component": {
+                        "logicalName": "Icon Text Button/Ghost/Default",
+                        "rendererKey": "button",
+                        "reuse": "required",
+                        "state": "default",
+                        "props": {
+                          "label": "回复全部",
+                          "variant": "ghost",
+                          "size": "standard",
+                          "mode": "icon-text",
+                          "disabled": false
+                        },
+                        "slots": {
+                          "icon": "action/reply-all",
+                          "label": "回复全部"
+                        },
+                        "fallbackRecipe": "button"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "benchmark-forward",
+                      "name": "Forward",
+                      "type": "component",
+                      "region": "main-detail",
+                      "layout": {
+                        "direction": "HORIZONTAL",
+                        "width": "hug",
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/control"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {},
+                      "component": {
+                        "logicalName": "Icon Text Button/Ghost/Default",
+                        "rendererKey": "button",
+                        "reuse": "required",
+                        "state": "default",
+                        "props": {
+                          "label": "转发",
+                          "variant": "ghost",
+                          "size": "standard",
+                          "mode": "icon-text",
+                          "disabled": false
+                        },
+                        "slots": {
+                          "icon": "action/forward",
+                          "label": "转发"
+                        },
+                        "fallbackRecipe": "button"
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "benchmark-detail-tools",
+                  "name": "Window actions",
+                  "type": "frame",
+                  "region": "main-detail",
+                  "layout": {
+                    "direction": "HORIZONTAL",
+                    "width": "hug",
+                    "height": "hug",
+                    "gap": "space/2",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "CENTER",
+                    "clipsContent": false
+                  },
+                  "style": {
+                    "background": {
+                      "kind": "transparent"
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "benchmark-more",
+                      "name": "More",
+                      "type": "component",
+                      "region": "main-detail",
+                      "layout": {
+                        "direction": "HORIZONTAL",
+                        "width": {
+                          "mode": "fixed",
+                          "token": "size/control"
+                        },
+                        "height": {
+                          "mode": "fixed",
+                          "token": "size/control"
+                        },
+                        "primaryAlign": "CENTER",
+                        "counterAlign": "CENTER",
+                        "clipsContent": true
+                      },
+                      "style": {},
+                      "component": {
+                        "logicalName": "Icon Button/Ghost/Default",
+                        "rendererKey": "button",
+                        "reuse": "required",
+                        "state": "default",
+                        "props": {
+                          "label": "更多操作",
+                          "variant": "ghost",
+                          "size": "standard",
+                          "mode": "icon",
+                          "disabled": false
+                        },
+                        "slots": {
+                          "icon": "action/more"
+                        },
+                        "fallbackRecipe": "button"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "benchmark-detail-body",
+              "name": "Detail body",
+              "type": "frame",
+              "region": "main-detail",
+              "layout": {
+                "direction": "VERTICAL",
+                "width": "fill",
+                "height": "fill",
+                "padding": {
+                  "left": "space/6",
+                  "right": "space/6",
+                  "top": "space/6"
+                },
+                "gap": "space/4",
+                "primaryAlign": "MIN",
+                "counterAlign": "MIN",
+                "clipsContent": true
+              },
+              "style": {
+                "background": {
+                  "kind": "transparent"
+                }
+              },
+              "children": [
+                {
+                  "id": "benchmark-detail-subject",
+                  "name": "Subject",
+                  "type": "text",
+                  "region": "main-detail",
+                  "content": "Q2 路线评审会：材料更新与会前确认",
+                  "layout": {
+                    "direction": "VERTICAL",
+                    "width": "fill",
+                    "height": "hug",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "MIN",
+                    "clipsContent": true,
+                    "maxLines": 2,
+                    "overflow": "truncate"
+                  },
+                  "style": {
+                    "textColorToken": "text/primary",
+                    "textRole": "title-m"
+                  }
+                },
+                {
+                  "id": "benchmark-detail-copy",
+                  "name": "Detail copy",
+                  "type": "text",
+                  "region": "main-detail",
+                  "content": "这个区域用于验证剩余宽度填充、多行文字回流、最小宽度和裁切规则。",
+                  "layout": {
+                    "direction": "VERTICAL",
+                    "width": "fill",
+                    "height": "hug",
+                    "primaryAlign": "MIN",
+                    "counterAlign": "MIN",
+                    "clipsContent": true,
+                    "maxLines": 2,
+                    "overflow": "truncate"
+                  },
+                  "style": {
+                    "textColorToken": "text/secondary",
+                    "textRole": "body-l"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

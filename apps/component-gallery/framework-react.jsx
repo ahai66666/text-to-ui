@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Alert, Attachment, Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Radio, Toast, Tooltip, SubTabs, TreeView } from "../../packages/components-react/src/index.jsx?rev=20260907-1";
+import { Alert, Attachment, Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Radio, Toast, Tooltip, SubTabs, TreeView } from "../../packages/components-react/src/index.jsx?rev=20260928-2";
 import * as Generated from "../../packages/components-react/src/generated/index.jsx?rev=20260807-1";
 import contracts from "../../packages/component-contracts/src/components-runtime.js";
 import { feedbackSpecimensFor } from "./runtime-catalog.js";
@@ -27,12 +27,14 @@ function ButtonPreview({ setStatus }) {
 function InputPreview() {
   const inputStates = ["default", "hover", "focus", "disabled", "error"];
   const context = (surface, label) => h("section", { className: "tui-runtime-state-group", key: surface }, [h("strong", { key: "label" }, label), h("div", { className: "tui-runtime-state-grid", key: "states" }, inputStates.map((state) => h("div", { className: "tui-runtime-state-cell", key: state }, [h("span", { key: "state" }, stateLabels[state]), h(Input, { key: "input", surface, state, disabled: state === "disabled", error: state === "error", placeholder: "项目名称" })]))) ]);
-  return h("div", { className: "tui-runtime-core-gallery" }, [h("p", { className: "tui-runtime-note", key: "note" }, "白色内容面使用灰色输入面，灰色内容面使用白色输入面；以下全部是同一个 React Input 组件的真实 Surface / state 组合。"), context("white", "White content surface"), context("gray", "Gray content surface")]);
+  const tagEntry = h(Input, { key: "tag-entry", variant: "tag-entry", surface: "gray", label: "参与成员", placeholder: "输入姓名后按 Enter", options: ["林娜", "王昊", "陈佳", "周明"], defaultTags: ["林娜"] });
+  return h("div", { className: "tui-runtime-core-gallery" }, [h("p", { className: "tui-runtime-note", key: "note" }, "标准 Input 按内容面映射白/灰 surface；Tag Entry 是一个通用变体，仅展示一份，实际使用同样通过 surface=white/gray 复用。Enter 打开建议，选择后转为可移除标签；未选择的文本可保留。"), context("white", "White content surface"), context("gray", "Gray content surface"), tagEntry]);
 }
 
 function SearchPreview() {
   const [value, setValue] = useState("");
-  return h("div", { className: "tui-runtime-core-gallery" }, [h("p", { className: "tui-runtime-note", key: "note" }, "真实 React Search 适配器，包含 Surface、with-value、清除和 disabled 状态。"), h("div", { className: "tui-runtime-surface-grid", key: "surfaces" }, [h("div", { className: "tui-runtime-state-cell", key: "white" }, [h("span", { key: "label" }, "White content surface"), h(Search, { key: "search", surface: "white", value, onChange: (event) => setValue(event.target.value), onClear: () => setValue("") })]), h("div", { className: "tui-runtime-state-cell", key: "gray" }, [h("span", { key: "label" }, "Gray content surface"), h(Search, { key: "search", surface: "gray", placeholder: "搜索项目" })]), h("div", { className: "tui-runtime-state-cell", key: "disabled" }, [h("span", { key: "label" }, "Disabled"), h(Search, { key: "search", disabled: true, surface: "white" })])])]);
+  const [scope, setScope] = useState("全部");
+  return h("div", { className: "tui-runtime-core-gallery" }, [h("p", { className: "tui-runtime-note", key: "note" }, "真实 React Search 适配器，包含 Surface、with-value、清除、Search · Scoped + 高级和 disabled 状态。"), h("div", { className: "tui-runtime-surface-grid", key: "surfaces" }, [h("div", { className: "tui-runtime-state-cell", key: "white" }, [h("span", { key: "label" }, "White content surface · Search · Scoped + 高级"), h(Search, { key: "search", surface: "white", placeholder: "搜索项目", value, scope, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, onScopeChange: (next) => setScope(next), onChange: (event) => setValue(event.target.value), onClear: () => setValue("") })]), h("div", { className: "tui-runtime-state-cell", key: "gray" }, [h("span", { key: "label" }, "Gray content surface · Search · Scoped + 高级"), h(Search, { key: "search", surface: "gray", placeholder: "搜索项目", scope, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, onScopeChange: (next) => setScope(next) })]), h("div", { className: "tui-runtime-state-cell", key: "disabled" }, [h("span", { key: "label" }, "Disabled"), h(Search, { key: "search", disabled: true, surface: "white" })])])]);
 }
 
 function SidebarPreview({ setStatus }) {

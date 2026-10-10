@@ -365,7 +365,7 @@ const coreSpecimens = {
 
 for (const component of registry.components) {
   if (component.id === "titlebar") {
-    component.props = [...new Set([...(component.props ?? []), "segmentRole", "slots", "showWindowControls", "logoSrc", "logoAlt"])];
+    component.props = [...new Set([...(component.props ?? []), "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt"])];
     component.segmentContract = {
       owner: "pattern-title-layer", orderedBy: "titleLayer.segments", widthOwner: "pattern-renderer",
       roles: ["primary-navigation", "secondary-list", "main-content", "main-detail"],
@@ -373,7 +373,8 @@ for (const component of registry.components) {
       slotAPI: "declarative-content; no arbitrary HTML"
     };
     component.slotContracts = { ...component.slotContracts,
-      leading: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation"], fields: ["src", "alt"] },
+      logo: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation", "secondary-pane", "final-pane"], fields: ["src", "alt"], visibilityProp: "showLogo" },
+      leading: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation"], fields: ["src", "alt"], deprecatedAliasFor: "logo" },
       label: { cardinality: "0..1", valueType: "text", activeRoles: ["global", "primary-navigation"] },
       actions: { cardinality: "0..1", valueType: "boolean", activeRoles: ["global", "final-pane"], implementation: "component-owned-window-controls" }
     };
@@ -472,13 +473,30 @@ for (const component of registry.components) {
     };
   }
  if (component.id === "search") {
-    component.variants = ["default", "focused", "with-value", "advanced-search"];
-    component.props = ["value", "defaultValue", "placeholder", "disabled", "state", "surface", "advancedSearch", "advancedSearchLabel", "onAdvancedSearch", "onChange", "onClear"];
-    component.slots = ["leading", "value", "clear", "advanced-search"];
+    component.variants = ["default", "focused", "with-value", "advanced-search", "scoped-search", "scoped-advanced-search"];
+    component.props = ["value", "defaultValue", "placeholder", "disabled", "state", "surface", "scope", "defaultScope", "scopeOptions", "scopeLabel", "onScopeChange", "advancedSearch", "advancedSearchLabel", "onAdvancedSearch", "onChange", "onClear"];
+    component.slots = ["scope-selector", "leading", "value", "clear", "advanced-search"];
     component.slotContracts = {
       ...component.slotContracts,
+      "scope-selector": {
+        cardinality: "0..1",
+        optional: true,
+        configurable: true,
+        configurationProps: ["scopeOptions", "scope", "defaultScope", "scopeLabel", "onScopeChange"],
+        scope: "search-query-builder",
+        defaultPlacement: "leading-before-search-icon",
+        control: "native-select",
+        defaultLabel: "搜索范围",
+        defaultValue: "first-scope-option",
+        dividerToken: "color.border",
+        interaction: "change-search-scope",
+        coexistenceOrder: ["scope-selector", "leading", "value", "clear", "advanced-search"]
+      },
       "advanced-search": {
         cardinality: "0..1",
+        optional: true,
+        configurable: true,
+        configurationProps: ["advancedSearch", "advancedSearchLabel", "onAdvancedSearch"],
         scope: "search-query-builder",
         defaultPlacement: "trailing-after-clear",
         control: "small-text-button",
@@ -492,7 +510,7 @@ for (const component of registry.components) {
         coexistenceOrder: ["clear", "advanced-search"]
       }
     };
-    component.behaviors = ["input", "clear", "advanced-search", "focus", "disabled"];
+    component.behaviors = ["input", "scope-select", "clear", "advanced-search", "focus", "disabled"];
   }
   if (component.id === "attachment") {
     component.iconSlots = [{ slot: "menu-trigger", alias: "navigation/chevron-down", displaySizes: [20], kind: "regular" }];
@@ -532,10 +550,23 @@ for (const component of registry.components) {
       paneRole: ["global", "primary-navigation", "secondary-pane", "final-pane"],
       segmentRole: ["global", "primary-navigation", "secondary-list", "main-content", "main-detail", "secondary-pane", "final-pane"]
     };
-    component.props = ["label", "paneTitle", "size", "layout", "paneRole", "segmentRole", "slots", "showWindowControls", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
-    component.slots = ["leading", "label", "main-content-title", "main-detail-actions", "actions"];
+    component.props = ["label", "paneTitle", "size", "layout", "paneRole", "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
+    component.slots = ["logo", "leading", "label", "secondary-pane-content", "main-content-title", "main-detail-actions", "actions"];
     component.slotContracts = {
       ...component.slotContracts,
+      logo: {
+        cardinality: "0..1",
+        scope: "titlebar-logo",
+        valueType: "image-object",
+        activeRoles: ["global", "primary-navigation", "secondary-pane", "final-pane"],
+        fields: ["src", "alt"],
+        visibilityProp: "showLogo",
+        defaultVisibility: { global: true, "primary-navigation": true, "secondary-pane": false, "final-pane": false }
+      },
+      leading: {
+        ...component.slotContracts?.leading,
+        deprecatedAliasFor: "logo"
+      },
       "main-content-title": {
         cardinality: "0..1",
         scope: "main-content-pane-global",

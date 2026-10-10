@@ -59,14 +59,30 @@ const runtimePreviewTitleLayer = (patternId) => {
   return `<div class="tui-pattern-runtime__title-segments" data-pattern-title-segments="${patternId}">${segments.map(({ region, ...segment }) => `<div class="tui-pattern-runtime__title-segment" data-pattern-title-segment="${region}">${renderHtmlComponent("titlebar", segment)}</div>`).join("")}</div>`;
 };
 
+const secondaryListCards = [
+  { id: "client-design-system", type: "project", title: "客户端设计系统", meta: "1 小时前 · 3 位成员" },
+  { id: "component-guidelines", type: "specification", title: "组件规范", meta: "2 小时前 · 4 位成员" },
+  { id: "workbench-refresh", type: "workbench", title: "工作台改版", meta: "3 小时前 · 5 位成员" },
+  { id: "release-check", type: "release", title: "发布检查", meta: "4 小时前 · 6 位成员" }
+];
+
 const runtimePreviewRegionContent = (patternId) => {
   if (patternId === "pattern-a-two-pane") {
     return {
       "main-content": `<div class="pattern-runtime-preview-content"><div class="pattern-runtime-preview-card"><strong data-typography-role="subtitle-m">项目概览</strong><span data-typography-role="body-m">页面内容由业务方填入，Pattern 只提供区域和滚动边界。</span></div><div class="pattern-runtime-preview-card pattern-runtime-preview-card--large"><span class="pattern-runtime-preview-line"></span><span class="pattern-runtime-preview-line pattern-runtime-preview-line--wide"></span><span class="pattern-runtime-preview-line pattern-runtime-preview-line--short"></span></div></div>`
     };
   }
+  const secondaryListAction = renderHtmlComponent("button", {
+    label: "筛选",
+    variant: "ghost",
+    size: "standard",
+    mode: "icon",
+    iconName: "action/filter",
+    extraAttrs: ' data-pattern-content-slot="secondary-list-actions" data-action-scope="secondary-list"'
+  });
+  const secondaryListCardsMarkup = secondaryListCards.map((card, index) => `<button class="pattern-runtime-preview-list-item${index === 0 ? " is-selected" : ""}" type="button" data-pattern-content-slot="secondary-list-card-${card.id}" data-pattern-card-type="${card.type}" data-selected="${index === 0}"><span class="pattern-runtime-preview-list-icon" data-slot="leading">${index + 1}</span><span class="pattern-runtime-preview-list-item-content" data-slot="content"><strong data-slot="title" data-typography-role="body-l">${card.title}</strong><small data-slot="description" data-typography-role="body-m">${card.meta}</small></span></button>`).join("");
   return {
-    "secondary-list": `<div class="pattern-runtime-preview-list"><div class="pattern-runtime-preview-list-heading"><strong data-typography-role="subtitle-m">全部任务</strong><span data-typography-role="body-m">18 个项目</span></div>${["客户端设计系统", "组件规范", "工作台改版", "发布检查"].map((label, index) => `<button class="pattern-runtime-preview-list-item${index === 0 ? " is-selected" : ""}" type="button"><span class="pattern-runtime-preview-list-icon">${index + 1}</span><span><strong data-typography-role="body-l">${label}</strong><small data-typography-role="body-m">${index + 1} 小时前 · ${index + 3} 位成员</small></span></button>`).join("")}</div>`,
+    "secondary-list": `<div class="pattern-runtime-preview-list" role="list" aria-label="任务列表"><div class="pattern-runtime-preview-list-heading"><strong data-typography-role="title-s">全部任务</strong><span class="pattern-runtime-preview-list-heading-actions" data-slot="actions">${secondaryListAction}</span></div><div class="pattern-runtime-preview-list-meta" data-slot="meta"><span data-typography-role="body-m">18 个项目</span></div>${secondaryListCardsMarkup}</div>`,
     "main-detail": `<div class="pattern-runtime-preview-content"><div class="pattern-runtime-preview-detail-heading"><strong data-typography-role="title-m">客户端设计系统</strong><span class="pattern-runtime-preview-status">进行中</span></div><p data-typography-role="body-m">这里是业务方详情内容。Renderer 负责 pane 顺序、标题段、滚动和 inset；页面内容仍由调用方提供。</p><div class="pattern-runtime-preview-card pattern-runtime-preview-card--large"><span class="pattern-runtime-preview-line"></span><span class="pattern-runtime-preview-line pattern-runtime-preview-line--wide"></span><span class="pattern-runtime-preview-line pattern-runtime-preview-line--short"></span></div></div>`
   };
 };

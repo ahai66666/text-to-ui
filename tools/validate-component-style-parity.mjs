@@ -149,6 +149,9 @@ for (const rule of [
   ".tui-radio input:checked + .tui-radio__indicator"
 ]) requireText(packageCss, rule, "Radio component CSS");
 const search = contracts.components.find((component) => component.id === "search");
+const searchStates = ["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"];
+if (JSON.stringify(search?.states) !== JSON.stringify(searchStates) || JSON.stringify(search?.allowedStates) !== JSON.stringify(searchStates)) failures.push("search: states must match the nine current Pixso states");
+if (search?.states?.includes("error") || search?.allowedStates?.includes("error")) failures.push("search: Error is not a supported state");
 if (!search?.slots?.includes("advanced-search")) failures.push("search: advanced-search slot is missing");
 if (search?.slotContracts?.["advanced-search"]?.defaultPlacement !== "trailing-after-clear") failures.push("search: advanced-search placement contract is missing");
 if (JSON.stringify(search?.slotContracts?.["advanced-search"]?.coexistenceOrder) !== JSON.stringify(["clear", "advanced-search"])) failures.push("search: clear and advanced-search order is invalid");
@@ -161,8 +164,30 @@ if (search?.slotContracts?.["advanced-search"]?.trailingInsetToken !== "space/2"
 requireText(packageCss, ".tui-search__advanced", "Search advanced slot CSS");
 requireText(packageCss, ".tui-search__advanced { flex: 0 0 auto;", "Search advanced text button sizing");
 requireText(packageCss, ".tui-search .tui-search__advanced { color: var(--color-text-muted);", "Search advanced secondary text color");
-requireText(packageCss, ".tui-search:has([data-slot=\"advanced-search\"]) { padding-right: var(--space-2);", "Search advanced trailing inset");
+requireText(packageCss, ".tui-search:has([data-slot=\"advanced-search\"]):not(:has(.tui-search__scope)) { padding-right: var(--space-2);", "Search advanced trailing inset without scope");
+for (const rule of [
+  ".tui-search__input-region { min-width: 0; height: 100%; display: flex; align-items: center; gap: var(--space-3); flex: 1 1 auto; padding-inline-start: 0;",
+  ".tui-search:has(.tui-search__scope) { gap: 0; padding: 0; border: 0; }",
+  ".tui-search:has(.tui-search__scope) > .tui-search__input-region { padding-inline: var(--space-3) var(--space-2);",
+  ".tui-search__scope.tui-advanced-menu { width: 73px; min-width: 73px; height: 100%;",
+  ".tui-search[data-surface=\"gray\"][data-state=\"hover-left\"] > .tui-search__scope",
+  ".tui-search[data-surface=\"gray\"][data-state=\"hover-right\"] > .tui-search__input-region",
+  ".tui-search[data-surface=\"gray\"][data-state=\"pressed-left\"] > .tui-search__scope",
+  ".tui-search[data-surface=\"gray\"][data-state=\"pressed-right\"] > .tui-search__input-region",
+  "box-shadow: inset 0 0 0 2px var(--color-input-hover-border-on-subtle)",
+  ".tui-search__scope .tui-advanced-menu__trigger > .tui-icon:last-child { margin: 0; width: var(--size-6); height: var(--size-6); color: var(--color-icon);",
+  ".tui-search [data-slot=\"clear\"] { width: var(--icon-size-sm); height: var(--icon-size-sm); flex: 0 0 var(--icon-size-sm); color: var(--color-icon);",
+  ".tui-search input::placeholder { color: var(--color-text-muted); }"
+]) requireText(packageCss, rule, "Search split hover-zone CSS");
 requireText(packageCss, ".tui-primary-navigation-item [data-slot=\"icon\"] { width: var(--icon-size-lg); height: var(--icon-size-lg);", "Primary navigation regular icon sizing");
+for (const rule of [
+  ".tui-disclosure__trigger > [data-slot=\"label\"] { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }",
+  ".tui-generated__disclosure > [data-slot=\"label\"] { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+]) requireText(packageCss, rule, "Disclosure long-label ellipsis CSS");
+for (const rule of [
+  "padding-inline: var(--padding-popup-menu)",
+  ".tui-advanced-menu__item { min-height: var(--height-menu-item); display: flex; align-items: center; gap: var(--gap-menu-item-content); padding-inline: var(--padding-menu-item-x);"
+]) requireText(packageCss, rule, "Menu hover inset CSS");
 const semiModal = contracts.components.find((component) => component.id === "semi-modal");
 if (semiModal?.slotContracts?.close?.iconSize !== "20px" || semiModal?.slotContracts?.close?.trailingInset !== "16px") failures.push("semi-modal: close icon and trailing inset contract is invalid");
 for (const rule of [

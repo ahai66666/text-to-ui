@@ -14,6 +14,8 @@ const invalidShellBlockStroke = path.join(temp, "invalid-shell-block-stroke.css"
 const invalidOutline = path.join(temp, "invalid-outline.css");
 const validFocus = path.join(temp, "valid-focus.css");
 const validBusinessShell = path.join(temp, "valid-business-shell.css");
+const invalidResizerStroke = path.join(temp, "invalid-resizer-stroke.css");
+const validResizerStroke = path.join(temp, "valid-resizer-stroke.css");
 fs.writeFileSync(valid, ".mail-list { display: grid; }\n");
 fs.writeFileSync(invalid, "[data-pattern-shell-slot=primary-navigation-bottom] { display: grid; }\n");
 fs.writeFileSync(fixedCanvas, "main { width: 1728px; height: 1152px; transform: scale(.8); }\n");
@@ -22,6 +24,8 @@ fs.writeFileSync(invalidShellBlockStroke, ".mail-pane-shell { border-block-end: 
 fs.writeFileSync(invalidOutline, ".mail-card { outline: 2px solid var(--color-focus-ring); }\n");
 fs.writeFileSync(validFocus, ".mail-card:focus-visible { outline: 2px solid var(--color-focus-ring); }\n");
 fs.writeFileSync(validBusinessShell, ".fixture-demo-shell { border: 1px solid var(--color-border); }\n");
+fs.writeFileSync(invalidResizerStroke, ".content-resizer::before { border-inline-start: 2px solid var(--color-border); }\n");
+fs.writeFileSync(validResizerStroke, ".content-resizer::before { border-inline-start: var(--layout-navigation-divider-width) solid var(--color-border); }\n");
 const script = path.resolve("text-to-ui/scripts/validate-page-css-boundaries.mjs");
 assert.equal(spawnSync(process.execPath, [script, "--source", valid]).status, 0);
 assert.notEqual(spawnSync(process.execPath, [script, "--source", invalid]).status, 0);
@@ -31,5 +35,7 @@ assert.notEqual(spawnSync(process.execPath, [script, "--source", invalidShellBlo
 assert.notEqual(spawnSync(process.execPath, [script, "--source", invalidOutline]).status, 0);
 assert.equal(spawnSync(process.execPath, [script, "--source", validFocus]).status, 0);
 assert.equal(spawnSync(process.execPath, [script, "--source", validBusinessShell]).status, 0);
+assert.notEqual(spawnSync(process.execPath, [script, "--source", invalidResizerStroke]).status, 0);
+assert.equal(spawnSync(process.execPath, [script, "--source", validResizerStroke]).status, 0);
 fs.rmSync(temp, { recursive: true, force: true });
 console.log("Page CSS boundary tests passed.");

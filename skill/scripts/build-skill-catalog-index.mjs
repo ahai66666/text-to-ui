@@ -36,7 +36,7 @@ const catalog = {
   deliveryTargets: [
     'skill/',
     '$CODEX_HOME/skills/text-to-ui',
-    'TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT (optional user-selected directory)'
+    '$TEXT_TO_UI_PLUGIN_DELIVERY_ROOT'
   ],
   groups: groups.map(([id, purpose, files]) => ({ id, purpose, files: files.map((relative) => {
     const absolute = path.join(repo, relative);

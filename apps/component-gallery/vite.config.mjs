@@ -46,7 +46,7 @@ const managedPreviewHealthPlugin = () => ({
 // Vite's MutationObserver polyfill out of the preview avoids an unnecessary
 // runtime error in the embedded browser while preserving native module loading.
 export default defineConfig(({ command }) => ({
-  base: command === "serve" ? "/components/" : "./",
+  base: command === "serve" ? (process.env.TEXT_TO_UI_GALLERY_BASE ?? "/components/") : "./",
   plugins: [vue(), managedPreviewHealthPlugin(), fileRuntimeFallbackPlugin(), selfContainedCssPlugin()],
   server: {
     host: "127.0.0.1",

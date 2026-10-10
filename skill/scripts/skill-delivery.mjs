@@ -92,10 +92,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     else verifySkill(source, target);
   }
   const pluginSource = path.join(source, "scripts/pixso-unified-agent-plugin");
-  const pluginTarget = process.env.TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT
+  const configuredPluginTarget = process.env.TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT
     ?? process.env.TEXT_TO_UI_PLUGIN_DELIVERY_ROOT
     ?? null;
-  const pluginExists = pluginTarget !== null && fs.existsSync(pluginTarget);
+  const pluginTarget = configuredPluginTarget ? path.resolve(configuredPluginTarget) : null;
+  const pluginExists = Boolean(pluginTarget && fs.existsSync(pluginTarget));
   if (pluginExists) {
     const pluginFiles = Object.fromEntries(skillFiles(pluginSource).map(file => [file, hash(fs.readFileSync(path.join(pluginSource, file)))]));
     if (write) syncFiles(pluginSource, pluginTarget, pluginFiles, path.join(backup, "plugin"));
@@ -110,12 +111,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     }
     if (write) fs.writeFileSync(pluginManifestPath, JSON.stringify({ schemaVersion: 1, sourceDigest: hash(JSON.stringify(pluginFiles)), files: pluginFiles }, null, 2) + "\n");
   }
-  console.log(JSON.stringify({
-    ok: true,
-    targets,
-    pluginTargetConfigured: Boolean(pluginTarget),
-    pluginTargetSynced: pluginExists,
-    files: skillFiles(source).length,
-    backup,
-  }, null, 2));
+  console.log(JSON.stringify({ ok: true, targets, pluginTarget: pluginExists ? pluginTarget : null, files: skillFiles(source).length, backup }, null, 2));
 }
