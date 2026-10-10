@@ -113,15 +113,15 @@
       "files": [
         {
           "path": "packages/component-contracts/src/components.json",
-          "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
+          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
         },
         {
           "path": "packages/component-contracts/src/components-runtime.js",
-          "sha256": "442d0f430f9245481361971cedd0f9e9b86631f8ac02696acacad17e1ae22184"
+          "sha256": "0098a0f8ad0b35e69d79c9d9002d0cdb7f2814ccc76304319d0c31df811f6edd"
         },
         {
           "path": "packages/component-contracts/src/parity-manifest.json",
-          "sha256": "d110f224486f90f2cbdefdbaf0a6b8b17a09ba8f0a0df83fc4fe86d62b3eee5c"
+          "sha256": "5b6077a411759173c5740a2c22c59c0918b6cf2a2cb184199b12aef1e4050bf9"
         },
         {
           "path": "packages/component-contracts/src/titlebar-segments.js",
@@ -259,7 +259,7 @@
         },
         {
           "path": "tools/validate-runtime-evidence.mjs",
-          "sha256": "e851997db828452cc33521b34c262211c97c6f04a9c40ee534362baf953a4173"
+          "sha256": "854228f06c1e6d7fcaa2e1bafbcb1f741f8a2c5e5440ae2ea81726fa661de609"
         },
         {
           "path": "text-to-ui/references/workflows/fast-preview.md",
@@ -273,7 +273,7 @@
       "files": [
         {
           "path": "package.json",
-          "sha256": "02c8cc047e08b15cbfe45e08f673efeed4f3789886d0608b5698dab06ce5b122"
+          "sha256": "4eb1324e73b8b2314572d78b77120acbcd8353c43ce6aaa2ef0ba4f75f852276"
         },
         {
           "path": "text-to-ui/SKILL.md",
@@ -281,7 +281,7 @@
         },
         {
           "path": "text-to-ui/package.json",
-          "sha256": "72df0b8e827418599b07af04ac135412b638c03e643af17b3cd773339e65e805"
+          "sha256": "76fae6094a0f7bf1be56ad80e754c7611033ac2214952c7a8685af8f41324ff4"
         },
         {
           "path": "text-to-ui/scripts/skill-delivery.mjs",
@@ -299,7 +299,7 @@
     },
     {
       "id": "gallery-preview-and-baseline",
-      "purpose": "Gallery/Preview source and visual baseline checks.",
+      "purpose": "Current Gallery/Preview source and runtime checks.",
       "files": [
         {
           "path": "apps/component-gallery/runtime-catalog.js",
@@ -311,7 +311,7 @@
         },
         {
           "path": "apps/component-gallery/preview.js",
-          "sha256": "9a75fc4543671f81dae52e5b3329ac0c78f6cf1f56d469944a5558f70a0acebb"
+          "sha256": "373c601689df13a3e3c9d23b1d34a2b9d5e0f2fe0d2b3aaa7bea17001ff5e8a0"
         },
         {
           "path": "apps/component-gallery/gallery.css",
@@ -319,11 +319,11 @@
         },
         {
           "path": "tools/test-gallery-readiness.mjs",
-          "sha256": "c0d7a49fef8ad268183b6c568d398772743c7beb6bbd390928e26715571af866"
+          "sha256": "ea8d7bd4e6266530eb970ee54bb53339ab2e8859c64fcb35da3fa99d995e7772"
         },
         {
-          "path": "tools/validate-legacy-baseline.mjs",
-          "sha256": "1ce6a5f60884b4a44cffd6e10a8d77ec8128af4da62bbce448c9e2fee489df0e"
+          "path": "tools/validate-gallery-dist.mjs",
+          "sha256": "81aa2c048aa3598204d397b581756798718f160eb558201d8e48fb8a82c7318d"
         }
       ]
     }

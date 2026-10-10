@@ -30,7 +30,7 @@ pnpm delivery:validate
 分别引入对应框架包和 `styles.css`。React、Vue 不共享源码，而是共享契约、Token、状态和视觉验收标准。
 只有三套实现都通过契约校验时，注册表才可以把组件标记为 `ready`；否则只能标记 `partial`。
 
-实现来源由契约的 `sourceStrategy` 决定。简单的 HarmonyOS 控件直接复用旧 Skill 的结构规则；复杂键盘和弹层行为可以以 shadcn（React）或 shadcn-vue（Vue）为行为底座，但必须覆盖 canonical 样式，不能把默认 shadcn 皮肤带入页面。`@text-to-ui/component-styles` 是三个框架的统一 CSS 入口。
+实现来源由契约的 `sourceStrategy` 决定。简单控件按当前组件契约实现；复杂键盘和弹层行为可以以 shadcn（React）或 shadcn-vue（Vue）为行为底座，但必须覆盖 canonical 样式，不能把默认 shadcn 皮肤带入页面。`@text-to-ui/component-styles` 是三个框架的统一 CSS 入口。
 
 ## Pixso
 

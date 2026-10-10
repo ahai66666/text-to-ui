@@ -16,9 +16,9 @@ authority layers:
 3. The real framework component implementations and their imported component
    CSS in `packages/components-*` and `packages/component-styles` own the
    rendered production structure, variants, and visual result.
-4. `preview/component-gallery.html` plus its CSS is a review/regression
-   surface. It must not override a framework component's shape or omit a
-   framework-supported variant during Pixso component construction.
+4. `apps/component-gallery/index.html#runtime-view` is the sole review surface
+   for real framework adapters. It must not override a component's shape or
+   omit a framework-supported variant during Pixso component construction.
 5. Pixso is a generated reusable representation of the framework rules.
 
 Do not infer a Pixso component from its name alone. Build and check the

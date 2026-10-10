@@ -356,7 +356,7 @@ node scripts/test-validate-page-contract.mjs
 # 检查 HTML、React、Vue 共用的组件注册和适配契约
 node scripts/validate-framework-component-adapter-map.mjs
 node scripts/test-framework-component-contract.mjs
-node scripts/validate-framework-component-runtime.mjs
+node ../tools/validate-runtime-parity.mjs
 
 # 检查双端 Token 映射与 Web 覆盖
 node scripts/validate-dual-output.mjs \
@@ -367,11 +367,10 @@ node scripts/validate-dual-output.mjs \
 node scripts/audit-icons.mjs --strict preview/lucide-source-test.html
 ```
 
-视觉回归页面：
+预览约定：
 
-- `preview/component-gallery.html`：组件、状态、覆盖层和 Pattern。
-- `preview/framework-component-gallery.js`：同一组件矩阵的 HTML、React、Vue 框架切换入口。
-- `preview/framework-component-interaction-audit.js`：三种 Web 渲染器的真实交互审计。
+- 完整 Monorepo 的唯一组件画廊：`apps/component-gallery/index.html#runtime-view`，使用仓库根目录的 Gallery 构建与服务命令。
+- 独立 Skill 不打包第二套组件画廊或历史预览；仅包含图标、布局等专项测试页。
 - `preview/icon-gallery.html`：HarmonyOS 图标资源。
 - `preview/lucide-source-test.html`：图标来源与精确几何验证。
 - `preview/layout-inset-test.html`：桌面布局与窗口边距验证。

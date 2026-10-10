@@ -16,7 +16,6 @@ const aliases = JSON.parse(
   fs.readFileSync(path.join(root, "assets/icons/icon-aliases.json"), "utf8"),
 ).aliases;
 const css = [
-  fs.readFileSync(path.join(root, "preview/component-gallery.css"), "utf8"),
   fs.readFileSync(path.join(root, "..", "packages/component-styles/src/index.css"), "utf8"),
 ].join("\n");
 const frameworkComponentCss = fs.readFileSync(
@@ -97,8 +96,12 @@ for (const name of expectedSpecNames) {
   }
   const selectorClasses = [...(item.previewSelector ?? "").matchAll(/\.([a-zA-Z0-9_-]+)/g)]
     .map((match) => `.${match[1]}`);
-  if (!item.previewSelector || !selectorClasses.some((className) => css.includes(className))) {
-    errors.push(`Preview selector is not represented in gallery CSS: ${name} -> ${item.previewSelector}`);
+  if (item.previewStatus === "current-framework") {
+    if (!item.previewSelector || !String(item.previewSelector).includes(".tui-") || !selectorClasses.some((className) => css.includes(className))) {
+      errors.push(`Preview selector must identify a current framework component: ${name} -> ${item.previewSelector}`);
+    }
+  } else if (item.previewStatus !== "pixso-library-only" || item.previewSelector) {
+    errors.push(`Component without a current framework preview must be marked pixso-library-only: ${name}`);
   }
   for (const style of Object.values(item.textRoles ?? {})) {
     if (!specs.shared.typographyPolicy.styles.includes(style)) {

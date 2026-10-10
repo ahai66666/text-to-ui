@@ -12,8 +12,6 @@ const viewAliases = {
   "contract-components": "runtime",
   "all-components": "runtime",
   "framework-runtime": "runtime",
-  "legacy-catalog": "regression",
-  "skill-baseline": "regression",
   coverage: "regression"
 };
 const views = [...document.querySelectorAll("[data-view]")];

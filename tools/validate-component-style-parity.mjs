@@ -4,8 +4,6 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
-const canonicalCss = read("text-to-ui/preview/component-gallery.css");
-const fixtureCss = read("text-to-ui/fixtures/framework-component-contract/shared/interactive-components.css");
 const packageCss = read("packages/component-styles/src/index.css");
 const compatibilityCss = read("packages/component-contracts/src/components.css");
 const gallery = read("apps/component-gallery/index.html");
@@ -43,8 +41,7 @@ for (const token of [
   "--size-icon-button",
   "--color-sidebar-selected",
   "--state-layer-pressed"
-]) requireText(canonicalCss, token, "canonical Skill CSS");
-requireText(canonicalCss, ".btn-icon-text-ghost { color: var(--color-text); gap: var(--space-2); padding-inline: var(--space-3);", "canonical Skill Button CSS");
+]) requireText(packageCss, token, "canonical component CSS");
 
 for (const selector of [
   ".tui-button",
@@ -70,9 +67,8 @@ for (const rule of [
   "padding-inline: 11px",
   ".tui-titlebar[data-state=\"unfocus\"]"
 ]) requireText(packageCss, rule, "component geometry/state CSS");
-requireText(fixtureCss, ".hm-sidebar-item[data-state=\"selected\"]", "framework fixture CSS");
-requireText(gallery, "/legacy-skill/preview/component-gallery.html", "component gallery canonical baseline");
-requireText(gallery, "/legacy-skill/preview/framework-component-contract/preview.html", "component gallery framework runtime baseline");
+requireText(gallery, 'data-view="runtime"', "current component gallery runtime view");
+if (/legacy-skill|data-legacy-path|framework-component-contract|component-gallery\.html/.test(gallery)) failures.push("current component gallery must not link or copy historical Skill previews");
 requireText(galleryRuntime, 'import "../../packages/components-html/src/styles.css"', "component gallery component stylesheet entry");
 requireText(galleryRuntime, 'import "./framework-runtime.css"', "component gallery runtime stylesheet entry");
 requireText(galleryRuntime, 'import "./gallery.css"', "component gallery shell stylesheet entry");

@@ -35,7 +35,9 @@ for (const component of components) {
   if (orders.has(component.order)) failures.push(`duplicate component order: ${component.order}`);
   ids.add(component.id);
   orders.add(component.order);
-  if (!component.fixtureId || !component.canonicalSpecimen || !component.legacyVisualGroup) failures.push(`${component.id}: missing parity identity`);
+  if (!component.fixtureId || !component.canonicalSpecimen || !component.comparisonGroup) failures.push(`${component.id}: missing gallery comparison identity`);
+  if (!component.canonicalSelector?.includes(`[data-fixture-id="${component.fixtureId}"]`)) failures.push(`${component.id}: canonical selector does not target its current gallery fixture`);
+  if (!component.canonicalSpecimen?.startsWith("gallery:")) failures.push(`${component.id}: canonical specimen is not from the current gallery`);
   if (!component.specimens?.length) failures.push(`${component.id}: missing structural specimen`);
   for (const key of requiredDimensions) {
     if (typeof component.readiness?.[key] !== "boolean") failures.push(`${component.id}: missing readiness.${key}`);

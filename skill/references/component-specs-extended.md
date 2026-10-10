@@ -1,6 +1,6 @@
 # Extended Component Specifications
 
-Use this reference for components beyond the core Button, Field, Tabs, Card, Table, and Feedback rules in `assets/design-system/design.md`. Every component must reuse semantic tokens, preserve native semantics where possible, and appear in `preview/component-gallery.html` before it is considered covered.
+Use this reference for components beyond the core Button, Field, Tabs, Card, Table, and Feedback rules in `assets/design-system/design.md`. Every component must reuse semantic tokens, preserve native semantics where possible, and be registered in `packages/component-contracts/src/components.json`; verify its real adapter in `apps/component-gallery/index.html#runtime-view`.
 
 ## Universal Contract
 

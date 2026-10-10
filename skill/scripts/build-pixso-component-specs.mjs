@@ -123,6 +123,7 @@ const spec = (
 ) => ({
   family,
   previewSelector,
+  previewStatus: previewSelector ? "current-framework" : "pixso-library-only",
   sizing: { masterWidth, placementWidth, height },
   autoLayout: true,
   textRoles,
@@ -155,7 +156,7 @@ function componentSpec(name) {
     });
   }
   if (name === "Split Dropdown Button/Icon Text/Default") {
-    return spec("Split Dropdown Button", ".split-control", "hug", "hug", 40, { Label: "Body_L" }, {
+    return spec("Split Dropdown Button", ".tui-split-button", "hug", "hug", 40, { Label: "Body_L" }, {
       direction: "horizontal",
       nestedGroups: ["Main Action", "Dropdown Trigger"],
       gapToken: "gap/button-icon-label",
@@ -163,7 +164,7 @@ function componentSpec(name) {
     });
   }
   if (name === "Split Dropdown Button/Icon Only/Default") {
-    return spec("Split Dropdown Button", ".split-control", "hug", "hug", 40, {}, {
+    return spec("Split Dropdown Button", ".tui-split-button", "hug", "hug", 40, {}, {
       direction: "horizontal",
       gapToken: "gap/button-icon-label",
       iconSizes: [20, 16],
@@ -173,7 +174,7 @@ function componentSpec(name) {
     return spec("Toggle", ".toggle-btn", 56, "fixed", 32, {}, { iconSize: 20 });
   }
   if (name === "Selection Dropdown/Default") {
-    return spec("Selection Dropdown", ".selection-dropdown-trigger", "hug", "hug", 40, {
+    return spec("Selection Dropdown", null, "hug", "hug", 40, {
       Label: "Body_L",
     }, {
       direction: "horizontal",
@@ -195,7 +196,7 @@ function componentSpec(name) {
     });
   }
   if (name.startsWith("Field/")) {
-    return spec("Field", ".form-field", 280, "fill", name.endsWith("With Description") ? 92 : 68, {
+    return spec("Field", ".tui-field", 280, "fill", name.endsWith("With Description") ? 92 : 68, {
       Label: "Body_L",
       Value: "Body_L",
       Description: "Body_M",
@@ -327,7 +328,7 @@ function componentSpec(name) {
     });
   }
   if (name === "Input OTP/Default") {
-    return spec("Input OTP", ".otp", "hug", "hug", 44, { Digit: "Body_L" }, {
+    return spec("Input OTP", ".tui-input-otp", "hug", "hug", 44, { Digit: "Body_L" }, {
       direction: "horizontal",
       gapToken: "gap/button-icon-label",
     });
@@ -390,7 +391,7 @@ function componentSpec(name) {
   }
   if (name === "Date Picker/Default" || name === "Time Picker/Default") {
     const isDate = name.startsWith("Date");
-    return spec(isDate ? "Date Picker" : "Time Picker", isDate ? ".date-picker-trigger" : ".time-picker-trigger", 280, "fill", 40, {
+    return spec(isDate ? "Date Picker" : "Time Picker", ".tui-picker__trigger", 280, "fill", 40, {
       Value: "Body_L",
     }, {
       direction: "horizontal",
@@ -400,7 +401,7 @@ function componentSpec(name) {
   }
   if (name.startsWith("Titlebar/")) {
     const size = name.split("/")[1];
-    return spec("Titlebar", `.pc-titlebar-${size.toLowerCase()}`, 640, "fill", {
+    return spec("Titlebar", ".tui-titlebar", 640, "fill", {
       S: 40,
       M: 56,
       L: 64,
@@ -430,13 +431,13 @@ function componentSpec(name) {
     });
   }
   if (name === "Sidebar Group Header/Collapsed") {
-    return spec("Sidebar Group Header", ".pattern-secondary-heading", 240, "fill", 40, { Label: "Subtitle_S" }, {
+    return spec("Sidebar Group Header", ".tui-sidebar-group", 240, "fill", 40, { Label: "Subtitle_S" }, {
       direction: "horizontal",
       iconSize: 16,
     });
   }
   if (name === "Primary Level Icon/Default") {
-    return spec("Primary Level Icon", ".pattern-primary-level-icon", 40, "fixed", 40, {}, {
+    return spec("Primary Level Icon", ".tui-primary-navigation-item", 40, "fixed", 40, {}, {
       iconSize: 24,
       iconAliases: ["navigation/grid"],
       transparent: true,
@@ -471,7 +472,7 @@ function componentSpec(name) {
   }
   if (name.startsWith("Tabs/")) {
     const type = name.split("/")[1];
-    return spec("Tabs", type === "Filled" ? ".tabs-filled" : type === "Line" ? ".tabs-line" : ".tabs-vertical", type === "Vertical" ? 220 : 360, "fill", type === "Vertical" ? "hug" : 40, {
+    return spec("Tabs", ".tui-tabs", type === "Vertical" ? 220 : 360, "fill", type === "Vertical" ? "hug" : 40, {
       Label: "Body_M",
     }, { direction: type === "Vertical" ? "vertical" : "horizontal" });
   }
@@ -483,7 +484,7 @@ function componentSpec(name) {
     });
   }
   if (name === "Pagination Item/Default") {
-    return spec("Pagination Item", ".pagination-item", 32, "fixed", 32, { Label: "Body_M" });
+    return spec("Pagination Item", ".tui-pagination button", 32, "fixed", 32, { Label: "Body_M" });
   }
   if (name === "Pagination/Default") {
     return spec("Pagination", ".tui-pagination", "hug", "hug", 40, { Label: "Body_L" }, {
@@ -511,14 +512,14 @@ function componentSpec(name) {
     });
   }
   if (name === "Metric Card/Default") {
-    return spec("Metric Card", ".metric-card", 320, "fill", 148, {
+    return spec("Metric Card", null, 320, "fill", 148, {
       Label: "Body_M",
       Value: "Display_M",
       Context: "Subtitle_S",
     }, { direction: "vertical", paddingToken: "padding/card" });
   }
   if (name.startsWith("List Item/")) {
-    return spec("List Item", ".list-item", 360, "fill", 48, {
+    return spec("List Item", ".tui-list-card", 360, "fill", 48, {
       Primary: "Body_L",
       Secondary: "Body_M",
     }, {
@@ -529,24 +530,24 @@ function componentSpec(name) {
     });
   }
   if (name.startsWith("List Container/")) {
-    return spec("List Container", ".list", 360, "fill", "hug", {
+    return spec("List Container", ".tui-list-card-group", 360, "fill", "hug", {
       Primary: "Body_L",
       Secondary: "Body_M",
     }, { direction: "vertical", gapToken: "gap/list-item" });
   }
   if (name === "Table/Default") {
-    return spec("Table", ".table-card", 720, "fill", "hug", {
+    return spec("Table", ".tui-table", 720, "fill", "hug", {
       Header: "Subtitle_S",
       Cell: "Body_L",
     }, { direction: "vertical", paddingToken: "padding/table" });
   }
   if (name === "Table Header/Default") {
-    return spec("Table Header", ".data-table thead tr", 720, "fill", 40, { Cell: "Subtitle_S" }, {
+    return spec("Table Header", ".tui-table", 720, "fill", 40, { Cell: "Subtitle_S" }, {
       direction: "horizontal",
     });
   }
   if (name === "Table Row/Default") {
-    return spec("Table Row", ".data-table tbody tr", 720, "fill", 48, { Cell: "Body_L" }, {
+    return spec("Table Row", ".tui-table", 720, "fill", 48, { Cell: "Body_L" }, {
       direction: "horizontal",
     });
   }
@@ -563,7 +564,7 @@ function componentSpec(name) {
   }
   if (name.startsWith("Avatar/")) {
     const size = Number(name.split("/")[1]);
-    return spec("Avatar", ".avatar", size, "fixed", size, { Initials: "Body_S" }, {
+    return spec("Avatar", ".tui-avatar", size, "fixed", size, { Initials: "Body_S" }, {
       iconSize: size === 32 ? 20 : 24,
       radiusToken: "radius/avatar",
     });
@@ -689,7 +690,7 @@ function componentSpec(name) {
     });
   }
   if (name === "Tooltip/Default") {
-    return spec("Tooltip", ".tooltip", "hug", "hug", "hug", { Message: "Body_S" }, {
+    return spec("Tooltip", ".tui-tooltip", "hug", "hug", "hug", { Message: "Body_S" }, {
       maxWidth: 240,
       paddingToken: "padding/tooltip",
       effectStyle: "Effect/Foundation/shadow-1",
@@ -720,8 +721,9 @@ const output = {
   generatedFrom: [
     "assets/design-system/pixso-component-registry.json",
     "assets/design-system/pixso-component-facts.json",
-    "preview/component-gallery.html",
-    "preview/component-gallery.css",
+    "packages/component-contracts/src/components.json",
+    "packages/component-styles/src/index.css",
+    "apps/component-gallery/index.html",
     "assets/design-system/tokens.*.json",
     "assets/icons/icon-aliases.json",
     "assets/design-system/pixso-icon-map.json",

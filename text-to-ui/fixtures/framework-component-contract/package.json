@@ -3,16 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build && cp -R ../../assets/design-system dist/assets/design-system",
-    "test": "node ../../scripts/test-framework-component-contract.mjs && node ../../scripts/validate-framework-component-runtime.mjs"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "@vitejs/plugin-vue": "latest",
-    "vite": "latest",
-    "vue": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "test": "node ../../scripts/test-framework-component-contract.mjs"
   }
 }

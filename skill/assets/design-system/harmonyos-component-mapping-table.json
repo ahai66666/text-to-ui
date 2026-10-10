@@ -10,10 +10,10 @@
     "strictParityRequiresEveryUsedTargetVerified": true
   },
   "summary": {
-    "total": 86,
+    "total": 80,
     "mapped-pending-verification": 16,
     "mapped-needs-rebuild": 4,
-    "missing-target": 66
+    "missing-target": 60
   },
   "rows": [
     {
@@ -179,17 +179,6 @@
     {
       "category": "01 Actions",
       "target": "Dropdown Menu/Default",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "01 Actions",
-      "target": "Toggle/Off/Default",
       "status": "missing-target",
       "sourceComponentSet": null,
       "sourceVariant": null,
@@ -890,61 +879,6 @@
     {
       "category": "04 Data Display",
       "target": "Progress/Default",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "04 Data Display",
-      "target": "Spinner/Default",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "04 Data Display",
-      "target": "Skeleton/Text",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "04 Data Display",
-      "target": "Skeleton/Avatar",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "04 Data Display",
-      "target": "Skeleton/List Row",
-      "status": "missing-target",
-      "sourceComponentSet": null,
-      "sourceVariant": null,
-      "sourceVariantAliases": [],
-      "reuse": null,
-      "strictEligible": false,
-      "nextAction": "Add a source mapping or draw a new registered target, then verify it live in Pixso."
-    },
-    {
-      "category": "04 Data Display",
-      "target": "Skeleton/Card",
       "status": "missing-target",
       "sourceComponentSet": null,
       "sourceVariant": null,

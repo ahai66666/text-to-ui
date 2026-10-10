@@ -3,8 +3,9 @@
   "generatedFrom": [
     "assets/design-system/pixso-component-registry.json",
     "assets/design-system/pixso-component-facts.json",
-    "preview/component-gallery.html",
-    "preview/component-gallery.css",
+    "packages/component-contracts/src/components.json",
+    "packages/component-styles/src/index.css",
+    "apps/component-gallery/index.html",
     "assets/design-system/tokens.*.json",
     "assets/icons/icon-aliases.json",
     "assets/design-system/pixso-icon-map.json"
@@ -61,6 +62,7 @@
     "Accordion/Collapsed": {
       "family": "Accordion",
       "previewSelector": ".tui-disclosure[data-component=\"accordion\"] .tui-disclosure__trigger",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -76,6 +78,7 @@
     "Alert/Error": {
       "family": "Alert",
       "previewSelector": ".tui-alert",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -100,6 +103,7 @@
     "Alert/Info": {
       "family": "Alert",
       "previewSelector": ".tui-alert",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -124,6 +128,7 @@
     "Alert/Neutral": {
       "family": "Alert",
       "previewSelector": ".tui-alert",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -148,6 +153,7 @@
     "Alert/Success": {
       "family": "Alert",
       "previewSelector": ".tui-alert",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -172,6 +178,7 @@
     "Alert/Warning": {
       "family": "Alert",
       "previewSelector": ".tui-alert",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -195,7 +202,8 @@
     },
     "Avatar/32/Fallback": {
       "family": "Avatar",
-      "previewSelector": ".avatar",
+      "previewSelector": ".tui-avatar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 32,
         "placementWidth": "fixed",
@@ -210,7 +218,8 @@
     },
     "Avatar/32/Image": {
       "family": "Avatar",
-      "previewSelector": ".avatar",
+      "previewSelector": ".tui-avatar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 32,
         "placementWidth": "fixed",
@@ -225,7 +234,8 @@
     },
     "Avatar/40/Fallback": {
       "family": "Avatar",
-      "previewSelector": ".avatar",
+      "previewSelector": ".tui-avatar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 40,
         "placementWidth": "fixed",
@@ -240,7 +250,8 @@
     },
     "Avatar/40/Image": {
       "family": "Avatar",
-      "previewSelector": ".avatar",
+      "previewSelector": ".tui-avatar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 40,
         "placementWidth": "fixed",
@@ -256,6 +267,7 @@
     "Badge/Info": {
       "family": "Badge",
       "previewSelector": ".tui-badge",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -272,6 +284,7 @@
     "Badge/Neutral": {
       "family": "Badge",
       "previewSelector": ".tui-badge",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -288,6 +301,7 @@
     "Badge/Success": {
       "family": "Badge",
       "previewSelector": ".tui-badge",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -304,6 +318,7 @@
     "Badge/Warning": {
       "family": "Badge",
       "previewSelector": ".tui-badge",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -320,6 +335,7 @@
     "Breadcrumb/Default": {
       "family": "Breadcrumb",
       "previewSelector": ".tui-breadcrumb",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -336,6 +352,7 @@
     "Button/Ghost/Default": {
       "family": "Button",
       "previewSelector": ".tui-button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -353,6 +370,7 @@
     "Button/Primary/Default": {
       "family": "Button",
       "previewSelector": ".tui-button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -370,6 +388,7 @@
     "Button/Secondary/Default": {
       "family": "Button",
       "previewSelector": ".tui-button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -387,6 +406,7 @@
     "Checkbox/Unchecked/Default": {
       "family": "Checkbox",
       "previewSelector": ".tui-checkbox",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -403,6 +423,7 @@
     "Chips/Default": {
       "family": "Chips",
       "previewSelector": ".tui-chip",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -440,6 +461,7 @@
     "Collapsible/Collapsed": {
       "family": "Collapsible",
       "previewSelector": ".tui-disclosure[data-component=\"collapsible\"] .tui-disclosure__trigger",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -455,6 +477,7 @@
     "ColorPicker/Tablet": {
       "family": "ColorPicker",
       "previewSelector": ".tui-color-picker",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "hug",
@@ -479,6 +502,7 @@
     "Combobox/Gray Surface/Default": {
       "family": "Combobox",
       "previewSelector": ".tui-combobox",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -497,6 +521,7 @@
     "Combobox/White Surface/Default": {
       "family": "Combobox",
       "previewSelector": ".tui-combobox",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -514,7 +539,8 @@
     },
     "Date Picker/Default": {
       "family": "Date Picker",
-      "previewSelector": ".date-picker-trigger",
+      "previewSelector": ".tui-picker__trigger",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -531,6 +557,7 @@
     "Dialog/Default": {
       "family": "Dialog-2in1",
       "previewSelector": ".tui-dialog",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 400,
         "placementWidth": "fixed",
@@ -589,6 +616,7 @@
     "Dropdown Menu/Default": {
       "family": "Dropdown Menu",
       "previewSelector": ".tui-advanced-menu",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "hug",
@@ -625,7 +653,8 @@
     },
     "Field/Default": {
       "family": "Field",
-      "previewSelector": ".form-field",
+      "previewSelector": ".tui-field",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -645,7 +674,8 @@
     },
     "Field/With Description": {
       "family": "Field",
-      "previewSelector": ".form-field",
+      "previewSelector": ".tui-field",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -666,6 +696,7 @@
     "Form Field/Default": {
       "family": "Form Field",
       "previewSelector": ".tui-form-field",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -689,6 +720,7 @@
     "Icon Button/Ghost/Default": {
       "family": "Icon Button",
       "previewSelector": ".tui-button[data-mode=\"icon\"]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 40,
         "placementWidth": "fixed",
@@ -703,6 +735,7 @@
     "Icon Button/Secondary/Default": {
       "family": "Icon Button",
       "previewSelector": ".tui-button[data-mode=\"icon\"]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 40,
         "placementWidth": "fixed",
@@ -717,6 +750,7 @@
     "Icon Text Button/Ghost/Default": {
       "family": "Icon Text Button",
       "previewSelector": ".tui-button[data-mode=\"icon-text\"]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -735,6 +769,7 @@
     "Icon Text Button/Primary/Default": {
       "family": "Icon Text Button",
       "previewSelector": ".tui-button[data-mode=\"icon-text\"]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -753,6 +788,7 @@
     "Icon Text Button/Secondary/Default": {
       "family": "Icon Text Button",
       "previewSelector": ".tui-button[data-mode=\"icon-text\"]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -770,7 +806,8 @@
     },
     "Input OTP/Default": {
       "family": "Input OTP",
-      "previewSelector": ".otp",
+      "previewSelector": ".tui-input-otp",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -786,6 +823,7 @@
     "Input/Gray Surface/Default": {
       "family": "Input",
       "previewSelector": ".tui-input",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -804,6 +842,7 @@
     "Input/Tag Entry/Default": {
       "family": "Input",
       "previewSelector": ".tui-input--tag-entry",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -853,6 +892,7 @@
     "Input/White Surface/Default": {
       "family": "Input",
       "previewSelector": ".tui-input",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -870,7 +910,8 @@
     },
     "List Container/Gray Canvas": {
       "family": "List Container",
-      "previewSelector": ".list",
+      "previewSelector": ".tui-list-card-group",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -886,7 +927,8 @@
     },
     "List Container/White Canvas": {
       "family": "List Container",
-      "previewSelector": ".list",
+      "previewSelector": ".tui-list-card-group",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -902,7 +944,8 @@
     },
     "List Item/Gray Surface/Default": {
       "family": "List Item",
-      "previewSelector": ".list-item",
+      "previewSelector": ".tui-list-card",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -920,7 +963,8 @@
     },
     "List Item/White Surface/Default": {
       "family": "List Item",
-      "previewSelector": ".list-item",
+      "previewSelector": ".tui-list-card",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -939,6 +983,7 @@
     "Menubar/Default": {
       "family": "Menubar",
       "previewSelector": ".tui-advanced-menubar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -956,7 +1001,8 @@
     },
     "Metric Card/Default": {
       "family": "Metric Card",
-      "previewSelector": ".metric-card",
+      "previewSelector": null,
+      "previewStatus": "pixso-library-only",
       "sizing": {
         "masterWidth": 320,
         "placementWidth": "fill",
@@ -974,6 +1020,7 @@
     "Number Selector/Default": {
       "family": "Number Selector",
       "previewSelector": ".tui-number-selector",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 92,
         "placementWidth": "fixed",
@@ -998,7 +1045,8 @@
     },
     "Pagination Item/Default": {
       "family": "Pagination Item",
-      "previewSelector": ".pagination-item",
+      "previewSelector": ".tui-pagination button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 32,
         "placementWidth": "fixed",
@@ -1012,6 +1060,7 @@
     "Pagination/Default": {
       "family": "Pagination",
       "previewSelector": ".tui-pagination",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1032,7 +1081,8 @@
     },
     "Primary Level Icon/Default": {
       "family": "Primary Level Icon",
-      "previewSelector": ".pattern-primary-level-icon",
+      "previewSelector": ".tui-primary-navigation-item",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 40,
         "placementWidth": "fixed",
@@ -1049,6 +1099,7 @@
     "Progress/Default": {
       "family": "Progress",
       "previewSelector": ".tui-progress",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 320,
         "placementWidth": "fill",
@@ -1070,6 +1121,7 @@
     "Radio/Unselected/Default": {
       "family": "Radio",
       "previewSelector": ".tui-radio",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1086,6 +1138,7 @@
     "Search/Gray Surface/Default": {
       "family": "Search",
       "previewSelector": ".tui-search",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 324,
         "placementWidth": "fill",
@@ -1104,6 +1157,7 @@
     "Search/Scoped/Default": {
       "family": "Search",
       "previewSelector": ".tui-search:has(.tui-search__scope)",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 324,
         "placementWidth": "fill",
@@ -1198,6 +1252,7 @@
     "Search/White Surface/Default": {
       "family": "Search",
       "previewSelector": ".tui-search",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 324,
         "placementWidth": "fill",
@@ -1216,6 +1271,7 @@
     "Segmented Button/Default": {
       "family": "Segmented Button",
       "previewSelector": ".tui-segmented",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1237,6 +1293,7 @@
     "Select/Gray Surface/Default": {
       "family": "Select",
       "previewSelector": ".tui-select",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1255,6 +1312,7 @@
     "Select/White Surface/Default": {
       "family": "Select",
       "previewSelector": ".tui-select",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1272,7 +1330,8 @@
     },
     "Selection Dropdown/Default": {
       "family": "Selection Dropdown",
-      "previewSelector": ".selection-dropdown-trigger",
+      "previewSelector": null,
+      "previewStatus": "pixso-library-only",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1293,7 +1352,8 @@
     },
     "Sidebar Group Header/Collapsed": {
       "family": "Sidebar Group Header",
-      "previewSelector": ".pattern-secondary-heading",
+      "previewSelector": ".tui-sidebar-group",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 240,
         "placementWidth": "fill",
@@ -1309,6 +1369,7 @@
     "Sidebar Item/Default": {
       "family": "Sidebar Item",
       "previewSelector": ".tui-sidebar-item",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 240,
         "placementWidth": "fill",
@@ -1322,57 +1383,10 @@
       "gapToken": "gap/button-icon-label",
       "iconSize": 20
     },
-    "Skeleton/Avatar": {
-      "family": "Skeleton",
-      "previewSelector": ".skeleton",
-      "sizing": {
-        "masterWidth": 48,
-        "placementWidth": "fixed",
-        "height": 48
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "direction": "vertical"
-    },
-    "Skeleton/Card": {
-      "family": "Skeleton",
-      "previewSelector": ".skeleton",
-      "sizing": {
-        "masterWidth": 320,
-        "placementWidth": "fill",
-        "height": 160
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "direction": "vertical"
-    },
-    "Skeleton/List Row": {
-      "family": "Skeleton",
-      "previewSelector": ".skeleton",
-      "sizing": {
-        "masterWidth": 360,
-        "placementWidth": "fill",
-        "height": 64
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "direction": "horizontal"
-    },
-    "Skeleton/Text": {
-      "family": "Skeleton",
-      "previewSelector": ".skeleton",
-      "sizing": {
-        "masterWidth": 280,
-        "placementWidth": "fill",
-        "height": 52
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "direction": "vertical"
-    },
     "Slider/Default": {
       "family": "Slider",
       "previewSelector": ".tui-slider",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1404,6 +1418,7 @@
     "Snackbar/Default": {
       "family": "Snackbar",
       "previewSelector": ".tui-snackbar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1432,21 +1447,10 @@
         "左侧区域": "1"
       }
     },
-    "Spinner/Default": {
-      "family": "Spinner",
-      "previewSelector": ".spinner",
-      "sizing": {
-        "masterWidth": 20,
-        "placementWidth": "fixed",
-        "height": 20
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "exactGeometry": "css-ring"
-    },
     "Split Dropdown Button/Icon Only/Default": {
       "family": "Split Dropdown Button",
-      "previewSelector": ".split-control",
+      "previewSelector": ".tui-split-button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1463,7 +1467,8 @@
     },
     "Split Dropdown Button/Icon Text/Default": {
       "family": "Split Dropdown Button",
-      "previewSelector": ".split-control",
+      "previewSelector": ".tui-split-button",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1487,6 +1492,7 @@
     "Sub Tabs/Default": {
       "family": "Sub Tabs Item",
       "previewSelector": ".tui-sub-tabs__list > [role=tab]",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1511,6 +1517,7 @@
     "Switch/Off/Default": {
       "family": "Switch",
       "previewSelector": ".tui-switch",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",
@@ -1530,7 +1537,8 @@
     },
     "Table Header/Default": {
       "family": "Table Header",
-      "previewSelector": ".data-table thead tr",
+      "previewSelector": ".tui-table",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -1544,7 +1552,8 @@
     },
     "Table Row/Default": {
       "family": "Table Row",
-      "previewSelector": ".data-table tbody tr",
+      "previewSelector": ".tui-table",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -1558,7 +1567,8 @@
     },
     "Table/Default": {
       "family": "Table",
-      "previewSelector": ".table-card",
+      "previewSelector": ".tui-table",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 720,
         "placementWidth": "fill",
@@ -1574,7 +1584,8 @@
     },
     "Tabs/Filled/Default": {
       "family": "Tabs",
-      "previewSelector": ".tabs-filled",
+      "previewSelector": ".tui-tabs",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -1588,7 +1599,8 @@
     },
     "Tabs/Line/Default": {
       "family": "Tabs",
-      "previewSelector": ".tabs-line",
+      "previewSelector": ".tui-tabs",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 360,
         "placementWidth": "fill",
@@ -1602,7 +1614,8 @@
     },
     "Tabs/Vertical/Default": {
       "family": "Tabs",
-      "previewSelector": ".tabs-vertical",
+      "previewSelector": ".tui-tabs",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 220,
         "placementWidth": "fill",
@@ -1617,6 +1630,7 @@
     "Textarea/Gray Surface/Default": {
       "family": "Textarea",
       "previewSelector": ".tui-textarea",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1635,6 +1649,7 @@
     "Textarea/White Surface/Default": {
       "family": "Textarea",
       "previewSelector": ".tui-textarea",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1652,7 +1667,8 @@
     },
     "Time Picker/Default": {
       "family": "Time Picker",
-      "previewSelector": ".time-picker-trigger",
+      "previewSelector": ".tui-picker__trigger",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 280,
         "placementWidth": "fill",
@@ -1668,7 +1684,8 @@
     },
     "Titlebar/L/Normal": {
       "family": "Titlebar",
-      "previewSelector": ".pc-titlebar-l",
+      "previewSelector": ".tui-titlebar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 640,
         "placementWidth": "fill",
@@ -1692,7 +1709,8 @@
     },
     "Titlebar/M/Normal": {
       "family": "Titlebar",
-      "previewSelector": ".pc-titlebar-m",
+      "previewSelector": ".tui-titlebar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 640,
         "placementWidth": "fill",
@@ -1716,7 +1734,8 @@
     },
     "Titlebar/S/Normal": {
       "family": "Titlebar",
-      "previewSelector": ".pc-titlebar-s",
+      "previewSelector": ".tui-titlebar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 640,
         "placementWidth": "fill",
@@ -1740,7 +1759,8 @@
     },
     "Titlebar/XL/Normal": {
       "family": "Titlebar",
-      "previewSelector": ".pc-titlebar-xl",
+      "previewSelector": ".tui-titlebar",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": 640,
         "placementWidth": "fill",
@@ -1762,21 +1782,10 @@
         "window/close"
       ]
     },
-    "Toggle/Off/Default": {
-      "family": "Toggle",
-      "previewSelector": ".toggle-btn",
-      "sizing": {
-        "masterWidth": 56,
-        "placementWidth": "fixed",
-        "height": 32
-      },
-      "autoLayout": true,
-      "textRoles": {},
-      "iconSize": 20
-    },
     "Tooltip/Default": {
       "family": "Tooltip",
-      "previewSelector": ".tooltip",
+      "previewSelector": ".tui-tooltip",
+      "previewStatus": "current-framework",
       "sizing": {
         "masterWidth": "hug",
         "placementWidth": "hug",

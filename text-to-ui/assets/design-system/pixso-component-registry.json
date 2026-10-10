@@ -37,8 +37,7 @@
       "Icon Button/Secondary/Default",
       "Split Dropdown Button/Icon Text/Default",
       "Split Dropdown Button/Icon Only/Default",
-      "Dropdown Menu/Default",
-      "Toggle/Off/Default"
+      "Dropdown Menu/Default"
     ],
     "02 Chips": [
       "Chips/Default"
@@ -107,12 +106,7 @@
       "Avatar/32/Fallback",
       "Avatar/40/Image",
       "Avatar/40/Fallback",
-      "Progress/Default",
-      "Spinner/Default",
-      "Skeleton/Text",
-      "Skeleton/Avatar",
-      "Skeleton/List Row",
-      "Skeleton/Card"
+      "Progress/Default"
     ],
     "05 Feedback": [
       "Alert/Info",
@@ -130,7 +124,6 @@
     "Icon Button/*": "action/more",
     "Split Dropdown Button/Icon Text/Default": ["action/add", "navigation/chevron-down"],
     "Split Dropdown Button/Icon Only/Default": ["action/add", "navigation/chevron-down"],
-    "Toggle/Off/Default": "action/mark-important",
     "Search/*": "field/search",
     "Select/*": "navigation/chevron-down",
     "Combobox/*": "navigation/chevron-down",
@@ -145,7 +138,6 @@
     "Accordion/Collapsed": "navigation/chevron-right",
     "Collapsible/Collapsed": "navigation/chevron-down",
     "Avatar/*/Image": "object/avatar",
-    "Spinner/Default": "status/loading",
     "Alert/Info": ["status/info", "action/close"],
     "Alert/Success": ["status/success", "action/close"],
     "Alert/Error": ["status/danger", "action/close"],

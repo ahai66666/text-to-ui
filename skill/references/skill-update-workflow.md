@@ -6,7 +6,7 @@ Use this workflow whenever changing this Skill, especially shared tokens, compon
 
 - Documentation-only: update the owning rule/reference and validate the Skill.
 - Token change: update CSS/JSON tokens, the human rule, every affected component/pattern, and its gallery example.
-- Component change: update component markup/styles/states, component documentation, and `preview/component-gallery.html`.
+- Component change: update component markup/styles/states, component documentation, and verify the sole Monorepo Gallery at `apps/component-gallery/index.html#runtime-view`.
 - Pattern/layout change: update the pattern implementation, layout rules/tokens, component gallery pattern, and any dedicated test page.
 - Never use a dedicated test page as a substitute for the component gallery. It is additional evidence only.
 
@@ -51,7 +51,7 @@ Sync the complete changed file set from canonical to the installed Skill mirror.
 
 ## 6. Verify the user-visible preview
 
-Open `preview/component-gallery.html` after synchronization. For shared UI changes, completion requires all of the following:
+Run the Monorepo from its root and open `apps/component-gallery/index.html#runtime-view` through the managed Preview Hub/Component Gallery service. The standalone Skill does not contain a second component gallery. For shared UI changes, completion requires all of the following:
 
 1. Confirm the page loaded the new fingerprinted stylesheet/script URL.
 2. Inspect the visible component or pattern in a screenshot, not only source code.

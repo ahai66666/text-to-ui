@@ -41,10 +41,10 @@ if (fs.existsSync(rootPackagePath)) {
 const scriptsRoot = path.join(projectRoot, "scripts");
 fs.mkdirSync(scriptsRoot, { recursive: true });
 const writeNew = (name, content) => { const file = path.join(projectRoot, name); if (!fs.existsSync(file)) fs.writeFileSync(file, content); };
-// A generated page may live inside a larger pnpm workspace (for example
-// Documents/办公). Create a local workspace boundary so installs resolve the
-// copied vendor packages from this project instead of an ancestor's stale
-// lockfile/package snapshot. Preserve an existing project-owned workspace file.
+// A generated page may live inside a larger pnpm workspace. Create a local
+// workspace boundary so installs resolve the copied vendor packages from this
+// project instead of an ancestor's stale lockfile/package snapshot. Preserve an
+// existing project-owned workspace file.
 writeNew('pnpm-workspace.yaml', 'packages:\n  - "."\n');
 const entry = valueFor('--entry') || './generated-entry.js';
 if (path.isAbsolute(entry) || entry.split(/[\\/]/).includes('..')) throw new Error('--entry must be inside the project');

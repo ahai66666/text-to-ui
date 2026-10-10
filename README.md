@@ -284,7 +284,6 @@ pnpm test
 组件画廊开发与构建：
 
 ```bash
-pnpm gallery:sync-legacy
 pnpm --filter @text-to-ui/component-gallery dev
 
 # 或生成正式构建
@@ -303,7 +302,7 @@ pnpm tokens:validate         # Token 源与生成映射
 pnpm pixso:mapping:test      # Pixso 逻辑组件解析
 pnpm runtime:evidence        # 运行时验收证据
 pnpm dialogs:validate        # 弹层组件契约
-pnpm gallery:baseline:validate
+pnpm gallery:readiness:test  # 当前 Gallery 的覆盖与入口校验
 pnpm test                    # 完整质量门
 ```
 
@@ -319,7 +318,7 @@ Skill、组件包和 Tokens 使用独立版本，例如：
 
 GitHub Release 可以发布 Skill ZIP 与组件包构建产物；需要作为工程依赖使用时，再发布 React/Vue 等 npm 包。仓库不保存目标 Pixso 文件的运行时 GUID，组件和变量应在当前文件中动态解析。
 
-Text-to-UI Skill v2.0.0 迁移说明见 [`docs/releases/text-to-ui-v2.0.0.md`](docs/releases/text-to-ui-v2.0.0.md)。组件迁移与六维验收规则见 [`docs/component-migration-plan.md`](docs/component-migration-plan.md)。多人协作约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+Text-to-UI Skill v2.0.0 发布说明见 [`docs/releases/text-to-ui-v2.0.0.md`](docs/releases/text-to-ui-v2.0.0.md)。当前组件架构与六维验收规则见 [`docs/component-architecture.md`](docs/component-architecture.md)。多人协作约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
 ## 许可证
 

@@ -3,7 +3,7 @@
   "generatedFrom": [
     {
       "path": "package.json",
-      "sha256": "02c8cc047e08b15cbfe45e08f673efeed4f3789886d0608b5698dab06ce5b122"
+      "sha256": "4eb1324e73b8b2314572d78b77120acbcd8353c43ce6aaa2ef0ba4f75f852276"
     }
   ],
   "modes": {
@@ -48,7 +48,7 @@
     "route:materials:test": "node text-to-ui/scripts/test-route-materials.mjs",
     "context:resolve": "node text-to-ui/scripts/resolve-context.mjs",
     "context:materials:verify": "node text-to-ui/scripts/verify-context-materials.mjs",
-    "icons:build": "node tools/build-component-icon-sprite.mjs && node tools/build-inline-icon-map.mjs && node tools/sync-core-html-fixtures.mjs && node tools/sync-generated-inline-icons.mjs && node tools/sync-legacy-primary-icons.mjs",
+    "icons:build": "node tools/build-component-icon-sprite.mjs && node tools/build-inline-icon-map.mjs && node tools/sync-core-html-fixtures.mjs && node tools/sync-generated-inline-icons.mjs",
     "contracts:normalize": "node tools/normalize-contract-registry.mjs && node tools/enrich-contract-registry.mjs && node tools/build-parity-manifest.mjs && pnpm icons:build && node tools/build-component-runtime-module.mjs && node tools/build-file-runtime-fallback.mjs",
     "components:generate": "node tools/generate-full-component-adapters.mjs && node tools/normalize-contract-registry.mjs && node tools/enrich-contract-registry.mjs && node tools/build-parity-manifest.mjs && pnpm icons:build && node tools/build-component-runtime-module.mjs && node tools/build-file-runtime-fallback.mjs",
     "contracts:validate": "node tools/validate-components.mjs",
@@ -68,7 +68,7 @@
     "mappings:obsidian:apply": "node text-to-ui/scripts/sync-obsidian-mapping-edits.mjs --write",
     "mappings:obsidian:build": "node text-to-ui/scripts/build-obsidian-mapping-workbook.mjs",
     "mappings:obsidian:test": "node text-to-ui/scripts/test-obsidian-mapping-sync.mjs",
-    "frameworks:validate": "node text-to-ui/scripts/validate-framework-component-adapter-map.mjs && node text-to-ui/scripts/test-framework-component-contract.mjs && node text-to-ui/scripts/validate-framework-component-runtime.mjs && node tools/validate-runtime-parity.mjs",
+    "frameworks:validate": "node text-to-ui/scripts/validate-framework-component-adapter-map.mjs && node text-to-ui/scripts/test-framework-component-contract.mjs && node tools/validate-runtime-parity.mjs",
     "layout:contract:test": "node text-to-ui/scripts/test-validate-pc-framework-layout.mjs",
     "layout:binding:test": "node text-to-ui/scripts/test-validate-page-layout-binding.mjs",
     "layout:markers:test": "node text-to-ui/scripts/test-validate-layout-markers.mjs",
@@ -107,14 +107,12 @@
     "runtime:evidence:strict": "node tools/validate-runtime-evidence.mjs --strict",
     "runtime:http": "node tools/validate-runtime-http.mjs",
     "skill:preview:check": "python3 text-to-ui/scripts/update_preview_cache.py --check",
-    "gallery:sync-legacy": "node tools/sync-legacy-visual-baseline.mjs",
-    "gallery:baseline:validate": "node tools/validate-legacy-baseline.mjs",
     "gallery:readiness:test": "node tools/test-gallery-readiness.mjs",
-    "gallery:build": "pnpm gallery:sync-legacy && pnpm --filter @text-to-ui/component-gallery build && node tools/validate-gallery-dist.mjs",
+    "gallery:build": "pnpm --filter @text-to-ui/component-gallery build && node tools/validate-gallery-dist.mjs",
     "services:start": "node text-to-ui/scripts/start-text-to-ui-services.mjs start",
     "services:status": "node text-to-ui/scripts/start-text-to-ui-services.mjs status",
     "delivery:validate": "node tools/validate-repository-delivery.mjs && pnpm skill:test",
-    "test": "pnpm index:check && pnpm catalog:test && pnpm route:materials:test && pnpm components:readiness:test && pnpm components:selection:test && pnpm components:acceptance:test && pnpm references:approved:test && pnpm patterns:validate && pnpm patterns:resolution:test && pnpm patterns:scene-binding:test && pnpm titlebar:scene:test && pnpm page:blueprint:test && pnpm page:content-recipes:test && pnpm page:css-boundaries:test && pnpm page:composite-boundaries:test && pnpm frameworks:page-generation:test && pnpm mappings:check && pnpm mappings:test && pnpm mappings:obsidian:test && pnpm components:resolution:test && pnpm delivery:validate && pnpm contracts:validate && pnpm styles:validate && pnpm pixso:mapping:test && pnpm frameworks:validate && pnpm layout:contract:test && pnpm layout:binding:test && pnpm layout:markers:test && pnpm layout:route:test && pnpm components:reuse:test && pnpm components:strict-html:test && pnpm components:strict-html:forward && pnpm runtime:evidence && pnpm dialogs:validate && pnpm gallery:readiness:test && pnpm gallery:baseline:validate && pnpm tokens:validate",
+    "test": "pnpm index:check && pnpm catalog:test && pnpm route:materials:test && pnpm components:readiness:test && pnpm components:selection:test && pnpm components:acceptance:test && pnpm references:approved:test && pnpm patterns:validate && pnpm patterns:resolution:test && pnpm patterns:scene-binding:test && pnpm titlebar:scene:test && pnpm page:blueprint:test && pnpm page:content-recipes:test && pnpm page:css-boundaries:test && pnpm page:composite-boundaries:test && pnpm frameworks:page-generation:test && pnpm mappings:check && pnpm mappings:test && pnpm mappings:obsidian:test && pnpm components:resolution:test && pnpm delivery:validate && pnpm contracts:validate && pnpm styles:validate && pnpm pixso:mapping:test && pnpm frameworks:validate && pnpm layout:contract:test && pnpm layout:binding:test && pnpm layout:markers:test && pnpm layout:route:test && pnpm components:reuse:test && pnpm components:strict-html:test && pnpm components:strict-html:forward && pnpm runtime:evidence && pnpm dialogs:validate && pnpm gallery:readiness:test && pnpm tokens:validate",
     "skill:sync": "node text-to-ui/scripts/skill-delivery.mjs --write",
     "skill:check": "node text-to-ui/scripts/skill-delivery.mjs --check",
     "skill:test": "node tools/test-skill-delivery.mjs",

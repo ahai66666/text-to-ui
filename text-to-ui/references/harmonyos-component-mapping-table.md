@@ -2,11 +2,11 @@
 
 > 该表由 `scripts/build-harmonyos-component-mapping-table.mjs` 生成。映射成功只表示已找到源组件；只有 `verified` 才能进入严格交付。
 
-- 注册组件：86
+- 注册组件：80
 - 已映射待验证：16
 - 已映射需重建：4
 - 已验证：0
-- 缺失待补：66
+- 缺失待补：60
 
 | 分类 | Text-to-UI 注册名 | 状态 | HarmonyOS 源组件 | 源 Variant | 下一步 |
 | --- | --- | --- | --- | --- | --- |
@@ -21,7 +21,6 @@
 | 01 Actions | Split Dropdown Button/Icon Text/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 01 Actions | Split Dropdown Button/Icon Only/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 01 Actions | Dropdown Menu/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 01 Actions | Toggle/Off/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 02 Chips | Chips/Default | mapped-pending-verification | Chips | 状态=Default | Finish the registered target and verify it live in Pixso before strict delivery. |
 | 02 Forms | Form Field/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 02 Forms | Field/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
@@ -83,11 +82,6 @@
 | 04 Data Display | Avatar/40/Image | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 04 Data Display | Avatar/40/Fallback | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 04 Data Display | Progress/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 04 Data Display | Spinner/Default | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 04 Data Display | Skeleton/Text | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 04 Data Display | Skeleton/Avatar | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 04 Data Display | Skeleton/List Row | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
-| 04 Data Display | Skeleton/Card | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 05 Feedback | Alert/Info | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 05 Feedback | Alert/Success | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |
 | 05 Feedback | Alert/Error | missing-target |  |  | Add a source mapping or draw a new registered target, then verify it live in Pixso. |

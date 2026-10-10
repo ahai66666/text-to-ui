@@ -66,6 +66,11 @@ for (const mapping of profile.componentMappings) {
   }
   validatePixsoVariant(`${mapping.htmlLogicalName}.variant`, target, runtime.variant ?? {});
   const ignoredFrameworkProps = new Set(runtime.ignoredFrameworkProps ?? []);
+  for (const prop of ignoredFrameworkProps) {
+    if (!runtime.ignoredFrameworkPropReasons?.[prop]) {
+      failures.push(`${mapping.htmlLogicalName}: ignored framework prop ${prop} needs an explicit reason`);
+    }
+  }
   for (const prop of contract?.props ?? []) {
     if (ignoredFrameworkProps.has(prop)) continue;
     if (!(runtime.supportedProps ?? []).includes(prop)) {

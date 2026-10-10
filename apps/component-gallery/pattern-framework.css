@@ -1,4 +1,4 @@
-/* Projected Pattern baseline styles. Keep these declarations aligned with the canonical Pattern preview in text-to-ui/preview/component-gallery.css. */
+/* Projected Pattern baseline styles. Keep these declarations aligned with the canonical Pattern contract and pattern-baseline renderer. */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .brand-mark { width: 28px; height: 28px; display: grid; place-items: center; color: white; background: var(--color-primary); border-radius: 8px; font-weight: var(--type-title-s-weight); }
 .section { scroll-margin-top: 88px; margin-bottom: 32px; }

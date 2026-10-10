@@ -3,11 +3,11 @@
   "generatedFrom": [
     {
       "path": "packages/component-contracts/src/components.json",
-      "sha256": "a5db74bea75ef368c2e975579b82da8f3fce4c22ae4986cc51d82e27ea6f957e"
+      "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
     },
     {
       "path": "packages/component-contracts/src/parity-manifest.json",
-      "sha256": "d110f224486f90f2cbdefdbaf0a6b8b17a09ba8f0a0df83fc4fe86d62b3eee5c"
+      "sha256": "5b6077a411759173c5740a2c22c59c0918b6cf2a2cb184199b12aef1e4050bf9"
     },
     {
       "path": "text-to-ui/references/index/capability-aliases.source.json",
@@ -68,7 +68,7 @@
         "navigation/chevron-right"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#accordion",
-      "canonicalSelector": "section#navigation [data-component=\"Accordion/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-accordion\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -163,7 +163,7 @@
         "action/close"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#alert",
-      "canonicalSelector": "section#display [data-component=\"Alert/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-alert\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -247,7 +247,7 @@
         "status/warning"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#alert-dialog",
-      "canonicalSelector": "section#containers [data-component=\"Alert Dialog/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-alert-dialog\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -371,7 +371,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#attachment",
-      "canonicalSelector": "section#specialized [data-component=\"Attachment/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"specialized\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-attachment\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -448,7 +448,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#avatar",
-      "canonicalSelector": "section#display [data-component=\"Avatar/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-avatar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -522,7 +522,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#badge",
-      "canonicalSelector": "section#display [data-component=\"Badge/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-badge\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -597,7 +597,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#breadcrumb",
-      "canonicalSelector": "section#navigation [data-component=\"Breadcrumb/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-breadcrumb\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -696,7 +696,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#button",
-      "canonicalSelector": "section#actions [data-component=\"Button/Primary/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-button\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -772,7 +772,7 @@
         "field/calendar"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#calendar",
-      "canonicalSelector": "section#choices [data-component=\"Calendar/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-calendar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -848,7 +848,7 @@
         "choice/check"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#checkbox",
-      "canonicalSelector": "section#choices [data-component=\"Checkbox/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-checkbox\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -947,7 +947,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#chips",
-      "canonicalSelector": "section#actions [data-component=\"Chips/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-chips\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1027,7 +1027,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#collapsible",
-      "canonicalSelector": "section#navigation [data-component=\"Collapsible/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-collapsible\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1116,7 +1116,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#color-picker",
-      "canonicalSelector": "section#display [data-component=\"ColorPicker/Tablet\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-color-picker\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1198,7 +1198,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#combobox",
-      "canonicalSelector": "section#input [data-component=\"Combobox/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-combobox\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1276,7 +1276,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#context-menu",
-      "canonicalSelector": "section#actions [data-component=\"Context Menu/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-context-menu\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1357,7 +1357,7 @@
         "field/calendar"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#date-picker",
-      "canonicalSelector": "section#choices [data-component=\"Date Picker/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-date-picker\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1483,7 +1483,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#dialog",
-      "canonicalSelector": "section#containers [data-component=\"Dialog/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-dialog\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1563,7 +1563,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#dropdown-menu",
-      "canonicalSelector": "section#actions [data-component=\"Dropdown Menu/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-dropdown-menu\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1639,7 +1639,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#field",
-      "canonicalSelector": "section#input [data-component=\"Field/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-field\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1715,7 +1715,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#form-field",
-      "canonicalSelector": "section#containers [data-component=\"Form Field/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-form-field\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1794,7 +1794,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#hover-card",
-      "canonicalSelector": "section#display [data-component=\"Hover Card/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-hover-card\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1870,10 +1870,7 @@
         "input",
         "focus",
         "disabled",
-        "error",
-        "filter",
-        "select",
-        "remove"
+        "error"
       ],
       "tokenRoles": [
         "color.input-bg",
@@ -1889,7 +1886,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#input",
-      "canonicalSelector": "section#input [data-component=\"Input/White Surface/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-input\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -1966,7 +1963,7 @@
         "field/search"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#label",
-      "canonicalSelector": "section#input [data-component=\"Label/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-label\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2052,7 +2049,7 @@
         "navigation/list"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#list-card",
-      "canonicalSelector": "section#containers [data-component=\"List Item/White Surface/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-list-card\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2165,7 +2162,7 @@
         "navigation/chevron-right"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#menubar",
-      "canonicalSelector": "section#navigation [data-component=\"Menubar/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-menubar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2243,7 +2240,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#native-select",
-      "canonicalSelector": "section#choices [data-component=\"Native Select/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-native-select\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2325,7 +2322,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#number-selector",
-      "canonicalSelector": "section#input [data-component=\"Number Selector/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-number-selector\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2402,7 +2399,7 @@
         "navigation/forward"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#pagination",
-      "canonicalSelector": "section#navigation [data-component=\"Pagination/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-pagination\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2481,7 +2478,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#popover",
-      "canonicalSelector": "section#display [data-component=\"Popover/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-popover\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2577,7 +2574,7 @@
         "action/settings"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#primary-navigation-item",
-      "canonicalSelector": "section#navigation [data-component=\"Primary Navigation Item/Level 1\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-primary-navigation-item\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2658,7 +2655,7 @@
         "status/success"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#progress",
-      "canonicalSelector": "section#display [data-component=\"Progress/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-progress\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2740,7 +2737,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#radio",
-      "canonicalSelector": "section#choices [data-component=\"Radio/Unselected/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-radio\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2816,7 +2813,7 @@
         "action/check"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#radio-group",
-      "canonicalSelector": "section#choices [data-component=\"Radio Group/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-radio-group\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -2857,6 +2854,8 @@
       "sourceStrategy": "canonical-custom",
       "variants": [
         "default",
+        "focused",
+        "with-value",
         "advanced-search",
         "scoped-search",
         "scoped-advanced-search"
@@ -2911,7 +2910,7 @@
           ],
           "scope": "search-query-builder",
           "defaultPlacement": "leading-before-search-icon",
-          "control": "dropdown-menu",
+          "control": "native-select",
           "defaultLabel": "搜索范围",
           "defaultValue": "first-scope-option",
           "dividerToken": "color.border",
@@ -2971,7 +2970,7 @@
         "action/close"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#search",
-      "canonicalSelector": "section#input [data-component=\"Search/White Surface/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-search\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3046,7 +3045,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#segmented-button",
-      "canonicalSelector": "section#choices [data-component=\"Segmented Button/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-segmented-button\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3125,7 +3124,7 @@
         "navigation/chevron-down"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#select",
-      "canonicalSelector": "section#choices [data-component=\"Select/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-select\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3229,7 +3228,7 @@
         "action/close"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#semi-modal",
-      "canonicalSelector": "section#containers [data-component=\"Semi-modal/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-semi-modal\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3317,7 +3316,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#sidebar",
-      "canonicalSelector": "section#navigation [data-component=\"Sidebar Item/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-sidebar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3393,7 +3392,7 @@
         "action/more"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#slider",
-      "canonicalSelector": "section#choices [data-component=\"Slider/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-slider\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3513,7 +3512,7 @@
         "action/close"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#snackbar",
-      "canonicalSelector": "section#display [data-component=\"Snackbar/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-snackbar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3591,7 +3590,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#sub-tabs",
-      "canonicalSelector": "section#navigation [data-component=\"Sub Tabs/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-sub-tabs\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3668,7 +3667,7 @@
         "action/check"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#switch",
-      "canonicalSelector": "section#choices [data-component=\"Switch/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-switch\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3745,7 +3744,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#table",
-      "canonicalSelector": "section#display [data-component=\"Table/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-table\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3823,7 +3822,7 @@
         "navigation/list"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#tabs",
-      "canonicalSelector": "section#navigation [data-component=\"Tabs/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tabs\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3901,7 +3900,7 @@
       ],
       "iconAliases": [],
       "contractPointer": "packages/component-contracts/src/components.json#textarea",
-      "canonicalSelector": "section#input [data-component=\"Textarea/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-textarea\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -3982,7 +3981,7 @@
         "field/clock"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#time-picker",
-      "canonicalSelector": "section#choices [data-component=\"Time Picker/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-time-picker\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -4266,7 +4265,7 @@
         "window/close"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#titlebar",
-      "canonicalSelector": "section#navigation [data-component=\"Titlebar/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-titlebar\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -4343,7 +4342,7 @@
         "status/info"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#tooltip",
-      "canonicalSelector": "section#display [data-component=\"Tooltip/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tooltip\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",
@@ -4433,7 +4432,7 @@
         "object/file"
       ],
       "contractPointer": "packages/component-contracts/src/components.json#tree-view",
-      "canonicalSelector": "section#navigation [data-component=\"Tree View/Default\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tree-view\"]",
       "frameworks": {
         "html": {
           "package": "@text-to-ui/components-html",

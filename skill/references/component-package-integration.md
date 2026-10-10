@@ -17,7 +17,7 @@
 3. `packages/tokens`：canonical CSS Variables 与 Token 映射。
 4. `packages/pixso-mapping`：NewComponents 逻辑映射；GUID 必须在当前 Pixso 文件中运行时解析。
 
-每条契约还声明 `sourceStrategy`：`canonical-custom` 表示按旧 Skill 的结构和规则重写轻量组件；`shadcn-behavior-canonical-style` 表示只借用 shadcn / shadcn-vue 的行为与无障碍基础；`canonical-static` 表示暂时只有旧 Skill 视觉基线。三个框架都通过 `@text-to-ui/component-styles` 进入同一套 CSS，不允许组件包再维护一份默认 shadcn 外观。
+每条契约还声明 `sourceStrategy`：`canonical-custom` 表示依据当前 Text-to-UI 组件契约与设计规则实现轻量组件；`shadcn-behavior-canonical-style` 表示只借用 shadcn / shadcn-vue 的行为与无障碍基础；`canonical-static` 表示组件目前以共享契约和样式为准，框架适配器仍待补齐。三个框架都通过 `@text-to-ui/component-styles` 进入同一套 CSS，不允许组件包再维护一份默认 shadcn 外观。
 
 只有 HTML、React、Vue 三个实现都通过契约验证，组件才可以标记为跨框架 `ready`；否则标记为 `partial`，Skill 不能自动声称完整复用。
 组件预览必须按框架加载真实源码：HTML 使用静态适配器，React 使用 JSX 导出，Vue 使用 SFC；不能通过同一份 HTML、截图或手写 lookalike 伪造其它框架。示例文案可以作为源码默认 Props 的 fixture，但框架身份、Token、状态和事件必须来自对应实现。

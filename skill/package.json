@@ -65,7 +65,7 @@
     "pixso:component-facts:test": "node scripts/test-pixso-component-facts-sync.mjs",
     "pixso:components:validate": "node scripts/validate-pixso-component-registry.mjs && node scripts/validate-pixso-component-specs.mjs && node scripts/validate-harmonyos-component-adapter-map.mjs && node scripts/validate-pixso-component-migration.mjs",
     "pixso:components:adapters:validate": "node scripts/validate-harmonyos-component-adapter-map.mjs && node scripts/validate-pixso-component-migration.mjs",
-    "framework:components:test": "node scripts/validate-framework-component-adapter-map.mjs && node scripts/test-framework-component-contract.mjs && node scripts/validate-framework-component-runtime.mjs && node scripts/validate-framework-component-runtime.mjs --negative-layout-test",
+    "framework:components:test": "node scripts/validate-framework-component-adapter-map.mjs && node scripts/test-framework-component-contract.mjs && node ../tools/validate-runtime-parity.mjs",
     "components:strict-html:test": "node scripts/test-validate-web-component-reuse.mjs && node scripts/test-html-strict-reuse-pipeline.mjs && node scripts/test-validate-page-token-usage.mjs",
     "page-spec:validate": "node scripts/validate-page-spec.mjs",
     "page-contract:validate": "node scripts/validate-page-contract.mjs",
