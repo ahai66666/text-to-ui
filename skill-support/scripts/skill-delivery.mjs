@@ -49,6 +49,21 @@ function staleManagedFiles(source, target) {
   const current = new Set(deliveryFiles(source));
   return [...previousManagedFiles(target)].filter(file => !current.has(file) && fs.existsSync(path.join(target, file)));
 }
+function historicalUnmanagedFiles(source, target) {
+  if (!fs.existsSync(target)) return [];
+  const current = new Set(deliveryFiles(source));
+  const files = [];
+  for (const entry of fs.readdirSync(target, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith(".md") || current.has(entry.name)) continue;
+    const content = fs.readFileSync(path.join(target, entry.name), "utf8");
+    if (/preview\/component-gallery\.html|text-to-ui\/scripts\//.test(content)) files.push(entry.name);
+  }
+  const oldPreview = path.join(target, "fixtures/framework-component-contract/dist");
+  if (fs.existsSync(oldPreview) && fs.lstatSync(oldPreview).isDirectory()) {
+    files.push(...skillFiles(oldPreview).map(file => path.join("fixtures/framework-component-contract/dist", file)));
+  }
+  return files.filter(file => !current.has(file));
+}
 function pruneEmptyParentDirectories(target, directory) {
   const root = path.resolve(target);
   let current = path.resolve(directory);
@@ -66,11 +81,14 @@ function pruneEmptyParentDirectories(target, directory) {
     current = path.dirname(current);
   }
 }
-function removeStaleManagedFiles(target, currentFiles, backupRoot) {
+function removeStaleManagedFiles(source, target, currentFiles, backupRoot) {
   const root = path.resolve(target);
   const backup = path.resolve(backupRoot);
   const current = new Set(Object.keys(currentFiles));
-  const stale = [...previousManagedFiles(target)].filter(file => !current.has(file));
+  const stale = [...new Set([
+    ...[...previousManagedFiles(target)].filter(file => !current.has(file)),
+    ...historicalUnmanagedFiles(source, target),
+  ])];
   for (const file of stale) {
     const targetFile = path.resolve(root, file);
     if (!targetFile.startsWith(`${root}${path.sep}`)) {
@@ -122,6 +140,8 @@ export function verifySkill(source, target) {
   }
   const stale = staleManagedFiles(source, target);
   if (stale.length) failures.push(...stale.map(file => `${file} (stale managed file)`));
+  const historical = historicalUnmanagedFiles(source, target);
+  if (historical.length) failures.push(...historical.map(file => `${file} (historical unmanaged file)`));
   if (failures.length) throw new Error(`Skill mirror ${target} differs: ${failures.join(", ")}`);
   for (const file of ["scripts/pixso-native-scene-lib.mjs", "scripts/component-mapping-resolver.mjs", "scripts/coremail-semantic-adapter.mjs"]) {
     const result = spawnSync(process.execPath, ["--input-type=module", "-e", `await import(${JSON.stringify(pathToFileURL(path.join(target, file)).href)})`], { encoding: "utf8" });
@@ -131,7 +151,7 @@ export function verifySkill(source, target) {
 }
 export function syncSkill(source, target, backupRoot) {
   const manifest = deliveryManifest(source);
-  removeStaleManagedFiles(target, manifest.files, backupRoot);
+  removeStaleManagedFiles(source, target, manifest.files, backupRoot);
   syncFiles(source, target, manifest.files, backupRoot, file => deliverySourceFile(source, file));
   fs.writeFileSync(path.join(target, ".delivery-manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   verifySkill(source, target);

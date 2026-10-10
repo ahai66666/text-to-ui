@@ -23,10 +23,16 @@ try {
   write(target, "scripts/pixso-native-scene-lib.mjs", "old local source");
   write(target, ".text-to-ui/run.json", "keep runtime state");
   write(target, "local-note.md", "keep extra local files");
+  write(target, "pixso-component-maintenance.md", "Old rule: preview/component-gallery.html\n");
+  write(target, "fixtures/framework-component-contract/dist/preview.html", "old generated preview\n");
   syncSkill(source, target, backup);
   assert.equal(fs.readFileSync(path.join(backup, "scripts/pixso-native-scene-lib.mjs"), "utf8"), "old local source");
   assert.equal(fs.readFileSync(path.join(target, ".text-to-ui/run.json"), "utf8"), "keep runtime state");
   assert.equal(fs.readFileSync(path.join(target, "local-note.md"), "utf8"), "keep extra local files");
+  assert.equal(fs.existsSync(path.join(target, "pixso-component-maintenance.md")), false);
+  assert.equal(fs.existsSync(path.join(target, "fixtures/framework-component-contract/dist/preview.html")), false);
+  assert.equal(fs.readFileSync(path.join(backup, "pixso-component-maintenance.md"), "utf8"), "Old rule: preview/component-gallery.html\n");
+  assert.equal(fs.readFileSync(path.join(backup, "fixtures/framework-component-contract/dist/preview.html"), "utf8"), "old generated preview\n");
   write(target, "scripts/customized-helper/local-note.md", "preserve untracked data");
   fs.rmSync(path.join(source, "scripts/obsolete-helper"), { recursive: true });
   fs.rmSync(path.join(source, "scripts/customized-helper"), { recursive: true });
@@ -68,7 +74,7 @@ try {
   assert.equal(fs.readFileSync(path.join(generated, "SKILL.md"), "utf8"), fs.readFileSync(path.join(repository, "SKILL.md"), "utf8"));
   assert.equal(fs.readFileSync(path.join(generated, "agents/openai.yaml"), "utf8"), fs.readFileSync(path.join(repository, "agents/openai.yaml"), "utf8"));
   assert(!fs.existsSync(path.join(support, "SKILL.md")));
-  console.log("Skill delivery tests passed: root entry, stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
+  console.log("Skill delivery tests passed: root entry, historical mirror cleanup, stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });
 }

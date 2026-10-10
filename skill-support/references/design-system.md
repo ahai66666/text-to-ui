@@ -54,7 +54,7 @@ Actions:
 - conflicted → inventory the conflict, resolve it by authority domain, and record the selected source
 - absent → extend the bundled HarmonyOS baseline with the smallest project-specific layer
 
-This state gate is a reasoning step in v1.2. Do not claim automated extraction, token clustering, or PR auditing unless a task actually provides and runs those tools.
+This state gate is a reasoning step in the current workflow. Do not claim automated extraction, token clustering, or PR auditing unless a task actually provides and runs those tools.
 
 ## Style Library
 
