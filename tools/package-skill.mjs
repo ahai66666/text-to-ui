@@ -8,7 +8,9 @@ import { fileURLToPath } from "node:url";
 import { skillFiles, verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const source = path.join(repository, "skill");
+const source = path.join(repository, "text-to-ui");
+const entryFile = path.join(repository, "SKILL.md");
+const metadataFile = path.join(repository, "agents", "openai.yaml");
 const version = JSON.parse(fs.readFileSync(path.join(source, "package.json"), "utf8")).version;
 assert.match(version, /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/, "Invalid Skill version");
 
@@ -29,10 +31,12 @@ const run = (command, args, options = {}) => {
 };
 
 try {
-  verifySkill(path.join(repository, "text-to-ui"), source);
-  const files = skillFiles(source);
-  assert(files.includes("SKILL.md"), "Skill entry is missing");
-  const entry = fs.readFileSync(path.join(source, "SKILL.md"), "utf8");
+  const files = ["SKILL.md", "agents/openai.yaml", ...skillFiles(source)].sort();
+  assert(fs.existsSync(entryFile), "Skill entry is missing");
+  assert(fs.existsSync(metadataFile), "Skill interface metadata is missing");
+  assert(!skillFiles(source).includes("SKILL.md"), "Nested Skill entry must not be published");
+  assert(!skillFiles(source).includes("agents/openai.yaml"), "Nested Skill interface metadata must not be published");
+  const entry = fs.readFileSync(entryFile, "utf8");
   const frontmatter = entry.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   assert(frontmatter, "SKILL.md YAML frontmatter is missing");
   assert.match(frontmatter[1], /^name:\s*text-to-ui\s*$/m, "SKILL.md name must match the packaged folder");
@@ -41,8 +45,9 @@ try {
   for (const file of files) {
     const target = path.join(stagedSkill, file);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.copyFileSync(path.join(source, file), target);
+    fs.copyFileSync(file === "SKILL.md" ? entryFile : file === "agents/openai.yaml" ? metadataFile : path.join(source, file), target);
   }
+  verifySkill(source, stagedSkill);
   fs.mkdirSync(path.dirname(archive), { recursive: true });
   if (fs.existsSync(archive)) fs.rmSync(archive);
   run("zip", ["-q", "-r", archive, "text-to-ui"], { cwd: stage });
@@ -50,9 +55,9 @@ try {
 
   assert.deepEqual(fs.readdirSync(extracted), ["text-to-ui"], "Archive must have one top-level Skill folder");
   const unpackedSkill = path.join(extracted, "text-to-ui");
-  assert.deepEqual(skillFiles(unpackedSkill), files, "Unpacked Skill files differ from the delivery mirror");
+  assert.deepEqual(skillFiles(unpackedSkill), files.sort(), "Unpacked Skill files differ from canonical source");
   for (const file of files) {
-    assert.equal(digest(path.join(unpackedSkill, file)), digest(path.join(source, file)), `${file} changed in the archive`);
+    assert.equal(digest(path.join(unpackedSkill, file)), digest(file === "SKILL.md" ? entryFile : file === "agents/openai.yaml" ? metadataFile : path.join(source, file)), `${file} changed in the archive`);
   }
   console.log(`Verified ${path.basename(archive)}: text-to-ui/SKILL.md, ${files.length} files, version ${version}.`);
 } finally {

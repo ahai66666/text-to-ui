@@ -97,7 +97,10 @@ export function locateMonorepo({ start = process.cwd(), explicitRepo } = {}) {
 
 export function resolveSkillRoot(repo, explicitSkillRoot) {
   const root = explicitSkillRoot ? path.resolve(repo, explicitSkillRoot) : path.join(repo, 'text-to-ui');
-  if (!fs.existsSync(path.join(root, 'SKILL.md'))) throw new Error(`Text-to-UI skill root not found: ${root}`);
+  if (!fs.existsSync(path.join(root, 'references', 'routes', 'index.json')) ||
+      !fs.existsSync(path.join(repo, 'SKILL.md'))) {
+    throw new Error(`Text-to-UI rules or repository Skill entry not found: ${root}`);
+  }
   return root;
 }
 

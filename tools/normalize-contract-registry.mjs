@@ -137,7 +137,7 @@ for (const component of registry.components) {
     source: sources[framework]
   }]));
   component.implementations = ready ? sources : {
-    html: "skill/preview/component-gallery.html",
+    html: "text-to-ui/preview/component-gallery.html",
     react: null,
     vue: null
   };

@@ -4,7 +4,7 @@
 
 ## 权威边界
 
-- `text-to-ui/` 是唯一可编辑的规范源；`skill/`、已安装 Skill 与 Pixso 插件是交付镜像。
+- 仓库根目录 `SKILL.md` 与 `text-to-ui/` 是可编辑的规范源；本机生成的 `skill/`、已安装 Skill 与 Pixso 插件是交付镜像。GitHub 只发布一个可发现的 `SKILL.md`。
 - 路由先生成并校验 Route 读取回执；生成页面再生成并校验 Context Packet 读取回执。
 - `references/index/generated/skill-catalog-index.json` 是维护任务的总入口，不替代具体契约；它列出每一类资料的路径和 SHA-256。
 - 其余 Generated Index 是派生产品，由 `pnpm index:build` 与 `pnpm index:check` 统一刷新和校验；为避免索引互相哈希循环，它们由目录的 `derivedProducts` 声明追踪，而不嵌入目录哈希。
@@ -20,7 +20,7 @@
 | tokens-type-and-icons | Token、颜色、排版、间距、图标 Alias/Pixso 图标映射 |
 | ui-scene-and-generation | UI Scene、页面蓝图、内容配方、严格页面生成器 |
 | gates-and-runtime-evidence | 复用校验、Token 校验、布局/制品校验和 Runtime evidence |
-| delivery-mirrors | `text-to-ui/`、`skill/`、已安装 Skill、Pixso 插件镜像 |
+| delivery-mirrors | 根目录 `SKILL.md`、`text-to-ui/` 支持资料、本机 `skill/`、已安装 Skill、Pixso 插件镜像 |
 | gallery-preview-and-baseline | Gallery、Preview、Generated Index 与 Baseline |
 
 ## 刷新协议

@@ -2,14 +2,14 @@
 
 ## 先确认交付形态
 
-推荐使用完整代码仓：`text-to-ui/` 提供 Skill 规范源，`skill/` 提供独立安装镜像，`packages/` 提供生产组件库。三者是同一套系统的不同边界，不应把 `skill/` 误认为包含生产组件源码。
+推荐使用完整代码仓：仓库根目录 `SKILL.md` 是唯一导入入口，`text-to-ui/` 提供规则与工具，`packages/` 提供生产组件库。`skill/` 仅是本机按需生成的独立安装镜像，不属于 GitHub 源码交付；不能把它误认为包含生产组件源码。
 
 ```bash
 pnpm install
 pnpm delivery:validate
 ```
 
-如果只安装 `skill/`，可以调用 Text to UI 的规则，但不能直接导入本仓库的 HTML、React、Vue 组件。Skill 找不到 `packages/component-contracts` 或任一框架包时，必须报告组件库不可用/partial；它不会因为存在旧预览或相似 HTML 就自动变成生产组件复用。克隆完整仓库也不会自动向 Codex 注册 Skill，Skill 注册仍按宿主环境的安装方式完成。
+如果只安装独立 Skill ZIP，可以调用 Text to UI 的规则，但不能直接导入本仓库的 HTML、React、Vue 组件。Skill 找不到 `packages/component-contracts` 或任一框架包时，必须报告组件库不可用/partial；它不会因为存在旧预览或相似 HTML 就自动变成生产组件复用。克隆完整仓库也不会自动向 Codex 注册 Skill；应在宿主环境中选择仓库根目录导入，且不要同时启用独立 ZIP 的同名副本。
 
 ## 选择组件
 

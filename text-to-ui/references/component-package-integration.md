@@ -6,7 +6,7 @@
 
 完整接入的根目录必须同时能解析 `pnpm-workspace.yaml`、`packages/component-contracts` 和三个框架组件包。推荐从代码仓根目录执行 `pnpm delivery:validate`，再运行 Skill 的页面生成流程。
 
-`text-to-ui/` 是规范源，`skill/` 是同步后的独立安装镜像。独立安装镜像可以提供规则和索引，但不会把根仓的 `packages/` 变成 Codex 的全局组件库；克隆仓库也不会自动完成 Skill 注册。若 Skill 运行时找不到组件包，必须把复用能力标记为不可用或 partial，并报告缺失路径，禁止静默回退到截图、旧预览或视觉相似 DOM。
+仓库根目录 `SKILL.md` 是唯一导入入口，`text-to-ui/` 是其规范支持资料；`skill/` 只是在本机生成的独立安装镜像，不提交到 GitHub。独立安装镜像可以提供规则和索引，但不会把根仓的 `packages/` 变成 Codex 的全局组件库；克隆仓库也不会自动完成 Skill 注册。若 Skill 运行时找不到组件包，必须把复用能力标记为不可用或 partial，并报告缺失路径，禁止静默回退到截图、旧预览或视觉相似 DOM。
 
 发布时可以把 Skill 与组件包拆开发布，但使用者必须同时安装与当前 Skill 版本兼容的组件包；开发、验收和跨框架复用应优先使用完整代码仓。
 
@@ -28,7 +28,7 @@
 - 契约页展示完整视觉规则和状态矩阵；框架运行时页在同一卡片中用 Props 切换尺寸、Surface、Mode、Error、Disabled 等结构轴。Hover、Pressed、Focus、Open 必须由真实鼠标或键盘触发。
 - `sourceReady`、`contractReady`、`visualParity`、`behaviorParity`、`accessibilityParity`、`tokenParity` 六项全部有可复跑证据后才能标记 `ready`。文件存在、字段存在或源码包含 Token 名称都不能替代浏览器级证据。
 - `file://` 只允许 HTML 静态 fallback，并禁用 React/Vue。三框架数量、顺序、交互和视觉验收必须使用 HTTP 预览；发布目录必须内含 Token 与组件 CSS，不得引用目录外源码。
-- 所有图标通过中央内联 SVG Icon Primitive 输出。Outline 图标按 16px/1px、20px/1.25px、24px/1.5px 描边；Filled 图标只使用 fill。禁止外部 SVG `<use>` 和 `icon_font`。已登记别名必须保持精确来源；未登记请求不阻断页面生成，运行时优先尝试直接来源或唯一语义后缀，无法解析时输出带 `data-icon-manual-fallback` 的显式回退并写入诊断。
+- 所有图标通过中央内联 SVG Icon Primitive 输出。Outline 图标按 16px/1px、20px/1.25px、24px/1.5px 描边；Filled 图标只使用 fill。禁止外部 SVG `<use>` 和 `icon_font`。已登记别名必须保持精确来源；未登记别名应停止所属绑定并报告，不得擅自换用原始图标名、Unicode 或手绘图形。
 
 ## 弹窗族实现边界
 

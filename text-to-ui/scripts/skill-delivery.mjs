@@ -13,6 +13,26 @@ export function skillFiles(root, relative = "") {
     return entry.isDirectory() ? skillFiles(root, file) : entry.isFile() ? [file] : [];
   }).sort();
 }
+function entryFile(source) {
+  const local = path.join(source, "SKILL.md");
+  if (fs.existsSync(local)) return local;
+  const repositoryEntry = path.join(path.dirname(source), "SKILL.md");
+  if (fs.existsSync(repositoryEntry)) return repositoryEntry;
+  throw new Error(`Skill entry is missing beside ${source} or in its parent`);
+}
+function deliveryFiles(source) {
+  const files = [...skillFiles(source), "SKILL.md"];
+  const repositoryMetadata = path.join(path.dirname(source), "agents", "openai.yaml");
+  if (fs.existsSync(repositoryMetadata) && !files.includes("agents/openai.yaml")) files.push("agents/openai.yaml");
+  return [...new Set(files)].sort();
+}
+function deliverySourceFile(source, file) {
+  if (file === "SKILL.md") return entryFile(source);
+  if (file === "agents/openai.yaml" && !fs.existsSync(path.join(source, file))) {
+    return path.join(path.dirname(source), file);
+  }
+  return path.join(source, file);
+}
 const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
 const deliveryManifestFile = target => path.join(target, ".delivery-manifest.json");
 function previousManagedFiles(target) {
@@ -26,7 +46,7 @@ function previousManagedFiles(target) {
   }
 }
 function staleManagedFiles(source, target) {
-  const current = new Set(skillFiles(source));
+  const current = new Set(deliveryFiles(source));
   return [...previousManagedFiles(target)].filter(file => !current.has(file) && fs.existsSync(path.join(target, file)));
 }
 function staleFilesFromManifest(target, manifestFile, currentFiles) {
@@ -40,7 +60,7 @@ function staleFilesFromManifest(target, manifestFile, currentFiles) {
   }
 }
 export function deliveryManifest(root) {
-  const files = Object.fromEntries(skillFiles(root).map(file => [file, hash(fs.readFileSync(path.join(root, file)))]));
+  const files = Object.fromEntries(deliveryFiles(root).map(file => [file, hash(fs.readFileSync(deliverySourceFile(root, file)))]));
   return { schemaVersion: 1, version: JSON.parse(fs.readFileSync(path.join(root, "package.json"))).version, sourceDigest: hash(JSON.stringify(files)), files };
 }
 export function verifySkill(source, target) {
@@ -61,13 +81,13 @@ export function verifySkill(source, target) {
 }
 export function syncSkill(source, target, backupRoot) {
   const manifest = deliveryManifest(source);
-  syncFiles(source, target, manifest.files, backupRoot);
+  syncFiles(source, target, manifest.files, backupRoot, file => deliverySourceFile(source, file));
   fs.writeFileSync(path.join(target, ".delivery-manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   verifySkill(source, target);
 }
-function syncFiles(source, target, files, backupRoot) {
+function syncFiles(source, target, files, backupRoot, resolveSource = file => path.join(source, file)) {
   for (const file of Object.keys(files)) {
-    const from = path.join(source, file), to = path.join(target, file);
+    const from = resolveSource(file), to = path.join(target, file);
     if (fs.existsSync(to) && hash(fs.readFileSync(to)) === files[file]) continue;
     if (fs.existsSync(to)) {
       const backup = path.join(backupRoot, file);
@@ -87,7 +107,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const write = process.argv.includes("--write");
   if (!write && !process.argv.includes("--check")) throw new Error("Use --check or --write");
   const backup = write ? fs.mkdtempSync(path.join(os.tmpdir(), "text-to-ui-delivery-")) : null;
-  for (const [index, target] of targets.entries()) {
+  const checkedTargets = write ? targets : targets.filter(target => fs.existsSync(target));
+  for (const [index, target] of checkedTargets.entries()) {
     if (write) syncSkill(source, target, path.join(backup, String(index)));
     else verifySkill(source, target);
   }
@@ -112,10 +133,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   }
   console.log(JSON.stringify({
     ok: true,
-    targets,
+    targets: checkedTargets,
+    skippedMissingTargets: write ? [] : targets.filter(target => !fs.existsSync(target)),
     pluginTargetConfigured: Boolean(pluginTarget),
     pluginTargetSynced: pluginExists,
-    files: skillFiles(source).length,
+    files: deliveryFiles(source).length,
     backup,
   }, null, 2));
 }

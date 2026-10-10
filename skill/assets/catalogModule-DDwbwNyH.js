@@ -1,1 +1,0 @@
-import{t as e}from"./catalog-module-BZd9feik.js";var t=new URLSearchParams(window.location.search).get(`module`),n=document.querySelector(`#catalog-module`);n.dataset.logicalComponent=`Catalog/${t||`unknown`}`;try{await e(n,t,`html`)}catch{n.dataset.state=`error`,n.textContent=`组件模块加载失败`}

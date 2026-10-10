@@ -20,13 +20,13 @@ Tokens/type/icons, UI Scene/generators, validation evidence, delivery mirrors,
 and Gallery/Preview/Baseline. Do not treat a single route file, a Gallery
 example, or a delivery mirror as sufficient source material.
 
-- Work in the canonical `text-to-ui/` and `packages/` sources; run root commands from the repository.
+- Work in the repository-root `SKILL.md`, canonical `text-to-ui/` support materials, and `packages/` sources; run root commands from the repository. Do not add a second `SKILL.md` under `text-to-ui/`.
 - Inspect existing changes and keep delivery-only edits backed up before synchronization.
 - Component identities and aliases live in `mapping-registry.json`; `component-mapping-resolver.mjs` is the shared normalization implementation. Generated maps are not inputs to canonical resolution.
 - `componentMappings` is the formal catalog; `componentAliases` contains explicit compatibility variants only, with unique non-shadowing names. `packages/pixso-mapping/index.json` is generated with `pnpm mappings:sync`, never hand maintained.
 - Keep product-specific diagnostic builders in `coremail-semantic-adapter.mjs`.
 - Validate the affected mapping, import, or rendering behavior before synchronization.
-- Run `node text-to-ui/scripts/skill-delivery.mjs --write` after source checks pass, then `--check`. The canonical `text-to-ui/` tree is the only authoring source; `skill/`, the installed Skill, and the Pixso plugin are delivery mirrors. The check verifies every managed file, detects deleted-but-still-managed files in mirrors, verifies entrypoint imports, and preserves explicitly untracked local runtime state.
+- Run `node text-to-ui/scripts/skill-delivery.mjs --write` after source checks pass, then `--check`. Root `SKILL.md` plus the `text-to-ui/` tree are the only Skill authoring sources; local generated `skill/`, the installed Skill, and the Pixso plugin are delivery mirrors. `skill/` is Git-ignored and must never be committed. The check verifies every managed file, detects deleted-but-still-managed files in mirrors, verifies entrypoint imports, and preserves explicitly untracked local runtime state.
 - Rebuild plugin artifacts with their builders when runtime or mapping inputs change. Synchronize an existing delivery package and verify its hashes; live Pixso execution is not part of repository maintenance.
 - `pnpm skill:sync` also synchronizes an existing unified plugin delivery directory after rebuilding. It backs up changed files and preserves extra local files. `pnpm skill:check` verifies all source files, critical module imports, and plugin delivery hashes.
 - Report checks and any unresolved differences; do not silently suppress failed gates.

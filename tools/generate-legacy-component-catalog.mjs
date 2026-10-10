@@ -11,7 +11,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const sourcePath = path.join(root, "skill/preview/component-gallery.html");
+const sourcePath = path.join(root, "text-to-ui/preview/component-gallery.html");
 const outputPath = path.join(root, "packages/component-contracts/src/legacy-catalog.generated.js");
 const source = await fs.readFile(sourcePath, "utf8");
 
@@ -54,6 +54,6 @@ const componentNames = [
   "Accordion", "Alert", "Alert Dialog", "Attachment", "Avatar", "Badge", "Breadcrumb", "Button", "Calendar", "Card", "Carousel", "Chart", "Checkbox", "Collapsible", "Combobox", "Context Menu", "Data Table", "Date Picker", "Time Picker", "Dialog", "Dropdown Menu", "Empty", "Field", "Hover Card", "Input", "Input OTP", "Item", "Kbd", "Label", "Menubar", "Native Select", "Pagination", "Popover", "Progress", "Radio Group", "Select", "Sidebar", "Skeleton", "Slider", "Spinner", "Switch", "Table", "Tabs", "Textarea", "Toast", "Toggle", "Tooltip", "Semi-modal"
 ];
 
-const output = `// Generated from skill/preview/component-gallery.html. Do not edit by hand.\n// Regenerate with: node tools/generate-legacy-component-catalog.mjs\nexport const legacyCatalogComponentNames = Object.freeze(${JSON.stringify(componentNames, null, 2)});\nexport const legacyCatalogSectionIds = Object.freeze(${JSON.stringify(sectionIds, null, 2)});\nexport const legacyCatalogMarkup = ${JSON.stringify(markup)};\n`;
+const output = `// Generated from text-to-ui/preview/component-gallery.html. Do not edit by hand.\n// Regenerate with: node tools/generate-legacy-component-catalog.mjs\nexport const legacyCatalogComponentNames = Object.freeze(${JSON.stringify(componentNames, null, 2)});\nexport const legacyCatalogSectionIds = Object.freeze(${JSON.stringify(sectionIds, null, 2)});\nexport const legacyCatalogMarkup = ${JSON.stringify(markup)};\n`;
 await fs.writeFile(outputPath, output);
 console.log(`Generated ${path.relative(root, outputPath)} from ${sectionIds.length} canonical sections (${markup.length} characters).`);

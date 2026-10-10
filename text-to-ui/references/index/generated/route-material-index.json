@@ -438,7 +438,7 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "c86c6080f56f81301ff61a8366af5082c6a74db3f0ea687b5395582985b0a37c",
+      "materialsDigest": "943fa872a0c87d3d31da515b1621d745180349130307a2c46154747e663eed69",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
@@ -486,19 +486,19 @@
           "path": "text-to-ui/references/governance/major-version-update-checklist.md",
           "role": "major-version-governance",
           "required": true,
-          "sha256": "78d91bc21189955c94d6b59be3f2ffa8d630c446c526e135ef91c9e58d789f5a"
+          "sha256": "5d27e62389129d79af82119e92c1108629df1d0829dd8dcc213a02d3ce671bb9"
         },
         {
           "path": "text-to-ui/references/governance/skill-catalog-refresh.md",
           "role": "skill-catalog-governance",
           "required": true,
-          "sha256": "a3b61a1d1bf13dfe4a1ff71f164209d99ec919a936620b81faa32b5d4fb65e5b"
+          "sha256": "552a4319ffacfbba04108b99d484011d26680e345c3e3e523742aef02030a9d8"
         },
         {
           "path": "text-to-ui/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "6375ce08cf8cfd07d4e0f0740654d6964849a5356376a24a96a6605a8bb72b68"
+          "sha256": "ee4af08d1abc7e3a3b44f06378164d4aa67b41db968675f7edb4cabad5aa859e"
         },
         {
           "path": "text-to-ui/references/layouts/framework-layout-routing.md",
@@ -528,10 +528,10 @@
           "path": "text-to-ui/references/routes/skill-maintenance.md",
           "role": "route-reference",
           "required": true,
-          "sha256": "b599a937bf9b1be103ccd2599520633ac7ef3b179d71cb15c85447adbdef0bd6"
+          "sha256": "494cc20d8c74da9a06fce6b777515436760fd55c7450f5cbf537a7ff15a8c48b"
         }
       ]
     }
   },
-  "indexDigest": "042a16f2b889917f0a93cab6556fcdb509e11d885b3a1b98df24cfed76892c8e"
+  "indexDigest": "31cb99c6ff026e95126942e4a70bd1f79fa36b5ba912b392e234139527f6ab7e"
 }

@@ -19,7 +19,7 @@ const groups = [
   ['tokens-type-and-icons', 'Semantic Token maps, colors, typography, layout, and icon aliases.', ['packages/tokens/src/token-runtime-map.json', 'packages/tokens/src/tokens.colors.css', 'packages/tokens/src/tokens.typography.css', 'packages/tokens/src/tokens.layout.css', 'packages/tokens/src/tokens.spacing.css', 'packages/tokens/src/tokens.icon.css', 'text-to-ui/assets/icons/icon-aliases.json', 'text-to-ui/assets/design-system/pixso-icon-map.json', 'text-to-ui/scripts/validate-page-token-usage.mjs', 'text-to-ui/scripts/validate-pixso-icon-map.mjs']],
   ['ui-scene-and-generation', 'Shared UI Scene, page decision layers, compiler, and strict page generation.', ['text-to-ui/assets/design-system/ui-scene.schema.json', 'text-to-ui/assets/design-system/page-spec.schema.json', 'text-to-ui/scripts/page-ui-scene.mjs', 'text-to-ui/scripts/compile-ui-scene.mjs', 'text-to-ui/scripts/page-blueprint.mjs', 'text-to-ui/scripts/page-content-recipes.mjs', 'text-to-ui/scripts/generate-framework-page.mjs', 'text-to-ui/scripts/generate-compliant-page.mjs', 'text-to-ui/scripts/test-framework-page-generation.mjs']],
   ['gates-and-runtime-evidence', 'Reuse, Token, layout, artifact, and browser Runtime evidence gates.', ['text-to-ui/scripts/validate-page-composite-boundaries.mjs', 'text-to-ui/scripts/validate-page-css-boundaries.mjs', 'text-to-ui/scripts/validate-page-layout-binding.mjs', 'text-to-ui/scripts/verify-html-artifact.mjs', 'text-to-ui/scripts/stamp-framework-artifact.mjs', 'tools/validate-runtime-evidence.mjs', 'text-to-ui/references/workflows/fast-preview.md']],
-  ['delivery-mirrors', 'Canonical delivery source, maintenance commands, and mirror synchronization implementation.', ['package.json', 'text-to-ui/SKILL.md', 'text-to-ui/package.json', 'text-to-ui/scripts/skill-delivery.mjs', 'text-to-ui/references/governance/major-version-update-checklist.md', 'text-to-ui/references/governance/skill-catalog-refresh.md']],
+  ['delivery-mirrors', 'Canonical delivery source, maintenance commands, and mirror synchronization implementation.', ['package.json', 'SKILL.md', 'text-to-ui/package.json', 'text-to-ui/scripts/skill-delivery.mjs', 'text-to-ui/references/governance/major-version-update-checklist.md', 'text-to-ui/references/governance/skill-catalog-refresh.md']],
   ['gallery-preview-and-baseline', 'Gallery/Preview source and visual baseline checks.', ['apps/component-gallery/runtime-catalog.js', 'apps/component-gallery/pattern-baseline.js', 'apps/component-gallery/preview.js', 'apps/component-gallery/gallery.css', 'tools/test-gallery-readiness.mjs', 'tools/validate-legacy-baseline.mjs']]
 ];
 
@@ -27,14 +27,14 @@ const catalog = {
   schemaVersion: 1,
   kind: 'text-to-ui-skill-catalog-index',
   authority: 'text-to-ui/references/governance/skill-catalog-refresh.md',
-  policy: { canonicalSource: 'text-to-ui/', refreshBeforeMaintenance: true, missingOrHashDriftIsBlocking: true, mirrorsAreValidatedAfterCanonicalChecks: true },
+  policy: { canonicalSource: 'SKILL.md + text-to-ui/', refreshBeforeMaintenance: true, missingOrHashDriftIsBlocking: true, mirrorsAreValidatedAfterCanonicalChecks: true },
   derivedProducts: {
     generatedIndexes: 'text-to-ui/references/index/generated/*.json',
     builder: 'pnpm index:build',
     validator: 'pnpm index:check'
   },
   deliveryTargets: [
-    'skill/',
+    'skill/ (local generated mirror; Git-ignored)',
     '$CODEX_HOME/skills/text-to-ui',
     'TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT (optional user-selected directory)'
   ],

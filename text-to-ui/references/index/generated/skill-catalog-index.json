@@ -3,7 +3,7 @@
   "kind": "text-to-ui-skill-catalog-index",
   "authority": "text-to-ui/references/governance/skill-catalog-refresh.md",
   "policy": {
-    "canonicalSource": "text-to-ui/",
+    "canonicalSource": "SKILL.md + text-to-ui/",
     "refreshBeforeMaintenance": true,
     "missingOrHashDriftIsBlocking": true,
     "mirrorsAreValidatedAfterCanonicalChecks": true
@@ -14,7 +14,7 @@
     "validator": "pnpm index:check"
   },
   "deliveryTargets": [
-    "skill/",
+    "skill/ (local generated mirror; Git-ignored)",
     "$CODEX_HOME/skills/text-to-ui",
     "TEXT_TO_UI_UNIFIED_PLUGIN_DELIVERY_ROOT (optional user-selected directory)"
   ],
@@ -33,7 +33,7 @@
         },
         {
           "path": "text-to-ui/references/routes/skill-maintenance.md",
-          "sha256": "b599a937bf9b1be103ccd2599520633ac7ef3b179d71cb15c85447adbdef0bd6"
+          "sha256": "494cc20d8c74da9a06fce6b777515436760fd55c7450f5cbf537a7ff15a8c48b"
         },
         {
           "path": "text-to-ui/scripts/resolve-workflow-route.mjs",
@@ -276,8 +276,8 @@
           "sha256": "4874f74b84bf9e30b6fb28a8ffbb4c3775bd2ab04c07c3c3d41d4c72c3959c60"
         },
         {
-          "path": "text-to-ui/SKILL.md",
-          "sha256": "79dfa582c51ef0facd2807ee3df1f71476dc8606bc6210d6c930b7927fff4b82"
+          "path": "SKILL.md",
+          "sha256": "1642b312f5057d85c8aac1eac43be8c1f44818635112e137f879ce724a47f174"
         },
         {
           "path": "text-to-ui/package.json",
@@ -285,15 +285,15 @@
         },
         {
           "path": "text-to-ui/scripts/skill-delivery.mjs",
-          "sha256": "be49e8198c12f17210c5e66094eb6c7ee8e28686634e9c80260647d89382b159"
+          "sha256": "214281e1df630ee62987771b952bf3da4be73ee04e0a8dfd992bd07b2094f181"
         },
         {
           "path": "text-to-ui/references/governance/major-version-update-checklist.md",
-          "sha256": "78d91bc21189955c94d6b59be3f2ffa8d630c446c526e135ef91c9e58d789f5a"
+          "sha256": "5d27e62389129d79af82119e92c1108629df1d0829dd8dcc213a02d3ce671bb9"
         },
         {
           "path": "text-to-ui/references/governance/skill-catalog-refresh.md",
-          "sha256": "a3b61a1d1bf13dfe4a1ff71f164209d99ec919a936620b81faa32b5d4fb65e5b"
+          "sha256": "552a4319ffacfbba04108b99d484011d26680e345c3e3e523742aef02030a9d8"
         }
       ]
     },
@@ -328,5 +328,5 @@
       ]
     }
   ],
-  "digest": "a3b61a1d1bf13dfe4a1ff71f164209d99ec919a936620b81faa32b5d4fb65e5b"
+  "digest": "552a4319ffacfbba04108b99d484011d26680e345c3e3e523742aef02030a9d8"
 }

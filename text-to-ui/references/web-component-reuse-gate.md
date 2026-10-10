@@ -166,5 +166,5 @@ Validate it from the Monorepo root:
 ```bash
 node text-to-ui/scripts/validate-web-component-reuse.mjs \
   --manifest /absolute/path/to/component-usage.json \
-  --project-root /absolute/path/to/text-to-ui-monorepo
+  --project-root /absolute/path/to/text-to-ui
 ```

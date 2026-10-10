@@ -58,7 +58,7 @@
 
 - `SKILL.md` 与对应 route/reference 文档；
 - 组件 Gallery、Pattern 预览、Skeleton/Runtime 示例；
-- `skill/` 仓库镜像；
+- 本机生成的 `skill/` 镜像（不提交仓库）；
 - `$CODEX_HOME/skills/text-to-ui` 已安装镜像；
 - Pixso 插件交付目录；
 - Gallery legacy baseline 和所有 generated index。

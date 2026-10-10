@@ -1,0 +1,4 @@
+interface:
+  display_name: "Text to UI"
+  short_description: "Build HarmonyOS PC pages from registered framework runtime adapters"
+  default_prompt: "Use $text-to-ui from this repository's root SKILL.md to build my HarmonyOS PC tool. Lock this Skill entry, select one workflow route and verify its materials, complete the page Blueprint gate when creating a page, then show an early interactive preview before final validation."
