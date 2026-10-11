@@ -129,6 +129,12 @@ the entire component or Token registry when a targeted entry is sufficient.
 - Page CSS uses canonical Tokens and styles declared business-content groups.
   It must not override component internals, add a second pane inset, or redraw
   Pattern-owned borders, dividers, Titlebars, or navigation.
+- In page-owned content groups, align related elements on shared visual axes:
+  use consistent edges or text baselines, and check the perceived alignment of
+  mixed icons and text at the rendered size. Keep labels, values, and actions
+  visually connected to the content they serve; avoid elements stranded by
+  arbitrary gaps. Follow `references/page-design-guidance.md` without changing
+  Pattern-owned insets or component internals.
 - If a Pattern boundary is draggable, keep its visible separator as the same
   single `--layout-navigation-divider-width` (0.5px) stroke in `--color-border`
   as a fixed boundary. The pointer/keyboard hit target may be wider but remains

@@ -110,7 +110,7 @@
         "task-route-domain-reference",
         "titlebar-segments"
       ],
-      "materialsDigest": "d536255767d31fc73348508f9539f1ef0683dd93c4ffc7051d9a93acdea54755",
+      "materialsDigest": "66a12216343c4ee3e1aa67d8630b44c9b98f7ab1f2cb2f63a3f197cfd9d09a58",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
@@ -194,7 +194,7 @@
           "path": "skill-support/references/page-design-guidance.md",
           "role": "page-guidance",
           "required": true,
-          "sha256": "de346aab0e0780bdd06ee879b0e5a6337c0a2279cdd39cf031fcff2285f89a86"
+          "sha256": "400a6c9db73b12d5f426bbc39b88e9dacbde224ff703cfbe1149635b17dd3875"
         },
         {
           "path": "skill-support/references/requirement-spec.md",
@@ -219,7 +219,7 @@
     "micro-revision": {
       "id": "micro-revision",
       "dynamicMaterials": [],
-      "materialsDigest": "a575bd46694dbf3c4816f619833e04980fef53705e9978e021a0bdd1fb6c5c1c",
+      "materialsDigest": "14a01a7991e05732f45bb4da412465e21d1bdc69d81333f4a6084d4e890ecb51",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
@@ -273,7 +273,7 @@
           "path": "skill-support/references/page-design-guidance.md",
           "role": "page-guidance",
           "required": true,
-          "sha256": "de346aab0e0780bdd06ee879b0e5a6337c0a2279cdd39cf031fcff2285f89a86"
+          "sha256": "400a6c9db73b12d5f426bbc39b88e9dacbde224ff703cfbe1149635b17dd3875"
         },
         {
           "path": "skill-support/references/requirement-spec.md",
@@ -498,7 +498,7 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "cfe57ccbc9b787c036b76d90f74d18dad372a6160965e27b9bb5d10128e8710d",
+      "materialsDigest": "aece6c7f776cb83d88fb8475081d7b3d4ed76e4eb29937a7aeb725c142f152bc",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
@@ -570,7 +570,7 @@
           "path": "skill-support/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "95fdebc6fb13aba71cb5ccbb4e7934489fed2f4c434a5151da9f7bded37dc9ca"
+          "sha256": "3c9645ecb733bd8933219ef275008ee7ae1822f284449cd772b4b27c3bc67e0a"
         },
         {
           "path": "skill-support/references/layouts/framework-layout-routing.md",
@@ -605,5 +605,5 @@
       ]
     }
   },
-  "indexDigest": "4a668a3995a4630718b49bf9a475baf3fdbdd42d235fc4a92f6ea13c11331445"
+  "indexDigest": "fa2e3f65bb78c58582e9c526505677041a9110c27e67ce5288270911f81e614f"
 }

@@ -32,6 +32,19 @@ For settings, group fields by user intent and place help next to the affected
 field. For tools, make status and the next useful action discoverable without
 making every field equally prominent.
 
+## Visual alignment and grouping
+
+Within each page-owned content group, give related headings, rows, fields, and
+actions a shared visual axis. Align text by a consistent leading edge or
+baseline; judge icon-and-text alignment by how it looks at the rendered size,
+not only by their bounding boxes. Keep labels, help, status, and actions near
+the content they describe or change so they read as one group. Use consistent
+Token-based gaps between peers; if an element looks stranded in empty space,
+adjust the group's composition or spacing rather than adding an isolated
+offset. Deliberate whitespace may separate different priorities, but must not
+break a relationship the user needs to understand. Pattern insets and
+registered component internals remain owned by their renderers.
+
 ## Reuse controls; design missing business composites
 
 Use registered buttons, inputs, selection controls, navigation and attachment
@@ -50,8 +63,10 @@ content recipes. Do not create another mandatory design report. Generate
 bindings from the current context, keep the generated mount entry, and run
 renderer preflight before output. Build and inspect the exact running artifact
 once; fix a reported defect at its owning input, not with parallel handwritten
-HTML. Re-run only the checks invalidated by that fix. Browser evidence remains
-necessary for mounting and interaction; style comparison is not a default gate.
+HTML. At the actual content width, check that related elements share a clear
+visual axis and that no label or action is left isolated. Re-run only the
+checks invalidated by a fix. Browser evidence remains necessary for mounting
+and interaction; style comparison is not a default gate.
 
 Only explicitly user-approved registered pages may inform future design.
 Generated test pages never become historical references automatically.
