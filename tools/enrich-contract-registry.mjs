@@ -468,7 +468,7 @@ for (const component of registry.components) {
         configurationProps: ["scopeOptions", "scope", "defaultScope", "scopeLabel", "onScopeChange"],
         scope: "search-query-builder",
         defaultPlacement: "leading-before-search-icon",
-        control: "native-select",
+        control: "dropdown-menu",
         defaultLabel: "搜索范围",
         defaultValue: "first-scope-option",
         dividerToken: "color.border",

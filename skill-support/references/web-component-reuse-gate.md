@@ -6,9 +6,9 @@ Pixso instance requirements, but it never permits handwritten Web lookalikes.
 This gate runs only after `pc-framework-layout-gate.md` passes. Components fill
 the validated framework slots; they cannot alter pane order, title layers,
 action slots, scrolling ownership, or resize behavior.
-For the fixed DeepSeek V4 Flash comparison and pass/fail protocol, see
-`experiments/component-first-deepseek-v4-flash.md`; deterministic tests are not
-substitutes for independent model generations.
+For the DeepSeek V4 Flash and GLM V5.1 comparison cohorts and pass/fail
+protocol, see `experiments/component-first-model-comparison.md`; deterministic
+tests are not substitutes for independent model generations.
 
 ## Required order
 

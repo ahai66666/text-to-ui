@@ -158,6 +158,10 @@ if (search?.slotContracts?.["advanced-search"]?.mode !== "text") failures.push("
 if (search?.slotContracts?.["advanced-search"]?.textColorToken !== "color.text-muted") failures.push("search: advanced-search text must use color.text-muted");
 if (search?.slotContracts?.["advanced-search"]?.trailingInsetToken !== "space/2") failures.push("search: advanced-search trailing inset must use space/2");
 requireText(packageCss, ".tui-search__advanced", "Search advanced slot CSS");
+requireText(packageCss, ".tui-search:not(:has(.tui-search__scope)):hover:not([data-state=\"disabled\"]) { background: var(--color-neutral-dark-05); }", "Search whole-field Hover layer");
+requireText(packageCss, ".tui-search:not([data-surface=\"gray\"])[data-state=\"hover-right\"] > .tui-search__input-region { background: var(--color-neutral-dark-05); }", "Search right Hover layer");
+const searchAdvancedHoverRules = [...packageCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(([, selector]) => selector.includes('.tui-search[data-surface="gray"]') && selector.includes(":has(.tui-search__scope)") && !selector.includes(":not(:has(.tui-search__scope))") && selector.includes('[data-slot="advanced-search"]') && (selector.includes(":hover") || selector.includes('[data-state="hover"]')));
+if (searchAdvancedHoverRules.some(([, , declarations]) => /padding-(?:right|inline-end)\s*:/.test(declarations))) failures.push("Search Advanced Hover must not change root padding or move the action");
 requireText(packageCss, ".tui-search__advanced { flex: 0 0 auto;", "Search advanced text button sizing");
 requireText(packageCss, ".tui-search .tui-search__advanced { color: var(--color-text-muted);", "Search advanced secondary text color");
 requireText(packageCss, ".tui-search:has([data-slot=\"advanced-search\"]):not(:has(.tui-search__scope)) { padding-right: var(--space-2);", "Search advanced trailing inset without scope");

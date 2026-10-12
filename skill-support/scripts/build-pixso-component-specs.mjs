@@ -284,7 +284,7 @@ function componentSpec(name) {
         right: "input-region",
         hover: {
           left: { whiteContent: "neutral-dark/05", grayContent: "neutral-dark/05" },
-          right: { whiteContent: "neutral-dark/10", grayContent: "neutral-dark/05" },
+          right: { whiteContent: "neutral-dark/05", grayContent: "neutral-dark/05" },
         },
         pressed: { whiteContent: "neutral-dark/15", grayContent: "neutral-dark/10" },
         grayContentOutline: { color: "neutral-light/100", width: 2 },

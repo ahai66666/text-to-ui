@@ -4,7 +4,19 @@
 
 ## 完整代码仓与独立 Skill 的边界
 
-完整接入的根目录必须同时能解析 `pnpm-workspace.yaml`、`packages/component-contracts` 和三个框架组件包。推荐从代码仓根目录执行 `pnpm delivery:validate`，再运行 Skill 的页面生成流程。
+完整接入的根目录必须同时能解析 `pnpm-workspace.yaml`、`packages/component-contracts` 和三个框架组件包。仓库在 GitHub 的规范地址是 <https://github.com/ahai66666/text-to-ui>；其他 AI 运行环境应优先打开或克隆这个仓库，而不是只安装规则版 Skill。若已获得仓库副本，可用这些标记确认根目录：
+
+```text
+pnpm-workspace.yaml
+packages/component-contracts/src/components.json
+packages/components-html/
+packages/components-react/
+packages/components-vue/
+packages/component-styles/
+packages/tokens/
+```
+
+把包含以上文件的目录设为 `REPO_ROOT`，所有组件路径均相对于它解析；不要把某台机器的绝对路径写进提示词或假定其他 AI 能访问本机文件。推荐从代码仓根目录执行 `pnpm delivery:validate`，再运行 Skill 的页面生成流程。如果只有 Skill 目录且 AI 无权访问/克隆规范仓库，就明确报告缺少组件源码，并请求用户打开/附加完整仓库或使用 Windows x64 离线包；不得把 Skill 目录、Pixso 预览或旧生成页面冒充组件源码。
 
 仓库根目录 `SKILL.md` 是唯一导入入口，`skill-support/` 是其规范支持资料；`skill/` 只是在本机生成的独立安装镜像，不提交到 GitHub。独立安装镜像可以提供规则和索引，但不会把根仓的 `packages/` 变成 Codex 的全局组件库；克隆仓库也不会自动完成 Skill 注册。若 Skill 运行时找不到组件包，必须把复用能力标记为不可用或 partial，并报告缺失路径，禁止静默回退到截图、旧预览或视觉相似 DOM。
 
@@ -16,8 +28,9 @@
 
 1. `packages/component-contracts/src/components.json`：逻辑名、Variant、状态、Props、Slots 和 Token 角色。
 2. `packages/components-html`、`packages/components-react`、`packages/components-vue`：真实框架实现。
-3. `packages/tokens`：canonical CSS Variables 与 Token 映射。
-4. `packages/pixso-mapping`：NewComponents 逻辑映射；GUID 必须在当前 Pixso 文件中运行时解析。
+3. `packages/component-styles`：跨框架共享组件样式。
+4. `packages/tokens`：canonical CSS Variables 与 Token 映射。
+5. `packages/pixso-mapping`：NewComponents 逻辑映射；GUID 必须在当前 Pixso 文件中运行时解析。
 
 每条契约还声明 `sourceStrategy`：`canonical-custom` 表示依据当前 Text-to-UI 组件契约与设计规则实现轻量组件；`shadcn-behavior-canonical-style` 表示只借用 shadcn / shadcn-vue 的行为与无障碍基础；`canonical-static` 表示组件目前以共享契约和样式为准，框架适配器仍待补齐。三个框架都通过 `@text-to-ui/component-styles` 进入同一套 CSS，不允许组件包再维护一份默认 shadcn 外观。
 

@@ -11,7 +11,7 @@ const css = fs.readFileSync(new URL("../../packages/component-styles/src/index.c
 const searchContract = JSON.parse(fs.readFileSync(new URL("../../packages/component-contracts/src/components.json", import.meta.url))).components.find((component) => component.id === "search");
 assert.deepEqual(searchContract.states, ["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"]);
 assert.deepEqual(searchContract.allowedStates, searchContract.states, "Search allowed states must match its nine Pixso states exactly");
-assert.deepEqual(searchContract.variants, ["default", "advanced-search", "scoped-search", "scoped-advanced-search"]);
+assert.deepEqual(searchContract.variants, ["default", "focused", "with-value", "advanced-search", "scoped-search", "scoped-advanced-search"]);
 assert.equal(searchContract.slotContracts["scope-selector"].control, "dropdown-menu");
 assert.ok(!searchContract.states.includes("error") && !searchContract.allowedStates.includes("error"), "Search contract must not expose an Error state");
 assert.ok(!searchContract.variants.some((variant) => /error/i.test(variant)), "Search must not expose an Error variant");
@@ -21,7 +21,7 @@ assert.match(css, /\.tui-search\[data-surface="gray"\]\[data-state="hover-right"
 assert.match(css, /\.tui-search\[data-surface="gray"\]\[data-state="pressed-left"\] > \.tui-search__scope[^\{]*\{[^}]*color-neutral-dark-10[^}]*box-shadow: inset 0 0 0 2px/);
 assert.match(css, /\.tui-search\[data-surface="gray"\]\[data-state="pressed-right"\] > \.tui-search__input-region[^\{]*\{[^}]*color-neutral-dark-10[^}]*box-shadow: inset 0 0 0 2px/);
 assert.match(css, /\.tui-search:not\(\[data-surface="gray"\]\)\[data-state="hover-left"\] > \.tui-search__scope[^\{]*\{ background: var\(--color-neutral-dark-05\); \}/);
-assert.match(css, /\.tui-search:not\(\[data-surface="gray"\]\)\[data-state="hover-right"\] > \.tui-search__input-region[^\{]*\{ background: var\(--color-neutral-dark-10\); \}/, "White-content Search right hover remains unchanged");
+assert.match(css, /\.tui-search:not\(\[data-surface="gray"\]\)\[data-state="hover-right"\] > \.tui-search__input-region[^\{]*\{ background: var\(--color-neutral-dark-05\); \}/, "Gray Search fill right Hover uses neutral-dark/05");
 assert.match(css, /\.tui-search:not\(\[data-surface="gray"\]\)\[data-state="pressed-right"\] > \.tui-search__input-region[^\{]*\{ background: var\(--color-neutral-dark-15\); \}/);
 assert.doesNotMatch(css, /\.tui-search:has\(\.tui-search__scope\):hover[^\{]*\{\s*background:/, "Scoped Search must not add a hover fill to the full root");
 assert.doesNotMatch(css, /\.tui-search\[data-state="(?:hover|pressed)"\]/, "Search must not expose generic Hover or Pressed styles");
@@ -87,7 +87,7 @@ assert.ok(searchFacts.variants.every((variant) => variant.geometry?.width === 32
 assert.equal(pixsoSpecs.components["Search/Scoped/Default"].textRoles.Scope, "Body_L");
 assert.equal(pixsoSpecs.components["Search/Scoped/Default"].slotContracts["scope-selector"].width, 73);
 assert.equal(pixsoSpecs.components["Search/Scoped/Default"].interactionRegions.hover.left.whiteContent, "neutral-dark/05");
-assert.equal(pixsoSpecs.components["Search/Scoped/Default"].interactionRegions.hover.right.whiteContent, "neutral-dark/10");
+assert.equal(pixsoSpecs.components["Search/Scoped/Default"].interactionRegions.hover.right.whiteContent, "neutral-dark/05");
 assert.equal(pixsoSpecs.components["Search/Scoped/Default"].interactionRegions.grayContentOutline.width, 2);
 for (const name of ["Search/White Surface/Default", "Search/Gray Surface/Default", "Search/Scoped/Default"]) {
   assert.equal(pixsoSpecs.components[name].sizing.masterWidth, 324, `${name} Pixso width`);

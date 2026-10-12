@@ -21,13 +21,13 @@
     "existing-html-to-pixso": {
       "id": "existing-html-to-pixso",
       "dynamicMaterials": [],
-      "materialsDigest": "b3b67f18f791f5ccabf252c03ceb8c3e13e6078cd1cc8fcef4eed12c0447847c",
+      "materialsDigest": "5c0423f06dcbd54b59a58584b1e8c6390626528e3530407174fdd47f88246b88",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -110,13 +110,13 @@
         "task-route-domain-reference",
         "titlebar-segments"
       ],
-      "materialsDigest": "7ae9d058dac7c318fb5519e591e1d9b93733d28293fea4996e6673d727d7a27b",
+      "materialsDigest": "addb247200b286b0fe39322c2b11e566cda85b99a82d98ec658cfb274d4e249e",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/pattern-runtime/README.md",
@@ -212,7 +212,7 @@
           "path": "skill-support/references/web-component-reuse-gate.md",
           "role": "web-component-reuse",
           "required": true,
-          "sha256": "e49d2174b2e0f95252beafba63eaaa8e88cf0d83e946b523b069365587a57549"
+          "sha256": "a86db4fe26053972841332a51e934778f022cc736b16e59c60bac2b98a06328c"
         },
         {
           "path": "skill-support/references/workflows/fast-preview.md",
@@ -225,13 +225,13 @@
     "micro-revision": {
       "id": "micro-revision",
       "dynamicMaterials": [],
-      "materialsDigest": "5a3f7cc46e79cfd0056aba86291ddba9a9aa42bd21e5386aa850a091b405b962",
+      "materialsDigest": "b1082ce102eb8307f85b448521d8bbee661278c464651c6d700220e8b51af90d",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -298,13 +298,13 @@
     "pixso-component-library": {
       "id": "pixso-component-library",
       "dynamicMaterials": [],
-      "materialsDigest": "ba7e1b3110249e87db1ed56a7f1d97ed28770377a62b698d4086e1ca71894a16",
+      "materialsDigest": "c88adaf16e023d2819de64b985816eae3ab5e3f66244ea2aa4affd6ca81906c4",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -401,13 +401,13 @@
     "converter-diagnosis": {
       "id": "converter-diagnosis",
       "dynamicMaterials": [],
-      "materialsDigest": "78e64b5b6c65b504cb9a2f0df23ca5f5a2e7eaaaf4fdbadcc54a252cabf32ddc",
+      "materialsDigest": "485192dc25f61f5384f73a7877e084bb6ac7046372ad5f6b590422da62318bd4",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -504,13 +504,13 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "0537a5622a58ccd0c9b5c051ec85fb67cee5b6b16717787c4ab5696ed623df85",
+      "materialsDigest": "9c33dc54e91562d6a9b7337da1b068bcc1075e040320f3778c028750093a9d21",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -576,7 +576,7 @@
           "path": "skill-support/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "2adef65e1f964a0d19bed03a8d0c1667226d71b3aa266aeca257163aa9784d12"
+          "sha256": "04f0fd03690198ab2fa44d80e04eba56bc77461e26bb6460b87132c770acb3cc"
         },
         {
           "path": "skill-support/references/layouts/framework-layout-routing.md",
@@ -611,5 +611,5 @@
       ]
     }
   },
-  "indexDigest": "cd98edbfe44cb2adfac2fbf7a3bb24a04ca7f8c35a9f4f3e679a5e34522c77c5"
+  "indexDigest": "3041b5ce6c99d0e00dc3812c65f2025375e98b11e3187e33559daac7e1373d1c"
 }

@@ -113,7 +113,7 @@
 .tui-search:has(.tui-search__scope) { gap: 0; padding: 0; border: 0; }
 .tui-search[data-surface="gray"] { background: var(--color-input-bg-on-subtle); }
 .tui-search:not([data-surface="gray"]) { background: var(--color-input-bg-on-default); }
-.tui-search:not(:has(.tui-search__scope)):hover:not([data-state="disabled"]) { background: var(--color-input-hover-bg-on-default); }
+.tui-search:not(:has(.tui-search__scope)):hover:not([data-state="disabled"]) { background: var(--color-neutral-dark-05); }
 .tui-search[data-surface="gray"]:not(:has(.tui-search__scope)):hover:not([data-state="disabled"]) { background: linear-gradient(var(--color-input-hover-bg-on-subtle-layer), var(--color-input-hover-bg-on-subtle-layer)), var(--color-input-bg-on-subtle); }
 .tui-search:not(:has(.tui-search__scope)):focus-within { background: var(--color-input-focus-bg-on-default); }
 .tui-search[data-surface="gray"]:not(:has(.tui-search__scope)):focus-within { background: var(--color-input-focus-bg-on-subtle); }
@@ -143,12 +143,12 @@
    local layer and a white 2px outline. */
 .tui-search:not([data-surface="gray"]):not([data-state="disabled"]):has(.tui-search__scope:hover) > .tui-search__scope,
 .tui-search:not([data-surface="gray"])[data-state="hover-left"] > .tui-search__scope { background: var(--color-neutral-dark-05); }
-.tui-search:not([data-surface="gray"]):not([data-state="disabled"]):not(:has(.tui-search__scope)) > .tui-search__input-region:hover { background: var(--color-neutral-dark-10); }
+.tui-search:not([data-surface="gray"]):not([data-state="disabled"]):not(:has(.tui-search__scope)) > .tui-search__input-region:hover { background: var(--color-neutral-dark-05); }
 .tui-search[data-surface="gray"]:not([data-state="disabled"]):has(.tui-search__scope:hover) > .tui-search__scope,
 .tui-search[data-surface="gray"][data-state="hover-left"] > .tui-search__scope,
 .tui-search[data-surface="gray"]:not([data-state="disabled"]):not(:has(.tui-search__scope)) > .tui-search__input-region:hover { background: var(--color-input-hover-bg-on-subtle-layer); box-shadow: inset 0 0 0 2px var(--color-input-hover-border-on-subtle); }
 .tui-search:not([data-surface="gray"]):not([data-state="disabled"]):has(.tui-search__input-region:hover) > .tui-search__input-region,
-.tui-search:not([data-surface="gray"])[data-state="hover-right"] > .tui-search__input-region { background: var(--color-neutral-dark-10); }
+.tui-search:not([data-surface="gray"])[data-state="hover-right"] > .tui-search__input-region { background: var(--color-neutral-dark-05); }
 .tui-search[data-surface="gray"]:not([data-state="disabled"]):has(.tui-search__input-region:hover) > .tui-search__input-region,
 .tui-search[data-surface="gray"][data-state="hover-right"] > .tui-search__input-region { background: var(--color-input-hover-bg-on-subtle-layer); box-shadow: inset 0 0 0 2px var(--color-input-hover-border-on-subtle); }
 .tui-search:not([data-surface="gray"]):not([data-state="disabled"]):has(.tui-search__scope .tui-advanced-menu__trigger:active) > .tui-search__scope,
@@ -182,11 +182,9 @@
    the shared Ghost button contract. */
 .tui-search .tui-search__advanced { color: var(--color-text-muted); }
 .tui-search:has([data-slot="advanced-search"]):not(:has(.tui-search__scope)) { padding-right: var(--space-2); }
-/* The gray-surface hover ring adds 1px per side for the plain Search.
-   Scoped Search keeps its 1px transparent border, so its Advanced action
-   retains the resting trailing inset and never shifts on hover. */
+/* The query region owns Search's trailing inset. Hover may change its surface,
+   but must not add root padding and shrink the flex region under Advanced. */
 .tui-search[data-surface="gray"]:not(:has(.tui-search__scope)):hover:has([data-slot="advanced-search"]), .tui-search[data-surface="gray"]:not(:has(.tui-search__scope))[data-state="hover"]:has([data-slot="advanced-search"]) { padding-right: calc(var(--space-2) - 1px); }
-.tui-search[data-surface="gray"]:has(.tui-search__scope):hover:has([data-slot="advanced-search"]), .tui-search[data-surface="gray"]:has(.tui-search__scope)[data-state="hover"]:has([data-slot="advanced-search"]) { padding-right: var(--space-2); }
 .tui-icon-button svg { width: var(--icon-size-sm); height: var(--icon-size-sm); display: block; }
 .tui-icon-button { width: var(--size-icon-button); height: var(--size-icon-button); padding: 0; display: inline-grid; place-items: center; border: 0; border-radius: var(--radius-icon-button); color: var(--color-icon-muted); background: transparent; cursor: pointer; }
 .tui-icon-button:hover { color: var(--color-text); background: var(--state-layer-hover); }

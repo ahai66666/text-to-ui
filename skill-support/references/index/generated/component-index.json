@@ -3,11 +3,11 @@
   "generatedFrom": [
     {
       "path": "packages/component-contracts/src/components.json",
-      "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+      "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
     },
     {
       "path": "packages/component-contracts/src/parity-manifest.json",
-      "sha256": "5b6077a411759173c5740a2c22c59c0918b6cf2a2cb184199b12aef1e4050bf9"
+      "sha256": "95eb301c53e9e73553c0d06e184a82a24f85f1cd746f31bbe535b099b564dc91"
     },
     {
       "path": "skill-support/references/index/capability-aliases.source.json",
@@ -2909,7 +2909,7 @@
           ],
           "scope": "search-query-builder",
           "defaultPlacement": "leading-before-search-icon",
-          "control": "native-select",
+          "control": "dropdown-menu",
           "defaultLabel": "搜索范围",
           "defaultValue": "first-scope-option",
           "dividerToken": "color.border",

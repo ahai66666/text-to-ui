@@ -26,6 +26,21 @@ route:
   `package.json` path is relative to `REPO_ROOT`. Never resolve a missing
   reference against a different Skill copy.
 
+Repository discovery is mandatory when this Skill is installed separately:
+
+1. Inspect the AI task's opened project/workspace and its parent directories
+   for `pnpm-workspace.yaml` and `packages/component-contracts`. Verify the
+   three framework packages and `packages/tokens` before setting `REPO_ROOT`.
+2. If the opened workspace contains only this Skill, use the AI's repository
+   connector or Git access to locate the canonical source at
+   <https://github.com/ahai66666/text-to-ui>. Do not substitute a
+   similarly named repository or a stale generated page. If the AI cannot
+   materialize a working copy, ask the user to open/attach the complete
+   repository or provide the Windows x64 offline bundle.
+3. Resolve component paths relative to the verified `REPO_ROOT`, never from a
+   developer's machine-specific absolute path. The exact package map is in
+   `references/component-package-integration.md`.
+
 Importing a rules-only Skill lets an AI tool discover its instructions; it does
 not install the Monorepo's HTML, React, and Vue component packages. A verified
 Windows x64 offline bundle is an optional fallback for an AI environment that

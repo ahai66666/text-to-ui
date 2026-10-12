@@ -113,15 +113,15 @@
       "files": [
         {
           "path": "packages/component-contracts/src/components.json",
-          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
+          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
         },
         {
           "path": "packages/component-contracts/src/components-runtime.js",
-          "sha256": "becdfc776f1f8cde7f94f944b002a83cc1e8235759c294ee35874b65ae9bfd21"
+          "sha256": "2db825def43e4760c1cd3c46234929be1646dfcf7364391a87ff3bb5bf891259"
         },
         {
           "path": "packages/component-contracts/src/parity-manifest.json",
-          "sha256": "5b6077a411759173c5740a2c22c59c0918b6cf2a2cb184199b12aef1e4050bf9"
+          "sha256": "95eb301c53e9e73553c0d06e184a82a24f85f1cd746f31bbe535b099b564dc91"
         },
         {
           "path": "packages/component-contracts/src/titlebar-segments.js",
@@ -289,7 +289,7 @@
         },
         {
           "path": "SKILL.md",
-          "sha256": "aa035008da6bdeed295736987d8c91450d602a8195a11a17359481cc0fa7b78c"
+          "sha256": "77802699f496d3251dbbdfe359933ac0fa714e8c213e9affec378b8e376fa2ea"
         },
         {
           "path": "skill-support/package.json",
