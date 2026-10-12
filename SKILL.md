@@ -26,9 +26,14 @@ route:
   `package.json` path is relative to `REPO_ROOT`. Never resolve a missing
   reference against a different Skill copy.
 
-Importing this Skill lets an AI tool discover its instructions; it does not
-install the Monorepo's HTML, React, and Vue component packages. Before running
-an executable workflow, verify that `REPO_ROOT` contains
+Importing a rules-only Skill lets an AI tool discover its instructions; it does
+not install the Monorepo's HTML, React, and Vue component packages. A verified
+Windows x64 offline bundle is an optional fallback for an AI environment that
+cannot access the repository or install dependencies. Codex with the complete
+repository should use it directly and does not need an offline bundle. The
+bundle may carry a compatible repository snapshot and bundled runtime; in that
+case its unpacked `text-to-ui/` folder is `REPO_ROOT`. In either mode, before
+running an executable workflow verify that `REPO_ROOT` contains
 `pnpm-workspace.yaml`, `packages/component-contracts`,
 `packages/components-html`, `packages/components-react`,
 `packages/components-vue`, and `packages/tokens`. If these are unavailable,
@@ -36,6 +41,14 @@ stop and report the missing dependency. Do not run repository checks from a
 standalone Skill folder or claim production components were reused. See
 `RULES_ROOT/references/component-package-integration.md` for the integration
 contract.
+
+For the Windows x64 offline bundle, use the included `text-to-ui.cmd` launcher:
+`doctor` checks its platform and integrity, `new-project <path>`
+creates a local project with bundled dependencies, and `generate`/`build`/
+`preview` use the bundled Node runtime without target-machine npm or pnpm.
+Use `fork-source <empty-path>` before changing a shared component; the
+installed bundle is immutable delivery, and reviewed changes return to this
+canonical repository. Details: `references/offline-distribution.md`.
 
 Run repository checks from the Monorepo root. Invoke the route scripts from its
 canonical `skill-support/scripts/` directory (or from `RULES_ROOT/scripts/` with
@@ -126,6 +139,13 @@ the entire component or Token registry when a targeted entry is sufficient.
   library component: for Dropdown Menu, compose the required menu directly
   from Token-bound native nodes and never import or reference a reusable master.
   Record registry evidence for custom work.
+- For a new Web page, resolve `component-selection.json` from the current
+  Context Packet, bindings, and recipes before generation. The generator
+  verifies its registry and input hashes and stops on `extend-existing`,
+  `new-shared`, or `blocked`. Extend an existing component's contract and
+  HTML/React/Vue adapters before retrying; a page-owned business composite
+  may contain registered controls but must not redraw them. Read
+  `references/web-component-reuse-gate.md` for the strict three-framework gate.
 - Page CSS uses canonical Tokens and styles declared business-content groups.
   It must not override component internals, add a second pane inset, or redraw
   Pattern-owned borders, dividers, Titlebars, or navigation.

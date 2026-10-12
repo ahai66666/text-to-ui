@@ -4,7 +4,7 @@
   "generatedFrom": [
     {
       "path": "skill-support/references/routes/materials.source.json",
-      "sha256": "2d93ad58c1235bb03df63885e0c15321e8bb324c5903a45cf99c9e7fff0953de"
+      "sha256": "883a0bb02eeeb1855e60e8840efb2a531803151d68cc328b1cf0d9fd251b85d3"
     },
     {
       "path": "skill-support/references/routes/index.json",
@@ -21,13 +21,13 @@
     "existing-html-to-pixso": {
       "id": "existing-html-to-pixso",
       "dynamicMaterials": [],
-      "materialsDigest": "0f8c86523f22da06a646b0b9f9da156cb7b3a3c538145e2b514bb51313fce54e",
+      "materialsDigest": "b3b67f18f791f5ccabf252c03ceb8c3e13e6078cd1cc8fcef4eed12c0447847c",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -110,13 +110,13 @@
         "task-route-domain-reference",
         "titlebar-segments"
       ],
-      "materialsDigest": "66a12216343c4ee3e1aa67d8630b44c9b98f7ab1f2cb2f63a3f197cfd9d09a58",
+      "materialsDigest": "7ae9d058dac7c318fb5519e591e1d9b93733d28293fea4996e6673d727d7a27b",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/pattern-runtime/README.md",
@@ -206,7 +206,13 @@
           "path": "skill-support/references/routes/new-page.md",
           "role": "route-reference",
           "required": true,
-          "sha256": "a6b48e4eb3514501863b7b84e59a41a1df72ab83802164cb5a4139a44c03fc60"
+          "sha256": "c9dd65f861800ac76c38d70fafbd9e66e1a9e84c8c0658cdbd47cb4d21e874cb"
+        },
+        {
+          "path": "skill-support/references/web-component-reuse-gate.md",
+          "role": "web-component-reuse",
+          "required": true,
+          "sha256": "e49d2174b2e0f95252beafba63eaaa8e88cf0d83e946b523b069365587a57549"
         },
         {
           "path": "skill-support/references/workflows/fast-preview.md",
@@ -219,13 +225,13 @@
     "micro-revision": {
       "id": "micro-revision",
       "dynamicMaterials": [],
-      "materialsDigest": "14a01a7991e05732f45bb4da412465e21d1bdc69d81333f4a6084d4e890ecb51",
+      "materialsDigest": "5a3f7cc46e79cfd0056aba86291ddba9a9aa42bd21e5386aa850a091b405b962",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -292,13 +298,13 @@
     "pixso-component-library": {
       "id": "pixso-component-library",
       "dynamicMaterials": [],
-      "materialsDigest": "1a2088cabfe40ed74bec47d107631982906e71764423d515f55ecba6bd92f142",
+      "materialsDigest": "ba7e1b3110249e87db1ed56a7f1d97ed28770377a62b698d4086e1ca71894a16",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -395,13 +401,13 @@
     "converter-diagnosis": {
       "id": "converter-diagnosis",
       "dynamicMaterials": [],
-      "materialsDigest": "c40c0c587ee819378e8d89c3692d179def02c1407cfe11f44d75677d3c9425f0",
+      "materialsDigest": "78e64b5b6c65b504cb9a2f0df23ca5f5a2e7eaaaf4fdbadcc54a252cabf32ddc",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -498,13 +504,13 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "aece6c7f776cb83d88fb8475081d7b3d4ed76e4eb29937a7aeb725c142f152bc",
+      "materialsDigest": "0537a5622a58ccd0c9b5c051ec85fb67cee5b6b16717787c4ab5696ed623df85",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -570,7 +576,7 @@
           "path": "skill-support/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "3c9645ecb733bd8933219ef275008ee7ae1822f284449cd772b4b27c3bc67e0a"
+          "sha256": "2adef65e1f964a0d19bed03a8d0c1667226d71b3aa266aeca257163aa9784d12"
         },
         {
           "path": "skill-support/references/layouts/framework-layout-routing.md",
@@ -605,5 +611,5 @@
       ]
     }
   },
-  "indexDigest": "fa2e3f65bb78c58582e9c526505677041a9110c27e67ce5288270911f81e614f"
+  "indexDigest": "cd98edbfe44cb2adfac2fbf7a3bb24a04ca7f8c35a9f4f3e679a5e34522c77c5"
 }

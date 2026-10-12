@@ -29,7 +29,7 @@
         },
         {
           "path": "skill-support/references/routes/materials.source.json",
-          "sha256": "2d93ad58c1235bb03df63885e0c15321e8bb324c5903a45cf99c9e7fff0953de"
+          "sha256": "883a0bb02eeeb1855e60e8840efb2a531803151d68cc328b1cf0d9fd251b85d3"
         },
         {
           "path": "skill-support/references/routes/skill-maintenance.md",
@@ -113,11 +113,11 @@
       "files": [
         {
           "path": "packages/component-contracts/src/components.json",
-          "sha256": "48d9303fca2f5b75d65aeb73004d8ded422232b08b4cdcd88bb05cb094251180"
+          "sha256": "422e7e03940d92d23912e1e5534737ce00c376c53fcdc306fd7cbbc15a121e19"
         },
         {
           "path": "packages/component-contracts/src/components-runtime.js",
-          "sha256": "0098a0f8ad0b35e69d79c9d9002d0cdb7f2814ccc76304319d0c31df811f6edd"
+          "sha256": "becdfc776f1f8cde7f94f944b002a83cc1e8235759c294ee35874b65ae9bfd21"
         },
         {
           "path": "packages/component-contracts/src/parity-manifest.json",
@@ -149,11 +149,11 @@
         },
         {
           "path": "skill-support/scripts/validate-runtime-component-reuse.mjs",
-          "sha256": "c1f638adf61ae79e8b64c9566fd8ea89c3f82ff818d51ca60f9e3c2f5e1d6b47"
+          "sha256": "533632a0a8d63f389ddbe8436934a4b670307c186fc246bf48a43b10000a9a5a"
         },
         {
           "path": "skill-support/scripts/validate-web-component-reuse.mjs",
-          "sha256": "eccf70097cc596245bac370fcdde8787a4e7ff8772419b68ade921655ee238b5"
+          "sha256": "23965698a564cde047f8b767d181afabf874e839786aa76f61295633008e2ed4"
         }
       ]
     },
@@ -233,15 +233,15 @@
         },
         {
           "path": "skill-support/scripts/generate-framework-page.mjs",
-          "sha256": "2f9964631d63999d3005d339aa15bb22d2315038fd4e7f5b3822cc9b0afc2bd2"
+          "sha256": "da7ed77b8dedc85a684fe4dd17b17a62c4c110a3e4837a528ffc1538419f7268"
         },
         {
           "path": "skill-support/scripts/generate-compliant-page.mjs",
-          "sha256": "640b35033bce902c205c8aaa1a7649d254d76df83509cc42b9c31c79a6bedb18"
+          "sha256": "edb6ab69aa7c2f84809a2a74757ee76a59efcb615e35208234857a2188b152c5"
         },
         {
           "path": "skill-support/scripts/test-framework-page-generation.mjs",
-          "sha256": "2e2a104025ad515077af130af85cbd73213492872b0d286253725d417763340e"
+          "sha256": "46fd8f540801cc78d285ce0485c89e4fea228eedaf69239e119b3ed281c075b3"
         }
       ]
     },
@@ -285,11 +285,11 @@
       "files": [
         {
           "path": "package.json",
-          "sha256": "83df221d27a5c629a55bd14e8e2d981ca1f6cccbafb7296e5983e8a67cabd113"
+          "sha256": "eaeefc7889d9b5e96d21cc450764d33405ac60cd3027e7311e6266bcfaa6a6bb"
         },
         {
           "path": "SKILL.md",
-          "sha256": "2bd1c9c6362469dc76de13866764b9249fa237ecdccb292fbb7ab37061399e96"
+          "sha256": "aa035008da6bdeed295736987d8c91450d602a8195a11a17359481cc0fa7b78c"
         },
         {
           "path": "skill-support/package.json",

@@ -71,6 +71,20 @@ fs.writeFileSync(evidencePath, JSON.stringify({ schemaVersion: 1, url: "http://1
 ] }, customRegions: [], contractRegions: [], unclassifiedInteractive: [], components: [{ rendererKey: "titlebar", logicalName: "Titlebar/Default", state: "default", variant: "medium", region: null, slots: ["label"], visible: true }] }));
 const runtimeGood = spawnSync(process.execPath, [runtimeValidator, "--manifest", manifestPath, "--evidence", evidencePath], { encoding: "utf8" });
 assert.equal(runtimeGood.status, 0, runtimeGood.stderr);
+for (const framework of ["react", "vue"]) {
+  const strictWebPath = path.join(temp, `${framework}-usage.json`);
+  const strictEvidencePath = path.join(temp, `${framework}-runtime.json`);
+  fs.writeFileSync(strictWebPath, JSON.stringify({ ...manifest, schemaVersion: 3, targetFramework: framework, registered: manifest.registered.map((item) => ({ ...item, rendererKey: null, exportName: "Titlebar" })) }));
+  const runtime = JSON.parse(fs.readFileSync(evidencePath, "utf8"));
+  runtime.components = runtime.components.map((item) => ({ ...item, framework }));
+  fs.writeFileSync(strictEvidencePath, JSON.stringify(runtime));
+  const accepted = spawnSync(process.execPath, [runtimeValidator, "--manifest", strictWebPath, "--evidence", strictEvidencePath], { encoding: "utf8" });
+  assert.equal(accepted.status, 0, accepted.stderr);
+  runtime.components[0].framework = "html";
+  fs.writeFileSync(strictEvidencePath, JSON.stringify(runtime));
+  const wrongFramework = spawnSync(process.execPath, [runtimeValidator, "--manifest", strictWebPath, "--evidence", strictEvidencePath], { encoding: "utf8" });
+  assert.notEqual(wrongFramework.status, 0, "lookalike HTML markers cannot prove React/Vue runtime reuse");
+}
 const stacked = JSON.parse(fs.readFileSync(evidencePath, "utf8"));
 stacked.patternLayout.regions = stacked.patternLayout.regions.map((region, index) => ({ ...region, bounds: { ...region.bounds, x: 0, y: index * 240 } }));
 fs.writeFileSync(evidencePath, JSON.stringify(stacked));

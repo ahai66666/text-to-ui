@@ -10,7 +10,7 @@ if (!manifestPath || !evidencePath) { console.error("Usage: validate-runtime-com
 const manifest = JSON.parse(fs.readFileSync(path.resolve(manifestPath), "utf8"));
 const evidence = JSON.parse(fs.readFileSync(path.resolve(evidencePath), "utf8"));
 const failures = [];
-if (manifest.schemaVersion !== 2 || manifest.enforcement !== "strict-source") failures.push("runtime reuse validation requires a strict-source schemaVersion 2 manifest");
+if (![2, 3].includes(manifest.schemaVersion) || manifest.enforcement !== "strict-source") failures.push("runtime reuse validation requires a strict-source schemaVersion 2 or 3 manifest");
 if (evidence.schemaVersion !== 1 || !Array.isArray(evidence.components)) failures.push("runtime evidence must use schemaVersion 1 and contain components");
 if (evidence.pattern !== manifest.layout?.pattern) failures.push(`runtime Pattern mismatch: expected ${manifest.layout?.pattern ?? "unknown"}, found ${evidence.pattern ?? "missing"}`);
 if (evidence.structureDigest !== manifest.layout?.structureDigest) failures.push(`runtime structureDigest mismatch: expected ${manifest.layout?.structureDigest ?? "missing"}, found ${evidence.structureDigest ?? "missing"}`);
@@ -61,7 +61,7 @@ if (expectedRegions.length > 1 && expectedRegions.every((region) => runtimeRegio
   }
 }
 for (const usage of manifest.registered ?? []) {
-  const matches = (evidence.components ?? []).filter((item) => item.rendererKey === usage.rendererKey && item.logicalName === usage.logicalName);
+  const matches = (evidence.components ?? []).filter((item) => item.logicalName === usage.logicalName && (manifest.targetFramework !== "html" || item.rendererKey === usage.rendererKey) && (manifest.schemaVersion !== 3 || item.framework === manifest.targetFramework));
   if (matches.length < (usage.expectedRuntimeCount ?? 1)) failures.push(`${usage.logicalName} expected at least ${usage.expectedRuntimeCount ?? 1} runtime instance(s), found ${matches.length}`);
   if (matches.some((item) => !item.visible)) failures.push(`${usage.logicalName} has hidden or detached runtime evidence`);
   if (usage.regions?.length && matches.some((item) => !usage.regions.includes(item.region))) failures.push(`${usage.logicalName} rendered outside declared region(s): ${usage.regions.join(", ")}`);

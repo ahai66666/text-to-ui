@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "packageManager": "pnpm@10.0.0",
+  "devDependencies": { "playwright": "1.62.1" },
   "scripts": {
     "index:build": "node skill-support/scripts/build-skill-catalog-index.mjs --repo . --skill-root skill-support && node skill-support/scripts/build-navigation-index.mjs --repo . --skill-root skill-support",
     "index:check": "node skill-support/scripts/build-skill-catalog-index.mjs --repo . --skill-root skill-support --check && node skill-support/scripts/validate-navigation-index.mjs --repo . --skill-root skill-support",
@@ -63,6 +64,7 @@
     "components:resolution:test": "node skill-support/scripts/test-primary-navigation-resolution.mjs",
     "components:readiness:test": "node skill-support/scripts/test-component-readiness-policy.mjs",
     "components:selection:test": "node skill-support/scripts/test-component-selection-rules.mjs",
+    "components:selection-receipt:test": "node skill-support/scripts/test-component-selection.mjs",
     "components:acceptance:test": "node skill-support/scripts/test-core-component-acceptance.mjs",
     "references:approved:test": "node skill-support/scripts/test-approved-page-reference-policy.mjs",
     "components:strict-html:test": "node skill-support/scripts/test-html-strict-reuse-pipeline.mjs && node skill-support/scripts/test-validate-page-token-usage.mjs",
@@ -77,11 +79,13 @@
     "services:start": "node skill-support/scripts/start-text-to-ui-services.mjs start",
     "services:status": "node skill-support/scripts/start-text-to-ui-services.mjs status",
     "delivery:validate": "node tools/validate-repository-delivery.mjs && pnpm skill:test",
-    "test": "pnpm index:check && pnpm catalog:test && pnpm route:materials:test && pnpm components:readiness:test && pnpm components:selection:test && pnpm components:acceptance:test && pnpm references:approved:test && pnpm patterns:validate && pnpm patterns:resolution:test && pnpm patterns:scene-binding:test && pnpm titlebar:scene:test && pnpm page:blueprint:test && pnpm page:content-recipes:test && pnpm page:css-boundaries:test && pnpm page:composite-boundaries:test && pnpm frameworks:page-generation:test && pnpm mappings:check && pnpm mappings:test && pnpm mappings:obsidian:test && pnpm components:resolution:test && pnpm delivery:validate && pnpm contracts:validate && pnpm styles:validate && pnpm pixso:mapping:test && pnpm frameworks:validate && pnpm layout:contract:test && pnpm layout:binding:test && pnpm layout:markers:test && pnpm layout:route:test && pnpm components:reuse:test && pnpm components:strict-html:test && pnpm components:strict-html:forward && pnpm runtime:evidence && pnpm dialogs:validate && pnpm gallery:readiness:test && pnpm tokens:validate",
+    "test": "pnpm index:check && pnpm catalog:test && pnpm route:materials:test && pnpm components:readiness:test && pnpm components:selection:test && pnpm components:selection-receipt:test && pnpm components:acceptance:test && pnpm references:approved:test && pnpm patterns:validate && pnpm patterns:resolution:test && pnpm patterns:scene-binding:test && pnpm titlebar:scene:test && pnpm page:blueprint:test && pnpm page:content-recipes:test && pnpm page:css-boundaries:test && pnpm page:composite-boundaries:test && pnpm frameworks:page-generation:test && pnpm mappings:check && pnpm mappings:test && pnpm mappings:obsidian:test && pnpm components:resolution:test && pnpm delivery:validate && pnpm contracts:validate && pnpm styles:validate && pnpm pixso:mapping:test && pnpm frameworks:validate && pnpm layout:contract:test && pnpm layout:binding:test && pnpm layout:markers:test && pnpm layout:route:test && pnpm components:reuse:test && pnpm components:strict-html:test && pnpm components:strict-html:forward && pnpm runtime:evidence && pnpm dialogs:validate && pnpm gallery:readiness:test && pnpm tokens:validate",
     "skill:sync": "node skill-support/scripts/skill-delivery.mjs --write",
     "skill:check": "node skill-support/scripts/skill-delivery.mjs --check",
     "skill:test": "node tools/test-skill-delivery.mjs",
     "skill:package": "node tools/package-skill.mjs",
-    "skill:package:check": "node tools/package-skill.mjs --check"
+    "skill:package:check": "node tools/package-skill.mjs --check",
+    "skill:offline:package": "node tools/package-offline-skill.mjs",
+    "skill:offline:package:check": "node tools/package-offline-skill.mjs --check"
   }
 }

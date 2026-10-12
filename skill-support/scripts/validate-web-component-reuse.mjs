@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { assertReadinessStage, loadReadinessPolicy, resolveComponentReadiness } from "./component-readiness-policy.mjs";
+import { componentPackageDigest } from "./component-selection.mjs";
 
 const args = process.argv.slice(2);
 const valueFor = (flag) => {
@@ -28,9 +30,9 @@ const packageByFramework = {
   vue: "@text-to-ui/components-vue",
 };
 
-if (![1, 2].includes(manifest.schemaVersion)) failures.push("schemaVersion must equal 1 or 2");
-const strictSource = manifest.schemaVersion === 2 || manifest.enforcement === "strict-source";
-if (strictSource && manifest.targetFramework !== "html") failures.push("strict-source schemaVersion 2 currently supports targetFramework html only");
+if (![1, 2, 3].includes(manifest.schemaVersion)) failures.push("schemaVersion must equal 1, 2, or 3");
+const strictSource = manifest.schemaVersion >= 2 || manifest.enforcement === "strict-source";
+if (manifest.schemaVersion === 2 && manifest.targetFramework !== "html") failures.push("strict-source schemaVersion 2 supports html only");
 if (!packageByFramework[manifest.targetFramework]) failures.push("targetFramework must be html, react, or vue");
 if (manifest.previousOutputReuse !== false) failures.push("previousOutputReuse must be false unless a separately approved continuation contract is used");
 
@@ -61,6 +63,26 @@ const registryRelative = manifest.registry ?? "packages/component-contracts/src/
 const registryPath = path.resolve(projectRoot, registryRelative);
 if (!fs.existsSync(registryPath)) failures.push(`component registry not found: ${registryPath}`);
 let registry = [];
+const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
+let selectionReceipt = null;
+if (manifest.schemaVersion === 3) {
+  const selection = manifest.selection;
+  const selectionPath = selection?.path ? path.resolve(path.dirname(manifestPath), selection.path) : null;
+  if (!selectionPath || !fs.existsSync(selectionPath)) failures.push("strict Web usage requires a component selection receipt");
+  else {
+    const contents = fs.readFileSync(selectionPath);
+    if (sha256(contents) !== selection.sha256) failures.push("component selection receipt hash mismatch");
+    else selectionReceipt = JSON.parse(contents);
+  }
+  if (selection?.registryDigest && fs.existsSync(registryPath) && sha256(fs.readFileSync(registryPath)) !== selection.registryDigest) failures.push("component registry has changed since selection");
+  if (selectionReceipt?.targetFramework !== manifest.targetFramework) failures.push("component selection framework mismatch");
+  if (selectionReceipt && packageByFramework[manifest.targetFramework]) {
+    try {
+      if (selectionReceipt.packageDigest !== componentPackageDigest(projectRoot, manifest.targetFramework)) failures.push("component package source has changed since selection");
+    } catch (error) { failures.push(error.message); }
+  }
+  for (const item of selectionReceipt?.entries ?? []) if (!["reuse", "page-composite"].includes(item.decision)) failures.push(`component selection remains pending: ${item.id}=${item.decision}`);
+}
 if (fs.existsSync(registryPath)) {
   const parsed = readJson(registryPath);
   registry = Array.isArray(parsed) ? parsed : parsed.components ?? [];
@@ -97,9 +119,13 @@ for (const [index, usage] of registered.entries()) {
   if (strictSource && usage.readinessLevel && usage.readinessLevel !== readiness.level) failures.push(`${usage.logicalName} readinessLevel is stale; expected ${readiness.level}`);
   if (strictSource && Array.isArray(usage.unresolvedParity) && JSON.stringify(usage.unresolvedParity) !== JSON.stringify(readiness.unresolvedDimensions)) failures.push(`${usage.logicalName} unresolvedParity is stale`);
   if (strictSource) {
-    if (!usage.rendererKey) failures.push(`registered[${index}].rendererKey is required in strict-source mode`);
+    if (manifest.targetFramework === "html" && !usage.rendererKey) failures.push(`registered[${index}].rendererKey is required in strict-source mode`);
+    if (manifest.targetFramework !== "html" && !usage.exportName) failures.push(`registered[${index}].exportName is required in strict-source mode`);
     if (!usage.usage) failures.push(`registered[${index}].usage is required in strict-source mode`);
     if (!Number.isInteger(usage.requiredCallSites) || usage.requiredCallSites < 1) failures.push(`registered[${index}].requiredCallSites must be a positive integer`);
+    if (manifest.schemaVersion === 3) for (const id of String(usage.usage ?? "").split(/,\s*/).filter(Boolean)) {
+      if (!selectionReceipt?.entries?.some((item) => item.id === id && item.logicalName === usage.logicalName && item.decision === "reuse")) failures.push(`registered component ${usage.logicalName} lacks a matching reuse selection for ${id}`);
+    }
   }
 }
 
@@ -192,19 +218,26 @@ if (contractBased.length + custom.length > 0) {
 
 if (strictSource) {
   const renderer = manifest.renderer ?? {};
-  if (renderer.package !== "@text-to-ui/components-html") failures.push("renderer.package must equal @text-to-ui/components-html");
-  if (renderer.factoryImport !== "renderHtmlComponent") failures.push("renderer.factoryImport must equal renderHtmlComponent");
-  for (const styleImport of ["@text-to-ui/tokens", "@text-to-ui/components-html/styles.css", "@text-to-ui/components-html/pattern-shell.css"]) {
-    if (!hasImport(styleImport)) failures.push(`strict HTML source must import ${styleImport}`);
+  if (renderer.package !== expectedPackage) failures.push(`renderer.package must equal ${expectedPackage}`);
+  const code = sourceFiles.map((file) => fs.readFileSync(file, "utf8").replace(/\/\*[\s\S]*?\*\/|^\s*\/\/.*$/gm, "")).join("\n");
+  if (manifest.targetFramework === "html") {
+    if (renderer.factoryImport !== "renderHtmlComponent") failures.push("renderer.factoryImport must equal renderHtmlComponent");
+    for (const styleImport of ["@text-to-ui/tokens", "@text-to-ui/components-html/styles.css", "@text-to-ui/components-html/pattern-shell.css"]) {
+      if (!hasImport(styleImport)) failures.push(`strict HTML source must import ${styleImport}`);
+    }
+    if (!/import\s*\{[^}]*\brenderHtmlComponent\b[^}]*\}\s*from\s*["']@text-to-ui\/components-html["']/.test(code)) failures.push("strict HTML source must import the renderHtmlComponent factory");
+  } else {
+    for (const styleImport of ["@text-to-ui/tokens", `${expectedPackage}/styles.css`, "@text-to-ui/components-html/pattern-shell.css"]) if (!hasImport(styleImport)) failures.push(`strict ${manifest.targetFramework} source must import ${styleImport}`);
   }
-  if (!/import\s*\{[^}]*\brenderHtmlComponent\b[^}]*\}\s*from\s*["']@text-to-ui\/components-html["']/.test(source)) failures.push("strict HTML source must import the renderHtmlComponent factory");
   for (const usage of registered) {
-    if (!usage.rendererKey) continue;
-    const escapedKey = usage.rendererKey.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const direct = new RegExp(`renderHtmlComponent\\s*\\(\\s*["']${escapedKey}["']`, "g");
-    const helper = new RegExp(`(?:component|renderComponent)\\s*\\(\\s*["']${escapedKey}["']`, "g");
-    const calls = (source.match(direct) ?? []).length + (source.match(helper) ?? []).length;
-    if (calls < (usage.requiredCallSites ?? 1)) failures.push(`registered component is declared but never rendered enough times: ${usage.logicalName}; rendererKey=${usage.rendererKey}; expected call sites=${usage.requiredCallSites ?? 1}; found=${calls}`);
+    const identifier = manifest.targetFramework === "html" ? usage.rendererKey : usage.exportName;
+    if (!identifier) continue;
+    const escaped = identifier.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const calls = manifest.targetFramework === "html"
+      ? ((code.match(new RegExp(`renderHtmlComponent\\s*\\(\\s*["']${escaped}["']`, "g")) ?? []).length + (code.match(new RegExp(`(?:component|renderComponent)\\s*\\(\\s*["']${escaped}["']`, "g")) ?? []).length)
+      : (code.match(new RegExp(`${manifest.targetFramework === "react" ? "React\\.createElement" : "h"}\\s*\\(\\s*${escaped}\\s*,`, "g")) ?? []).length;
+    if (manifest.targetFramework !== "html" && !new RegExp(`import\\s*\\{[^}]*\\b${escaped}\\b[^}]*\\}\\s*from\\s*["']${expectedPackage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`).test(code)) failures.push(`strict ${manifest.targetFramework} source must import ${identifier} from the production component package`);
+    if (calls < (usage.requiredCallSites ?? 1)) failures.push(`registered component is declared but never rendered enough times: ${usage.logicalName}; expected call sites=${usage.requiredCallSites ?? 1}; found=${calls}`);
   }
   const renderedVariables = [...source.matchAll(/(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:node\s*\(\s*)?(?:renderHtmlComponent|component|renderComponent)\s*\(/g)].map((match) => match[1]);
   for (const variable of renderedVariables) {

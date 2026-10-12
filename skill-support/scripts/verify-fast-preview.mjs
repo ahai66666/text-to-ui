@@ -52,8 +52,8 @@ for (const module of frameworkManifest.pageModules ?? []) {
   const file = path.resolve(path.dirname(frameworkManifestPath), module.path);
   if (!fs.existsSync(file) || sha256(fs.readFileSync(file)) !== module.sha256) throw new Error(`Page composite source changed: ${module.path}`);
 }
-if (context.request?.framework === 'html') {
-  if (componentUsage.schemaVersion !== 2 || componentUsage.enforcement !== 'strict-source') throw new Error('New HTML Fast Preview requires strict component-usage schemaVersion 2');
+if (context.request?.framework === 'html' || componentUsage.schemaVersion === 3) {
+  if (![2, 3].includes(componentUsage.schemaVersion) || componentUsage.enforcement !== 'strict-source') throw new Error('New Fast Preview requires strict component-usage');
   if (!frameworkManifest.componentUsage?.path || !frameworkManifest.componentUsage?.sha256) throw new Error('HTML framework manifest is missing componentUsage provenance');
   const declaredUsagePath = path.resolve(path.dirname(frameworkManifestPath), frameworkManifest.componentUsage.path);
   if (declaredUsagePath !== path.resolve(args['component-usage'])) throw new Error('The supplied component-usage file is not the one declared by the framework manifest');
@@ -84,8 +84,8 @@ const commands = [
 if ((frameworkManifest.pageModules ?? []).length) {
   commands.push([path.join(skillRoot, 'scripts/validate-page-composite-boundaries.mjs'), frameworkManifest.pageModules.flatMap((module) => ['--source', path.resolve(path.dirname(frameworkManifestPath), module.path)])]);
 }
-if (componentUsage.schemaVersion === 2 || componentUsage.enforcement === 'strict-source') {
-  if (!args['runtime-evidence']) throw new Error('Strict HTML Fast Preview requires --runtime-evidence captured from collectHtmlComponentEvidence(document)');
+if (componentUsage.schemaVersion >= 2 || componentUsage.enforcement === 'strict-source') {
+  if (!args['runtime-evidence']) throw new Error('Strict Fast Preview requires --runtime-evidence captured from collectHtmlComponentEvidence(document)');
   commands.push(
     [path.join(skillRoot, 'scripts/validate-page-token-usage.mjs'), ['--project-root', projectRoot, '--layout-contract', path.resolve(args['layout-contract']), ...componentUsage.sourceRoots.flatMap((sourceRoot) => ['--source', sourceRoot])]],
     [path.join(skillRoot, 'scripts/validate-runtime-component-reuse.mjs'), ['--manifest', path.resolve(args['component-usage']), '--evidence', path.resolve(args['runtime-evidence'])]]

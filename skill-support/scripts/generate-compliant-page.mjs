@@ -14,6 +14,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { locateMonorepo, parseArgs, resolveSkillRoot, stableJson } from "./navigation-index-lib.mjs";
+import { resolveComponentSelection, validateComponentSelection } from "./component-selection.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const value = (name) => args[name] && args[name] !== true ? String(args[name]) : null;
@@ -26,7 +27,7 @@ const usage = `Usage: generate-compliant-page.mjs --project <dir> --framework <h
   [--context <context-packet.json>] [--layout-contract <layout-contract.json>]
   [--route <workflow-route-id>] [--mode fast-preview|release]
   [--out <page-module>] [--entry-out <generated-entry>]
-  [--manifest <framework-page-manifest.json>] [--component-usage <component-usage.json>]
+  [--manifest <framework-page-manifest.json>] [--component-selection <component-selection.json>] [--component-usage <component-usage.json>]
   [--ui-scene <ui-scene.json>] [--titlebar-scene <titlebar-scene.json>] [--receipt-out <generation-receipt.json>]
   [--scaffold] [--build]`;
 
@@ -78,6 +79,7 @@ const taskRouteId = value("task-route");
 const blueprintPath = path.resolve(value("blueprint") || path.join(projectRoot, "page-blueprint.json"));
 const recipesPath = path.resolve(value("content-recipes") || path.join(projectRoot, "page-content-recipes.json"));
 const bindingsPath = path.resolve(value("bindings") || path.join(projectRoot, "page-bindings.json"));
+const componentSelectionPath = path.resolve(value("component-selection") || path.join(stateRoot, "component-selection.json"));
 const pageCssPath = path.resolve(value("page-css") || path.join(projectRoot, "page-composition.css"));
 const contextPath = path.resolve(value("context") || path.join(stateRoot, "context-packet.json"));
 const routeReceiptPath = path.resolve(value("route-receipt") || path.join(stateRoot, "route-read-receipt.json"));
@@ -145,13 +147,18 @@ if (!fs.existsSync(blueprintPath)) throw new Error(`Page blueprint not found: ${
 if (!fs.existsSync(recipesPath)) throw new Error(`Page content recipes not found: ${recipesPath}`);
 if (!fs.existsSync(bindingsPath)) throw new Error(`Page bindings not found: ${bindingsPath}`);
 if (!fs.existsSync(pageCssPath)) throw new Error(`Page CSS not found: ${pageCssPath}`);
+if (!fs.existsSync(componentSelectionPath)) {
+  fs.mkdirSync(path.dirname(componentSelectionPath), { recursive: true });
+  fs.writeFileSync(componentSelectionPath, `${JSON.stringify(resolveComponentSelection({ repo: repoRoot, contextPath, bindingsPath, recipesPath }), null, 2)}\n`);
+}
+validateComponentSelection(readJson(componentSelectionPath), { repo: repoRoot, contextPath, bindingsPath, recipesPath });
 
 const extension = frameworkArg === "react" ? "jsx" : "js";
 const finalPaths = {
   source: path.resolve(value("out") || path.join(projectRoot, `generated-page.${extension}`)),
   entry: path.resolve(value("entry-out") || path.join(projectRoot, `generated-entry.${extension}`)),
   manifest: path.resolve(value("manifest") || path.join(projectRoot, "framework-page-manifest.json")),
-  usage: frameworkArg === "html" ? path.resolve(value("component-usage") || path.join(projectRoot, "component-usage.json")) : null,
+  usage: path.resolve(value("component-usage") || path.join(projectRoot, "component-usage.json")),
   uiScene: path.resolve(value("ui-scene") || path.join(projectRoot, "ui-scene.json")),
   titlebarScene: path.resolve(value("titlebar-scene") || path.join(projectRoot, "titlebar-scene.json")),
 };
@@ -188,7 +195,7 @@ const generatedArgs = [
   "--titlebar-scene", stagePaths.titlebarScene,
   "--require-blueprint", "--require-content-recipes", "--require-slots"
 ];
-if (frameworkArg === "html") generatedArgs.push("--component-usage", stagePaths.usage);
+generatedArgs.push("--component-usage", stagePaths.usage, "--component-selection", componentSelectionPath);
 
 const cleanup = () => {
   for (const file of Object.values(stagePaths)) if (file && fs.existsSync(file)) fs.rmSync(file, { force: true });
@@ -214,7 +221,7 @@ try {
   fs.writeFileSync(stagePaths.entry, entrySource);
   manifest.generatedEntry.sha256 = sha256(entrySource);
 
-  if (frameworkArg === "html" && finalPaths.usage) {
+  if (finalPaths.usage) {
     const usage = readJson(stagePaths.usage);
     const temporaryRoot = path.relative(repoRoot, stagePaths.source).replaceAll(path.sep, "/");
     const finalRoot = path.relative(repoRoot, finalPaths.source).replaceAll(path.sep, "/");
@@ -258,7 +265,8 @@ const generationReceipt = {
     readReceipt: path.relative(projectRoot, contextReceiptPath).replaceAll(path.sep, "/")
   },
   pattern: finalManifest.patternContract,
-  gates: ["route-materials", "context-materials", "layout-contract", "blueprint", "content-recipes", "component-adapter", "pattern-slots", "titlebar-scene", "token-css", "page-composite-boundaries", "atomic-output"].map((id) => ({ id, status: "passed" })),
+  gates: ["route-materials", "context-materials", "layout-contract", "blueprint", "content-recipes", "component-selection", "component-adapter", "pattern-slots", "titlebar-scene", "token-css", "page-composite-boundaries", "atomic-output"].map((id) => ({ id, status: "passed" })),
+  componentSelection: { path: path.relative(projectRoot, componentSelectionPath).replaceAll(path.sep, "/"), sha256: sha256File(componentSelectionPath) },
   outputs: Object.fromEntries(Object.entries(finalPaths).filter(([, file]) => file).map(([key, file]) => [key, { path: path.relative(projectRoot, file).replaceAll(path.sep, "/"), sha256: sha256File(file) }])),
   manifest: { path: path.relative(projectRoot, finalPaths.manifest).replaceAll(path.sep, "/"), sha256: sha256File(finalPaths.manifest) },
   build: "pending"

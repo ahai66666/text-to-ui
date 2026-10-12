@@ -8,6 +8,11 @@ if (!valueFor('--project') || !valueFor('--repo')) throw new Error('Usage: scaff
 const projectRoot = path.resolve(valueFor("--project"));
 const repoRoot = path.resolve(valueFor("--repo"));
 fs.mkdirSync(projectRoot, { recursive: true });
+if (fs.existsSync(path.join(repoRoot, 'offline-runtime.json')) && !fs.existsSync(path.join(projectRoot, 'node_modules', 'vite', 'bin', 'vite.js'))) {
+  const bundledDependencies = path.join(repoRoot, 'node_modules');
+  if (!fs.existsSync(path.join(bundledDependencies, 'vite', 'bin', 'vite.js'))) throw new Error('Offline bundle has no prepared Vite dependencies');
+  fs.cpSync(bundledDependencies, path.join(projectRoot, 'node_modules'), { recursive: true, dereference: true });
+}
 const packages = ["component-contracts", "component-styles", "components-html", "components-react", "components-vue", "pattern-runtime", "tokens"];
 const vendorRoot = path.join(projectRoot, "vendor", "@text-to-ui");
 for (const name of packages) {
@@ -29,6 +34,7 @@ if (fs.existsSync(rootPackagePath)) {
   for (const name of packages) rootPackage.dependencies[`@text-to-ui/${name}`] = `file:vendor/@text-to-ui/${name}`;
   rootPackage.devDependencies ??= {};
   rootPackage.devDependencies.vite = "7.3.6";
+  rootPackage.devDependencies["@vitejs/plugin-vue"] = "6.0.9";
   rootPackage.devDependencies.react = "19.2.8";
   rootPackage.devDependencies["react-dom"] = "19.2.8";
   rootPackage.devDependencies.vue = "3.5.41";
@@ -45,13 +51,14 @@ const writeNew = (name, content) => { const file = path.join(projectRoot, name);
 // workspace boundary so installs resolve the copied vendor packages from this
 // project instead of an ancestor's stale lockfile/package snapshot. Preserve an
 // existing project-owned workspace file.
-writeNew('pnpm-workspace.yaml', 'packages:\n  - "."\n');
+writeNew('pnpm-workspace.yaml', 'packages:\n  - "."\nallowBuilds:\n  esbuild: true\n');
 const entry = valueFor('--entry') || './generated-entry.js';
 if (path.isAbsolute(entry) || entry.split(/[\\/]/).includes('..')) throw new Error('--entry must be inside the project');
 writeNew('index.html', '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>工作台</title><style>html,body,#app{margin:0;padding:0;width:100%;height:100%}body{overflow:hidden}</style></head><body><div id="app"></div><script type="module" src="./main.js"></script></body></html>');
 writeNew('main.js', `import { mountGeneratedPage } from ${JSON.stringify(entry.startsWith('./') ? entry : './' + entry)};\nmountGeneratedPage();\n`);
 writeNew('vite.config.mjs', `import { defineConfig } from 'vite';
-export default defineConfig({ base: './', plugins: [{
+import vue from '@vitejs/plugin-vue';
+export default defineConfig({ base: './', plugins: [vue(), {
   name: 'text-to-ui-page-boundaries', enforce: 'pre',
   transform(code, id) {
     const file = id.split('?')[0];

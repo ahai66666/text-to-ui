@@ -83,9 +83,12 @@ for (const framework of ["html", "react", "vue"]) {
   const output = path.join(temp, `page-${framework}.${framework === "react" ? "jsx" : "js"}`);
   const manifest = path.join(temp, `${framework}-manifest.json`);
   const componentUsage = path.join(temp, `${framework}-component-usage.json`);
+  const componentSelection = path.join(temp, `${framework}-component-selection.json`);
   const entry = path.join(temp, `entry-${framework}.${framework === "react" ? "jsx" : "js"}`);
+  result = run("resolve-component-selection.mjs", ["--repo", root, "--context", path.join(temp, `${framework}-context.json`), "--bindings", bindings, "--recipes", contentRecipes, "--out", componentSelection]);
+  assert.equal(result.status, 0, result.stderr);
   const generationArgs = ["--context", path.join(temp, `${framework}-context.json`), "--layout-contract", layout, "--bindings", bindings, "--out", output, "--entry-out", entry, "--manifest", manifest];
-  if (framework === "html") generationArgs.push("--component-usage", componentUsage);
+  generationArgs.push("--component-usage", componentUsage, "--component-selection", componentSelection);
   generationArgs.push("--blueprint", blueprint, "--content-recipes", contentRecipes, "--page-css", pageCss, "--require-blueprint", "--require-content-recipes", "--require-slots");
   result = run("generate-framework-page.mjs", generationArgs);
   assert.equal(result.status, 0, result.stderr);
@@ -107,11 +110,14 @@ for (const framework of ["html", "react", "vue"]) {
   assert.deepEqual(titlebarScene.segments[2].windowControls.actions, ["minimize", "maximize", "close"]);
   assert.equal(JSON.parse(fs.readFileSync(path.join(path.dirname(manifest), parsed.uiScene.path), "utf8")).kind, "text-to-ui-scene");
   assert.ok(fs.existsSync(entry));
-  if (framework === "html") {
+  {
     assert.ok(parsed.componentUsage?.sha256);
     const usage = JSON.parse(fs.readFileSync(componentUsage, "utf8"));
+    assert.equal(usage.schemaVersion, 3);
     assert.equal(usage.enforcement, "strict-source");
     assert.equal(usage.registered.length, 5);
+    const reuse = run("validate-web-component-reuse.mjs", ["--manifest", componentUsage, "--project-root", root, "--skill-root", path.join(root, "skill-support")]);
+    assert.equal(reuse.status, 0, reuse.stderr);
   }
   manifests.push(parsed);
   const source = fs.readFileSync(output, "utf8");
@@ -448,6 +454,8 @@ assert.equal(oneShotContextPacket.request.task, "workbench", "explicit routing m
 const oneShotManifest = JSON.parse(fs.readFileSync(path.join(oneShotDir, "framework-page-manifest.json"), "utf8"));
 const oneShotGenerationReceipt = JSON.parse(fs.readFileSync(oneShotReceipt, "utf8"));
 assert.equal(oneShotGenerationReceipt.kind, "text-to-ui-compliant-generation-receipt");
+assert.equal(JSON.parse(fs.readFileSync(path.join(oneShotDir, "component-usage.json"), "utf8")).schemaVersion, 3);
+assert.ok(oneShotGenerationReceipt.componentSelection?.sha256);
 assert.equal(oneShotGenerationReceipt.pattern.patternDigest, oneShotManifest.patternContract.patternDigest);
 assert.ok(oneShotGenerationReceipt.gates.every((gate) => gate.status === "passed"));
 assert.equal(oneShotManifest.titlebarScene?.preset, "pattern-b-three-pane-default-titlebar");

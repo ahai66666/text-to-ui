@@ -511,7 +511,15 @@ const listCardState = (options = {}) => {
     logicalName: "List Item/White Surface/Default"
   });
 };
-const tableState = (id = "table") => `<div class="tui-component tui-table" ${attrs(id, `${id === "data-table" ? "Data Table" : "Table"}/Default`, "default", "default")}><div class="tui-table__heading"><h4 data-slot="title" data-typography-role="title-s">项目列表</h4><span data-slot="description" data-typography-role="body-m">3 个项目</span></div><table><thead><tr><th data-typography-role="body-m">名称</th><th data-typography-role="body-m">负责人</th><th data-typography-role="body-m">状态</th></tr></thead><tbody><tr><td data-typography-role="body-l">客户端设计系统</td><td data-typography-role="body-l">赵博海</td><td data-typography-role="body-l"><span class="tui-badge tui-badge--info" data-typography-role="body-s">进行中</span></td></tr><tr><td data-typography-role="body-l">组件规范</td><td data-typography-role="body-l">林晓</td><td data-typography-role="body-l"><span class="tui-badge tui-badge--success" data-typography-role="body-s">已完成</span></td></tr></tbody></table></div>`;
+const tableState = (id = "table", { title = "项目列表", columns = ["名称", "负责人", "状态"], rows = [["客户端设计系统", "赵博海", "进行中"], ["组件规范", "林晓", "已完成"]] } = {}) => {
+  if (!Array.isArray(columns) || !columns.length || !Array.isArray(rows) || rows.some((row) => !Array.isArray(row))) throw new Error("Table columns and rows must be arrays");
+  const cell = (value, index) => {
+    const label = escapeHtml(value);
+    const tone = index === 2 ? ({ "进行中": "info", "已完成": "success" }[String(value)] ?? null) : null;
+    return `<td data-typography-role="body-l">${tone ? `<span class="tui-badge tui-badge--${tone}" data-typography-role="body-s">${label}</span>` : label}</td>`;
+  };
+  return `<div class="tui-component tui-table" ${attrs(id, `${id === "data-table" ? "Data Table" : "Table"}/Default`, "default", "default")}><div class="tui-table__heading"><h4 data-slot="title" data-typography-role="title-s">${escapeHtml(title)}</h4><span data-slot="description" data-typography-role="body-m">${rows.length} 个项目</span></div><table><thead><tr>${columns.map((name) => `<th scope="col" data-typography-role="body-m">${escapeHtml(name)}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${row.map(cell).join("")}</tr>`).join("")}</tbody></table></div>`;
+};
 const paginationState = () => `<nav class="tui-component tui-pagination" ${attrs("pagination", "Pagination/Default", "default", "default")} aria-label="分页"><button class="tui-icon-button" type="button" data-page="prev" aria-label="上一页">${icon("navigation/back", "", { size: 20 })}</button><button type="button" data-page="1" aria-current="page" data-typography-role="body-l">1</button><button type="button" data-page="2" data-typography-role="body-l">2</button><button type="button" data-page="3" data-typography-role="body-l">3</button><button class="tui-icon-button" type="button" data-page="next" aria-label="下一页">${icon("navigation/forward", "", { size: 20 })}</button></nav>`;
 const breadcrumbState = () => `<nav class="tui-component tui-breadcrumb" ${attrs("breadcrumb", "Breadcrumb/Default", "default", "default")} aria-label="面包屑"><a href="#" data-typography-role="body-l">工作空间</a><span class="tui-breadcrumb__separator" aria-hidden="true">${icon("navigation/chevron-right", "", { size: 20 })}</span><a href="#" data-typography-role="body-l">项目</a><span class="tui-breadcrumb__separator" aria-hidden="true">${icon("navigation/chevron-right", "", { size: 20 })}</span><span aria-current="page" data-typography-role="subtitle-m">设置</span></nav>`;
 const progressState = ({ value = 68, label = null } = {}) => `<div class="tui-component tui-progress" ${attrs("progress", "Progress/Default", "default", "default")} role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}" style="--progress-value:${Math.min(100, Math.max(0, Number(value)))}%">${label ? `<span class="tui-progress__label" data-typography-role="body-s">${escapeHtml(label)} · ${value}%</span>` : ""}<div class="tui-progress__track"><span class="tui-progress__value"></span></div></div>`;
@@ -735,8 +743,8 @@ export const htmlComponents = {
   collapsible: (options = {}) => disclosureState("collapsible", options),
   avatar: (options = {}) => avatarState(options),
   badge: (options = {}) => badgeState(options),
-  table: () => tableState("table"),
-  dataTable: () => tableState("data-table"),
+  table: (options = {}) => tableState("table", options),
+  dataTable: (options = {}) => tableState("data-table", options),
   pagination: () => paginationState(),
   breadcrumb: () => breadcrumbState(),
   progress: (options = {}) => progressState(options),
@@ -842,6 +850,7 @@ export function collectHtmlComponentEvidence(root = document) {
       index,
       rendererKey: node.dataset.rendererKey ?? node.dataset.component,
       componentId: node.dataset.component,
+      framework: node.dataset.framework ?? null,
       logicalName: node.dataset.logicalComponent,
       variant: node.dataset.variant,
       state: node.dataset.state,

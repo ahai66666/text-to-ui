@@ -467,11 +467,11 @@ const defaultTableRows = [
   ["组件规范", "林晓", "已完成"]
 ];
 
-export function Table({ id = "table", title = "项目列表", rows = defaultTableRows, ...props }) {
+export function Table({ id = "table", title = "项目列表", columns = ["名称", "负责人", "状态"], rows = defaultTableRows, ...props }) {
   const logicalName = id === "data-table" ? "Data Table/Default" : "Table/Default";
   return <div className="tui-component tui-table" {...contract(id, logicalName, "default", "default")} {...props}>
     <div className="tui-table__heading"><h4 data-slot="title" data-typography-role="title-s">{title}</h4><span data-slot="description" data-typography-role="body-s">{rows.length} 个项目</span></div>
-    <table><thead><tr><th scope="col" data-typography-role="body-m">名称</th><th scope="col" data-typography-role="body-m">负责人</th><th scope="col" data-typography-role="body-m">状态</th></tr></thead><tbody>{rows.map((row) => <tr key={row.join("-")}><td data-typography-role="body-l">{row[0]}</td><td data-typography-role="body-l">{row[1]}</td><td data-typography-role="body-l">{row[2] === "进行中" ? <Badge label={row[2]} tone="info" /> : row[2] === "已完成" ? <Badge label={row[2]} tone="success" /> : row[2]}</td></tr>)}</tbody></table>
+    <table><thead><tr>{columns.map((column, index) => <th scope="col" data-typography-role="body-m" key={`${column}-${index}`}>{column}</th>)}</tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.join("-")}-${index}`}>{row.map((value, cellIndex) => <td data-typography-role="body-l" key={cellIndex}>{cellIndex === 2 && value === "进行中" ? <Badge label={value} tone="info" /> : cellIndex === 2 && value === "已完成" ? <Badge label={value} tone="success" /> : value}</td>)}</tr>)}</tbody></table>
   </div>;
 }
 

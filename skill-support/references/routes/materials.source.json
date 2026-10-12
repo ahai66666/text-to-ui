@@ -29,6 +29,7 @@
         { "path": "skill-support/references/page-design-guidance.md", "role": "page-guidance" },
         { "path": "skill-support/references/page-blueprint-design.md", "role": "page-blueprint" },
         { "path": "skill-support/references/components/page-composition.md", "role": "page-composition" },
+        { "path": "skill-support/references/web-component-reuse-gate.md", "role": "web-component-reuse" },
         { "path": "skill-support/assets/design-system/titlebar-scene-contracts.json", "role": "titlebar-scene-contract" },
         { "path": "packages/pattern-runtime/README.md", "role": "pattern-runtime-api" },
         { "path": "skill-support/references/workflows/fast-preview.md", "role": "validation" }

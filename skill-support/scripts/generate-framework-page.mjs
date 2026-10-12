@@ -14,6 +14,7 @@ import { normalizePageUiScene } from "./page-ui-scene.mjs";
 import { validatePageTokenUsage } from "./page-token-usage-lib.mjs";
 import { findPageViewportBoundaryFailures } from "./page-viewport-boundary.mjs";
 import { resolveTitlebarScene, titlebarScenePreset } from "./titlebar-scene.mjs";
+import { validateComponentSelection } from "./component-selection.mjs";
 
 const args = process.argv.slice(2);
 const valueFor = (flag) => { const index = args.indexOf(flag); return index >= 0 ? args[index + 1] : null; };
@@ -24,6 +25,7 @@ const outputPath = valueFor("--out");
 const entryOutputPath = valueFor("--entry-out");
 const manifestPath = valueFor("--manifest");
 const componentUsagePath = valueFor("--component-usage");
+const componentSelectionPath = valueFor("--component-selection");
 const blueprintPath = valueFor("--blueprint");
 const contentRecipesPath = valueFor("--content-recipes");
 const pageCssPath = valueFor("--page-css");
@@ -57,6 +59,10 @@ if (context.request?.confirmed !== true || context.request?.confirmation?.status
 const framework = context.request?.framework;
 if (!context.renderer || context.renderer.framework !== framework) throw new Error(`Context Packet is missing the ${framework} renderer contract`);
 if (framework === "html" && !componentUsagePath) throw new Error("HTML page generation requires --component-usage <component-usage.json>");
+if (componentSelectionPath && !componentUsagePath) throw new Error("Strict selection requires --component-usage for every framework");
+const selectionReceipt = componentSelectionPath ? validateComponentSelection(read(componentSelectionPath), {
+  repo: context.repository.root, contextPath, bindingsPath, recipesPath: contentRecipesPath
+}) : null;
 const resolvedPattern = resolvePatternContract(layoutContract.pattern, { registry: readPatternRegistry(), layoutContract });
 if (context.layout?.id !== resolvedPattern.pattern.id) throw new Error("Context Packet Pattern does not match layout-contract Pattern");
 const rawBindings = input.componentBindings ?? input.components ?? input.bindings ?? [];
@@ -543,6 +549,7 @@ const pageCompositeUsage = (pageContentRecipes?.recipes ?? [])
     exceptionKind: "specialized-business-surface"
   }));
 const customUsage = [...(input.custom ?? []), ...pageCompositeUsage];
+if (framework !== "html" && (customUsage.length || (input.contractBased ?? []).length)) imports.push('import "@text-to-ui/component-styles";');
 const normalizeCapability = (value) => String(value ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const registryCapabilityMatches = (query) => {
   const normalized = normalizeCapability(query);
@@ -907,7 +914,7 @@ manifest.generatedEntry = {
   sha256: sha256(entrySource)
 };
 
-if (framework === "html") {
+if (componentUsagePath) {
 const runtimeLogicalName = (binding) => binding.logicalName;
 const groupedUsage = new Map();
   for (const binding of bindings) {
@@ -919,6 +926,7 @@ const groupedUsage = new Map();
     } else groupedUsage.set(runtimeLogicalName(binding), {
       logicalName: runtimeLogicalName(binding),
       rendererKey: binding.rendererKey,
+      exportName: binding.exportName,
       usage: [binding.id],
       requiredCallSites: 1,
       expectedRuntimeCount: binding.expectedRuntimeCount,
@@ -929,9 +937,14 @@ const groupedUsage = new Map();
   }
   const usageManifest = {
     $schema: path.relative(path.dirname(path.resolve(componentUsagePath)), path.join(context.repository.root, "skill-support/assets/design-system/component-usage.schema.json")),
-    schemaVersion: 2,
-    targetFramework: "html",
+    schemaVersion: selectionReceipt ? 3 : 2,
+    targetFramework: framework,
     enforcement: "strict-source",
+    ...(selectionReceipt ? { selection: {
+      path: path.relative(path.dirname(path.resolve(componentUsagePath)), path.resolve(componentSelectionPath)),
+      sha256: sha256(fs.readFileSync(componentSelectionPath)),
+      registryDigest: selectionReceipt.registryDigest
+    } } : {}),
     registry: "packages/component-contracts/src/components.json",
     sourceRoots: [...new Set([
       path.relative(path.resolve(context.repository.root), absoluteOutputPath),

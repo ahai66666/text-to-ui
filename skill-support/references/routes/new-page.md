@@ -23,7 +23,15 @@ node skill-support/scripts/generate-compliant-page.mjs \
 ```
 
 This entry point owns route/context resolution, material-closure verification,
-Layout Contract generation, strict page compilation, and atomic output commit.
+Layout Contract generation, component selection, strict page compilation, and
+atomic output commit. It writes `.text-to-ui/component-selection.json` from
+the current Context Packet, bindings, recipes, and registry when absent. Review
+the decisions before delivery; if any entry is `extend-existing`, `new-shared`,
+or `blocked`, generation stops. Implement the missing shared capability in the
+canonical contract and all three Web adapters, refresh indexes and the
+selection receipt, then rerun. Do not bypass the gate with page-owned markup.
+An existing receipt is checked against the current source hashes; regenerate
+it with `scripts/resolve-component-selection.mjs` after changing inputs.
 If a gate fails, repair the named input and rerun; do not patch the generated
 entry or CSS by hand. The lower-level commands below remain useful for
 diagnosis and Skill maintenance.
@@ -164,8 +172,9 @@ browser-delivered page.
 
 Resolve components in framework component → canonical contract → Token-based
 custom order. HTML, React, and Vue must use the renderer contract returned by
-the Context Packet and must retain the same Pattern/structure digests. For HTML,
-the strict `component-usage.json` is mandatory. Every visible or interactive
+the Context Packet and must retain the same Pattern/structure digests. The
+one-shot route requires strict `component-usage.json` in all three frameworks.
+Every visible or interactive
 element must be classified as registered, contract-based, or custom; custom UI
 must include registry-search and missing-capability evidence and must not
 overlap an available HTML component. The generation gate checks this before
@@ -292,7 +301,7 @@ page CSS by hand to keep the preview moving. A Vite/npm build proves only that
 the application compiles; it does not prove Pattern composition or component
 reuse. The final artifact must be traceable to
 `generate-framework-page.mjs`, its `framework-page-manifest.json`, and the
-HTML `component-usage.json` when the target is HTML.
+strict `component-usage.json` for the selected framework.
 
 Show the first interactive preview and pause for approval before optional
 release-readiness validation or Pixso refinement.

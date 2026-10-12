@@ -6,6 +6,9 @@ Pixso instance requirements, but it never permits handwritten Web lookalikes.
 This gate runs only after `pc-framework-layout-gate.md` passes. Components fill
 the validated framework slots; they cannot alter pane order, title layers,
 action slots, scrolling ownership, or resize behavior.
+For the fixed DeepSeek V4 Flash comparison and pass/fail protocol, see
+`experiments/component-first-deepseek-v4-flash.md`; deterministic tests are not
+substitutes for independent model generations.
 
 ## Required order
 
@@ -20,13 +23,20 @@ action slots, scrolling ownership, or resize behavior.
 5. Read `packages/component-contracts/src/components.json` before writing page
    code. Search by task, behavior, logical name, Variant, slots, and states.
 6. Select exactly one Web renderer for the product page: HTML, React, or Vue.
-7. For HTML, generate the strict schemaVersion 2 `component-usage.json` and
-   component calling skeleton from the Context Packet. For React/Vue, keep the
-   schemaVersion 1 classification until strict generators are available.
-8. Import the selected production package and its shared styles/Tokens in page
+7. Resolve `component-selection.json` from the current Context Packet,
+   bindings, and content recipes. A registered component that lacks a required
+   prop, slot, behavior, or target implementation is `extend-existing`, not a
+   custom drawing opportunity. A generic capability without a match is
+   `new-shared`; only a specialized business composition may be `page-composite`.
+   Pending decisions block generation until the shared packages are updated.
+8. New one-shot pages in HTML, React, and Vue generate strict schemaVersion 3
+   `component-usage.json` bound to that selection receipt. SchemaVersions 1
+   and 2 remain readable for historical artifacts only.
+9. Import the selected production package and its shared styles/Tokens in page
    source. Compose registered exports or factories; do not copy component DOM
    or CSS into the page.
-9. Run `validate-web-component-reuse.mjs` before browser QA and delivery.
+10. Run `validate-web-component-reuse.mjs` before browser QA and delivery,
+    then compare browser evidence with the same manifest and framework.
 
 ## Framework imports
 
@@ -53,7 +63,9 @@ Reuse is proven only when all of these are true:
   that adapter.
 - Browser QA exercises the relevant state or interaction.
 
-Strict HTML additionally requires all of the following:
+Strict Web additionally requires a named package export/factory import and
+real call site in editable source for the selected framework. Strict HTML
+additionally requires all of the following:
 
 - every registered entry names the resolved `rendererKey` and a real factory
   call site;
@@ -156,10 +168,12 @@ production adapters.
 }
 ```
 
-This schemaVersion 1 example remains the compatibility format for React/Vue.
-New HTML pages use schemaVersion 2 with `enforcement: "strict-source"`, a
-`renderer` contract, `rendererKey`, `requiredCallSites`,
-`expectedRuntimeCount`, and optional declared regions/runtime slots.
+This schemaVersion 1 example is historical compatibility only. New HTML,
+React, and Vue pages use schemaVersion 3 with `enforcement: "strict-source"`,
+the selection receipt hash, a framework-specific renderer factory/export,
+`requiredCallSites`, `expectedRuntimeCount`, and declared regions/runtime slots.
+Historical HTML schemaVersion 2 artifacts remain valid but are not emitted by
+the one-shot route.
 
 Validate it from the Monorepo root:
 

@@ -5258,6 +5258,9 @@ export default {
         "selected"
       ],
       "props": [
+        "title",
+        "columns",
+        "rows",
         "label",
         "value",
         "disabled",

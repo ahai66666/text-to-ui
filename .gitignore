@@ -5,6 +5,7 @@ coverage/
 .cache/
 .install-cache/
 .release-staging/
+release/
 outputs/
 skill/
 text-to-ui-backup-before-cleanup-*/

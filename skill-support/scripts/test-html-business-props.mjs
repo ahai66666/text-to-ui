@@ -34,4 +34,11 @@ assert.equal(attachmentItemCount, 2, "attachment should repeat business items");
 assert.match(attachments, /a\.pptx/);
 assert.match(attachments, /b\.docx/);
 
+const table = renderHtmlComponent("table", { title: "业务项目", columns: ["任务", "状态"], rows: [["排期确认", "待处理"]] });
+assert.match(table, /业务项目/);
+assert.match(table, /排期确认/);
+assert.match(table, /待处理/);
+assert.doesNotMatch(table, /客户端设计系统/);
+assert.notEqual(table, renderHtmlComponent("table"), "business Table props must change the rendered component");
+
 console.log("HTML business props tests passed");
