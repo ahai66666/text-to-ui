@@ -15,7 +15,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const registryPath = path.join(root, "packages/component-contracts/src/components.json");
 const registry = JSON.parse(await fs.readFile(registryPath, "utf8"));
 const iconSprite = await fs.readFile(path.join(root, "packages/components-html/src/component-icons.svg"), "utf8");
-const iconAliasRegistry = JSON.parse(await fs.readFile(path.join(root, "text-to-ui/assets/icons/icon-aliases.json"), "utf8"));
+const iconAliasRegistry = JSON.parse(await fs.readFile(path.join(root, "skill-support/assets/icons/icon-aliases.json"), "utf8"));
 const canonicalAliasBySymbolId = new Map(Object.keys(iconAliasRegistry.aliases ?? {}).map((alias) => [`tui-${alias.replaceAll("/", "-")}`, alias]));
 const readAttribute = (attributes, name) => String(attributes).match(new RegExp(`\\b${name}="([^"]*)"`))?.[1] ?? null;
 const iconDefinitions = Object.fromEntries([...iconSprite.matchAll(/<symbol\b([^>]*)>([\s\S]*?)<\/symbol>/g)].map((match) => {

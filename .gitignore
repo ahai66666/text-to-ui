@@ -5,7 +5,9 @@ coverage/
 .cache/
 .install-cache/
 .release-staging/
+release/
 outputs/
+skill/
 text-to-ui-backup-before-cleanup-*/
 *.local.json
 *.tmp
@@ -21,8 +23,7 @@ __pycache__/
 
 # One-off visual audit exports are local QA evidence, not reusable package
 # inputs. Keep curated conclusions in docs/ instead of publishing screenshots.
-text-to-ui/audits/
-skill/audits/
+skill-support/audits/
 
 # Local email/font probes and personal test documents
 _email_*
@@ -35,8 +36,7 @@ build_email_test_doc.py
 .tmp*
 输出/
 
-# Generated local delivery verification metadata
-skill/.delivery-manifest.json
+# Generated standalone Skill mirror is local only; release ZIP is built from source.
 
 # Local backup copies and screenshot probes
 *.bak-*

@@ -4,7 +4,7 @@ The callable web Pattern boundary. It resolves a canonical Pattern Contract,
 owns the shell geometry, and accepts page content through declared slots.
 
 ```js
-import registry from "../../text-to-ui/assets/design-system/pattern-contracts.json";
+import registry from "../../skill-support/assets/design-system/pattern-contracts.json";
 import { createPatternRuntime } from "@text-to-ui/pattern-runtime";
 
 const runtime = createPatternRuntime({
@@ -28,7 +28,11 @@ For an existing approved preview, `runtime.decorate(root)` adds the same
 contract metadata without replacing its visual markup.
 
 Secondary Page compositions use the same callable boundary without pretending
-to be a fifth canonical Pattern Contract:
+to be a fifth canonical Pattern Contract. `layout` selects the page frame, not
+how it is opened: `continuation` keeps the primary shell and replaces its
+right/Main content; `new-page` renders a standalone page that a button may open
+as a pop-up. The page host owns presentation, parent-state retention, and
+return/focus behavior; a pop-up new page is still not a Dialog.
 
 ```js
 import { createSecondaryPageRuntime } from "@text-to-ui/pattern-runtime";

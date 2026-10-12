@@ -8,7 +8,7 @@ const defaultMenubarItems = [{ label: "新建", icon: "action/add" }, { label: "
 const menuItems = (items, onChoose, activeSubmenu, onSubmenuOpen) => items.map((item) => {
   const entry = typeof item === "string" ? { label: item } : item;
   const hasSubmenu = entry.hasSubmenu && Array.isArray(entry.submenu);
-  return <div key={entry.label} className={cx("tui-advanced-menu__item-wrap", hasSubmenu && "has-submenu")} onMouseEnter={hasSubmenu ? () => onSubmenuOpen?.(entry.label) : undefined}><button type="button" role="menuitem" className={cx("tui-advanced-menu__item", hasSubmenu && "has-submenu")} aria-haspopup={hasSubmenu ? "menu" : undefined} aria-expanded={hasSubmenu ? activeSubmenu === entry.label : undefined} data-typography-role="body-l" onClick={() => onChoose?.(entry)}>{entry.icon ? <span className="tui-advanced-menu__item-leading" data-slot="leading"><Icon name={entry.icon} size={24} /></span> : null}<span data-slot="label">{entry.label}</span>{hasSubmenu ? <span className="tui-advanced-menu__item-trailing" data-slot="trailing"><Icon name="navigation/chevron-right" size={24} /></span> : null}</button>{hasSubmenu && activeSubmenu === entry.label ? <div className="tui-advanced-menu__submenu" role="menu" aria-label={entry.label}>{menuItems(entry.submenu, onChoose, null, onSubmenuOpen)}</div> : null}</div>;
+  return <div key={entry.label} className={cx("tui-advanced-menu__item-wrap", hasSubmenu && "has-submenu")} onMouseEnter={hasSubmenu ? () => onSubmenuOpen?.(entry.label) : undefined}><button type="button" role="menuitem" className={cx("tui-advanced-menu__item", hasSubmenu && "has-submenu")} aria-haspopup={hasSubmenu ? "menu" : undefined} aria-expanded={hasSubmenu ? activeSubmenu === entry.label : undefined} data-typography-role="body-l" onClick={(event) => onChoose?.(entry, event)}>{entry.icon ? <span className="tui-advanced-menu__item-leading" data-slot="leading"><Icon name={entry.icon} size={24} /></span> : null}<span data-slot="label">{entry.label}</span>{hasSubmenu ? <span className="tui-advanced-menu__item-trailing" data-slot="trailing"><Icon name="navigation/chevron-right" size={24} /></span> : null}</button>{hasSubmenu && activeSubmenu === entry.label ? <div className="tui-advanced-menu__submenu" role="menu" aria-label={entry.label}>{menuItems(entry.submenu, onChoose, null, onSubmenuOpen)}</div> : null}</div>;
 });
 const calendarWeekdays = ["日", "一", "二", "三", "四", "五", "六"];
 const calendarDays = ["26", "27", "28", "29", "30", "31", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "1", "2", "3", "4", "5"];
@@ -75,23 +75,26 @@ export function Dialog({ actionLayout = "double", ...props }) { const isSingle =
 export function AlertDialog(props) { return <DialogBase id="alert-dialog" title="删除项目？" description="删除后无法恢复，请确认操作。" intent="danger" actionLayout="double" confirmLabel="删除" triggerLabel="打开删除确认弹窗" {...props} />; }
 export function SemiModal({ size = "m", surface = "white", mode = "non-modal", ...props }) { return <DialogBase id="semi-modal" title="编辑项目设置" description="非模态为默认状态，可以继续操作背景内容。" size={size} surface={surface} mode={mode} showClose confirmLabel="保存" triggerLabel="打开半模态弹窗" {...props}><div className="tui-dialog__form"><label className="tui-field"><span data-typography-role="body-m">项目名称</span><span className="tui-input" data-surface={surface}><input defaultValue="客户端设计系统" data-typography-role="body-l" /></span></label><label className="tui-field"><span data-typography-role="body-m">负责人</span><span className="tui-search" data-surface={surface}><Icon name="field/search" size={20} /><input type="search" defaultValue="赵博海" data-typography-role="body-l" /></span></label></div></DialogBase>; }
 
-function Menu({ id, logicalName, label, value, items }) {
+function Menu({ id, logicalName, label, value, items = [], onSelect, className = "", slotName, ariaLabel, disabled = false, hideLabel = false, compact = false }) {
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState(value);
+  const [hasUserSelection, setHasUserSelection] = React.useState(false);
   const [activeSubmenu, setActiveSubmenu] = React.useState(null);
-  const choose = (item) => {
+  React.useEffect(() => { setSelected(value); }, [value]);
+  const choose = (item, event) => {
     if (item?.hasSubmenu && Array.isArray(item.submenu)) { setActiveSubmenu(item.label); return; }
-    setSelected(item?.label ?? item); setActiveSubmenu(null); setOpen(false);
+    const next = item?.label ?? item;
+    setSelected(next); setHasUserSelection(true); setActiveSubmenu(null); setOpen(false); onSelect?.(next, event, item);
   };
   const openSubmenu = (label) => { if (id === "menubar") setActiveSubmenu(label); };
-  return <div className="tui-component tui-advanced-menu" {...contract(id, logicalName, "default", open ? "open" : "default")}>
-    <span className="tui-advanced-menu__label" data-typography-role="body-m">{label}</span>
-    <button className="tui-advanced-menu__trigger" type="button" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}><span data-slot="value" data-typography-role="body-l">{selected}</span><Icon name="navigation/chevron-down" size={16} /></button>
+  return <div className={cx("tui-component", "tui-advanced-menu", className, compact && "is-compact", hasUserSelection && "is-selected")} data-slot={slotName} {...contract(id, logicalName, "default", open ? "open" : "default")}>
+    <span className="tui-advanced-menu__label" data-typography-role="body-m" hidden={hideLabel}>{label}</span>
+    <button className="tui-advanced-menu__trigger" type="button" aria-label={ariaLabel} aria-haspopup="menu" aria-expanded={open} disabled={disabled} onClick={() => setOpen((v) => !v)}><span data-slot="value" data-typography-role="body-l">{selected}</span><Icon name="navigation/chevron-down" size={16} /></button>
     <div className="tui-advanced-menu__panel" role="menu" hidden={!open} onMouseLeave={() => id === "menubar" && setActiveSubmenu(null)}>{menuItems(items, choose, activeSubmenu, openSubmenu)}</div>
   </div>;
 }
 export function ContextMenu() { return <Menu id="context-menu" logicalName="Context Menu/Default" label="更多操作" value="右键或点击打开" items={[{ label: "复制", icon: "action/copy" }, { label: "重命名", icon: "action/rename" }, { label: "删除", icon: "action/delete" }]} />; }
-export function DropdownMenu() { return <Menu id="dropdown-menu" logicalName="Dropdown Menu/Default" label="操作菜单" value="新建、导入、导出" items={["新建", "导入", "导出"]} />; }
+export function DropdownMenu(props) { return <Menu id="dropdown-menu" logicalName="Dropdown Menu/Default" label="操作菜单" value="新建、导入、导出" items={["新建", "导入", "导出"]} {...props} />; }
 export function Menubar({ items = defaultMenubarItems }) { return <Menu id="menubar" logicalName="Menubar/Default" label="主菜单" value="文件" items={items} />; }
 
 export function Popover() {

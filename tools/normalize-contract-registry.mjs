@@ -3,9 +3,10 @@
 /**
  * Normalize the generated registry into an honest cross-framework contract.
  *
- * The old Skill gallery remains the visual authority for every component.
- * Every registered component now has an independent HTML/React/Vue adapter;
- * the old gallery is retained only as a visual regression source.
+ * The Monorepo Component Gallery is the sole visual review surface.
+ * Every registered component declares its real HTML/React/Vue source when
+ * that source exists; unavailable adapters remain null instead of pointing
+ * to a historical preview page.
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -115,7 +116,7 @@ for (const component of registry.components) {
   if (ready) readyIds.add(component.id);
   const strategy = sourceStrategy(component.id);
   component.source = strategy;
-  component.visualAuthority = "skill-canonical";
+  component.visualAuthority = "apps/component-gallery/index.html#runtime-view";
   component.sourceStrategy = strategy;
   // Source files are necessary but not sufficient for cross-framework Ready.
   // Preserve enriched readiness metadata when normalization is rerun.
@@ -131,16 +132,16 @@ for (const component of registry.components) {
   component.readiness = readiness;
   const isReady = Object.values(readiness).every(Boolean);
   component.status = isReady ? "ready" : "partial";
+  const availableSources = Object.fromEntries(await Promise.all(Object.entries(sources).map(async ([framework, source]) => [
+    framework,
+    await sourceExists(source) ? source : null
+  ])));
   component.frameworks = Object.fromEntries(["html", "react", "vue"].map((framework) => [framework, {
     ...(component.frameworks?.[framework] ?? {}),
     status: isReady ? "ready" : "partial",
-    source: sources[framework]
+    source: availableSources[framework]
   }]));
-  component.implementations = ready ? sources : {
-    html: "skill/preview/component-gallery.html",
-    react: null,
-    vue: null
-  };
+  component.implementations = availableSources;
   component.pixso = {
     status: "logical-mapping",
     libraryPage: "NewComponents",
@@ -168,10 +169,11 @@ if (subTabs) {
 
 registry.registryPolicy = {
   ...(registry.registryPolicy ?? {}),
-  visualAuthority: "skill-canonical",
+  visualAuthority: "apps/component-gallery/index.html#runtime-view",
   readyRequires: ["sourceReady", "contractReady", "visualParity", "behaviorParity", "accessibilityParity", "tokenParity"],
   partialMayBeUsedFor: [],
   partialMustNotBeUsedFor: ["strict-pixso-component-parity"],
+  comparisonRule: "Framework comparison uses the Monorepo Component Gallery runtime view as its sole visual authority; historical Skill preview pages are not part of the delivery.",
   deletedComponents: ["drawer", "sonner", "marker", "message-scroller", "toggle", "spinner", "skeleton", "aspect-ratio", "bubble", "typography", "chart", "empty", "data-table"]
 };
 

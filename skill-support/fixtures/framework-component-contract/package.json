@@ -1,0 +1,8 @@
+{
+  "name": "text-to-ui-framework-component-contract-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node ../../scripts/test-framework-component-contract.mjs"
+  }
+}

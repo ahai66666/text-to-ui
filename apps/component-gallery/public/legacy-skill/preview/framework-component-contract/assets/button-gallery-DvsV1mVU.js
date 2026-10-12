@@ -1,1 +1,0 @@
-var e=``+new URL(`button-icons-CXM1guBZ.svg`,import.meta.url).href;export{e as t};

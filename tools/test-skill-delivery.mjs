@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { syncSkill, verifySkill } from "../text-to-ui/scripts/skill-delivery.mjs";
+import { syncSkill, verifySkill } from "../skill-support/scripts/skill-delivery.mjs";
 
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "text-to-ui-delivery-test-"));
 const source = path.join(temporary, "source");
@@ -14,16 +14,36 @@ const write = (root, file, content) => {
 };
 try {
   write(source, "package.json", '{"version":"test"}');
+  write(source, "SKILL.md", "---\nname: text-to-ui\ndescription: Test Skill delivery.\n---\n");
   for (const file of ["pixso-native-scene-lib", "component-mapping-resolver", "coremail-semantic-adapter"]) {
     write(source, `scripts/${file}.mjs`, "export const ready = true;\n");
   }
+  write(source, "scripts/obsolete-helper/main.js", "obsolete helper\n");
+  write(source, "scripts/customized-helper/main.js", "obsolete helper with a local note\n");
   write(target, "scripts/pixso-native-scene-lib.mjs", "old local source");
   write(target, ".text-to-ui/run.json", "keep runtime state");
   write(target, "local-note.md", "keep extra local files");
+  write(target, "pixso-component-maintenance.md", "Old rule: preview/component-gallery.html\n");
+  write(target, "fixtures/framework-component-contract/dist/preview.html", "old generated preview\n");
   syncSkill(source, target, backup);
   assert.equal(fs.readFileSync(path.join(backup, "scripts/pixso-native-scene-lib.mjs"), "utf8"), "old local source");
   assert.equal(fs.readFileSync(path.join(target, ".text-to-ui/run.json"), "utf8"), "keep runtime state");
   assert.equal(fs.readFileSync(path.join(target, "local-note.md"), "utf8"), "keep extra local files");
+  assert.equal(fs.existsSync(path.join(target, "pixso-component-maintenance.md")), false);
+  assert.equal(fs.existsSync(path.join(target, "fixtures/framework-component-contract/dist/preview.html")), false);
+  assert.equal(fs.readFileSync(path.join(backup, "pixso-component-maintenance.md"), "utf8"), "Old rule: preview/component-gallery.html\n");
+  assert.equal(fs.readFileSync(path.join(backup, "fixtures/framework-component-contract/dist/preview.html"), "utf8"), "old generated preview\n");
+  write(target, "scripts/customized-helper/local-note.md", "preserve untracked data");
+  fs.rmSync(path.join(source, "scripts/obsolete-helper"), { recursive: true });
+  fs.rmSync(path.join(source, "scripts/customized-helper"), { recursive: true });
+  const removalBackup = path.join(temporary, "removal-backup");
+  syncSkill(source, target, removalBackup);
+  assert.equal(fs.existsSync(path.join(target, "scripts/obsolete-helper")), false);
+  assert.equal(fs.existsSync(path.join(target, "scripts/obsolete-helper/main.js")), false);
+  assert.equal(fs.readFileSync(path.join(removalBackup, "scripts/obsolete-helper/main.js"), "utf8"), "obsolete helper\n");
+  assert.equal(fs.existsSync(path.join(target, "scripts/customized-helper/main.js")), false);
+  assert.equal(fs.readFileSync(path.join(target, "scripts/customized-helper/local-note.md"), "utf8"), "preserve untracked data");
+  assert.equal(fs.readFileSync(path.join(removalBackup, "scripts/customized-helper/main.js"), "utf8"), "obsolete helper with a local note\n");
   // A file that was previously managed but disappeared from the canonical
   // source must be reported as drift; untracked local notes remain allowed.
   const manifest = JSON.parse(fs.readFileSync(path.join(target, ".delivery-manifest.json"), "utf8"));
@@ -41,7 +61,20 @@ try {
     write(root, "scripts/pixso-native-scene-lib.mjs", 'import { missing } from "./component-mapping-resolver.mjs";\n');
   }
   assert.throws(() => verifySkill(source, target), /Skill entry cannot load/);
-  console.log("Skill delivery tests passed: dependency drift, module linkage, backups, and local-state preservation.");
+  const repository = path.join(temporary, "repository");
+  const support = path.join(repository, "skill-support");
+  const generated = path.join(repository, "skill");
+  write(repository, "SKILL.md", "---\nname: text-to-ui\ndescription: Repository entry.\n---\n");
+  write(repository, "agents/openai.yaml", 'interface:\n  display_name: "Text to UI"\n');
+  write(support, "package.json", '{"version":"test"}');
+  for (const file of ["pixso-native-scene-lib", "component-mapping-resolver", "coremail-semantic-adapter"]) {
+    write(support, `scripts/${file}.mjs`, "export const ready = true;\n");
+  }
+  syncSkill(support, generated, path.join(temporary, "repository-backup"));
+  assert.equal(fs.readFileSync(path.join(generated, "SKILL.md"), "utf8"), fs.readFileSync(path.join(repository, "SKILL.md"), "utf8"));
+  assert.equal(fs.readFileSync(path.join(generated, "agents/openai.yaml"), "utf8"), fs.readFileSync(path.join(repository, "agents/openai.yaml"), "utf8"));
+  assert(!fs.existsSync(path.join(support, "SKILL.md")));
+  console.log("Skill delivery tests passed: root entry, historical mirror cleanup, stale managed-file cleanup, dependency drift, module linkage, backups, and local-state preservation.");
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });
 }

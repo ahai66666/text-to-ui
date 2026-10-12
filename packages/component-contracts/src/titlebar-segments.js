@@ -9,7 +9,8 @@ export function resolveTitlebarSegment(options = {}) {
   if (size === 'small' && layout !== 'standalone') throw new Error('Titlebar_S only supports standalone layout; two-column and three-column layouts require a larger Titlebar size');
   const slots = options.slots ?? {};
   if (!slots || typeof slots !== 'object' || Array.isArray(slots)) throw new Error('Titlebar slots must be an object');
-  const supported = ['global', 'primary-navigation'].includes(paneRole) ? ['leading', 'label', ...(paneRole === 'global' ? ['actions'] : [])] : paneRole === 'secondary-pane' ? ['secondary-pane-content'] : paneRole === 'final-pane' ? [...(layout === 'two-column' ? ['main-content-leading', 'main-content-title'] : layout === 'three-column' ? ['main-detail-actions'] : []), 'actions'] : [];
+  const isFirstLevel = ['global', 'primary-navigation'].includes(paneRole);
+  const supported = isFirstLevel ? ['logo', 'leading', 'label', ...(paneRole === 'global' ? ['actions'] : [])] : paneRole === 'secondary-pane' ? ['logo', 'secondary-pane-content'] : paneRole === 'final-pane' ? ['logo', ...(layout === 'two-column' ? ['main-content-leading', 'main-content-title'] : layout === 'three-column' ? ['main-detail-actions'] : []), 'actions'] : [];
   for (const key of Object.keys(slots)) if (!supported.includes(key)) throw new Error(`Titlebar slot ${key} is not available in ${layout}/${segmentRole}`);
   for (const key of ['label', 'main-content-title']) if (key in slots && typeof slots[key] !== 'string') throw new Error(`Titlebar slot ${key} requires text`);
   if ('main-content-leading' in slots) {
@@ -17,7 +18,9 @@ export function resolveTitlebarSegment(options = {}) {
     if (!action || typeof action !== 'object' || typeof action.id !== 'string' || !action.id || typeof action.label !== 'string' || !action.label || typeof action.icon !== 'string' || !action.icon) throw new Error('Titlebar main-content-leading requires { id, label, icon, buttonType? }');
     if (action.buttonType !== undefined && !['icon', 'icon-text-ghost'].includes(action.buttonType)) throw new Error('Titlebar main-content-leading buttonType must be icon or icon-text-ghost');
   }
-  if ('leading' in slots && (!slots.leading || typeof slots.leading !== 'object' || typeof slots.leading.src !== 'string')) throw new Error('Titlebar leading requires { src, alt? }');
+  if ('logo' in slots && (!slots.logo || typeof slots.logo !== 'object' || Array.isArray(slots.logo) || typeof slots.logo.src !== 'string')) throw new Error('Titlebar logo requires { src, alt? }');
+  if ('leading' in slots && (!slots.leading || typeof slots.leading !== 'object' || Array.isArray(slots.leading) || typeof slots.leading.src !== 'string')) throw new Error('Titlebar leading requires { src, alt? }');
+  if ('logo' in slots && 'leading' in slots) throw new Error('Titlebar accepts one logo slot; use slots.logo (leading is a compatibility alias)');
   if ('main-detail-actions' in slots && !Array.isArray(slots['main-detail-actions'])) throw new Error('Titlebar main-detail-actions requires an action array');
   if ('main-detail-actions' in slots) {
     const ids = new Set();
@@ -36,9 +39,13 @@ export function resolveTitlebarSegment(options = {}) {
   const showWindowControls = slots.actions ?? options.showWindowControls ?? ['global', 'final-pane'].includes(paneRole);
   if (typeof showWindowControls !== 'boolean') throw new Error('showWindowControls requires a boolean');
   if (showWindowControls && !['global', 'final-pane'].includes(paneRole)) throw new Error('Window controls belong to the final Titlebar segment only');
+  if (isFirstLevel && options.showLogo === false) throw new Error('First-level Titlebar segments must show the logo');
+  const logoSlot = slots.logo ?? slots.leading;
+  const showLogo = options.showLogo ?? (isFirstLevel || Boolean(logoSlot));
+  if (typeof showLogo !== 'boolean') throw new Error('showLogo requires a boolean');
   return { ...options, size, layout, paneRole, segmentRole, label: slots.label ?? options.label, paneTitle: slots['main-content-title'] ?? options.paneTitle,
     mainContentLeading: slots['main-content-leading'] ?? options.mainContentLeading,
-    logoSrc: slots.leading?.src ?? options.logoSrc, logoAlt: slots.leading?.alt ?? options.logoAlt,
+    showLogo, logoSrc: logoSlot?.src ?? options.logoSrc, logoAlt: logoSlot?.alt ?? options.logoAlt,
     mainDetailActions: slots['main-detail-actions'] ?? options.mainDetailActions,
     secondaryPaneContent: slots['secondary-pane-content'] ?? options.secondaryPaneContent,
     showWindowControls };
@@ -62,10 +69,10 @@ export function createTitlebarPreviewScenes() {
   return [['small', 'S · 40px'], ['medium', 'M · 56px'], ['large', 'L · 64px'], ['xlarge', 'XL · 72px']].map(([size, label]) => {
     const brand = layout => ({ size, layout, segmentRole: 'primary-navigation', slots: { label: '项目空间' } });
     const scenes = [
-      { layout: 'standalone', columns: 'one', label: '01 单栏布局', description: '品牌 leading · label ｜窗口控制 actions', segments: [{ size, layout: 'standalone', segmentRole: 'global', slots: { label: '项目空间' } }] },
+      { layout: 'standalone', columns: 'one', label: '01 单栏布局', description: '品牌 logo · label ｜窗口控制 actions', segments: [{ size, layout: 'standalone', segmentRole: 'global', slots: { label: '项目空间' } }] },
       ...(size === 'small' ? [] : [
-        { layout: 'two-column', columns: 'two', label: '02 两栏布局', description: '左：leading · label ｜右：main-content-leading · main-content-title · actions', segments: [brand('two-column'), { size, layout: 'two-column', segmentRole: 'main-content', slots: { 'main-content-leading': { id: 'back', label: '返回', icon: 'navigation/back', buttonType: 'icon' }, 'main-content-title': '项目详情' } }] },
-        { layout: 'three-column', columns: 'three', label: '03 三栏布局', description: '左：leading · label ｜中：注册组件（左右 space/5，按尺寸垂直居中） ｜右：main-detail-actions · actions', segments: [brand('three-column'), { size, layout: 'three-column', segmentRole: 'secondary-list', slots: { 'secondary-pane-content': { component: 'search', props: { placeholder: '搜索项目' } } } }, { size, layout: 'three-column', segmentRole: 'main-detail', slots: { 'main-detail-actions': [
+        { layout: 'two-column', columns: 'two', label: '02 两栏布局', description: '左：logo · label ｜右：main-content-leading · main-content-title · actions', segments: [brand('two-column'), { size, layout: 'two-column', segmentRole: 'main-content', slots: { 'main-content-leading': { id: 'back', label: '返回', icon: 'navigation/back', buttonType: 'icon' }, 'main-content-title': '项目详情' } }] },
+        { layout: 'three-column', columns: 'three', label: '03 三栏布局', description: '左：logo · label ｜中：注册组件（左右 space/5，按尺寸垂直居中） ｜右：main-detail-actions · actions', segments: [brand('three-column'), { size, layout: 'three-column', segmentRole: 'secondary-list', slots: { 'secondary-pane-content': { component: 'search', props: { placeholder: '搜索项目' } } } }, { size, layout: 'three-column', segmentRole: 'main-detail', slots: { 'main-detail-actions': [
           { id: 'reply', label: '回复', icon: 'action/reply', buttonType: 'icon-text-ghost' },
           { id: 'save', label: '保存', icon: 'action/save', buttonType: 'icon-text-ghost' },
           { id: 'more', label: '更多操作', icon: 'action/more', buttonType: 'icon' }

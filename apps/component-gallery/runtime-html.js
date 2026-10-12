@@ -1,4 +1,4 @@
-import { bindTitlebarOverflow, renderRuntimeHtmlComponent } from "../../packages/components-html/src/index.js?rev=20260812-2";
+import { bindInputTagEntry, bindTitlebarOverflow, renderRuntimeHtmlComponent } from "../../packages/components-html/src/index.js?rev=20260928-5";
 import { cardClass, comparisonMetaFor, componentTitle, feedbackSpecimensFor, readinessInfoFor, runtimeCategories, runtimeComponents, specimensFor } from "./runtime-catalog.js";
 import { contractDialogId, renderContractDialogHtml } from "./contract-inspector.js";
 
@@ -90,6 +90,8 @@ const bindRuntimeInteractions = (root, setStatus) => {
       return;
     }
     const isAdvancedMenuInteraction = event.target.closest?.(".tui-advanced-menu__trigger, .tui-advanced-menu__item");
+    const isInputTagEntrySelection = event.target.closest?.("[data-input-tag-entry] .tui-input-tag-entry__menu [role=option], [data-input-tag-entry] [data-remove-tag]");
+    if (isInputTagEntrySelection) return;
     if (root.contains(event.target) && !event.target.closest(".tui-attachment__actions") && !isAdvancedMenuInteraction) closeMenus();
     const target = event.target.closest("button, input, textarea, select, a, [role=button], .tui-combobox__trigger");
     if (!target || !root.contains(target) || target.disabled) return;
@@ -163,7 +165,7 @@ const bindRuntimeInteractions = (root, setStatus) => {
       return;
     }
     if (target.matches('.tui-search [data-slot="advanced-search"]')) {
-      setStatus("Search · 高级搜索");
+      setStatus("Search · 高级");
       return;
     }
     if (target.matches(".tui-alert .tui-icon-button, .tui-toast .tui-icon-button")) {
@@ -294,6 +296,16 @@ const bindRuntimeInteractions = (root, setStatus) => {
         setStatus("Menubar · 打开子菜单");
         return;
       }
+    }
+    if (target.matches('.tui-search [data-scope-option]')) {
+      const scope = target.closest('.tui-search__scope');
+      const value = target.dataset.scopeOption ?? target.textContent.trim();
+      scope?.querySelector('[data-slot="value"]')?.replaceChildren(document.createTextNode(value));
+      scope?.querySelectorAll('[data-scope-option]').forEach((option) => option.setAttribute("aria-selected", String(option === target)));
+      scope?.classList.add("is-selected");
+      closeMenus();
+      setStatus(`Search · 范围：${value}`);
+      return;
     }
     if (target.matches(".tui-advanced-menu__item")) {
       const component = target.closest(".tui-advanced-menu, .tui-advanced-menubar");
@@ -565,7 +577,12 @@ const bindRuntimeInteractions = (root, setStatus) => {
     const search = input.closest(".tui-search");
     const clear = search?.querySelector("[data-slot=clear]");
     if (clear) clear.hidden = !input.value;
-    search?.dataset && (search.dataset.variant = input.value ? "with-value" : "default");
+    if (search?.dataset) {
+      const scoped = Boolean(search.querySelector("[data-slot=scope-selector]"));
+      const advanced = Boolean(search.querySelector("[data-slot=advanced-search]"));
+      search.dataset.state = input.value ? "typing" : "focus";
+      search.dataset.variant = scoped ? advanced ? "scoped-advanced-search" : "scoped-search" : advanced ? "advanced-search" : "default";
+    }
     if (input.matches(".tui-input-otp__cell") && input.value) {
       const cells = [...input.closest(".tui-input-otp__cells")?.querySelectorAll(".tui-input-otp__cell") ?? []];
       cells[cells.indexOf(input) + 1]?.focus();
@@ -602,14 +619,14 @@ const bindRuntimeInteractions = (root, setStatus) => {
     const input = event.target.closest?.(".tui-input input, .tui-search input, .tui-textarea textarea, .tui-combobox__input");
     if (!input || !root.contains(input) || input.disabled) return;
     const owner = input.closest(".tui-input, .tui-search, .tui-textarea, .tui-combobox");
-    if (!owner || owner.dataset.state === "error") return;
-    owner.dataset.state = "focus";
+    if (!owner || (owner.matches(".tui-input") && owner.dataset.state === "error")) return;
+    owner.dataset.state = owner.matches(".tui-search") && input.value ? "typing" : "focus";
   };
   const onFocusout = (event) => {
     const input = event.target.closest?.(".tui-input input, .tui-search input, .tui-textarea textarea, .tui-combobox__input");
     if (!input || !root.contains(input)) return;
     const owner = input.closest(".tui-input, .tui-search, .tui-textarea, .tui-combobox");
-    if (!owner || owner.dataset.state === "error" || input.disabled) return;
+    if (!owner || (owner.matches(".tui-input") && owner.dataset.state === "error") || input.disabled) return;
     owner.dataset.state = input.value ? "filled" : "default";
   };
   const onMouseover = (event) => {
@@ -666,6 +683,7 @@ const bindRuntimeInteractions = (root, setStatus) => {
   const removeTitlebarOverflow = bindTitlebarOverflow(root, {
     onAction: (action) => setStatus(`Titlebar · Main Detail · ${action}`)
   });
+  const removeInputTagEntry = bindInputTagEntry(root);
   return () => {
     delete root.dataset.interactionsBound;
     root.removeEventListener("click", onClick);
@@ -678,6 +696,7 @@ const bindRuntimeInteractions = (root, setStatus) => {
     root.removeEventListener("mouseout", onMouseout);
     document.removeEventListener("click", onDocumentClick);
     removeTitlebarOverflow();
+    removeInputTagEntry();
     directOverlayAbort.abort();
   };
 };

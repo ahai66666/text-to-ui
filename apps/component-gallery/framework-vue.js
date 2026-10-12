@@ -1,5 +1,5 @@
 import { createApp, h, ref } from "vue";
-import { Alert, Attachment, Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Radio, Toast, Tooltip, SubTabs, TreeView } from "../../packages/components-vue/src/index.js?rev=20260907-1";
+import { Alert, Attachment, Button, Input, Search, Sidebar, PrimaryNavigationItem, ListCard, Radio, Toast, Tooltip, SubTabs, TreeView } from "../../packages/components-vue/src/index.js?rev=20260928-3";
 import * as Generated from "../../packages/components-vue/src/generated/index.js?rev=20260807-1";
 import contracts from "../../packages/component-contracts/src/components-runtime.js";
 import { feedbackSpecimensFor } from "./runtime-catalog.js";
@@ -20,13 +20,15 @@ const ButtonPreview = (props) => {
 const InputPreview = () => {
   const inputStates = ["default", "hover", "focus", "disabled", "error"];
   const context = (surface, label) => h("section", { class: "tui-runtime-state-group", key: surface }, [h("strong", null, label), h("div", { class: "tui-runtime-state-grid" }, inputStates.map((state) => h("div", { class: "tui-runtime-state-cell", key: state }, [h("span", null, stateLabels[state]), h(Input, { surface, state, disabled: state === "disabled", error: state === "error", placeholder: "项目名称" })]))) ]);
-  return h("div", { class: "tui-runtime-core-gallery" }, [h("p", { class: "tui-runtime-note" }, "白色内容面使用灰色输入面，灰色内容面使用白色输入面；以下全部是同一个 Vue Input 组件的真实 Surface / state 组合。"), context("white", "White content surface"), context("gray", "Gray content surface")]);
+  const tagEntry = h(Input, { key: "tag-entry", variant: "tag-entry", surface: "gray", label: "参与成员", placeholder: "输入姓名后按 Enter", options: ["林娜", "王昊", "陈佳", "周明"], defaultTags: ["林娜"] });
+  return h("div", { class: "tui-runtime-core-gallery" }, [h("p", { class: "tui-runtime-note" }, "标准 Input 按内容面映射白/灰 surface；Tag Entry 是一个通用变体，仅展示一份，实际使用同样通过 surface=white/gray 复用。Enter 打开建议，选择后转为可移除标签；未选择的文本可保留。"), context("white", "White content surface"), context("gray", "Gray content surface"), tagEntry]);
 };
 
 const SearchPreview = {
   setup() {
     const value = ref("搜索项目");
-    return () => h("div", { class: "tui-runtime-core-gallery" }, [h("p", { class: "tui-runtime-note", key: "note" }, "真实 Vue Search 适配器，包含 Surface、with-value、清除和 disabled 状态。"), h("div", { class: "tui-runtime-surface-grid", key: "surfaces" }, [h("div", { class: "tui-runtime-state-cell", key: "white" }, [h("span", { key: "label" }, "White content surface"), h(Search, { key: "search", surface: "white", modelValue: value.value, "onUpdate:modelValue": (next) => { value.value = next; }, onClear: () => { value.value = ""; } })]), h("div", { class: "tui-runtime-state-cell", key: "gray" }, [h("span", { key: "label" }, "Gray content surface"), h(Search, { key: "search", surface: "gray", placeholder: "搜索项目" })]), h("div", { class: "tui-runtime-state-cell", key: "disabled" }, [h("span", { key: "label" }, "Disabled"), h(Search, { key: "search", disabled: true, surface: "white" })])])]);
+    const scope = ref("全部");
+    return () => h("div", { class: "tui-runtime-core-gallery" }, [h("p", { class: "tui-runtime-note", key: "note" }, "真实 Vue Search 适配器，包含 Surface、with-value、清除、Search · Scoped + 高级和 disabled 状态。"), h("div", { class: "tui-runtime-surface-grid", key: "surfaces" }, [h("div", { class: "tui-runtime-state-cell", key: "white" }, [h("span", { key: "label" }, "White content surface · Search · Scoped + 高级"), h(Search, { key: "search", surface: "white", placeholder: "搜索项目", modelValue: value.value, scope: scope.value, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, "onScope-change": (next) => { scope.value = next; }, "onUpdate:modelValue": (next) => { value.value = next; }, onClear: () => { value.value = ""; } })]), h("div", { class: "tui-runtime-state-cell", key: "gray" }, [h("span", { key: "label" }, "Gray content surface · Search · Scoped + 高级"), h(Search, { key: "search", surface: "gray", placeholder: "搜索项目", scope: scope.value, scopeOptions: ["全部", "标题", "内容"], advancedSearch: true, "onScope-change": (next) => { scope.value = next; } })]), h("div", { class: "tui-runtime-state-cell", key: "disabled" }, [h("span", { key: "label" }, "Disabled"), h(Search, { key: "search", disabled: true, surface: "white" })])])]);
   }
 };
 

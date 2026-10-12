@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": [
+    {
+      "path": "skill-support/references/index/task-routes.source.json",
+      "sha256": "6cc362a4425d4897bc45b2b56b08b4a4eec3c0c548a25c28f176f368da22bb1b"
+    },
+    {
+      "path": "packages/component-contracts/src/components.json",
+      "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+    },
+    {
+      "path": "skill-support/references/index/layout-routes.source.json",
+      "sha256": "0d7303f6853d5658ce9ae499d1e2bec3b8a312685dc51a4e4a8e64a6f1887bbf"
+    }
+  ],
+  "policy": {
+    "lookupOrder": [
+      "exact-task-route",
+      "complete-alias-or-domain-phrase",
+      "unambiguous-complete-word",
+      "explicit-pattern-for-unknown-task",
+      "layout",
+      "components",
+      "exact-contract"
+    ],
+    "normalizeBeforeMatch": [
+      "unicode-nfkc",
+      "lowercase",
+      "punctuation-to-space"
+    ],
+    "ambiguityPolicy": "stop-and-list-candidate-route-ids; --task-route explicitly selects among matching candidates",
+    "componentSourceOrder": [
+      "real-framework-component",
+      "matching-contract",
+      "token-based-custom"
+    ],
+    "exactContractReadRequiredAfterSelection": true
+  },
+  "routes": [
+    {
+      "id": "communication-workbench",
+      "aliases": [
+        "mail-workbench",
+        "email-workbench",
+        "邮件工作台",
+        "邮箱",
+        "coremail"
+      ],
+      "domains": [
+        "mail",
+        "communication"
+      ],
+      "domainReference": "references/domains/email-workbench.md",
+      "layout": "pattern-b-three-pane",
+      "requiredCapabilities": [
+        "titlebar",
+        "primary-navigation-item",
+        "sidebar",
+        "search",
+        "list-item",
+        "checkbox",
+        "button",
+        "icon-button",
+        "tooltip",
+        "context-menu"
+      ],
+      "optionalCapabilities": [
+        "avatar",
+        "badge",
+        "empty-state",
+        "toast",
+        "attachment",
+        "collapsible",
+        "select",
+        "dialog"
+      ],
+      "customCompositions": [
+        "email-message-row",
+        "mail-message-list",
+        "mail-detail-content"
+      ]
+    },
+    {
+      "id": "record-management-workbench",
+      "aliases": [
+        "contacts",
+        "tasks",
+        "file-list",
+        "联系人",
+        "任务管理",
+        "记录管理"
+      ],
+      "domains": [
+        "contacts",
+        "tasks",
+        "records"
+      ],
+      "layout": "pattern-b-three-pane",
+      "requiredCapabilities": [
+        "titlebar",
+        "primary-navigation-item",
+        "sidebar",
+        "search",
+        "list-item",
+        "button",
+        "icon-button",
+        "context-menu"
+      ],
+      "optionalCapabilities": [
+        "checkbox",
+        "badge",
+        "empty-state",
+        "dialog"
+      ],
+      "customCompositions": [
+        "domain-list-row",
+        "record-detail-content"
+      ]
+    },
+    {
+      "id": "dashboard-or-settings",
+      "aliases": [
+        "dashboard",
+        "settings",
+        "内容中心",
+        "设置",
+        "仪表盘"
+      ],
+      "domains": [
+        "dashboard",
+        "settings",
+        "content-hub"
+      ],
+      "layout": "pattern-a-two-pane",
+      "requiredCapabilities": [
+        "titlebar",
+        "primary-navigation-item",
+        "button"
+      ],
+      "optionalCapabilities": [
+        "tabs",
+        "search",
+        "select",
+        "switch",
+        "dialog",
+        "list-item"
+      ],
+      "customCompositions": [
+        "dashboard-section",
+        "dashboard-card"
+      ]
+    },
+    {
+      "id": "tool-workspace",
+      "aliases": [
+        "file-manager",
+        "editor",
+        "asset-manager",
+        "文件管理",
+        "编辑器",
+        "工具工作台"
+      ],
+      "domains": [
+        "files",
+        "editor",
+        "assets"
+      ],
+      "layout": "pattern-c-tool-workspace",
+      "requiredCapabilities": [
+        "titlebar",
+        "primary-navigation-item",
+        "tabs",
+        "search",
+        "button",
+        "icon-button",
+        "context-menu"
+      ],
+      "optionalCapabilities": [
+        "tree",
+        "breadcrumb",
+        "tooltip",
+        "dialog"
+      ],
+      "customCompositions": [
+        "workspace-canvas",
+        "workspace-toolbar"
+      ]
+    }
+  ]
+}

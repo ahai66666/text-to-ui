@@ -1,0 +1,318 @@
+{
+  "layout": {
+    "outerPadding": {
+      "bottom": 20,
+      "left": 20,
+      "right": 20,
+      "top": 20
+    },
+    "panes": {
+      "detailWidth": 1081.575,
+      "primaryWidth": 239.996,
+      "secondaryWidth": 359.997,
+      "titlebarHeight": 55.994
+    },
+    "shell": {
+      "columns": "239.996px 0.995575px 359.997px 3.99613px 1081.57px",
+      "height": 1112.224,
+      "rows": "1110.45px",
+      "width": 1688.33
+    }
+  },
+  "regions": {
+    "detailTitlebarActions": {
+      "order": [
+        "reply",
+        "reply-all",
+        "forward",
+        "archive",
+        "delete",
+        "unread",
+        "help",
+        "more"
+      ],
+      "actions": {
+        "archive": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 75.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='archive']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "存档",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "delete": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 75.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='delete']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "删除",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "forward": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 75.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='forward']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "转发",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "help": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 75.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='help']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "帮助",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "more": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 39.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='more']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "",
+          "labelVisible": false,
+          "mode": "icon",
+          "padding": "0px",
+          "visible": true
+        },
+        "reply": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 75.996,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='reply']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "回复",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "reply-all": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 107.992,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='reply-all']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "回复全部",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        },
+        "unread": {
+          "buttonHeight": 39.996,
+          "buttonWidth": 107.992,
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "border": "0px none rgba(0, 0, 0, 0.898)",
+          "borderRadius": "8px",
+          "color": "rgba(0, 0, 0, 0.898)",
+          "gap": "8px",
+          "htmlSelector": ".reader-toolbar .tui-titlebar__pane-actions > button[data-action='unread']",
+          "iconSize": {
+            "width": 19.994,
+            "height": 19.994
+          },
+          "label": "标记未读",
+          "labelVisible": true,
+          "mode": "icon-text",
+          "padding": "0px 8px",
+          "visible": true
+        }
+      }
+    },
+    "geometry": {
+      "undefined": {
+        "missing": true
+      }
+    }
+  },
+  "root": {
+    "computed": {
+      "alignItems": "center",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "backgroundImage": "radial-gradient(circle at 50% -20%, rgb(255, 255, 255) 0px, rgb(255, 255, 255) 34%, rgba(0, 0, 0, 0.047) 100%)",
+      "borderBottomColor": "rgba(0, 0, 0, 0.898)",
+      "borderBottomWidth": 0,
+      "borderLeftColor": "rgba(0, 0, 0, 0.898)",
+      "borderLeftWidth": 0,
+      "borderRadius": "0px",
+      "borderRightColor": "rgba(0, 0, 0, 0.898)",
+      "borderRightWidth": 0,
+      "borderTopColor": "rgba(0, 0, 0, 0.898)",
+      "borderTopWidth": 0,
+      "boxShadow": "none",
+      "boxSizing": "border-box",
+      "color": "rgba(0, 0, 0, 0.898)",
+      "columnGap": "normal",
+      "display": "block",
+      "fontFamily": "\"HarmonyOS Sans\", \"HarmonyOS Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "gap": "normal",
+      "gridTemplateColumns": "none",
+      "gridTemplateRows": "none",
+      "height": "1152.21px",
+      "justifyContent": "normal",
+      "lineHeight": "normal",
+      "margin": "0px",
+      "maxWidth": "none",
+      "minWidth": "0px",
+      "overflow": "visible",
+      "padding": "20px",
+      "paddingBottom": "20px",
+      "paddingLeft": "20px",
+      "paddingRight": "20px",
+      "paddingTop": "20px",
+      "position": "static",
+      "rowGap": "normal",
+      "width": "1728.32px"
+    },
+    "name": "desktop-shell",
+    "rect": {
+      "height": 1152.212,
+      "width": 1728.319,
+      "x": 0,
+      "y": 0
+    },
+    "selector": ".desktop-shell"
+  },
+  "schemaVersion": 2,
+  "selector": ".desktop-stage",
+  "shell": {
+    "computed": {
+      "alignItems": "normal",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "backgroundImage": "none",
+      "borderBottomColor": "rgba(0, 0, 0, 0.098)",
+      "borderBottomWidth": "0.884956px",
+      "borderLeftColor": "rgba(0, 0, 0, 0.098)",
+      "borderLeftWidth": "0.884956px",
+      "borderRadius": "16px",
+      "borderRightColor": "rgba(0, 0, 0, 0.098)",
+      "borderRightWidth": "0.884956px",
+      "borderTopColor": "rgba(0, 0, 0, 0.098)",
+      "borderTopWidth": "0.884956px",
+      "boxShadow": "rgba(0, 0, 30, 0.15) 0px 10px 50px 0px",
+      "boxSizing": "border-box",
+      "color": "rgba(0, 0, 0, 0.898)",
+      "columnGap": "normal",
+      "display": "grid",
+      "fontFamily": "\"HarmonyOS Sans\", \"HarmonyOS Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "gap": "normal",
+      "gridTemplateColumns": "239.996px 0.995575px 359.997px 3.99613px 1081.57px",
+      "gridTemplateRows": "1110.45px",
+      "height": "1112.22px",
+      "justifyContent": "normal",
+      "lineHeight": "normal",
+      "margin": "0px",
+      "maxWidth": "none",
+      "minWidth": "auto",
+      "overflow": "hidden",
+      "padding": "0px",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "rowGap": "normal",
+      "width": "1688.33px",
+      "borderTopStyle": "solid",
+      "borderRightStyle": "solid",
+      "borderBottomStyle": "solid",
+      "borderLeftStyle": "solid",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "overflowX": "hidden",
+      "overflowY": "hidden"
+    },
+    "name": "workbench",
+    "rect": {
+      "height": 1112.224,
+      "width": 1688.33,
+      "x": 19.994,
+      "y": 19.994
+    },
+    "selector": ".workbench"
+  },
+  "source": "html-live-computed-style",
+  "htmlSourceFingerprint": "3ed9278fb0bef3ee2b568009",
+  "stateScope": "default-visible",
+  "viewport": {
+    "devicePixelRatio": 1.13,
+    "height": 1152,
+    "width": 1728,
+    "zoom": 1
+  },
+  "visualStateId": "harmony-mail-inbox-expanded-default-v6",
+  "capturedAt": "2026-08-29T02:33:38.942Z"
+}

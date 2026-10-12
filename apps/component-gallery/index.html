@@ -151,10 +151,8 @@
             </section>
           </section>
           <section class="gallery-view" id="regression-view" data-view="regression" aria-labelledby="regression-view-title" hidden>
-            <div class="gallery-view__intro"><h3 id="regression-view-title">工程回归资料</h3><p>这一层只给维护者使用：旧 Skill 视觉原稿、覆盖矩阵和迁移资料都放在这里，避免干扰日常查看 Pattern 和真实运行时组件。</p></div>
+            <div class="gallery-view__intro"><h3 id="regression-view-title">工程资料</h3><p>这里提供当前组件架构说明和覆盖矩阵；日常预览请使用上方 Pattern 与真实框架组件目录。</p></div>
             <div class="regression-grid">
-              <article class="regression-card"><h3>旧 Skill 全量视觉回归源</h3><p>这里保留未分层的历史全量画廊，只用于回归和迁移检查；它不再作为 Pattern 或框架组件的日常内容。</p><a href="/legacy-skill/preview/component-gallery.html" data-legacy-path="preview/component-gallery.html" target="_blank" rel="noreferrer">在新窗口打开完整画廊</a></article>
-              <article class="regression-card"><h3>三框架组件调试样例</h3><p>这里保留少量 React / Vue / HTML 切换样例，仅用于开发调试；日常查看请使用“框架组件”的完整 51 项目录。</p><a href="/legacy-skill/preview/framework-component-contract/preview.html" data-legacy-path="preview/framework-component-contract/preview.html" target="_blank" rel="noreferrer">打开调试样例</a></article>
               <article class="regression-card"><h3>迁移说明</h3><p>组件包源码位于 packages；契约位于 component-contracts；Pixso 只保存逻辑映射，运行时重新解析 NewComponents。</p><a href="../../docs/component-architecture.md" target="_blank" rel="noreferrer">查看组件架构文档</a></article>
               <article class="regression-card regression-card--wide" id="coverage" aria-labelledby="coverage-title"><div class="gallery-surface__head"><h3 id="coverage-title">组件覆盖矩阵</h3><span>契约、三框架适配与 Pixso 逻辑映射</span></div><table class="coverage"><thead><tr><th>逻辑组件</th><th>HTML</th><th>React</th><th>Vue</th><th>Pixso</th></tr></thead><tbody id="coverage-body"></tbody></table></article>
             </div>
@@ -163,20 +161,6 @@
       </main>
     </div>
     <button id="show-toast" type="button" hidden>提示</button><div id="toast" hidden></div>
-    <script>
-      // The gallery is also opened directly from the filesystem during review.
-      // Resolve copied legacy assets differently for file:// and the Vite server.
-      (() => {
-        const prefix = location.protocol === "file:"
-          ? "./public/legacy-skill/"
-          : new URL("./legacy-skill/", document.baseURI).pathname;
-        const resolveLegacy = (element) => new URL(prefix + element.dataset.legacyPath, document.baseURI).href;
-        document.querySelectorAll("[data-legacy-path]").forEach((element) => {
-          element.dataset.legacyResolved = resolveLegacy(element);
-          element.setAttribute("src" in element ? "src" : "href", element.dataset.legacyResolved);
-        });
-      })();
-    </script>
     <script>
       // Keep primary navigation usable even when a browser refuses to execute
       // the ES module entry from file:// (for example, due to local MIME/CORS
@@ -191,8 +175,6 @@
           "contract-components": "runtime",
           "all-components": "runtime",
           "framework-runtime": "runtime",
-          "legacy-catalog": "regression",
-          "skill-baseline": "regression",
           coverage: "regression"
         };
         const views = [...document.querySelectorAll("[data-view]")];

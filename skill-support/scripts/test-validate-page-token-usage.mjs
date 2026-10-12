@@ -1,0 +1,28 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+
+const temp = fs.mkdtempSync(path.join(os.tmpdir(), "tui-token-audit-"));
+const source = path.join(temp, "page.css");
+const layout = path.join(temp, "layout-contract.json");
+fs.writeFileSync(layout, JSON.stringify({ cssStructuralParameters: [{ property: "--mail-list-width", value: "348px", reason: "confirmed resizable secondary pane baseline" }] }));
+const validator = path.resolve("skill-support/scripts/validate-page-token-usage.mjs");
+const run = () => spawnSync(process.execPath, [validator, "--project-root", process.cwd(), "--source", source, "--layout-contract", layout], { encoding: "utf8" });
+fs.writeFileSync(source, `@import "@text-to-ui/tokens"; :root { --mail-list-width: 348px; } .card { width: var(--mail-list-width); color: var(--color-text); padding: var(--space-3); border-radius: var(--radius-card); }`);
+assert.equal(run().status, 0, run().stderr);
+fs.writeFileSync(source, `.card { color: #0a59f7; padding: 12px; }`);
+const literal = run();
+assert.notEqual(literal.status, 0);
+assert.match(literal.stderr, /literal visible value/);
+fs.writeFileSync(source, `.card { color: var(--color-text, #ffffff); }`);
+const fallbackLiteral = run();
+assert.notEqual(fallbackLiteral.status, 0);
+assert.match(fallbackLiteral.stderr, /literal visible value/);
+fs.writeFileSync(source, `.card { color: var(--color-does-not-exist); }`);
+const missing = run();
+assert.notEqual(missing.status, 0);
+assert.match(missing.stderr, /unknown Token/);
+fs.rmSync(temp, { recursive: true, force: true });
+console.log("Page Token usage validator tests passed.");

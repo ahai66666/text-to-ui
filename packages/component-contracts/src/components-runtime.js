@@ -28,7 +28,7 @@ export default {
         "description"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -41,7 +41,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Accordion",
         "vue": "packages/components-vue/src/Accordion.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -64,12 +64,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 18,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Accordion/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-accordion\"]",
       "specimens": [
         {
           "id": "default",
@@ -95,7 +95,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "disclosure",
-      "canonicalSpecimen": "legacy:disclosure:accordion",
+      "canonicalSpecimen": "gallery:navigation:accordion",
       "allowedStates": [
         "default",
         "unfocus",
@@ -118,7 +118,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-right"
-      ]
+      ],
+      "comparisonGroup": "navigation"
     },
     {
       "id": "alert",
@@ -173,7 +174,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Alert",
         "vue": "packages/components-vue/src/Alert.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -196,12 +197,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 210,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Alert/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-alert\"]",
       "specimens": [
         {
           "id": "info",
@@ -261,7 +262,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "feedback",
-      "canonicalSpecimen": "legacy:feedback:alert",
+      "canonicalSpecimen": "gallery:display:alert",
       "allowedStates": [
         "default",
         "hover",
@@ -334,7 +335,8 @@ export default {
         "status/danger",
         "status/neutral",
         "action/close"
-      ]
+      ],
+      "comparisonGroup": "display"
     },
     {
       "id": "alert-dialog",
@@ -379,7 +381,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#AlertDialog",
         "vue": "packages/components-vue/src/advanced.js#AlertDialog"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -402,12 +404,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "containers",
       "categoryLabel": "容器类",
       "order": 513,
-      "canonicalSection": "section#containers",
-      "canonicalSelector": "section#containers [data-component=\"Alert Dialog/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"containers\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-alert-dialog\"]",
       "specimens": [
         {
           "id": "danger-confirm",
@@ -438,7 +440,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:alert-dialog",
+      "canonicalSpecimen": "gallery:containers:alert-dialog",
       "allowedStates": [
         "closed",
         "open"
@@ -477,7 +479,8 @@ export default {
       "interactionStates": [
         "closed",
         "open"
-      ]
+      ],
+      "comparisonGroup": "containers"
     },
     {
       "id": "attachment",
@@ -561,7 +564,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Attachment",
         "vue": "packages/components-vue/src/advanced.js#Attachment"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -584,12 +587,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "specialized",
       "categoryLabel": "特殊组件",
       "order": 610,
-      "canonicalSection": "section#specialized",
-      "canonicalSelector": "section#specialized [data-component=\"Attachment/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"specialized\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"specialized\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-attachment\"]",
       "specimens": [
         {
           "id": "default",
@@ -619,7 +622,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "specialized",
-      "canonicalSpecimen": "legacy:specialized:attachment",
+      "canonicalSpecimen": "gallery:specialized:attachment",
       "allowedStates": [
         "default",
         "hover",
@@ -644,7 +647,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "specialized"
     },
     {
       "id": "avatar",
@@ -688,7 +692,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Avatar",
         "vue": "packages/components-vue/src/Avatar.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -711,12 +715,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 215,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Avatar/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-avatar\"]",
       "specimens": [
         {
           "id": "fallback-32",
@@ -750,7 +754,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "data-display",
-      "canonicalSpecimen": "legacy:data-display:avatar",
+      "canonicalSpecimen": "gallery:display:avatar",
       "allowedStates": [
         "default",
         "hover",
@@ -764,7 +768,8 @@ export default {
         "help:body-s"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "display"
     },
     {
       "id": "badge",
@@ -805,7 +810,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Badge",
         "vue": "packages/components-vue/src/Badge.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -828,12 +833,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 216,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Badge/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-badge\"]",
       "specimens": [
         {
           "id": "default",
@@ -858,7 +863,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "data-display",
-      "canonicalSpecimen": "legacy:data-display:badge",
+      "canonicalSpecimen": "gallery:display:badge",
       "allowedStates": [
         "default",
         "disabled"
@@ -867,7 +872,8 @@ export default {
         "label:body-s"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "display"
     },
     {
       "id": "breadcrumb",
@@ -907,7 +913,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Breadcrumb",
         "vue": "packages/components-vue/src/Breadcrumb.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -930,12 +936,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 14,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Breadcrumb/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-breadcrumb\"]",
       "specimens": [
         {
           "id": "default",
@@ -960,7 +966,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:breadcrumb",
+      "canonicalSpecimen": "gallery:navigation:breadcrumb",
       "allowedStates": [
         "default",
         "hover",
@@ -986,7 +992,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "navigation"
     },
     {
       "id": "button",
@@ -1068,9 +1075,9 @@ export default {
         "react": "packages/components-react/src/index.jsx#Button",
         "vue": "packages/components-vue/src/Button.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "readiness": {
         "sourceReady": true,
         "contractReady": true,
@@ -1103,10 +1110,10 @@ export default {
       "category": "actions",
       "categoryLabel": "操作类",
       "order": 110,
-      "canonicalSection": "section#actions",
-      "canonicalSelector": "section#actions [data-component=\"Button/Primary/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"actions\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-button\"]",
       "legacyVisualGroup": "buttons",
-      "canonicalSpecimen": "legacy:buttons:button",
+      "canonicalSpecimen": "gallery:actions:button",
       "specimens": [
         {
           "id": "primary",
@@ -1282,7 +1289,8 @@ export default {
           "kind": "regular"
         }
       ],
-      "iconSemantic": "action/add"
+      "iconSemantic": "action/add",
+      "comparisonGroup": "actions"
     },
     {
       "id": "calendar",
@@ -1323,7 +1331,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Calendar",
         "vue": "packages/components-vue/src/advanced.js#Calendar"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1346,12 +1354,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 419,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Calendar/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-calendar\"]",
       "specimens": [
         {
           "id": "default",
@@ -1376,7 +1384,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "loading-data",
-      "canonicalSpecimen": "legacy:loading-data:calendar",
+      "canonicalSpecimen": "gallery:choices:calendar",
       "allowedStates": [
         "default",
         "hover",
@@ -1402,7 +1410,8 @@ export default {
       ],
       "iconAliases": [
         "field/calendar"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "checkbox",
@@ -1443,7 +1452,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Checkbox",
         "vue": "packages/components-vue/src/Checkbox.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1466,12 +1475,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 410,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Checkbox/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-checkbox\"]",
       "specimens": [
         {
           "id": "default",
@@ -1496,7 +1505,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "choices",
-      "canonicalSpecimen": "legacy:choices:checkbox",
+      "canonicalSpecimen": "gallery:choices:checkbox",
       "allowedStates": [
         "default",
         "hover",
@@ -1523,7 +1532,8 @@ export default {
       ],
       "iconAliases": [
         "choice/check"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "collapsible",
@@ -1554,7 +1564,7 @@ export default {
         "description"
       ],
       "tokenRoles": [
-        "color.text",
+        "color.text-muted",
         "color.surface",
         "color.border",
         "typography.body-l",
@@ -1567,7 +1577,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Collapsible",
         "vue": "packages/components-vue/src/Collapsible.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1590,12 +1600,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 19,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Collapsible/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-collapsible\"]",
       "specimens": [
         {
           "id": "default",
@@ -1621,7 +1631,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "disclosure",
-      "canonicalSpecimen": "legacy:disclosure:collapsible",
+      "canonicalSpecimen": "gallery:navigation:collapsible",
       "allowedStates": [
         "default",
         "hover",
@@ -1646,7 +1656,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "navigation"
     },
     {
       "id": "combobox",
@@ -1690,7 +1701,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Combobox",
         "vue": "packages/components-vue/src/Combobox.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1713,12 +1724,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 315,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Combobox/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-combobox\"]",
       "specimens": [
         {
           "id": "default",
@@ -1745,7 +1756,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "form-plus",
-      "canonicalSpecimen": "legacy:form-plus:combobox",
+      "canonicalSpecimen": "gallery:input:combobox",
       "allowedStates": [
         "default",
         "hover",
@@ -1773,7 +1784,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "input"
     },
     {
       "id": "context-menu",
@@ -1816,7 +1828,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#ContextMenu",
         "vue": "packages/components-vue/src/advanced.js#ContextMenu"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1839,12 +1851,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "actions",
       "categoryLabel": "操作类",
       "order": 112,
-      "canonicalSection": "section#actions",
-      "canonicalSelector": "section#actions [data-component=\"Context Menu/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"actions\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-context-menu\"]",
       "specimens": [
         {
           "id": "default",
@@ -1872,7 +1884,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:context-menu",
+      "canonicalSpecimen": "gallery:actions:context-menu",
       "allowedStates": [
         "default",
         "hover",
@@ -1899,7 +1911,8 @@ export default {
       ],
       "iconAliases": [
         "action/more"
-      ]
+      ],
+      "comparisonGroup": "actions"
     },
     {
       "id": "date-picker",
@@ -1944,7 +1957,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#DatePicker",
         "vue": "packages/components-vue/src/advanced.js#DatePicker"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -1967,12 +1980,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 420,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Date Picker/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-date-picker\"]",
       "specimens": [
         {
           "id": "default",
@@ -1998,7 +2011,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "loading-data",
-      "canonicalSpecimen": "legacy:loading-data:date-picker",
+      "canonicalSpecimen": "gallery:choices:date-picker",
       "allowedStates": [
         "default",
         "hover",
@@ -2026,7 +2039,8 @@ export default {
       ],
       "iconAliases": [
         "field/calendar"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "time-picker",
@@ -2071,7 +2085,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#TimePicker",
         "vue": "packages/components-vue/src/advanced.js#TimePicker"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2094,12 +2108,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 421,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Time Picker/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-time-picker\"]",
       "specimens": [
         {
           "id": "default",
@@ -2125,7 +2139,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "loading-data",
-      "canonicalSpecimen": "legacy:loading-data:time-picker",
+      "canonicalSpecimen": "gallery:choices:time-picker",
       "allowedStates": [
         "default",
         "hover",
@@ -2153,7 +2167,8 @@ export default {
       ],
       "iconAliases": [
         "field/clock"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "dialog",
@@ -2242,7 +2257,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Dialog",
         "vue": "packages/components-vue/src/advanced.js#Dialog"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2265,12 +2280,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "containers",
       "categoryLabel": "容器类",
       "order": 512,
-      "canonicalSection": "section#containers",
-      "canonicalSelector": "section#containers [data-component=\"Dialog/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"containers\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-dialog\"]",
       "specimens": [
         {
           "id": "single-default",
@@ -2315,7 +2330,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:dialog",
+      "canonicalSpecimen": "gallery:containers:dialog",
       "allowedStates": [
         "closed",
         "open"
@@ -2342,7 +2357,8 @@ export default {
       "interactionStates": [
         "closed",
         "open"
-      ]
+      ],
+      "comparisonGroup": "containers"
     },
     {
       "id": "dropdown-menu",
@@ -2385,7 +2401,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#DropdownMenu",
         "vue": "packages/components-vue/src/advanced.js#DropdownMenu"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2408,12 +2424,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "actions",
       "categoryLabel": "操作类",
       "order": 113,
-      "canonicalSection": "section#actions",
-      "canonicalSelector": "section#actions [data-component=\"Dropdown Menu/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"actions\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-dropdown-menu\"]",
       "specimens": [
         {
           "id": "default",
@@ -2443,7 +2459,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:dropdown-menu",
+      "canonicalSpecimen": "gallery:actions:dropdown-menu",
       "allowedStates": [
         "default",
         "hover",
@@ -2470,7 +2486,8 @@ export default {
       ],
       "iconAliases": [
         "action/more"
-      ]
+      ],
+      "comparisonGroup": "actions"
     },
     {
       "id": "field",
@@ -2513,7 +2530,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Field",
         "vue": "packages/components-vue/src/Field.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2536,12 +2553,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 313,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Field/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-field\"]",
       "specimens": [
         {
           "id": "default",
@@ -2566,7 +2583,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:field",
+      "canonicalSpecimen": "gallery:input:field",
       "allowedStates": [
         "default",
         "hover",
@@ -2581,7 +2598,8 @@ export default {
         "help:body-s"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "input"
     },
     {
       "id": "form-field",
@@ -2623,7 +2641,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#FormField",
         "vue": "packages/components-vue/src/FormField.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2646,12 +2664,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "containers",
       "categoryLabel": "容器类",
       "order": 509,
-      "canonicalSection": "section#containers",
-      "canonicalSelector": "section#containers [data-component=\"Form Field/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"containers\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-form-field\"]",
       "specimens": [
         {
           "id": "default-white",
@@ -2710,7 +2728,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:form-field",
+      "canonicalSpecimen": "gallery:containers:form-field",
       "allowedStates": [
         "default",
         "error",
@@ -2721,7 +2739,8 @@ export default {
         "error:body-s"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "containers"
     },
     {
       "id": "hover-card",
@@ -2765,7 +2784,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#HoverCard",
         "vue": "packages/components-vue/src/advanced.js#HoverCard"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -2788,12 +2807,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 214,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Hover Card/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-hover-card\"]",
       "specimens": [
         {
           "id": "default",
@@ -2821,7 +2840,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:hover-card",
+      "canonicalSpecimen": "gallery:display:hover-card",
       "allowedStates": [
         "default",
         "hover",
@@ -2848,7 +2867,8 @@ export default {
       ],
       "iconAliases": [
         "action/more"
-      ]
+      ],
+      "comparisonGroup": "display"
     },
     {
       "id": "input",
@@ -2856,7 +2876,8 @@ export default {
       "variants": [
         "default",
         "error",
-        "disabled"
+        "disabled",
+        "tag-entry"
       ],
       "states": [
         "default",
@@ -2869,21 +2890,34 @@ export default {
         "value",
         "placeholder",
         "disabled",
-        "error"
+        "error",
+        "variant",
+        "label",
+        "options",
+        "tags",
+        "defaultTags",
+        "surface"
       ],
       "slots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ],
       "tokenRoles": [
         "color.input-bg",
+        "color.icon",
         "color.text",
+        "color.text-muted",
+        "color.text-subtle",
         "color.border",
         "size.input-height",
         "radius.input",
-        "typography.body-l"
+        "typography.body-l",
+        "typography.body-m"
       ],
       "source": "canonical-custom",
       "status": "partial",
@@ -2892,7 +2926,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Input",
         "vue": "packages/components-vue/src/Input.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "readiness": {
         "sourceReady": true,
@@ -2923,14 +2957,14 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 310,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Input/White Surface/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-input\"]",
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:input",
+      "canonicalSpecimen": "gallery:input:input",
       "specimens": [
         {
           "id": "white-surface",
@@ -2973,7 +3007,8 @@ export default {
       ],
       "iconAliases": [],
       "iconSlots": [],
-      "iconSemantic": null
+      "iconSemantic": null,
+      "comparisonGroup": "input"
     },
     {
       "id": "label",
@@ -3015,7 +3050,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Label",
         "vue": "packages/components-vue/src/Label.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3038,12 +3073,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 314,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Label/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-label\"]",
       "specimens": [
         {
           "id": "default",
@@ -3068,7 +3103,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "form-plus",
-      "canonicalSpecimen": "legacy:form-plus:label",
+      "canonicalSpecimen": "gallery:input:label",
       "allowedStates": [
         "default",
         "hover",
@@ -3094,7 +3129,8 @@ export default {
       ],
       "iconAliases": [
         "field/search"
-      ]
+      ],
+      "comparisonGroup": "input"
     },
     {
       "id": "menubar",
@@ -3141,7 +3177,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Menubar",
         "vue": "packages/components-vue/src/advanced.js#Menubar"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3164,12 +3200,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 16,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Menubar/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-menubar\"]",
       "specimens": [
         {
           "id": "default",
@@ -3199,7 +3235,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "disclosure",
-      "canonicalSpecimen": "legacy:disclosure:menubar",
+      "canonicalSpecimen": "gallery:navigation:menubar",
       "allowedStates": [
         "default",
         "hover",
@@ -3259,7 +3295,8 @@ export default {
           "activeWhen": "hasSubmenu",
           "placement": "trailing-end"
         }
-      }
+      },
+      "comparisonGroup": "navigation"
     },
     {
       "id": "native-select",
@@ -3301,7 +3338,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#NativeSelect",
         "vue": "packages/components-vue/src/NativeSelect.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3324,12 +3361,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 416,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Native Select/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-native-select\"]",
       "specimens": [
         {
           "id": "default",
@@ -3354,7 +3391,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "form-plus",
-      "canonicalSpecimen": "legacy:form-plus:native-select",
+      "canonicalSpecimen": "gallery:choices:native-select",
       "allowedStates": [
         "default",
         "hover",
@@ -3380,7 +3417,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "primary-navigation-item",
@@ -3444,7 +3482,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#PrimaryNavigationItem",
         "vue": "packages/components-vue/src/PrimaryNavigationItem.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "readiness": {
         "sourceReady": true,
@@ -3475,14 +3513,14 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 11,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Primary Navigation Item/Level 1\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-primary-navigation-item\"]",
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:primary-navigation-item",
+      "canonicalSpecimen": "gallery:navigation:primary-navigation-item",
       "specimens": [
         {
           "id": "default",
@@ -3547,7 +3585,8 @@ export default {
           "kind": "regular",
           "source": "lucide"
         }
-      }
+      },
+      "comparisonGroup": "navigation"
     },
     {
       "id": "pagination",
@@ -3588,7 +3627,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Pagination",
         "vue": "packages/components-vue/src/Pagination.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3611,12 +3650,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 17,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Pagination/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-pagination\"]",
       "specimens": [
         {
           "id": "default",
@@ -3641,7 +3680,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:pagination",
+      "canonicalSpecimen": "gallery:navigation:pagination",
       "allowedStates": [
         "default",
         "hover",
@@ -3679,7 +3718,8 @@ export default {
       "iconAliases": [
         "navigation/back",
         "navigation/forward"
-      ]
+      ],
+      "comparisonGroup": "navigation"
     },
     {
       "id": "popover",
@@ -3723,7 +3763,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Popover",
         "vue": "packages/components-vue/src/advanced.js#Popover"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3746,12 +3786,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 213,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Popover/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-popover\"]",
       "specimens": [
         {
           "id": "default",
@@ -3779,7 +3819,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:popover",
+      "canonicalSpecimen": "gallery:display:popover",
       "allowedStates": [
         "default",
         "hover",
@@ -3806,7 +3846,8 @@ export default {
       ],
       "iconAliases": [
         "action/more"
-      ]
+      ],
+      "comparisonGroup": "display"
     },
     {
       "id": "progress",
@@ -3852,7 +3893,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Progress",
         "vue": "packages/components-vue/src/Progress.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -3875,12 +3916,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 220,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Progress/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-progress\"]",
       "specimens": [
         {
           "id": "default",
@@ -3905,7 +3946,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "data-display",
-      "canonicalSpecimen": "legacy:data-display:progress",
+      "canonicalSpecimen": "gallery:display:progress",
       "allowedStates": [
         "default",
         "hover",
@@ -3932,7 +3973,8 @@ export default {
       ],
       "iconAliases": [
         "status/success"
-      ]
+      ],
+      "comparisonGroup": "display"
     },
     {
       "id": "radio",
@@ -3980,7 +4022,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Radio",
         "vue": "packages/components-vue/src/Radio.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "readiness": {
         "sourceReady": true,
@@ -4011,14 +4053,14 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 411,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Radio/Unselected/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-radio\"]",
       "legacyVisualGroup": "choices",
-      "canonicalSpecimen": "legacy:choices:radio",
+      "canonicalSpecimen": "gallery:choices:radio",
       "specimens": [
         {
           "id": "unselected",
@@ -4053,7 +4095,8 @@ export default {
       ],
       "iconAliases": [],
       "iconSlots": [],
-      "iconSemantic": null
+      "iconSemantic": null,
+      "comparisonGroup": "choices"
     },
     {
       "id": "radio-group",
@@ -4094,7 +4137,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#RadioGroup",
         "vue": "packages/components-vue/src/RadioGroup.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -4117,12 +4160,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 412,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Radio Group/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-radio-group\"]",
       "specimens": [
         {
           "id": "default",
@@ -4147,7 +4190,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "choices",
-      "canonicalSpecimen": "legacy:choices:radio-group",
+      "canonicalSpecimen": "gallery:choices:radio-group",
       "allowedStates": [
         "default",
         "hover",
@@ -4174,7 +4217,8 @@ export default {
       ],
       "iconAliases": [
         "action/check"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "chips",
@@ -4220,7 +4264,7 @@ export default {
         "react": "packages/components-react/src/Chips.jsx#Chips",
         "vue": "packages/components-vue/src/Chips.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -4243,12 +4287,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "actions",
       "categoryLabel": "操作类",
       "order": 111,
-      "canonicalSection": "section#actions",
-      "canonicalSelector": "section#actions [data-component=\"Chips/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"actions\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"actions\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-chips\"]",
       "specimens": [
         {
           "id": "default",
@@ -4288,7 +4332,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "actions",
-      "canonicalSpecimen": "legacy:actions:chips",
+      "canonicalSpecimen": "gallery:actions:chips",
       "allowedStates": [
         "default",
         "hover",
@@ -4322,7 +4366,8 @@ export default {
           "iconSize": "16px",
           "requiresAccessibleName": true
         }
-      }
+      },
+      "comparisonGroup": "actions"
     },
     {
       "id": "search",
@@ -4331,12 +4376,19 @@ export default {
         "default",
         "focused",
         "with-value",
-        "advanced-search"
+        "advanced-search",
+        "scoped-search",
+        "scoped-advanced-search"
       ],
       "states": [
         "default",
-        "hover",
         "focus",
+        "typing",
+        "filled",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "props": [
@@ -4346,6 +4398,11 @@ export default {
         "disabled",
         "state",
         "surface",
+        "scope",
+        "defaultScope",
+        "scopeOptions",
+        "scopeLabel",
+        "onScopeChange",
         "advancedSearch",
         "advancedSearchLabel",
         "onAdvancedSearch",
@@ -4353,6 +4410,7 @@ export default {
         "onClear"
       ],
       "slots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",
@@ -4378,7 +4436,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Search",
         "vue": "packages/components-vue/src/Search.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "readiness": {
         "sourceReady": true,
@@ -4409,14 +4467,14 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 311,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Search/White Surface/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-search\"]",
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:search",
+      "canonicalSpecimen": "gallery:input:search",
       "specimens": [
         {
           "id": "white-surface",
@@ -4439,14 +4497,18 @@ export default {
       "sizing": "fill",
       "allowedStates": [
         "default",
-        "hover",
         "focus",
+        "typing",
         "filled",
-        "error",
+        "hover-left",
+        "hover-right",
+        "pressed-left",
+        "pressed-right",
         "disabled"
       ],
       "behaviors": [
         "input",
+        "scope-select",
         "clear",
         "advanced-search",
         "focus",
@@ -4478,8 +4540,41 @@ export default {
       ],
       "iconSemantic": "field/search",
       "slotContracts": {
+        "scope-selector": {
+          "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "scopeOptions",
+            "scope",
+            "defaultScope",
+            "scopeLabel",
+            "onScopeChange"
+          ],
+          "scope": "search-query-builder",
+          "defaultPlacement": "leading-before-search-icon",
+          "control": "dropdown-menu",
+          "defaultLabel": "搜索范围",
+          "defaultValue": "first-scope-option",
+          "dividerToken": "color.border",
+          "interaction": "change-search-scope",
+          "coexistenceOrder": [
+            "scope-selector",
+            "leading",
+            "value",
+            "clear",
+            "advanced-search"
+          ]
+        },
         "advanced-search": {
           "cardinality": "0..1",
+          "optional": true,
+          "configurable": true,
+          "configurationProps": [
+            "advancedSearch",
+            "advancedSearchLabel",
+            "onAdvancedSearch"
+          ],
           "scope": "search-query-builder",
           "defaultPlacement": "trailing-after-clear",
           "control": "small-text-button",
@@ -4495,7 +4590,8 @@ export default {
             "advanced-search"
           ]
         }
-      }
+      },
+      "comparisonGroup": "input"
     },
     {
       "id": "select",
@@ -4539,7 +4635,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Select",
         "vue": "packages/components-vue/src/Select.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -4562,12 +4658,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 415,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Select/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-select\"]",
       "specimens": [
         {
           "id": "white-surface",
@@ -4599,7 +4695,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:select",
+      "canonicalSpecimen": "gallery:choices:select",
       "allowedStates": [
         "default",
         "hover",
@@ -4627,7 +4723,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/chevron-down"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "sidebar",
@@ -4681,9 +4778,9 @@ export default {
         "react": "packages/components-react/src/index.jsx#Sidebar",
         "vue": "packages/components-vue/src/Sidebar.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "readiness": {
         "sourceReady": true,
         "contractReady": true,
@@ -4716,10 +4813,10 @@ export default {
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 12,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Sidebar Item/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-sidebar\"]",
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:sidebar",
+      "canonicalSpecimen": "gallery:navigation:sidebar",
       "specimens": [
         {
           "id": "default",
@@ -4777,7 +4874,8 @@ export default {
           "kind": "regular"
         }
       ],
-      "iconSemantic": "navigation/grid"
+      "iconSemantic": "navigation/grid",
+      "comparisonGroup": "navigation"
     },
     {
       "id": "slider",
@@ -4818,7 +4916,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#Slider",
         "vue": "packages/components-vue/src/advanced.js#Slider"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -4841,12 +4939,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 417,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Slider/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-slider\"]",
       "specimens": [
         {
           "id": "default",
@@ -4871,7 +4969,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "form-plus",
-      "canonicalSpecimen": "legacy:form-plus:slider",
+      "canonicalSpecimen": "gallery:choices:slider",
       "allowedStates": [
         "default",
         "hover",
@@ -4897,7 +4995,8 @@ export default {
       ],
       "iconAliases": [
         "action/more"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "color-picker",
@@ -4950,7 +5049,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#ColorPicker",
         "vue": "packages/components-vue/src/advanced.js#ColorPicker"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -4973,12 +5072,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 217,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"ColorPicker/Tablet\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-color-picker\"]",
       "specimens": [
         {
           "id": "default",
@@ -5004,7 +5103,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "form-plus",
-      "canonicalSpecimen": "legacy:form-plus:color-picker",
+      "canonicalSpecimen": "gallery:display:color-picker",
       "allowedStates": [
         "default",
         "hover",
@@ -5019,7 +5118,8 @@ export default {
       ],
       "iconSlots": [],
       "iconAliases": [],
-      "iconSemantic": null
+      "iconSemantic": null,
+      "comparisonGroup": "display"
     },
     {
       "id": "switch",
@@ -5061,7 +5161,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Switch",
         "vue": "packages/components-vue/src/Switch.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5084,12 +5184,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 413,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Switch/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-switch\"]",
       "specimens": [
         {
           "id": "default",
@@ -5114,7 +5214,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "choices",
-      "canonicalSpecimen": "legacy:choices:switch",
+      "canonicalSpecimen": "gallery:choices:switch",
       "allowedStates": [
         "default",
         "hover",
@@ -5141,7 +5241,8 @@ export default {
       ],
       "iconAliases": [
         "action/check"
-      ]
+      ],
+      "comparisonGroup": "choices"
     },
     {
       "id": "table",
@@ -5157,6 +5258,9 @@ export default {
         "selected"
       ],
       "props": [
+        "title",
+        "columns",
+        "rows",
         "label",
         "value",
         "disabled",
@@ -5185,7 +5289,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Table",
         "vue": "packages/components-vue/src/Table.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5208,12 +5312,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 218,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Table/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-table\"]",
       "specimens": [
         {
           "id": "default",
@@ -5238,7 +5342,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "data-display",
-      "canonicalSpecimen": "legacy:data-display:table",
+      "canonicalSpecimen": "gallery:display:table",
       "allowedStates": [
         "default",
         "hover",
@@ -5251,7 +5355,8 @@ export default {
         "cell:body-l"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "display"
     },
     {
       "id": "tabs",
@@ -5293,7 +5398,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Tabs",
         "vue": "packages/components-vue/src/Tabs.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5316,12 +5421,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 13,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Tabs/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tabs\"]",
       "specimens": [
         {
           "id": "default",
@@ -5347,7 +5452,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:tabs",
+      "canonicalSpecimen": "gallery:navigation:tabs",
       "allowedStates": [
         "default",
         "hover",
@@ -5371,7 +5476,8 @@ export default {
       ],
       "iconAliases": [
         "navigation/list"
-      ]
+      ],
+      "comparisonGroup": "navigation"
     },
     {
       "id": "textarea",
@@ -5414,7 +5520,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Textarea",
         "vue": "packages/components-vue/src/Textarea.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5437,12 +5543,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "input",
       "categoryLabel": "输入类",
       "order": 312,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Textarea/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-textarea\"]",
       "specimens": [
         {
           "id": "white-surface",
@@ -5479,7 +5585,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:textarea",
+      "canonicalSpecimen": "gallery:input:textarea",
       "allowedStates": [
         "default",
         "hover",
@@ -5495,7 +5601,8 @@ export default {
         "help:body-s"
       ],
       "iconSlots": [],
-      "iconAliases": []
+      "iconAliases": [],
+      "comparisonGroup": "input"
     },
     {
       "id": "snackbar",
@@ -5541,7 +5648,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Snackbar",
         "vue": "packages/components-vue/src/Snackbar.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5564,12 +5671,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 211,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Snackbar/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-snackbar\"]",
       "specimens": [
         {
           "id": "title-only",
@@ -5601,7 +5708,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "feedback",
-      "canonicalSpecimen": "pixso:Snackbar:左侧区域=1",
+      "canonicalSpecimen": "gallery:display:snackbar",
       "allowedStates": [
         "default"
       ],
@@ -5669,7 +5776,8 @@ export default {
           "hotZone": "40px",
           "requiresAccessibleName": true
         }
-      }
+      },
+      "comparisonGroup": "display"
     },
     {
       "id": "tooltip",
@@ -5711,7 +5819,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Tooltip",
         "vue": "packages/components-vue/src/Tooltip.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -5734,12 +5842,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "display",
       "categoryLabel": "展示类",
       "order": 212,
-      "canonicalSection": "section#display",
-      "canonicalSelector": "section#display [data-component=\"Tooltip/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"display\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"display\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tooltip\"]",
       "specimens": [
         {
           "id": "default",
@@ -5764,7 +5872,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "feedback",
-      "canonicalSpecimen": "legacy:feedback:tooltip",
+      "canonicalSpecimen": "gallery:display:tooltip",
       "allowedStates": [
         "default",
         "hover",
@@ -5787,7 +5895,8 @@ export default {
       ],
       "iconAliases": [
         "status/info"
-      ]
+      ],
+      "comparisonGroup": "display"
     },
     {
       "id": "list-card",
@@ -5838,7 +5947,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#ListCard",
         "vue": "packages/components-vue/src/ListCard.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "readiness": {
         "sourceReady": true,
@@ -5869,14 +5978,14 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "containers",
       "categoryLabel": "容器类",
       "order": 510,
-      "canonicalSection": "section#containers",
-      "canonicalSelector": "section#containers [data-component=\"List Item/White Surface/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"containers\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-list-card\"]",
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:list-card",
+      "canonicalSpecimen": "gallery:containers:list-card",
       "specimens": [
         {
           "id": "single-text-arrow",
@@ -5953,7 +6062,8 @@ export default {
           "kind": "regular"
         }
       ],
-      "iconSemantic": "navigation/list"
+      "iconSemantic": "navigation/list",
+      "comparisonGroup": "containers"
     },
     {
       "id": "semi-modal",
@@ -6005,7 +6115,7 @@ export default {
         "react": "packages/components-react/src/advanced.jsx#SemiModal",
         "vue": "packages/components-vue/src/advanced.js#SemiModal"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -6028,12 +6138,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "containers",
       "categoryLabel": "容器类",
       "order": 514,
-      "canonicalSection": "section#containers",
-      "canonicalSelector": "section#containers [data-component=\"Semi-modal/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"containers\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"containers\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-semi-modal\"]",
       "specimens": [
         {
           "id": "s-white-non-modal",
@@ -6118,7 +6228,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "overlays",
-      "canonicalSpecimen": "legacy:overlays:semi-modal",
+      "canonicalSpecimen": "gallery:containers:semi-modal",
       "allowedStates": [
         "closed",
         "open"
@@ -6171,7 +6281,8 @@ export default {
           "trailingInsetToken": "space/5",
           "trailingInset": "16px"
         }
-      }
+      },
+      "comparisonGroup": "containers"
     },
     {
       "id": "titlebar",
@@ -6196,26 +6307,48 @@ export default {
         "segmentRole",
         "slots",
         "showWindowControls",
+        "showLogo",
         "logoSrc",
         "logoAlt",
         "disabled",
         "state",
         "mainDetailActions",
-        "onMainContentAction",
         "onMainDetailAction",
         "onAction",
         "className"
       ],
       "slots": [
+        "logo",
         "leading",
         "label",
         "secondary-pane-content",
-        "main-content-leading",
         "main-content-title",
         "main-detail-actions",
         "actions"
       ],
       "slotContracts": {
+        "logo": {
+          "cardinality": "0..1",
+          "scope": "titlebar-logo",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation",
+            "secondary-pane",
+            "final-pane"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "visibilityProp": "showLogo",
+          "defaultVisibility": {
+            "global": true,
+            "primary-navigation": true,
+            "secondary-pane": false,
+            "final-pane": false
+          }
+        },
         "secondary-pane-content": {
           "cardinality": "0..1",
           "scope": "secondary-pane-titlebar",
@@ -6359,7 +6492,8 @@ export default {
           "fields": [
             "src",
             "alt"
-          ]
+          ],
+          "deprecatedAliasFor": "logo"
         },
         "label": {
           "cardinality": "0..1",
@@ -6409,6 +6543,8 @@ export default {
         "color.surface",
         "color.border",
         "typography.body-l",
+        "typography.subtitle-m",
+        "typography.title-s",
         "spacing.component-gap"
       ],
       "source": "canonical-custom",
@@ -6418,7 +6554,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#Titlebar",
         "vue": "packages/components-vue/src/Titlebar.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -6441,12 +6577,12 @@ export default {
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 10,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Titlebar/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-titlebar\"]",
       "specimens": [
         {
           "id": "small-normal",
@@ -6506,7 +6642,7 @@ export default {
         "tokenParity": true
       },
       "legacyVisualGroup": "titlebars",
-      "canonicalSpecimen": "legacy:titlebars:titlebar",
+      "canonicalSpecimen": "gallery:navigation:titlebar",
       "allowedStates": [
         "default",
         "unfocus",
@@ -6518,6 +6654,20 @@ export default {
         "description:body-m",
         "help:body-s"
       ],
+      "textRolesByVariant": {
+        "small": [
+          "title:subtitle-m"
+        ],
+        "medium": [
+          "title:title-s"
+        ],
+        "large": [
+          "title:title-s"
+        ],
+        "xlarge": [
+          "title:title-s"
+        ]
+      },
       "iconSlots": [
         {
           "alias": "window/minimize",
@@ -6607,7 +6757,8 @@ export default {
         "middleSegments": "optional-registered-content; alignment-owned-by-titlebar",
         "windowControls": "final-segment-only",
         "slotAPI": "declarative-content; no arbitrary HTML"
-      }
+      },
+      "comparisonGroup": "navigation"
     },
     {
       "id": "segmented-button",
@@ -6642,7 +6793,7 @@ export default {
         "typography.body-m"
       ],
       "source": "canonical-custom",
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "implementations": {
         "html": "packages/components-html/src/index.js#segmentedButton",
@@ -6652,10 +6803,10 @@ export default {
       "category": "choices",
       "categoryLabel": "选择类",
       "order": 414,
-      "canonicalSection": "section#choices",
-      "canonicalSelector": "section#choices [data-component=\"Segmented Button/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"choices\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"choices\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-segmented-button\"]",
       "legacyVisualGroup": "choices",
-      "canonicalSpecimen": "legacy:choices:segmented-button",
+      "canonicalSpecimen": "gallery:choices:segmented-button",
       "specimens": [
         {
           "id": "default",
@@ -6710,14 +6861,15 @@ export default {
           "source": "packages/components-vue/src/SegmentedButton.vue"
         }
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "pixso": {
         "status": "logical-mapping",
         "libraryPage": "NewComponents",
         "resolveGuidsAtRuntime": true,
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
-      }
+      },
+      "comparisonGroup": "choices"
     },
     {
       "id": "number-selector",
@@ -6757,7 +6909,7 @@ export default {
         "typography.body-l"
       ],
       "source": "canonical-custom",
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "implementations": {
         "html": "packages/components-html/src/index.js#numberSelector",
@@ -6767,10 +6919,10 @@ export default {
       "category": "input",
       "categoryLabel": "输入类",
       "order": 316,
-      "canonicalSection": "section#input",
-      "canonicalSelector": "section#input [data-component=\"Number Selector/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"input\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"input\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-number-selector\"]",
       "legacyVisualGroup": "fields",
-      "canonicalSpecimen": "legacy:fields:number-selector",
+      "canonicalSpecimen": "gallery:input:number-selector",
       "specimens": [
         {
           "id": "default",
@@ -6826,14 +6978,15 @@ export default {
           "source": "packages/components-vue/src/NumberSelector.vue"
         }
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "pixso": {
         "status": "logical-mapping",
         "libraryPage": "NewComponents",
         "resolveGuidsAtRuntime": true,
         "linkedInstanceRequired": true,
         "variableReadbackRequired": true
-      }
+      },
+      "comparisonGroup": "input"
     },
     {
       "id": "sub-tabs",
@@ -6877,7 +7030,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#SubTabs",
         "vue": "packages/components-vue/src/SubTabs.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -6908,14 +7061,14 @@ export default {
         "accessibilityParity": false,
         "tokenParity": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 13.5,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Sub Tabs/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-sub-tabs\"]",
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:sub-tabs",
+      "canonicalSpecimen": "gallery:navigation:sub-tabs",
       "specimens": [
         {
           "id": "default",
@@ -6945,7 +7098,8 @@ export default {
       ],
       "iconAliases": [],
       "iconSlots": [],
-      "iconSemantic": null
+      "iconSemantic": null,
+      "comparisonGroup": "navigation"
     },
     {
       "id": "tree-view",
@@ -6995,7 +7149,7 @@ export default {
         "react": "packages/components-react/src/index.jsx#TreeView",
         "vue": "packages/components-vue/src/TreeView.vue"
       },
-      "visualAuthority": "skill-canonical",
+      "visualAuthority": "apps/component-gallery/index.html#runtime-view",
       "sourceStrategy": "canonical-custom",
       "frameworks": {
         "html": {
@@ -7026,14 +7180,14 @@ export default {
         "accessibilityParity": false,
         "tokenParity": true
       },
-      "contractNotes": "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
+      "contractNotes": "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。",
       "category": "navigation",
       "categoryLabel": "导航类",
       "order": 14.5,
-      "canonicalSection": "section#navigation",
-      "canonicalSelector": "section#navigation [data-component=\"Tree View/Default\"]",
+      "canonicalSection": "[data-runtime-category=\"navigation\"]",
+      "canonicalSelector": "#runtime-view [data-runtime-category=\"navigation\"] .tui-runtime-card__preview[data-fixture-id=\"fixture-tree-view\"]",
       "legacyVisualGroup": "navigation",
-      "canonicalSpecimen": "legacy:navigation:tree-view",
+      "canonicalSpecimen": "gallery:navigation:tree-view",
       "specimens": [
         {
           "id": "default",
@@ -7096,11 +7250,12 @@ export default {
           "kind": "regular"
         }
       ],
-      "iconSemantic": "navigation/chevron-right"
+      "iconSemantic": "navigation/chevron-right",
+      "comparisonGroup": "navigation"
     }
   ],
   "registryPolicy": {
-    "visualAuthority": "skill-canonical",
+    "visualAuthority": "apps/component-gallery/index.html#runtime-view",
     "readyRequires": [
       "sourceReady",
       "contractReady",
@@ -7139,7 +7294,7 @@ export default {
     ],
     "readyWhen": "all readinessDimensions are true",
     "runtimeRule": "只显示结构性 specimens；hover/pressed/focus/open/close 由真实组件交互触发",
-    "comparisonRule": "框架运行时组件预览必须严格跟随旧 Skill 契约页的章节和组件顺序；业务 category 仅用于代码组织，不得决定视觉对比顺序",
+    "comparisonRule": "Framework comparison uses the Monorepo Component Gallery runtime view as its sole visual authority; historical Skill preview pages are not part of the delivery.",
     "comparisonGroups": [
       {
         "id": "navigation",

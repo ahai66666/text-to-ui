@@ -17,9 +17,9 @@
 .tui-runtime-framework-shell__head p { max-width: 1080px; margin: 0; color: var(--color-text-muted); font-size: var(--type-body-m-size); line-height: var(--type-body-m-leading); }
 .tui-runtime-framework-switch { display: inline-flex; width: fit-content; align-items: center; gap: var(--space-1); padding: var(--space-1); border-radius: var(--radius-2); background: var(--color-bg-subtle); }
 .tui-runtime-framework-switch a { min-height: var(--height-button); display: inline-flex; align-items: center; padding-inline: var(--space-4); border-radius: var(--radius-2); color: var(--color-text-muted); text-decoration: none; font-size: var(--type-body-m-size); line-height: var(--type-body-m-leading); }
-.tui-runtime-framework-switch a[aria-current="page"] { color: var(--color-text); background: var(--color-surface); box-shadow: var(--shadow-1); }
+.tui-runtime-framework-switch a[aria-current="page"] { color: var(--color-text); background: var(--color-surface); }
 .tui-runtime-framework-switch button { min-height: var(--height-button); display: inline-flex; align-items: center; padding-inline: var(--space-4); border: 0; border-radius: var(--radius-2); color: var(--color-text-muted); background: transparent; cursor: pointer; font: inherit; font-size: var(--type-body-m-size); line-height: var(--type-body-m-leading); }
-.tui-runtime-framework-switch button[aria-selected="true"] { color: var(--color-text); background: var(--color-surface); box-shadow: var(--shadow-1); }
+.tui-runtime-framework-switch button[aria-selected="true"] { color: var(--color-text); background: var(--color-surface); }
 .tui-runtime-framework-switch button:focus-visible { outline: 2px solid var(--color-brand-100); outline-offset: 2px; }
 .tui-runtime-framework-directory { width: min(1480px, 100%); margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
 .tui-runtime-framework-card { min-width: 0; display: grid; align-content: start; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); }
@@ -50,7 +50,7 @@
 .tui-contract-dialog { position: fixed; z-index: 40; inset: 0; display: grid; place-items: center; padding: var(--space-5); }
 .tui-contract-dialog[hidden] { display: none; }
 .tui-contract-dialog__backdrop { position: absolute; inset: 0; background: color-mix(in srgb, var(--color-text) 36%, transparent); }
-.tui-contract-dialog__surface { position: relative; z-index: 1; width: min(720px, 100%); max-height: min(720px, calc(100vh - var(--space-10))); display: grid; gap: var(--space-4); overflow: auto; padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-card); color: var(--color-text); background: var(--color-surface); box-shadow: var(--shadow-3); }
+.tui-contract-dialog__surface { position: relative; z-index: 1; width: min(720px, 100%); max-height: min(720px, calc(100vh - var(--space-10))); display: grid; gap: var(--space-4); overflow: auto; padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-card); color: var(--color-text); background: var(--color-surface); box-shadow: var(--shadow-4); }
 .tui-contract-dialog__header { min-width: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
 .tui-contract-dialog__header > div { min-width: 0; display: grid; gap: var(--space-1); }
 .tui-contract-dialog__header h4, .tui-contract-dialog__header p { margin: 0; }
@@ -103,6 +103,7 @@
   flex-wrap: wrap;
 }
 .tui-runtime-surface-pair { min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.tui-runtime-surface-pair.tui-runtime-search-pair { grid-template-columns: 1fr; }
 .tui-runtime-form-field-states { min-width: 0; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
 .tui-runtime-surface-pair > div { min-width: 0; display: grid; align-content: start; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-card); }
 .tui-runtime-form-field-states > div { min-width: 0; display: grid; align-content: start; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-card); }

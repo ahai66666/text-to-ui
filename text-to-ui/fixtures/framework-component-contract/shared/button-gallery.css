@@ -1,8 +1,0 @@
-@import url("../../../preview/component-gallery.css");
-
-html, body, #root { min-height: var(--space-0); }
-html body { margin: var(--space-0); overflow: hidden; background: transparent !important; }
-.framework-button-gallery { display: grid; gap: var(--space-6); color: var(--color-text); background: transparent; }
-.framework-button-gallery > #sized-buttons { display: contents; }
-.framework-button-gallery > .button-size-block:first-child > .button-size-title { padding-right: calc(var(--size-17) * 3); }
-.framework-button-gallery .gallery-status { position: absolute; width: var(--space-1); height: var(--space-1); padding: var(--space-0); margin: calc(var(--space-1) * -1); overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: var(--space-0); }

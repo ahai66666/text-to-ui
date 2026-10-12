@@ -212,12 +212,19 @@
 [data-pattern="pattern-b-three-pane"] .tui-pattern-runtime__slot[data-pattern-slot="primary-navigation-bottom"] {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
   padding-block-start: var(--space-3, 8px);
 }
 [data-pattern="pattern-b-three-pane"] .tui-pattern-runtime__slot[data-pattern-slot="primary-navigation-bottom"] > nav {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+[data-pattern="pattern-b-three-pane"] .tui-pattern-runtime__slot[data-pattern-slot="primary-navigation-bottom"] > span {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
 }
 
 .tui-pattern-runtime__pane--navigation > .tui-pattern-runtime__pane-title {
@@ -246,6 +253,23 @@
   overflow: auto;
   padding: var(--space-5, 20px);
   box-sizing: border-box;
+}
+
+/* Pattern B's Secondary List owns the horizontal surface inset and an 8px
+   top rhythm. Its scroll body ends flush with the pane so the collection can
+   define its own bottom edge. */
+[data-pattern="pattern-b-three-pane"] .tui-pattern-runtime__pane[data-tui-pane-role="secondary-list"] > .tui-pattern-runtime__scroll-body {
+  padding-inline: var(--layout-secondary-list-card-inset-x, var(--space-5, 16px));
+  padding-block-start: var(--space-3, 8px);
+  padding-block-end: var(--space-0, 0px);
+}
+
+/* Pane content insets are Pattern-owned, just like the Titlebar segments.
+   Do not let the generic scroll-body padding decide the final pane geometry. */
+[data-pattern="pattern-b-three-pane"] .tui-pattern-runtime__pane[data-tui-pane-role="main-detail"] > .tui-pattern-runtime__scroll-body {
+  padding-inline: var(--layout-main-detail-padding-x, var(--space-6, 24px));
+  padding-block-start: var(--layout-main-detail-padding-top, var(--space-5, 16px));
+  padding-block-end: var(--layout-main-detail-padding-bottom, var(--space-0, 0px));
 }
 
 .tui-pattern-runtime__slot {
@@ -407,6 +431,13 @@
 .tui-secondary-page-runtime--new-page {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.tui-secondary-page-runtime--new-page > .tui-secondary-page-runtime__content {
+  padding: var(--space-5, 16px) var(--space-6, 24px) 0;
 }
 
 .tui-secondary-page-runtime__titlebar {

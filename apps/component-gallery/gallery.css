@@ -162,7 +162,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-1);
   padding: var(--space-3);
-  border-top: 1px solid var(--color-border);
 }
 
 .pattern-runtime-preview-primary-items .tui-primary-navigation-item {
@@ -230,6 +229,22 @@
   color: var(--color-text-muted);
 }
 
+.pattern-runtime-preview-list-heading-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+.pattern-runtime-preview-list-meta {
+  min-height: var(--type-body-m-leading);
+  padding-inline: var(--space-3);
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
 .pattern-runtime-preview-list-item {
   width: 100%;
   min-height: 64px;
@@ -257,6 +272,10 @@
   min-width: 0;
   display: grid;
   gap: var(--space-1);
+}
+
+.pattern-runtime-preview-list-item-content {
+  flex: 1 1 auto;
 }
 
 .pattern-runtime-preview-list-item small {

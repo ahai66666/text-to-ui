@@ -2,14 +2,14 @@
 
 ## 先确认交付形态
 
-推荐使用完整代码仓：`text-to-ui/` 提供 Skill 规范源，`skill/` 提供独立安装镜像，`packages/` 提供生产组件库。三者是同一套系统的不同边界，不应把 `skill/` 误认为包含生产组件源码。
+推荐使用完整代码仓：仓库根目录 `SKILL.md` 是唯一导入入口，`skill-support/` 提供规则与工具，`packages/` 提供生产组件库。`skill/` 仅是本机按需生成的独立安装镜像，不属于 GitHub 源码交付；不能把它误认为包含生产组件源码。
 
 ```bash
 pnpm install
 pnpm delivery:validate
 ```
 
-如果只安装 `skill/`，可以调用 Text to UI 的规则，但不能直接导入本仓库的 HTML、React、Vue 组件。Skill 找不到 `packages/component-contracts` 或任一框架包时，必须报告组件库不可用/partial；它不会因为存在旧预览或相似 HTML 就自动变成生产组件复用。克隆完整仓库也不会自动向 Codex 注册 Skill，Skill 注册仍按宿主环境的安装方式完成。
+如果只安装独立 Skill ZIP，可以调用 Text to UI 的规则，但不能直接导入本仓库的 HTML、React、Vue 组件。Skill 找不到 `packages/component-contracts` 或任一框架包时，必须报告组件库不可用/partial；它不会因为存在旧预览或相似 HTML 就自动变成生产组件复用。克隆完整仓库也不会自动向 Codex 注册 Skill；应在宿主环境中选择仓库根目录导入，且不要同时启用独立 ZIP 的同名副本。
 
 ## 选择组件
 
@@ -30,7 +30,7 @@ pnpm delivery:validate
 分别引入对应框架包和 `styles.css`。React、Vue 不共享源码，而是共享契约、Token、状态和视觉验收标准。
 只有三套实现都通过契约校验时，注册表才可以把组件标记为 `ready`；否则只能标记 `partial`。
 
-实现来源由契约的 `sourceStrategy` 决定。简单的 HarmonyOS 控件直接复用旧 Skill 的结构规则；复杂键盘和弹层行为可以以 shadcn（React）或 shadcn-vue（Vue）为行为底座，但必须覆盖 canonical 样式，不能把默认 shadcn 皮肤带入页面。`@text-to-ui/component-styles` 是三个框架的统一 CSS 入口。
+实现来源由契约的 `sourceStrategy` 决定。简单控件按当前组件契约实现；复杂键盘和弹层行为可以以 shadcn（React）或 shadcn-vue（Vue）为行为底座，但必须覆盖 canonical 样式，不能把默认 shadcn 皮肤带入页面。`@text-to-ui/component-styles` 是三个框架的统一 CSS 入口。
 
 ## Pixso
 

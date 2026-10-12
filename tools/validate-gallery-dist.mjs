@@ -10,6 +10,10 @@ const dist = path.join(root, "apps/component-gallery/dist");
 const assets = path.join(dist, "assets");
 const failures = [];
 
+if (await fs.stat(path.join(dist, "legacy-skill")).then(() => true).catch(() => false)) {
+  failures.push("dist still includes the removed legacy Skill preview copy");
+}
+
 const assetNames = await fs.readdir(assets).catch(() => []);
 const cssNames = assetNames.filter((name) => name.endsWith(".css"));
 if (!cssNames.length) failures.push("dist contains no CSS assets");

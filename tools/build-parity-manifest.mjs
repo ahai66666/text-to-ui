@@ -3,7 +3,7 @@
 /**
  * Materialise the comparison contract consumed by browser QA and Pixso
  * mapping. The manifest is intentionally derived from components.json so the
- * registry remains the single logical source while canonical/legacy mapping
+ * registry remains the single logical source while canonical gallery mapping
  * stays explicit and reviewable.
  */
 import fs from "node:fs/promises";
@@ -22,7 +22,8 @@ const manifest = {
   categoryCount: new Set(registry.components.map((component) => component.category)).size,
   visualAuthority: [
     "Component/Design MD",
-    "text-to-ui/preview/component-gallery.html",
+    "apps/component-gallery/index.html#runtime-view",
+    "packages/component-styles/src/index.css",
     "packages/tokens"
   ],
   readinessDimensions: registry.registryPolicy?.readinessDimensions ?? [
@@ -37,9 +38,9 @@ const manifest = {
       category: component.category,
       categoryLabel: component.categoryLabel,
       order: component.order,
-      legacyVisualGroup: component.legacyVisualGroup ?? component.category,
+      comparisonGroup: component.comparisonGroup ?? component.category,
       canonicalSelector: component.canonicalSelector,
-      canonicalSpecimen: component.canonicalSpecimen ?? `legacy:${component.category}:${component.id}`,
+      canonicalSpecimen: component.canonicalSpecimen ?? `gallery:${component.category}:${component.id}`,
       fixtureId: component.fixtureId,
       surface: component.surface,
       sizing: component.sizing,
@@ -47,6 +48,7 @@ const manifest = {
       requiredVariants: component.specimens ?? component.variants ?? ["default"],
       behaviorChecks: component.behaviors ?? [],
       textRoles: component.textRoles ?? [],
+      ...(component.textRolesByVariant ? { textRolesByVariant: component.textRolesByVariant } : {}),
       iconSlots: component.iconSlots ?? [],
       tokenRoles: component.tokenRoles ?? [],
       props: component.props ?? [],

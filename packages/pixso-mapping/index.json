@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedFrom": "text-to-ui/assets/design-system/mapping-registry.json",
+  "generatedFrom": "skill-support/assets/design-system/mapping-registry.json",
   "readOnly": true,
   "policy": {
     "resolveGuidsAtRuntime": true,
@@ -327,10 +327,13 @@
         "state"
       ],
       "slots": [
+        "label",
         "leading",
         "value",
         "trailing",
-        "help"
+        "help",
+        "tags",
+        "suggestions"
       ]
     },
     "Label/Default": {
@@ -488,6 +491,7 @@
         "state"
       ],
       "slots": [
+        "scope-selector",
         "leading",
         "value",
         "clear",
@@ -691,10 +695,10 @@
       "variant": {},
       "variantAxes": [],
       "slots": [
+        "logo",
         "leading",
         "label",
         "secondary-pane-content",
-        "main-content-leading",
         "main-content-title",
         "main-detail-actions",
         "actions"

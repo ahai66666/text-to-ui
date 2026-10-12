@@ -1,0 +1,162 @@
+{
+  "page": "Harmony Mail 邮件工作台首页",
+  "sourcePolicy": "fresh-build-no-prior-mail-version-reference",
+  "runtimeFramework": "html",
+  "pixso": {
+    "strategy": "native-scene",
+    "stateScope": "default-visible",
+    "targetPage": "mail-workbench-fixture",
+    "targetFrame": "Harmony Mail Workbench / Regression Fixture",
+    "preserveExistingFrames": true,
+    "pageData": "page-data.json",
+    "componentMap": "../../skill-support/assets/design-system/pixso-native-component-map.json",
+    "visualSnapshot": "html-visual-snapshot.json"
+  },
+  "componentRegistry": "../../packages/component-contracts/src/components.json",
+  "pattern": "pattern-b-three-pane",
+  "viewport": {
+    "width": 1728,
+    "height": 1152
+  },
+  "regions": [
+    {
+      "name": "应用导航栏",
+      "width": {
+        "expanded": 240,
+        "collapsed": 64
+      },
+      "resizable": false
+    },
+    {
+      "name": "邮件列表区",
+      "width": {
+        "default": 348,
+        "min": 300,
+        "max": 520
+      },
+      "resizable": true
+    },
+    {
+      "name": "邮件阅读区",
+      "width": "remaining",
+      "resizable": true,
+      "hideable": true
+    }
+  ],
+  "componentBindings": [
+    {
+      "logicalName": "Button/Primary/Default",
+      "usage": [
+        "写邮件",
+        "发送"
+      ],
+      "html": "../../packages/components-html/src/index.js#button",
+      "react": "../../packages/components-react/src/index.jsx#Button",
+      "vue": "../../packages/components-vue/src/Button.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Icon Text Button/Ghost/Default",
+      "usage": [
+        "阅读工具栏",
+        "底部应用入口"
+      ],
+      "html": "../../packages/components-html/src/index.js#button",
+      "react": "../../packages/components-react/src/index.jsx#Button",
+      "vue": "../../packages/components-vue/src/Button.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Button/Ghost/Default",
+      "usage": [
+        "高级搜索"
+      ],
+      "html": "../../packages/components-html/src/index.js#button",
+      "react": "../../packages/components-react/src/index.jsx#Button",
+      "vue": "../../packages/components-vue/src/Button.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Search/White Surface/Default",
+      "usage": [
+        "搜索邮件"
+      ],
+      "html": "../../packages/components-html/src/index.js#search",
+      "react": "../../packages/components-react/src/index.jsx#Search",
+      "vue": "../../packages/components-vue/src/Search.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Sidebar Item/Default",
+      "usage": [
+        "邮箱文件夹"
+      ],
+      "html": "../../packages/components-html/src/index.js#sidebar",
+      "react": "../../packages/components-react/src/index.jsx#Sidebar",
+      "vue": "../../packages/components-vue/src/Sidebar.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "List Item/White Surface/Default",
+      "usage": [
+        "邮件列表项"
+      ],
+      "html": "../../packages/components-html/src/index.js#listCard",
+      "react": "../../packages/components-react/src/index.jsx#ListCard",
+      "vue": "../../packages/components-vue/src/ListCard.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Checkbox/Default",
+      "usage": [
+        "邮件多选"
+      ],
+      "html": "../../packages/components-html/src/index.js#checkbox",
+      "react": "../../packages/components-react/src/index.jsx#Checkbox",
+      "vue": "../../packages/components-vue/src/Checkbox.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Titlebar/Default",
+      "usage": [
+        "Harmony Mail 品牌标题栏"
+      ],
+      "html": "../../packages/components-html/src/index.js#titlebar",
+      "react": "../../packages/components-react/src/index.jsx#Titlebar",
+      "vue": "../../packages/components-vue/src/Titlebar.vue",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Semi-modal/Default",
+      "usage": [
+        "写邮件"
+      ],
+      "html": "../../packages/components-html/src/advanced.js#semiModal",
+      "react": "../../packages/components-react/src/advanced.jsx#SemiModal",
+      "vue": "../../packages/components-vue/src/advanced.js#SemiModal",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Attachment/Default",
+      "usage": [
+        "邮件附件"
+      ],
+      "html": "../../packages/components-html/src/advanced.js#attachment",
+      "react": "../../packages/components-react/src/advanced.jsx#Attachment",
+      "vue": "../../packages/components-vue/src/advanced.js#Attachment",
+      "registryStatus": "partial"
+    },
+    {
+      "logicalName": "Snackbar/Default",
+      "usage": [
+        "操作反馈"
+      ],
+      "html": "../../packages/components-html/src/index.js#snackbar",
+      "react": "../../packages/components-react/src/index.jsx#Snackbar",
+      "vue": "../../packages/components-vue/src/Snackbar.vue",
+      "registryStatus": "partial"
+    }
+  ],
+  "strictParityClaim": false,
+  "strictParityReason": "所用组件在生产注册表中的 sourceReady、contractReady、tokenParity 为 true，但 visualParity、behaviorParity、accessibilityParity 尚未全部通过。"
+}

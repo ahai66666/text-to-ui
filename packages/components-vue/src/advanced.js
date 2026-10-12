@@ -53,22 +53,38 @@ export const AlertDialog = defineComponent({ emits: ["confirm", "cancel"], setup
 export const SemiModal = defineComponent({ props: { size: { type: String, default: "m" }, surface: { type: String, default: "white" }, mode: { type: String, default: "non-modal" } }, emits: ["confirm", "cancel", "close"], setup(props, { emit }) { return () => h(DialogBase, { id: "semi-modal", title: "编辑项目设置", description: "非模态为默认状态，可以继续操作背景内容。", size: props.size, surface: props.surface, mode: props.mode, showClose: true, confirmLabel: "保存", triggerLabel: "打开半模态弹窗", onConfirm: () => emit("confirm"), onCancel: () => emit("cancel"), onClose: () => emit("close") }, { default: () => h("div", { class: "tui-dialog__form" }, [h("label", { class: "tui-field" }, [text("span", "项目名称", "body-m"), h("span", { class: "tui-input", "data-surface": props.surface }, [h("input", { value: "客户端设计系统", "data-typography-role": "body-l" })])]), h("label", { class: "tui-field" }, [text("span", "负责人", "body-m"), h("span", { class: "tui-search", "data-surface": props.surface }, [h(Icon, { name: "field/search", size: 20 }), h("input", { value: "赵博海", type: "search", "data-typography-role": "body-l" })])])]) }); } });
 
 const Menu = defineComponent({
-  props: { id: String, logicalName: String, label: String, value: String, items: Array },
-  setup(props) {
-    const open = ref(false); const selected = ref(props.value);
+  props: {
+    id: String, logicalName: String, label: String, value: String,
+    items: { type: Array, default: () => [] }, className: { type: String, default: "" },
+    slotName: String, ariaLabel: String, disabled: Boolean, hideLabel: Boolean, compact: Boolean
+  },
+  emits: ["select"],
+  setup(props, { emit }) {
+    const open = ref(false); const selected = ref(props.value); const hasUserSelection = ref(false);
     const activeSubmenu = ref(null);
-    const choose = (entry) => { if (entry?.hasSubmenu && Array.isArray(entry.submenu)) { activeSubmenu.value = entry.label; return; } selected.value = entry?.label ?? entry; activeSubmenu.value = null; open.value = false; };
+    watch(() => props.value, (value) => { selected.value = value; });
+    const choose = (entry, event) => { if (entry?.hasSubmenu && Array.isArray(entry.submenu)) { activeSubmenu.value = entry.label; return; } const next = entry?.label ?? entry; selected.value = next; hasUserSelection.value = true; activeSubmenu.value = null; open.value = false; emit("select", next, event, entry); };
     const openSubmenu = (entry) => { if (props.id === "menubar" && entry?.hasSubmenu && Array.isArray(entry.submenu)) activeSubmenu.value = entry.label; };
-    const renderItems = (items, nested = false) => items.map((item) => { const entry = typeof item === "string" ? { label: item } : item; const hasSubmenu = entry.hasSubmenu && Array.isArray(entry.submenu); return h("div", { key: entry.label, class: ["tui-advanced-menu__item-wrap", hasSubmenu && "has-submenu"], onMouseenter: hasSubmenu ? () => openSubmenu(entry) : undefined }, [h("button", { class: ["tui-advanced-menu__item", hasSubmenu && "has-submenu"], type: "button", role: "menuitem", "aria-haspopup": hasSubmenu ? "menu" : undefined, "aria-expanded": hasSubmenu ? activeSubmenu.value === entry.label : undefined, "data-typography-role": "body-l", onClick: () => choose(entry) }, [entry.icon ? h("span", { class: "tui-advanced-menu__item-leading", "data-slot": "leading" }, [h(Icon, { name: entry.icon, size: 24 })]) : null, h("span", { "data-slot": "label" }, entry.label), hasSubmenu ? h("span", { class: "tui-advanced-menu__item-trailing", "data-slot": "trailing" }, [h(Icon, { name: "navigation/chevron-right", size: 24 })]) : null]), hasSubmenu && activeSubmenu.value === entry.label ? h("div", { class: "tui-advanced-menu__submenu", role: "menu", "aria-label": entry.label }, renderItems(entry.submenu, true)) : null]); });
-    return () => h("div", { class: "tui-component tui-advanced-menu", ...contract(props.id, props.logicalName, "default", open.value ? "open" : "default") }, [
-      text("span", props.label, "body-m", { class: "tui-advanced-menu__label" }),
-      h("button", { class: "tui-advanced-menu__trigger", type: "button", "aria-haspopup": "menu", "aria-expanded": open.value, onClick: () => { open.value = !open.value; } }, [text("span", selected.value, "body-l", { "data-slot": "value" }), h(Icon, { name: "navigation/chevron-down", size: 16 })]),
+    const renderItems = (items, nested = false) => items.map((item) => { const entry = typeof item === "string" ? { label: item } : item; const hasSubmenu = entry.hasSubmenu && Array.isArray(entry.submenu); return h("div", { key: entry.label, class: ["tui-advanced-menu__item-wrap", hasSubmenu && "has-submenu"], onMouseenter: hasSubmenu ? () => openSubmenu(entry) : undefined }, [h("button", { class: ["tui-advanced-menu__item", hasSubmenu && "has-submenu"], type: "button", role: "menuitem", "aria-haspopup": hasSubmenu ? "menu" : undefined, "aria-expanded": hasSubmenu ? activeSubmenu.value === entry.label : undefined, "data-typography-role": "body-l", onClick: (event) => choose(entry, event) }, [entry.icon ? h("span", { class: "tui-advanced-menu__item-leading", "data-slot": "leading" }, [h(Icon, { name: entry.icon, size: 24 })]) : null, h("span", { "data-slot": "label" }, entry.label), hasSubmenu ? h("span", { class: "tui-advanced-menu__item-trailing", "data-slot": "trailing" }, [h(Icon, { name: "navigation/chevron-right", size: 24 })]) : null]), hasSubmenu && activeSubmenu.value === entry.label ? h("div", { class: "tui-advanced-menu__submenu", role: "menu", "aria-label": entry.label }, renderItems(entry.submenu, true)) : null]); });
+    return () => h("div", { class: ["tui-component", "tui-advanced-menu", props.className, props.compact && "is-compact", hasUserSelection.value && "is-selected"], "data-slot": props.slotName, ...contract(props.id, props.logicalName, "default", open.value ? "open" : "default") }, [
+      text("span", props.label, "body-m", { class: "tui-advanced-menu__label", hidden: props.hideLabel }),
+      h("button", { class: "tui-advanced-menu__trigger", type: "button", "aria-label": props.ariaLabel, "aria-haspopup": "menu", "aria-expanded": open.value, disabled: props.disabled, onClick: () => { open.value = !open.value; } }, [text("span", selected.value, "body-l", { "data-slot": "value" }), h(Icon, { name: "navigation/chevron-down", size: 16 })]),
       h("div", { class: "tui-advanced-menu__panel", role: "menu", hidden: !open.value, onMouseleave: () => props.id === "menubar" && (activeSubmenu.value = null) }, renderItems(props.items))
     ]);
   }
 });
 export const ContextMenu = defineComponent({ setup: () => () => h(Menu, { id: "context-menu", logicalName: "Context Menu/Default", label: "更多操作", value: "右键或点击打开", items: [{ label: "复制", icon: "action/copy" }, { label: "重命名", icon: "action/rename" }, { label: "删除", icon: "action/delete" }] }) });
-export const DropdownMenu = defineComponent({ setup: () => () => h(Menu, { id: "dropdown-menu", logicalName: "Dropdown Menu/Default", label: "操作菜单", value: "新建、导入、导出", items: ["新建", "导入", "导出"] }) });
+export const DropdownMenu = defineComponent({
+  props: {
+    label: { type: String, default: "操作菜单" }, value: { type: String, default: "新建、导入、导出" },
+    items: { type: Array, default: () => ["新建", "导入", "导出"] }, className: String, slotName: String,
+    ariaLabel: String, disabled: Boolean, hideLabel: Boolean, compact: Boolean
+  },
+  emits: ["select"],
+  setup(props, { emit }) {
+    return () => h(Menu, { id: "dropdown-menu", logicalName: "Dropdown Menu/Default", ...props, onSelect: (value, event, item) => emit("select", value, event, item) });
+  }
+});
 export const Menubar = defineComponent({ props: { items: { type: Array, default: () => defaultMenubarItems } }, setup: (props) => () => h(Menu, { id: "menubar", logicalName: "Menubar/Default", label: "主菜单", value: "文件", items: props.items }) });
 
 export const Popover = defineComponent({ setup: () => { const open = ref(false); return () => h("div", { class: "tui-component tui-advanced-popover", ...contract("popover", "Popover/Default") }, [h("button", { class: "tui-button", type: "button", "data-variant": "ghost", "data-typography-role": "body-l", "aria-expanded": open.value, onClick: () => { open.value = !open.value; } }, "筛选条件"), h("div", { class: "tui-advanced-popover__panel", role: "dialog", hidden: !open.value }, [text("strong", "筛选条件", "title-s"), text("span", "状态、负责人、更新时间", "body-m")])]); } });

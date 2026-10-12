@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "platform": "harmonyos-pc",
+  "generatedFrom": "fixtures/mail-workbench-native-scene/page-spec.json",
+  "pattern": "pattern-b-three-pane",
+  "viewport": {
+    "width": 1728,
+    "height": 1152,
+    "minWidth": 1100,
+    "minHeight": 720
+  },
+  "paneOrder": [
+    "primary-navigation",
+    "secondary-list",
+    "main-detail"
+  ],
+  "titleSegments": [
+    "primary-navigation",
+    "secondary-list",
+    "main-detail"
+  ],
+  "globalTitleLayer": true,
+  "primaryActionSlot": "primary-navigation-shell",
+  "finalPaneLeadingSlot": "main-detail-operations",
+  "requiredSlots": [
+    "primary-navigation-shell",
+    "global-title-layer",
+    "global-primary-action",
+    "main-detail-actions"
+  ],
+  "insetOwners": {
+    "primary-navigation": "primary-navigation-shell",
+    "secondary-list": "secondary-list-shell",
+    "main-detail": "main-detail-shell"
+  },
+  "scrollOwners": [
+    "secondary-list",
+    "main-detail"
+  ],
+  "resizeBehavior": "fixed-panes-flexible-final-pane",
+  "contentMode": "default-content",
+  "layoutTokens": [
+    "layout/width/240",
+    "layout/width/360",
+    "space/5",
+    "space/6"
+  ],
+  "cssStructuralParameters": [
+    {
+      "property": "--task-list-width",
+      "value": "360px",
+      "reason": "confirmed secondary-list pane baseline"
+    },
+    {
+      "property": "--minimum-window-width",
+      "value": "1100px",
+      "reason": "confirmed HarmonyOS PC minimum window"
+    }
+  ]
+}

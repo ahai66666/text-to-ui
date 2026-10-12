@@ -4,15 +4,13 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
-const canonicalCss = read("text-to-ui/preview/component-gallery.css");
-const fixtureCss = read("text-to-ui/fixtures/framework-component-contract/shared/interactive-components.css");
 const packageCss = read("packages/component-styles/src/index.css");
 const compatibilityCss = read("packages/component-contracts/src/components.css");
 const gallery = read("apps/component-gallery/index.html");
 const galleryCss = read("apps/component-gallery/gallery.css");
 const galleryRuntime = read("apps/component-gallery/preview.js");
 const contracts = JSON.parse(read("packages/component-contracts/src/components.json"));
-const iconAliases = JSON.parse(read("text-to-ui/assets/icons/icon-aliases.json"));
+const iconAliases = JSON.parse(read("skill-support/assets/icons/icon-aliases.json"));
 const sprite = read("packages/components-html/src/component-icons.svg");
 
 const failures = [];
@@ -43,8 +41,7 @@ for (const token of [
   "--size-icon-button",
   "--color-sidebar-selected",
   "--state-layer-pressed"
-]) requireText(canonicalCss, token, "canonical Skill CSS");
-requireText(canonicalCss, ".btn-icon-text-ghost { color: var(--color-text); gap: var(--space-2); padding-inline: var(--space-3);", "canonical Skill Button CSS");
+]) requireText(packageCss, token, "canonical component CSS");
 
 for (const selector of [
   ".tui-button",
@@ -70,9 +67,8 @@ for (const rule of [
   "padding-inline: 11px",
   ".tui-titlebar[data-state=\"unfocus\"]"
 ]) requireText(packageCss, rule, "component geometry/state CSS");
-requireText(fixtureCss, ".hm-sidebar-item[data-state=\"selected\"]", "framework fixture CSS");
-requireText(gallery, "/legacy-skill/preview/component-gallery.html", "component gallery canonical baseline");
-requireText(gallery, "/legacy-skill/preview/framework-component-contract/preview.html", "component gallery framework runtime baseline");
+requireText(gallery, 'data-view="runtime"', "current component gallery runtime view");
+if (/legacy-skill|data-legacy-path|framework-component-contract|component-gallery\.html/.test(gallery)) failures.push("current component gallery must not link or copy historical Skill previews");
 requireText(galleryRuntime, 'import "../../packages/components-html/src/styles.css"', "component gallery component stylesheet entry");
 requireText(galleryRuntime, 'import "./framework-runtime.css"', "component gallery runtime stylesheet entry");
 requireText(galleryRuntime, 'import "./gallery.css"', "component gallery shell stylesheet entry");
@@ -98,7 +94,7 @@ const collectIconFiles = (directory) => fs.readdirSync(path.join(root, directory
   const relative = path.join(directory, entry.name);
   return entry.isDirectory() ? collectIconFiles(relative) : [relative];
 });
-const filledHarmonyFiles = collectIconFiles("text-to-ui/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
+const filledHarmonyFiles = collectIconFiles("skill-support/assets/icons/harmonyos").filter((file) => /(?:^|_)fill(?:ed)?(?:_|\.svg$)/i.test(path.basename(file)));
 if (filledHarmonyFiles.length) failures.push(`HarmonyOS Filled asset files remain: ${filledHarmonyFiles.length}`);
 
 for (const component of contracts.components) {
@@ -149,6 +145,9 @@ for (const rule of [
   ".tui-radio input:checked + .tui-radio__indicator"
 ]) requireText(packageCss, rule, "Radio component CSS");
 const search = contracts.components.find((component) => component.id === "search");
+const searchStates = ["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"];
+if (JSON.stringify(search?.states) !== JSON.stringify(searchStates) || JSON.stringify(search?.allowedStates) !== JSON.stringify(searchStates)) failures.push("search: states must match the nine current Pixso states");
+if (search?.states?.includes("error") || search?.allowedStates?.includes("error")) failures.push("search: Error is not a supported state");
 if (!search?.slots?.includes("advanced-search")) failures.push("search: advanced-search slot is missing");
 if (search?.slotContracts?.["advanced-search"]?.defaultPlacement !== "trailing-after-clear") failures.push("search: advanced-search placement contract is missing");
 if (JSON.stringify(search?.slotContracts?.["advanced-search"]?.coexistenceOrder) !== JSON.stringify(["clear", "advanced-search"])) failures.push("search: clear and advanced-search order is invalid");
@@ -159,10 +158,36 @@ if (search?.slotContracts?.["advanced-search"]?.mode !== "text") failures.push("
 if (search?.slotContracts?.["advanced-search"]?.textColorToken !== "color.text-muted") failures.push("search: advanced-search text must use color.text-muted");
 if (search?.slotContracts?.["advanced-search"]?.trailingInsetToken !== "space/2") failures.push("search: advanced-search trailing inset must use space/2");
 requireText(packageCss, ".tui-search__advanced", "Search advanced slot CSS");
+requireText(packageCss, ".tui-search:not(:has(.tui-search__scope)):hover:not([data-state=\"disabled\"]) { background: var(--color-neutral-dark-05); }", "Search whole-field Hover layer");
+requireText(packageCss, ".tui-search:not([data-surface=\"gray\"])[data-state=\"hover-right\"] > .tui-search__input-region { background: var(--color-neutral-dark-05); }", "Search right Hover layer");
+const searchAdvancedHoverRules = [...packageCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(([, selector]) => selector.includes('.tui-search[data-surface="gray"]') && selector.includes(":has(.tui-search__scope)") && !selector.includes(":not(:has(.tui-search__scope))") && selector.includes('[data-slot="advanced-search"]') && (selector.includes(":hover") || selector.includes('[data-state="hover"]')));
+if (searchAdvancedHoverRules.some(([, , declarations]) => /padding-(?:right|inline-end)\s*:/.test(declarations))) failures.push("Search Advanced Hover must not change root padding or move the action");
 requireText(packageCss, ".tui-search__advanced { flex: 0 0 auto;", "Search advanced text button sizing");
 requireText(packageCss, ".tui-search .tui-search__advanced { color: var(--color-text-muted);", "Search advanced secondary text color");
-requireText(packageCss, ".tui-search:has([data-slot=\"advanced-search\"]) { padding-right: var(--space-2);", "Search advanced trailing inset");
+requireText(packageCss, ".tui-search:has([data-slot=\"advanced-search\"]):not(:has(.tui-search__scope)) { padding-right: var(--space-2);", "Search advanced trailing inset without scope");
+for (const rule of [
+  ".tui-search__input-region { min-width: 0; height: 100%; display: flex; align-items: center; gap: var(--space-3); flex: 1 1 auto; padding-inline-start: 0;",
+  ".tui-search:has(.tui-search__scope) { gap: 0; padding: 0; border: 0; }",
+  ".tui-search:has(.tui-search__scope) > .tui-search__input-region { padding-inline: var(--space-3) var(--space-2);",
+  ".tui-search__scope.tui-advanced-menu { width: 73px; min-width: 73px; height: 100%;",
+  ".tui-search[data-surface=\"gray\"][data-state=\"hover-left\"] > .tui-search__scope",
+  ".tui-search[data-surface=\"gray\"][data-state=\"hover-right\"] > .tui-search__input-region",
+  ".tui-search[data-surface=\"gray\"][data-state=\"pressed-left\"] > .tui-search__scope",
+  ".tui-search[data-surface=\"gray\"][data-state=\"pressed-right\"] > .tui-search__input-region",
+  "box-shadow: inset 0 0 0 2px var(--color-input-hover-border-on-subtle)",
+  ".tui-search__scope .tui-advanced-menu__trigger > .tui-icon:last-child { margin: 0; width: var(--size-6); height: var(--size-6); color: var(--color-icon);",
+  ".tui-search [data-slot=\"clear\"] { width: var(--icon-size-sm); height: var(--icon-size-sm); flex: 0 0 var(--icon-size-sm); color: var(--color-icon);",
+  ".tui-search input::placeholder { color: var(--color-text-muted); }"
+]) requireText(packageCss, rule, "Search split hover-zone CSS");
 requireText(packageCss, ".tui-primary-navigation-item [data-slot=\"icon\"] { width: var(--icon-size-lg); height: var(--icon-size-lg);", "Primary navigation regular icon sizing");
+for (const rule of [
+  ".tui-disclosure__trigger > [data-slot=\"label\"] { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }",
+  ".tui-generated__disclosure > [data-slot=\"label\"] { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+]) requireText(packageCss, rule, "Disclosure long-label ellipsis CSS");
+for (const rule of [
+  "padding-inline: var(--padding-popup-menu)",
+  ".tui-advanced-menu__item { min-height: var(--height-menu-item); display: flex; align-items: center; gap: var(--gap-menu-item-content); padding-inline: var(--padding-menu-item-x);"
+]) requireText(packageCss, rule, "Menu hover inset CSS");
 const semiModal = contracts.components.find((component) => component.id === "semi-modal");
 if (semiModal?.slotContracts?.close?.iconSize !== "20px" || semiModal?.slotContracts?.close?.trailingInset !== "16px") failures.push("semi-modal: close icon and trailing inset contract is invalid");
 for (const rule of [

@@ -23,7 +23,7 @@ const additions = [
     slots: ["option"],
     tokenRoles: ["color.surface", "color.text", "color.primary", "radius.tab", "spacing.padding-segmented-control", "typography.body-m"],
     source: "canonical-custom",
-    visualAuthority: "skill-canonical",
+    visualAuthority: "apps/component-gallery/index.html#runtime-view",
     sourceStrategy: "canonical-custom",
     implementations: {
       html: "packages/components-html/src/index.js#segmentedButton",
@@ -40,7 +40,7 @@ const additions = [
     slots: ["label", "decrement", "value", "increment"],
     tokenRoles: ["color.input-bg", "color.text", "color.border", "color.primary", "size.input-height", "radius.input", "typography.body-m"],
     source: "canonical-custom",
-    visualAuthority: "skill-canonical",
+    visualAuthority: "apps/component-gallery/index.html#runtime-view",
     sourceStrategy: "canonical-custom",
     implementations: {
       html: "packages/components-html/src/index.js#numberSelector",
@@ -57,7 +57,7 @@ const additions = [
     slots: ["label", "content"],
     tokenRoles: ["color.neutral-dark-05", "color.text-muted", "color.brand-10", "color.brand-100", "spacing.gap-subtab-item", "spacing.space-5", "radius.subtab", "size.size-10", "typography.subtitle-m"],
     source: "canonical-custom",
-    visualAuthority: "skill-canonical",
+    visualAuthority: "apps/component-gallery/index.html#runtime-view",
     sourceStrategy: "canonical-custom",
     implementations: {
       html: "packages/components-html/src/index.js#subTabs",
@@ -74,7 +74,7 @@ const additions = [
     slots: ["node-leading", "node-label", "node-trailing"],
     tokenRoles: ["color.text", "color.surface", "color.border", "color.primary", "spacing.menu-item-content", "size.tree-item-height", "radius.subtab", "typography.body-m"],
     source: "canonical-custom",
-    visualAuthority: "skill-canonical",
+    visualAuthority: "apps/component-gallery/index.html#runtime-view",
     sourceStrategy: "canonical-custom",
     implementations: {
       html: "packages/components-html/src/index.js#treeView",
@@ -150,23 +150,6 @@ const behaviorMap = {
   snackbar: ["action", "close"]
 };
 
-// The legacy gallery is the visual authority, but its section names do not
-// always match the newer logical registry. Keep this mapping explicit so a
-// future renderer never guesses a baseline from a component's English name.
-const legacyVisualGroup = {
-  titlebar: "titlebars", button: "buttons",
-  input: "fields", search: "fields", textarea: "fields", select: "fields", field: "fields", "form-field": "fields",
-  checkbox: "choices", radio: "choices", "radio-group": "choices", switch: "choices", "segmented-button": "choices", "number-selector": "fields",
-  "primary-navigation-item": "navigation", sidebar: "navigation", "list-card": "navigation", tabs: "navigation", "sub-tabs": "navigation", "tree-view": "navigation", breadcrumb: "navigation", pagination: "navigation",
-  avatar: "data-display", badge: "data-display", card: "data-display", table: "data-display", "data-table": "data-display", progress: "data-display", empty: "data-display",
-  accordion: "disclosure", collapsible: "disclosure", menubar: "disclosure",
-  dialog: "overlays", "alert-dialog": "overlays", "semi-modal": "overlays", popover: "overlays", "hover-card": "overlays", "context-menu": "overlays", "dropdown-menu": "overlays",
-  label: "form-plus", combobox: "form-plus", "native-select": "form-plus", slider: "form-plus", "input-otp": "form-plus", kbd: "form-plus", "color-picker": "form-plus",
-  chart: "loading-data", calendar: "loading-data", "date-picker": "loading-data", "time-picker": "loading-data",
-  attachment: "specialized",
-  alert: "feedback", tooltip: "feedback", snackbar: "feedback"
-};
-
 const typographyRoles = {
   button: ["label:body-l", "small-label:body-m"],
   input: ["value:body-l", "placeholder:body-l", "label:body-m", "help:body-s"],
@@ -192,7 +175,7 @@ const typographyRoles = {
 
 const explicitStates = {
   input: ["default", "hover", "focus", "filled", "error", "disabled"],
-  search: ["default", "hover", "focus", "filled", "error", "disabled"],
+  search: ["default", "focus", "typing", "filled", "hover-left", "hover-right", "pressed-left", "pressed-right", "disabled"],
   textarea: ["default", "hover", "focus", "filled", "error", "disabled"]
 };
 
@@ -365,7 +348,7 @@ const coreSpecimens = {
 
 for (const component of registry.components) {
   if (component.id === "titlebar") {
-    component.props = [...new Set([...(component.props ?? []), "segmentRole", "slots", "showWindowControls", "logoSrc", "logoAlt"])];
+    component.props = [...new Set([...(component.props ?? []), "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt"])];
     component.segmentContract = {
       owner: "pattern-title-layer", orderedBy: "titleLayer.segments", widthOwner: "pattern-renderer",
       roles: ["primary-navigation", "secondary-list", "main-content", "main-detail"],
@@ -373,7 +356,8 @@ for (const component of registry.components) {
       slotAPI: "declarative-content; no arbitrary HTML"
     };
     component.slotContracts = { ...component.slotContracts,
-      leading: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation"], fields: ["src", "alt"] },
+      logo: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation", "secondary-pane", "final-pane"], fields: ["src", "alt"], visibilityProp: "showLogo" },
+      leading: { cardinality: "0..1", valueType: "image-object", activeRoles: ["global", "primary-navigation"], fields: ["src", "alt"], deprecatedAliasFor: "logo" },
       label: { cardinality: "0..1", valueType: "text", activeRoles: ["global", "primary-navigation"] },
       actions: { cardinality: "0..1", valueType: "boolean", activeRoles: ["global", "final-pane"], implementation: "component-owned-window-controls" }
     };
@@ -387,10 +371,11 @@ for (const component of registry.components) {
   component.category = section;
   component.categoryLabel = sectionLabels[section] ?? section;
   component.order = order[component.id] ?? 999;
-  component.canonicalSection = `section#${section}`;
-  component.canonicalSelector = `section#${section} [data-component="${component.logicalName}"]`;
-  component.legacyVisualGroup = legacyVisualGroup[component.id] ?? section;
-  component.canonicalSpecimen = `legacy:${component.legacyVisualGroup}:${component.id}`;
+  component.visualAuthority = "apps/component-gallery/index.html#runtime-view";
+  component.canonicalSection = `[data-runtime-category="${section}"]`;
+  component.canonicalSelector = `#runtime-view [data-runtime-category="${section}"] .tui-runtime-card__preview[data-fixture-id="fixture-${component.id}"]`;
+  component.comparisonGroup = section;
+  component.canonicalSpecimen = `gallery:${section}:${component.id}`;
   component.specimens = specimens;
   component.fixtureId = `fixture-${component.id}`;
   component.surface = component.id === "input" || component.id === "search" || component.id === "textarea" || component.id === "semi-modal"
@@ -424,7 +409,6 @@ for (const component of registry.components) {
     component.allowedStates = ["default"];
     component.props = ["title", "subtitle", "actionLabel", "leftArea", "closable", "onAction", "onClose"];
     component.slots = ["leading", "title", "subtitle", "action", "close"];
-    component.canonicalSpecimen = "pixso:Snackbar:左侧区域=1";
     component.iconAliases = ["status/info", "action/close"];
     component.iconSlots = [
       { slot: "leading", alias: "status/info", displaySizes: [24], kind: "regular" },
@@ -472,13 +456,30 @@ for (const component of registry.components) {
     };
   }
  if (component.id === "search") {
-    component.variants = ["default", "focused", "with-value", "advanced-search"];
-    component.props = ["value", "defaultValue", "placeholder", "disabled", "state", "surface", "advancedSearch", "advancedSearchLabel", "onAdvancedSearch", "onChange", "onClear"];
-    component.slots = ["leading", "value", "clear", "advanced-search"];
+    component.variants = ["default", "focused", "with-value", "advanced-search", "scoped-search", "scoped-advanced-search"];
+    component.props = ["value", "defaultValue", "placeholder", "disabled", "state", "surface", "scope", "defaultScope", "scopeOptions", "scopeLabel", "onScopeChange", "advancedSearch", "advancedSearchLabel", "onAdvancedSearch", "onChange", "onClear"];
+    component.slots = ["scope-selector", "leading", "value", "clear", "advanced-search"];
     component.slotContracts = {
       ...component.slotContracts,
+      "scope-selector": {
+        cardinality: "0..1",
+        optional: true,
+        configurable: true,
+        configurationProps: ["scopeOptions", "scope", "defaultScope", "scopeLabel", "onScopeChange"],
+        scope: "search-query-builder",
+        defaultPlacement: "leading-before-search-icon",
+        control: "dropdown-menu",
+        defaultLabel: "搜索范围",
+        defaultValue: "first-scope-option",
+        dividerToken: "color.border",
+        interaction: "change-search-scope",
+        coexistenceOrder: ["scope-selector", "leading", "value", "clear", "advanced-search"]
+      },
       "advanced-search": {
         cardinality: "0..1",
+        optional: true,
+        configurable: true,
+        configurationProps: ["advancedSearch", "advancedSearchLabel", "onAdvancedSearch"],
         scope: "search-query-builder",
         defaultPlacement: "trailing-after-clear",
         control: "small-text-button",
@@ -492,7 +493,7 @@ for (const component of registry.components) {
         coexistenceOrder: ["clear", "advanced-search"]
       }
     };
-    component.behaviors = ["input", "clear", "advanced-search", "focus", "disabled"];
+    component.behaviors = ["input", "scope-select", "clear", "advanced-search", "focus", "disabled"];
   }
   if (component.id === "attachment") {
     component.iconSlots = [{ slot: "menu-trigger", alias: "navigation/chevron-down", displaySizes: [20], kind: "regular" }];
@@ -532,10 +533,23 @@ for (const component of registry.components) {
       paneRole: ["global", "primary-navigation", "secondary-pane", "final-pane"],
       segmentRole: ["global", "primary-navigation", "secondary-list", "main-content", "main-detail", "secondary-pane", "final-pane"]
     };
-    component.props = ["label", "paneTitle", "size", "layout", "paneRole", "segmentRole", "slots", "showWindowControls", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
-    component.slots = ["leading", "label", "main-content-title", "main-detail-actions", "actions"];
+    component.props = ["label", "paneTitle", "size", "layout", "paneRole", "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
+    component.slots = ["logo", "leading", "label", "secondary-pane-content", "main-content-title", "main-detail-actions", "actions"];
     component.slotContracts = {
       ...component.slotContracts,
+      logo: {
+        cardinality: "0..1",
+        scope: "titlebar-logo",
+        valueType: "image-object",
+        activeRoles: ["global", "primary-navigation", "secondary-pane", "final-pane"],
+        fields: ["src", "alt"],
+        visibilityProp: "showLogo",
+        defaultVisibility: { global: true, "primary-navigation": true, "secondary-pane": false, "final-pane": false }
+      },
+      leading: {
+        ...component.slotContracts?.leading,
+        deprecatedAliasFor: "logo"
+      },
       "main-content-title": {
         cardinality: "0..1",
         scope: "main-content-pane-global",
@@ -611,8 +625,8 @@ for (const component of registry.components) {
     status: ready ? "ready" : "partial"
   }]));
   component.contractNotes = ready
-    ? "三框架核心适配器已按旧 Skill 视觉基线和同一 fixture 对齐；运行时只展示结构性 Variant，交互状态由组件触发。"
-    : "已保留旧 Skill 视觉基线和逻辑契约，但运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。";
+    ? "三框架核心适配器已按统一组件契约和同一 fixture 对齐；运行时只展示结构性 Variant，交互状态由组件触发。"
+    : "已保留当前组件契约；运行时适配器仍需按本组件真实结构、行为和可访问性逐批验收。";
 }
 
 const comparisonGroups = sections.map(([id, label]) => ({ id, label, componentIds: [] }));
@@ -641,10 +655,11 @@ for (const [groupId, preferredIds] of Object.entries(preferredComparisonOrder)) 
 
 registry.registryPolicy = {
   ...(registry.registryPolicy ?? {}),
-  visualAuthority: "skill-canonical",
+  visualAuthority: "apps/component-gallery/index.html#runtime-view",
   readinessDimensions: ["sourceReady", "contractReady", "visualParity", "behaviorParity", "accessibilityParity", "tokenParity"],
   readyWhen: "all readinessDimensions are true",
   runtimeRule: "只显示结构性 specimens；hover/pressed/focus/open/close 由真实组件交互触发",
+  comparisonRule: "Framework comparison uses the Monorepo Component Gallery runtime view as its sole visual authority; historical Skill preview pages are not part of the delivery.",
   categoryOrder: sections.map(([id]) => id),
   comparisonGroups,
   partialMustNotBeUsedFor: ["strict-pixso-component-parity", "cross-framework-component-claim"]
