@@ -114,7 +114,7 @@ Typography has two related but distinct layers:
   the composite HTML typography role → exact Pixso Text Style relationship,
   such as `body-l` → `Typography/Body_L` (16px / 20px / 400). The current
   formal set is `display-l/m/s`, `title-l/m/s`, `subtitle-l/m/s`,
-  `body-l/m/s`, and `caption-m`; `caption-l` is deprecated.
+  `body-l/m/s`, and `caption-m`.
 
 For standard typography roles, the HTML → Pixso scene must carry
 `style.textStyle.ref`, for example `$style/Typography/Body_L`. The Pixso

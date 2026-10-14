@@ -1,6 +1,6 @@
 {
   "name": "@text-to-ui/components-html",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "type": "module",
   "dependencies": {"@text-to-ui/component-contracts": "workspace:*", "@text-to-ui/component-styles": "workspace:*", "@text-to-ui/tokens": "workspace:*"},

@@ -42,7 +42,7 @@ const runtime = createSecondaryPageRuntime({
   layout: "new-page", // or "continuation"
   mode: "runtime",
   slots: {
-    titlebar: renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", paneRole: "global" }),
+    titlebar: renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", segmentRole: "global" }),
     content: "<main>设置内容</main>"
   }
 });

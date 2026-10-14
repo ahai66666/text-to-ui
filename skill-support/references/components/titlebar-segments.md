@@ -3,14 +3,13 @@
 Titlebar is a segment component, not a second Pattern shell. Pattern owns the
 ordered title segments, their widths, dividers and height. Do not give Titlebar
 a separate grid or hard-code a navigation width. Preserve the existing size
-and visual variants. Existing `paneRole` calls remain compatible.
+and visual variants. Callers use `segmentRole` for placement.
 
 The brand image is the canonical `logo` slot. Global and
 primary-navigation (first-level) segments always show it. Secondary-pane and
 final-pane (second-level and third-level) segments hide it by default and may
 opt in or out with `showLogo`; when shown, they use the same `logo` slot and
-the same size alignment as the first-level brand. The old `leading` image slot
-remains a compatibility alias for `logo` on first-level segments only.
+the same size alignment as the first-level brand.
 
 Titlebar has no outer frame. Its segment boundary is a Runtime-owned divider;
 the component itself uses a transparent surface and `border-bottom: 0` except
@@ -51,7 +50,7 @@ four-column/overlap bug and is a blocking layout error.
   not be split into two-column or three-column Pattern segments. Use M/L/XL for
   pane-aligned title segments.
 - `segmentRole` uses `primary-navigation`, `secondary-list`, `main-content`,
-  or `main-detail`. `paneRole` legacy aliases still work.
+  or `main-detail`.
 - Other Pattern segment sequences may use `createTitlebarSegments` with the
   resolved `pattern.titleLayer.segments`; it returns configurations only and
   does not render a competing layout.
@@ -78,7 +77,6 @@ style is the shared source for HTML, React, and Vue.
 | Slot | Value | Segment |
 | --- | --- | --- |
 | `logo` | `{ src, alt? }` logo image | All segments; visible by default only for global/primary-navigation |
-| `leading` | `{ src, alt? }` legacy alias for `logo` | Global/primary-navigation only |
 | `label` | Text | Brand |
 | `main-content-leading` | `{ id, label, icon, buttonType? }` action object | Two-pane final segment; leading action such as Back; 24×24 icon, 4px gap to title |
 | `main-content-title` | Text | Standalone final title or two-pane final segment |
@@ -92,8 +90,7 @@ remain component-owned. Invalid slot/segment combinations fail before render.
 Use `showLogo` to control secondary-pane/final-pane visibility; setting it to
 `false` on a first-level segment is invalid because first-level Titlebars must
 always expose the logo. If `slots.logo` is supplied for a secondary or final
-segment, it is shown unless `showLogo: false` is supplied. Do not provide both
-`slots.logo` and the legacy `slots.leading` alias.
+segment, it is shown unless `showLogo: false` is supplied.
 `showWindowControls: false` hides the built-in controls only where the Pattern
 permits it. Pattern B requires the final segment controls. Only a standalone
 global Titlebar or a final segment may show them.
@@ -107,7 +104,7 @@ paint over the fixed window controls.
 
 The same rule applies to the primary-navigation segment: in a two-level shell
 `global-title-layer` must contain exactly one direct `Titlebar/Default` binding
-with `layout: "three-column"` and `paneRole: "primary-navigation"`. Do not wrap
+with `layout: "three-column"` and `segmentRole: "primary-navigation"`. Do not wrap
 it in a page `header`, put a collapse button beside it, or add a second
 background layer. The navigation shell supplies the subtle surface; the
 Titlebar component itself remains transparent through

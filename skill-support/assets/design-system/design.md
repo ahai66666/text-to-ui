@@ -439,7 +439,7 @@ Use `typography-style-map.json` as the single mapping table. New visible UI is l
 
 - HTML always uses `--font-sans`, which is a browser fallback stack.
 - Pixso uses only `font/family/sans = HarmonyOS Sans` and the 13 formal Text Styles. A fallback family never becomes a separate Pixso Text Style.
-- `body-s` and `caption-m` are formal Pixso Text Style counterparts. The old `caption-l` token is deprecated: migrate 12px supporting text to `body-s` and 10px supporting text to `caption-m`; do not create `Typography/Caption_L`.
+- `body-s` and `caption-m` are formal Pixso Text Style counterparts for 12px and 10px supporting text.
 - `Typography/Component/*` are imported native-component dependencies, not public Text to UI styles. Do not select them for new page content; audit component references before any deletion. The unused legacy `Body_YaHei14` and `Body_YaHei16` styles were removed from Pixso.
 
 ### HTML ↔ Pixso Effect Mapping

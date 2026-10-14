@@ -348,6 +348,7 @@ const coreSpecimens = {
 
 for (const component of registry.components) {
   if (component.id === "titlebar") {
+    delete component.slotContracts?.leading;
     component.props = [...new Set([...(component.props ?? []), "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt"])];
     component.segmentContract = {
       owner: "pattern-title-layer", orderedBy: "titleLayer.segments", widthOwner: "pattern-renderer",
@@ -533,8 +534,8 @@ for (const component of registry.components) {
       paneRole: ["global", "primary-navigation", "secondary-pane", "final-pane"],
       segmentRole: ["global", "primary-navigation", "secondary-list", "main-content", "main-detail", "secondary-pane", "final-pane"]
     };
-    component.props = ["label", "paneTitle", "size", "layout", "paneRole", "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
-    component.slots = ["logo", "leading", "label", "secondary-pane-content", "main-content-title", "main-detail-actions", "actions"];
+    component.props = ["label", "paneTitle", "size", "layout", "segmentRole", "slots", "showWindowControls", "showLogo", "logoSrc", "logoAlt", "disabled", "state", "mainDetailActions", "onMainDetailAction", "onAction", "className"];
+    component.slots = ["logo", "label", "secondary-pane-content", "main-content-title", "main-detail-actions", "actions"];
     component.slotContracts = {
       ...component.slotContracts,
       logo: {
@@ -545,10 +546,6 @@ for (const component of registry.components) {
         fields: ["src", "alt"],
         visibilityProp: "showLogo",
         defaultVisibility: { global: true, "primary-navigation": true, "secondary-pane": false, "final-pane": false }
-      },
-      leading: {
-        ...component.slotContracts?.leading,
-        deprecatedAliasFor: "logo"
       },
       "main-content-title": {
         cardinality: "0..1",

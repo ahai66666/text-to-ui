@@ -91,7 +91,7 @@
         },
         {
           "path": "skill-support/scripts/titlebar-scene.mjs",
-          "sha256": "dd5af1473e011ee4a3ea5f51e2bd3566979ab90e396ddf1cbcfe662583d7cf90"
+          "sha256": "d4262aea9deae5be6a2623032e233bd8854913f2ede8423141683e16ed4b29d5"
         },
         {
           "path": "skill-support/scripts/validate-pattern-contracts.mjs",
@@ -99,7 +99,7 @@
         },
         {
           "path": "skill-support/scripts/test-pattern-runtime.mjs",
-          "sha256": "937a2e1b70c990aa839f59d4a5601352a0c882b8b437313114a07cddef299bd3"
+          "sha256": "b176a4d4bedaee9301448aa066dd8874cabd635b2a3ae938880c5ca6b7b1633b"
         },
         {
           "path": "skill-support/scripts/test-ui-scene-pattern-binding.mjs",
@@ -113,23 +113,23 @@
       "files": [
         {
           "path": "packages/component-contracts/src/components.json",
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/component-contracts/src/components-runtime.js",
-          "sha256": "2db825def43e4760c1cd3c46234929be1646dfcf7364391a87ff3bb5bf891259"
+          "sha256": "816dcaa1430da1c1374fa19ad5dfa8813c021a80729a1ed11ec0303142a5ca1a"
         },
         {
           "path": "packages/component-contracts/src/parity-manifest.json",
-          "sha256": "95eb301c53e9e73553c0d06e184a82a24f85f1cd746f31bbe535b099b564dc91"
+          "sha256": "cea9b6a5d51978f26a8b13820fd2d234a35e5e963a85760f6ffa3e2ae20a2447"
         },
         {
           "path": "packages/component-contracts/src/titlebar-segments.js",
-          "sha256": "33d7405df065c923d968a3e19abcd9c2ac76de02c1e8dc0a881e3245d2208b36"
+          "sha256": "f845ee76d7b26a95d9166a4e3881e58a67f831716b7aefa7dc7dfdb56d19699b"
         },
         {
           "path": "skill-support/references/components/component-selection-rules.json",
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/component-readiness-policy.json",
@@ -149,11 +149,11 @@
         },
         {
           "path": "skill-support/scripts/validate-runtime-component-reuse.mjs",
-          "sha256": "533632a0a8d63f389ddbe8436934a4b670307c186fc246bf48a43b10000a9a5a"
+          "sha256": "98d06b62074f7f872774980162c831ff90edcb228979dde65794b3ce1ff90692"
         },
         {
           "path": "skill-support/scripts/validate-web-component-reuse.mjs",
-          "sha256": "23965698a564cde047f8b767d181afabf874e839786aa76f61295633008e2ed4"
+          "sha256": "5811160f7130edb1faaa4d3aba981faef1abc4eec5c8b1a2fad5e3a494faef5a"
         }
       ]
     },
@@ -233,7 +233,7 @@
         },
         {
           "path": "skill-support/scripts/generate-framework-page.mjs",
-          "sha256": "da7ed77b8dedc85a684fe4dd17b17a62c4c110a3e4837a528ffc1538419f7268"
+          "sha256": "b5ad34acc602cedb4e4dd3bcac4222e20e8d7cfba3d6cac76e356d5dfb5c786e"
         },
         {
           "path": "skill-support/scripts/generate-compliant-page.mjs",
@@ -241,7 +241,7 @@
         },
         {
           "path": "skill-support/scripts/test-framework-page-generation.mjs",
-          "sha256": "46fd8f540801cc78d285ce0485c89e4fea228eedaf69239e119b3ed281c075b3"
+          "sha256": "4eca59e4a07f2b3ea3f3a2804024f41707c60c110df79fe716afa47d0f891044"
         }
       ]
     },
@@ -275,7 +275,7 @@
         },
         {
           "path": "skill-support/references/workflows/fast-preview.md",
-          "sha256": "d5088dd9fca51a6829c4ca7c4cf2d067233339fb6772c30f7d527d44ed7df086"
+          "sha256": "427666cfa3681131ac2792409087bd0ad29a27dd5d6b607f80d5e55664269350"
         }
       ]
     },
@@ -285,15 +285,15 @@
       "files": [
         {
           "path": "package.json",
-          "sha256": "eaeefc7889d9b5e96d21cc450764d33405ac60cd3027e7311e6266bcfaa6a6bb"
+          "sha256": "21e2a132ba9ef95944baf91b9deb8e37c5487a393717bae655c4a1959c9fe74e"
         },
         {
           "path": "SKILL.md",
-          "sha256": "77802699f496d3251dbbdfe359933ac0fa714e8c213e9affec378b8e376fa2ea"
+          "sha256": "703e58de7b4bf7d360a7daa0c10f8cbbfd90d6fcb2a0554d19ca16028e237ca5"
         },
         {
           "path": "skill-support/package.json",
-          "sha256": "6472b4c08d1eb5f781a8bf036a25b98114ca3e80528c05b442d2f98a4bf8b072"
+          "sha256": "813d2fde1b262ca11dfcc022a86714d8c54bd1ec357b1db96f14887367a6b804"
         },
         {
           "path": "skill-support/scripts/skill-delivery.mjs",
@@ -319,7 +319,7 @@
         },
         {
           "path": "apps/component-gallery/pattern-baseline.js",
-          "sha256": "c6e99f43a09da10993f7f8b5abb05188346acb7bd81c014c928b9c142fb02f54"
+          "sha256": "2a3c85c83460d9550e18938492a1a27f12e7e586680e68839dbd6193e383e43e"
         },
         {
           "path": "apps/component-gallery/preview.js",

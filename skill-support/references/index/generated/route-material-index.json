@@ -21,13 +21,13 @@
     "existing-html-to-pixso": {
       "id": "existing-html-to-pixso",
       "dynamicMaterials": [],
-      "materialsDigest": "5c0423f06dcbd54b59a58584b1e8c6390626528e3530407174fdd47f88246b88",
+      "materialsDigest": "c594365c965b413ad4840cfeff236d64d7120c81f4288c2236cce69456ca5d9d",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -57,7 +57,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/source-resolution.md",
@@ -87,7 +87,7 @@
           "path": "skill-support/references/pixso-import-details.md",
           "role": "pixso-import",
           "required": true,
-          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+          "sha256": "a1e38d26705228ad57eefad0a195792797ca5ddf68b585f2fbdce209aa581b79"
         },
         {
           "path": "skill-support/references/requirement-spec.md",
@@ -110,19 +110,19 @@
         "task-route-domain-reference",
         "titlebar-segments"
       ],
-      "materialsDigest": "addb247200b286b0fe39322c2b11e566cda85b99a82d98ec658cfb274d4e249e",
+      "materialsDigest": "e5979e49b50b0a0296e3cb39edc59646ae7f5100277f04aa26fa89b51a1dac0e",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/pattern-runtime/README.md",
           "role": "pattern-runtime-api",
           "required": true,
-          "sha256": "d6cd4a1e42009cdc0a760326249886bfce783410508a0c49808b393c30ad9525"
+          "sha256": "3133897ff2808ce31c230c57a7018282c4e8268ef852f29b4d05a250d8c73b19"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -158,7 +158,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/page-composition.md",
@@ -212,26 +212,26 @@
           "path": "skill-support/references/web-component-reuse-gate.md",
           "role": "web-component-reuse",
           "required": true,
-          "sha256": "a86db4fe26053972841332a51e934778f022cc736b16e59c60bac2b98a06328c"
+          "sha256": "5985ed6f7538acf42ee5deb4c9d0f714d96f2721c6dfea1e6e6556ccaa7ab41e"
         },
         {
           "path": "skill-support/references/workflows/fast-preview.md",
           "role": "validation",
           "required": true,
-          "sha256": "d5088dd9fca51a6829c4ca7c4cf2d067233339fb6772c30f7d527d44ed7df086"
+          "sha256": "427666cfa3681131ac2792409087bd0ad29a27dd5d6b607f80d5e55664269350"
         }
       ]
     },
     "micro-revision": {
       "id": "micro-revision",
       "dynamicMaterials": [],
-      "materialsDigest": "b1082ce102eb8307f85b448521d8bbee661278c464651c6d700220e8b51af90d",
+      "materialsDigest": "e9fbba32ec3ddea253c3e07d0d177e4d7796ffb2879403afd6917e8c9353a4e8",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -261,7 +261,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/source-resolution.md",
@@ -298,13 +298,13 @@
     "pixso-component-library": {
       "id": "pixso-component-library",
       "dynamicMaterials": [],
-      "materialsDigest": "c88adaf16e023d2819de64b985816eae3ab5e3f66244ea2aa4affd6ca81906c4",
+      "materialsDigest": "e96391a45a75f68ab92cd355d3dcfa02eb171bcd893901b016d991ca9c8e81b1",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -334,7 +334,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/source-resolution.md",
@@ -376,7 +376,7 @@
           "path": "skill-support/references/pixso-import-details.md",
           "role": "pixso-import",
           "required": true,
-          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+          "sha256": "a1e38d26705228ad57eefad0a195792797ca5ddf68b585f2fbdce209aa581b79"
         },
         {
           "path": "skill-support/references/pixso-native-scene.md",
@@ -401,13 +401,13 @@
     "converter-diagnosis": {
       "id": "converter-diagnosis",
       "dynamicMaterials": [],
-      "materialsDigest": "485192dc25f61f5384f73a7877e084bb6ac7046372ad5f6b590422da62318bd4",
+      "materialsDigest": "c3cc5f0dc15db11e34171ae32e8fb893f5d1abfa5b3d11198d0eec9ca810c4bb",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -437,7 +437,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/source-resolution.md",
@@ -467,7 +467,7 @@
           "path": "skill-support/references/pixso-import-details.md",
           "role": "pixso-import",
           "required": true,
-          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+          "sha256": "a1e38d26705228ad57eefad0a195792797ca5ddf68b585f2fbdce209aa581b79"
         },
         {
           "path": "skill-support/references/pixso-mcp.md",
@@ -504,13 +504,13 @@
     "skill-maintenance": {
       "id": "skill-maintenance",
       "dynamicMaterials": [],
-      "materialsDigest": "9c33dc54e91562d6a9b7337da1b068bcc1075e040320f3778c028750093a9d21",
+      "materialsDigest": "8a101dbebc5d33ba32bbd7d79fb32380c7412533873050973892b1fc8fa09e9b",
       "materials": [
         {
           "path": "packages/component-contracts/src/components.json",
           "role": "component-registry",
           "required": true,
-          "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+          "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
         },
         {
           "path": "packages/tokens/src/token-runtime-map.json",
@@ -546,7 +546,7 @@
           "path": "skill-support/references/components/component-selection-rules.json",
           "role": "component-selection-rules",
           "required": true,
-          "sha256": "2ef016044b736d1d2f325e7dcfb0cec9c1e1f57668df098285a38818d16592a0"
+          "sha256": "c9ad3c63a48dba2583e1d8176d8fa57757e52fe74ee9a33927bbaa2c67f3d377"
         },
         {
           "path": "skill-support/references/components/page-composition.md",
@@ -576,7 +576,7 @@
           "path": "skill-support/references/index/generated/skill-catalog-index.json",
           "role": "skill-catalog-index",
           "required": true,
-          "sha256": "04f0fd03690198ab2fa44d80e04eba56bc77461e26bb6460b87132c770acb3cc"
+          "sha256": "9ac9ed70575f58be138e633bffecc3f921bb2cf505ef22882f541883e28a9692"
         },
         {
           "path": "skill-support/references/layouts/framework-layout-routing.md",
@@ -594,7 +594,7 @@
           "path": "skill-support/references/pixso-import-details.md",
           "role": "pixso-import",
           "required": true,
-          "sha256": "d683ac336c37adf502aeada0e0283ef7e28a758929db559f9016342ff5e9cf94"
+          "sha256": "a1e38d26705228ad57eefad0a195792797ca5ddf68b585f2fbdce209aa581b79"
         },
         {
           "path": "skill-support/references/requirement-spec.md",
@@ -611,5 +611,5 @@
       ]
     }
   },
-  "indexDigest": "3041b5ce6c99d0e00dc3812c65f2025375e98b11e3187e33559daac7e1373d1c"
+  "indexDigest": "4083886c65b5b3e1f85a6fceb2531f1ce931bec16e8dbd5a53878a1e83be9df1"
 }

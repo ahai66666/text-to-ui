@@ -161,16 +161,16 @@ const secondaryPageRuntimeContent = (layout) => `<div class="secondary-page-runt
 // Secondary Page continuation keeps the same global navigation shell as the
 // canonical Pattern Runtime Renderer. The right pane still owns its own
 // pane-aligned Titlebar_L, while this left shell owns the workspace brand and navigation.
-const secondaryPageRuntimeNavigation = () => `<div class="secondary-page-runtime-navigation-shell" data-secondary-page-navigation-shell="pattern-runtime"><div class="secondary-page-runtime-navigation-titlebar">${renderHtmlComponent("titlebar", { label: "项目空间", size: "large", layout: "two-column", paneRole: "primary-navigation", showWindowControls: false })}</div><div class="secondary-page-runtime-navigation-body"><div class="secondary-page-runtime-primary-action">${renderHtmlComponent("button", { label: "新建项目", variant: "primary", size: "standard", mode: "icon-text", iconName: "action/add" })}</div>${renderHtmlComponent("sidebar", { ariaLabel: "主导航", items: [{ label: "概览", icon: "navigation/grid", count: 1, selected: true }, { label: "项目", icon: "object/file", count: 12 }, { label: "成员", icon: "navigation/contacts" }] })}</div><div class="secondary-page-runtime-navigation-footer">${renderHtmlComponent("button", { label: "设置", icon: "action/settings", variant: "ghost", mode: "icon-text", size: "standard" })}</div></div>`;
+const secondaryPageRuntimeNavigation = () => `<div class="secondary-page-runtime-navigation-shell" data-secondary-page-navigation-shell="pattern-runtime"><div class="secondary-page-runtime-navigation-titlebar">${renderHtmlComponent("titlebar", { label: "项目空间", size: "large", layout: "two-column", segmentRole: "primary-navigation", showWindowControls: false })}</div><div class="secondary-page-runtime-navigation-body"><div class="secondary-page-runtime-primary-action">${renderHtmlComponent("button", { label: "新建项目", variant: "primary", size: "standard", mode: "icon-text", iconName: "action/add" })}</div>${renderHtmlComponent("sidebar", { ariaLabel: "主导航", items: [{ label: "概览", icon: "navigation/grid", count: 1, selected: true }, { label: "项目", icon: "object/file", count: 12 }, { label: "成员", icon: "navigation/contacts" }] })}</div><div class="secondary-page-runtime-navigation-footer">${renderHtmlComponent("button", { label: "设置", icon: "action/settings", variant: "ghost", mode: "icon-text", size: "standard" })}</div></div>`;
 
 const secondaryPageRuntimeSlots = (layout) => {
   const titlebar = layout === "new-page"
-    ? renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", paneRole: "global" })
+    ? renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", segmentRole: "global" })
     : renderHtmlComponent("titlebar", {
       paneTitle: "项目设置",
       size: "large",
       layout: "two-column",
-      paneRole: "final-pane",
+      segmentRole: "final-pane",
       mainContentLeading: { id: "back", label: "返回项目", icon: "navigation/back", buttonType: "icon" }
     });
   return {

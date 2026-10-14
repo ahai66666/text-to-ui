@@ -15,15 +15,8 @@ let result = run("skill-support/scripts/resolve-context.mjs", ["--task", "tasks"
 assert.equal(result.status, 0, result.stderr);
 result = run("skill-support/scripts/generate-layout-contract.mjs", ["--context", contextPath, "--out", layoutPath]);
 assert.equal(result.status, 0, result.stderr);
-const skeletonPath = path.join(repo, "fixtures/html-strict-list-detail/src/component-skeleton.generated.js");
 const manifestPath = path.join(temp, "component-usage.json");
-result = run("skill-support/scripts/generate-html-component-skeleton.mjs", ["--context", contextPath, "--layout-contract", layoutPath, "--bindings", "fixtures/html-strict-list-detail/component-bindings.json", "--out", skeletonPath, "--manifest", manifestPath]);
-assert.equal(result.status, 0, result.stderr);
-let manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-manifest.sourceRoots = ["fixtures/html-strict-list-detail/src"];
-fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-result = run("skill-support/scripts/validate-web-component-reuse.mjs", ["--manifest", manifestPath, "--project-root", repo]);
-assert.equal(result.status, 0, result.stderr);
+let manifest;
 const frameworkPagePath = path.join(temp, "generated-page.mjs");
 const frameworkEntryPath = path.join(temp, "generated-page-entry.mjs");
 const frameworkManifestPath = path.join(temp, "framework-page-manifest.json");
@@ -37,7 +30,7 @@ frameworkBindings.componentBindings.unshift({
   id: "primary-titlebar",
   logicalName: "Titlebar/Default",
   semanticContext: "global-titlebar",
-  options: { layout: "three-column", paneRole: "primary-navigation", showWindowControls: false },
+  options: { layout: "three-column", segmentRole: "primary-navigation", showWindowControls: false },
   slots: { label: "任务" },
   usage: "一级导航标题",
   region: "primary-navigation",
@@ -62,7 +55,10 @@ fs.writeFileSync(contentRecipesPath, JSON.stringify({ schemaVersion: 1, blueprin
   { id: "task-detail-recipe", contentGroupId: "task-detail", region: "main-detail", compositionId: "task-detail", kind: "registered-composition", entityId: "task", bindingIds: ["detail-titlebar", "task-checkbox"] }
 ] }, null, 2));
 fs.writeFileSync(frameworkBindingsPath, JSON.stringify(frameworkBindings, null, 2));
-result = run("skill-support/scripts/generate-framework-page.mjs", ["--context", contextPath, "--layout-contract", layoutPath, "--blueprint", blueprintPath, "--content-recipes", contentRecipesPath, "--page-css", "fixtures/html-strict-list-detail/src/page.css", "--bindings", frameworkBindingsPath, "--out", frameworkPagePath, "--entry-out", frameworkEntryPath, "--manifest", frameworkManifestPath, "--component-usage", manifestPath]);
+const selectionPath = path.join(temp, "component-selection.json");
+result = run("skill-support/scripts/resolve-component-selection.mjs", ["--repo", repo, "--context", contextPath, "--bindings", frameworkBindingsPath, "--recipes", contentRecipesPath, "--out", selectionPath]);
+assert.equal(result.status, 0, result.stderr);
+result = run("skill-support/scripts/generate-framework-page.mjs", ["--context", contextPath, "--layout-contract", layoutPath, "--blueprint", blueprintPath, "--content-recipes", contentRecipesPath, "--page-css", "fixtures/html-strict-list-detail/src/page.css", "--bindings", frameworkBindingsPath, "--out", frameworkPagePath, "--entry-out", frameworkEntryPath, "--manifest", frameworkManifestPath, "--component-usage", manifestPath, "--component-selection", selectionPath]);
 assert.equal(result.status, 0, result.stderr);
 manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 manifest.sourceRoots = ["fixtures/html-strict-list-detail/src"];
@@ -78,7 +74,7 @@ assert.equal(result.status, 0, result.stderr);
 result = run("skill-support/scripts/validate-page-token-usage.mjs", ["--project-root", repo, "--source", "fixtures/html-strict-list-detail/src/page.css", "--layout-contract", "fixtures/html-strict-list-detail/layout-contract.json"]);
 assert.equal(result.status, 0, result.stderr);
 const rendererOptions = {
-  "Titlebar/Default": { paneTitle: "任务详情", layout: "three-column", paneRole: "final-pane", mainDetailActions: [{ id: "save", label: "保存", icon: "action/save", buttonType: "icon" }], size: "medium" },
+  "Titlebar/Default": { paneTitle: "任务详情", layout: "three-column", segmentRole: "final-pane", mainDetailActions: [{ id: "save", label: "保存", icon: "action/save", buttonType: "icon" }], size: "medium" },
   "Sidebar Item/Default": { items: [{ label: "我的任务", selected: true }] },
   "Search/White Surface/Default": { placeholder: "搜索任务" },
   "List Item/White Surface/Default": { title: "任务", description: "今天" },
@@ -95,6 +91,7 @@ for (const usage of manifest.registered) {
   const count = usage.expectedRuntimeCount ?? 1;
   for (let index = 0; index < count; index += 1) evidence.components.push({
     rendererKey: markup.match(/data-renderer-key="([^"]+)"/)?.[1],
+    framework: "html",
     logicalName: markup.match(/data-logical-component="([^"]+)"/)?.[1],
     variant: markup.match(/data-variant="([^"]+)"/)?.[1],
     state: markup.match(/data-state="([^"]+)"/)?.[1],
@@ -133,6 +130,5 @@ fs.writeFileSync(pageCssPath, originalPageCss);
 fs.appendFileSync(frameworkPagePath, "\n// unexpected post-generation edit\n");
 result = run("skill-support/scripts/verify-fast-preview.mjs", ["--context", contextPath, "--layout-contract", layoutPath, "--page-spec", pageSpecPath, "--component-usage", manifestPath, "--framework-manifest", frameworkManifestPath, "--artifact", "fixtures/html-strict-list-detail/index.html", "--runtime-evidence", evidencePath, "--project-root", repo]);
 assert.notEqual(result.status, 0, "a modified generated source must fail provenance verification");
-fs.rmSync(skeletonPath, { force: true });
 fs.rmSync(temp, { recursive: true, force: true });
 console.log("Strict HTML non-mail list-detail forward fixture passed.");

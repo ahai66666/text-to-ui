@@ -14,7 +14,7 @@ import { renderHtmlComponent } from "../../packages/components-html/src/index.js
 // still needs to prove uniform icon-text normalization and More ordering.
 const html = renderHtmlComponent("titlebar", {
   layout: "three-column",
-  paneRole: "final-pane",
+  segmentRole: "final-pane",
   mainDetailActions: [
     { id: "reply", label: "回复", icon: "action/reply", buttonType: "icon-text-ghost" },
     { id: "reply-all", label: "回复全部", icon: "action/reply-all", buttonType: "icon-text-ghost" },

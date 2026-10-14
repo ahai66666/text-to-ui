@@ -45,7 +45,7 @@ const legacyPluginSessionTtlMs = 30000;
 const claimLeaseTtlMs = CLAIM_LEASE_MS;
 const bridgeVersion = 7;
 const protocolVersion = 4;
-const supportedProtocolVersions = [3, 4];
+const supportedProtocolVersions = [4];
 const preferredKernelVersion = "5.0.0";
 const permanentExecutorProtocol = 1;
 const permanentExecutorCapabilities = new Set([
@@ -131,11 +131,11 @@ function requiredRuntimeVersionFor(plan) {
 }
 
 function planProtocolVersion(plan) {
-  return Number(plan?.execution?.agentContract?.protocolVersion ?? 3);
+  return Number(plan?.execution?.agentContract?.protocolVersion ?? 0);
 }
 
 function planSchemaVersion(plan) {
-  return Number(plan?.execution?.agentContract?.planSchemaVersion ?? 1);
+  return Number(plan?.execution?.agentContract?.planSchemaVersion ?? 0);
 }
 
 function planCapabilities(plan) {
@@ -149,6 +149,9 @@ function planCapabilities(plan) {
 
 function validatePermanentExecutorPlan(plan) {
   const contract = plan?.execution?.agentContract;
+  if (Number(contract?.protocolVersion) !== 4 || Number(contract?.planSchemaVersion) !== 5) {
+    throw new Error("Pixso publication requires protocol v4 and Operation Plan v5");
+  }
   if (Number(contract?.executorProtocol) !== permanentExecutorProtocol) return;
   planCapabilities(plan);
   const unsupported = (plan.operations ?? [])
@@ -593,7 +596,7 @@ function pluginCompatibility(plan, session = readPluginSession()) {
   const actualKernelVersion = session.kernelVersion ?? session.runtimeVersion;
   const runtimeCompatible = versionAtLeast(actualKernelVersion, requiredRuntimeVersion);
   const pluginProtocolCompatible = Number(session.protocolVersion) >= requiredProtocolVersion;
-  const planSchemaCompatible = (session.operationPlanVersions ?? [1]).includes(requiredPlanSchemaVersion);
+  const planSchemaCompatible = requiredPlanSchemaVersion === 5 && (session.operationPlanVersions ?? []).includes(5);
   const missingCapabilities = requiredCapabilities.filter((capability) => !(session.capabilities ?? []).includes(capability));
   const capabilitiesCompatible = missingCapabilities.length === 0;
   const ready = Boolean(session.connected && runtimeCompatible && pluginProtocolCompatible && planSchemaCompatible && capabilitiesCompatible);
@@ -1075,7 +1078,7 @@ function serve() {
         protocolVersion,
         supportedProtocolVersions,
         preferredKernelVersion,
-        operationPlanVersions: [1, 5],
+        operationPlanVersions: [5],
         minimumPluginRuntimeVersion,
         executionModel: { mode: "installed-permanent-executor", executorProtocol: permanentExecutorProtocol, codeDelivery: "none" },
         legacyRuntimeFloor: minimumPluginRuntimeVersion,

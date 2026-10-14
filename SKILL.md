@@ -5,250 +5,107 @@ description: 'Build and revise HarmonyOS PC desktop interfaces with the Text-to-
 
 # Text to UI
 
-Build HarmonyOS PC interfaces from the canonical components, Tokens, and
-Patterns in this Monorepo. Choose one workflow, read its route and only the
-selected supporting material, then follow its acceptance gates.
+Use this file as the only entry point for a Text-to-UI task. Choose one route,
+read its named materials, and work from the current canonical sources. Do not
+substitute a delivery mirror, installed copy, old checkout, or generated page.
 
-## 0. Lock the Skill entry and check runtime availability
+## Lock the Skill entry and locate the source
 
-Use this `SKILL.md` as the only Text-to-UI entry for the current task. Do not
-discover or substitute another copy from an installed Skill, old checkout,
-delivery mirror, preview, or task output. Resolve paths once before choosing a
-route:
+In the full repository, `REPO_ROOT` is the folder containing this file and
+`RULES_ROOT` is its `skill-support/` child. In the separately installed Skill,
+`RULES_ROOT` is the Skill folder; locate the full repository separately. Verify
+`pnpm-workspace.yaml`, `packages/component-contracts`, `packages/tokens`, and
+all three component packages before executing a page workflow. The canonical
+Git source is <https://github.com/ahai66666/text-to-ui>. If the source is not
+available, stop and report what is missing. The separately distributed
+HTML-only edition includes its own component runtime and has its own entry
+point; do not mix its files with this repository.
 
-- In the complete repository, this file is at the repository root. Set
-  `REPO_ROOT` to this directory and `RULES_ROOT` to its `skill-support/` child.
-- In the separately packaged Skill, this file is beside `references/` and
-  `scripts/`. Set `RULES_ROOT` to this directory, then locate the complete
-  repository separately and set `REPO_ROOT` to that repository root.
-- Every `references/`, `scripts/`, `assets/`, and `preview/` path below is
-  relative to `RULES_ROOT`; every `packages/`, `apps/`, `tools/`, and root
-  `package.json` path is relative to `REPO_ROOT`. Never resolve a missing
-  reference against a different Skill copy.
+Paths under `references/`, `scripts/`, `assets/`, and `preview/` resolve from
+`RULES_ROOT`. Paths under `packages/`, `apps/`, and `tools/` resolve from
+`REPO_ROOT`. Run repository commands from `REPO_ROOT`. Read
+`references/component-package-integration.md` for package integration.
 
-Repository discovery is mandatory when this Skill is installed separately:
-
-1. Inspect the AI task's opened project/workspace and its parent directories
-   for `pnpm-workspace.yaml` and `packages/component-contracts`. Verify the
-   three framework packages and `packages/tokens` before setting `REPO_ROOT`.
-2. If the opened workspace contains only this Skill, use the AI's repository
-   connector or Git access to locate the canonical source at
-   <https://github.com/ahai66666/text-to-ui>. Do not substitute a
-   similarly named repository or a stale generated page. If the AI cannot
-   materialize a working copy, ask the user to open/attach the complete
-   repository or provide the Windows x64 offline bundle.
-3. Resolve component paths relative to the verified `REPO_ROOT`, never from a
-   developer's machine-specific absolute path. The exact package map is in
-   `references/component-package-integration.md`.
-
-Importing a rules-only Skill lets an AI tool discover its instructions; it does
-not install the Monorepo's HTML, React, and Vue component packages. A verified
-Windows x64 offline bundle is an optional fallback for an AI environment that
-cannot access the repository or install dependencies. Codex with the complete
-repository should use it directly and does not need an offline bundle. The
-bundle may carry a compatible repository snapshot and bundled runtime; in that
-case its unpacked `text-to-ui/` folder is `REPO_ROOT`. In either mode, before
-running an executable workflow verify that `REPO_ROOT` contains
-`pnpm-workspace.yaml`, `packages/component-contracts`,
-`packages/components-html`, `packages/components-react`,
-`packages/components-vue`, and `packages/tokens`. If these are unavailable,
-stop and report the missing dependency. Do not run repository checks from a
-standalone Skill folder or claim production components were reused. See
-`RULES_ROOT/references/component-package-integration.md` for the integration
-contract.
-
-For the Windows x64 offline bundle, use the included `text-to-ui.cmd` launcher:
-`doctor` checks its platform and integrity, `new-project <path>`
-creates a local project with bundled dependencies, and `generate`/`build`/
-`preview` use the bundled Node runtime without target-machine npm or pnpm.
-Use `fork-source <empty-path>` before changing a shared component; the
-installed bundle is immutable delivery, and reviewed changes return to this
-canonical repository. Details: `references/offline-distribution.md`.
-
-Run repository checks from the Monorepo root. Invoke the route scripts from its
-canonical `skill-support/scripts/` directory (or from `RULES_ROOT/scripts/` with
-`--repo` pointing to that root). The commands below show the Monorepo-root
-form. If the repository cannot be found, stop before route execution.
-
-## 1. Choose one workflow
-
-Classify the requested operation before loading detailed references:
+## Select the workflow
 
 | Request | Workflow route | Read next |
 | --- | --- | --- |
-| Import an approved existing HTML page into Pixso | `existing-html-to-pixso` | `references/routes/existing-html-to-pixso.md` |
-| Create or materially redesign a page or flow | `new-page` | `references/routes/new-page.md` |
-| Make an exact change to an approved artifact | `micro-revision` | `references/routes/micro-revision.md` |
-| Build, repair, or synchronize Pixso components | `pixso-component-library` | `references/routes/pixso-component-library.md` |
-| Diagnose a failed converter/import | `converter-diagnosis` | `references/routes/converter-diagnosis.md` |
-| Audit or change this Skill and its mappings | `skill-maintenance` | `references/routes/skill-maintenance.md` |
+| Import an approved HTML page into Pixso | `existing-html-to-pixso` | `references/routes/existing-html-to-pixso.md` |
+| Create or redesign a page | `new-page` | `references/routes/new-page.md` |
+| Revise an approved artifact exactly | `micro-revision` | `references/routes/micro-revision.md` |
+| Build or synchronize Pixso components | `pixso-component-library` | `references/routes/pixso-component-library.md` |
+| Diagnose converter or import failure | `converter-diagnosis` | `references/routes/converter-diagnosis.md` |
+| Audit or maintain this Skill | `skill-maintenance` | `references/routes/skill-maintenance.md` |
 
-A workflow route selects the operation. A task route selects the product domain,
-Pattern, and initial component capabilities. Do not treat these as the same
-router. The maintained workflow directory is
-`references/routes/index.json`; route materials and hashes are maintained in
-`references/routes/materials.source.json`; task-route IDs, aliases, and
-domains are maintained in `references/index/task-routes.source.json`. Generated
-indexes are rebuilt and checked from these sources.
+The workflow route chooses the operation; a task route chooses the product
+domain, Pattern, and component capabilities. Resolve task ambiguity through the
+route catalog, never by guessing from a component list. Route definitions and
+material hashes live in `references/routes/index.json`,
+`references/routes/materials.source.json`, and
+`references/index/task-routes.source.json`. Run `pnpm index:check`, then the
+route resolver and receipt verifier named by the selected route. Stale or
+missing materials block execution. Read only the selected route and relevant
+registry entries, not the entire Skill.
 
-Use the route resolver and receipt verifier when executing a workflow:
+## Generate or revise a page
 
-```bash
-pnpm index:check
-node skill-support/scripts/resolve-workflow-route.mjs --route <workflow-route> --repo . --receipt-out <route-receipt.json>
-node skill-support/scripts/verify-route-materials.mjs --route <workflow-route> --repo . --receipt <route-receipt.json>
-```
+**Mandatory Gate 0: analyze and build the page blueprint.** For a new page,
+build `page-blueprint.json` before selecting components. Record
+the user's task, information hierarchy, region responsibilities, content
+groups, interactions, states, and success criteria. The blueprint decides the
+page. The blueprint is the design decision layer; `page-bindings.json` names
+concrete components, props, and slots. Use the
+selected Pattern and real content width. Follow
+`references/page-blueprint-design.md` and `references/page-design-guidance.md`.
 
-Receipts verify that the selected material closure is current. They do not mean
-the model should load every registry or asset: read the route instructions,
-their named references, and only the matching registry entries needed by the
-task. Missing files, stale hashes, or partial receipts block the workflow.
+Use `scripts/generate-compliant-page.mjs` as the generation entry. It checks
+route and context receipts, blueprint, recipes, component selection, layout,
+CSS boundaries, and component usage before writing output. Current component
+usage is schemaVersion 3 and requires a component-selection receipt. Do not
+repair generated HTML, JSX, Vue, or CSS after a failed gate; fix its source
+inputs. For HTML, inspect the exact browser artifact and
+`collectHtmlComponentEvidence(document)`. See `references/routes/new-page.md`
+and `references/web-component-reuse-gate.md` for the complete commands.
 
-## 2. Resolve the task and design
+Resolve reusable UI in this order: real target-framework adapter, matching
+canonical component contract, then Token-based custom composition where the
+library has no matching capability. A page-owned composite may arrange
+registered controls but must not redraw them. Components share the
+`data-component`, `data-logical-component`, `data-variant`, and `data-state`
+contract. Framework-specific previews must load the actual adapter source.
+Do not report visual lookalikes as library reuse.
 
-For a new page, **Mandatory Gate 0: analyze and build the page blueprint**
-before component selection or generation. Require `page-blueprint.json` as the
-page-design contract; a component list or generated page is not a substitute.
-Read `references/routes/new-page.md` and follow its discovery, blueprint,
-generation, and preview sequence. The blueprint is the design decision layer;
-bindings implement those decisions. Keep the user's task, information
-hierarchy, region responsibilities, content groups, interactions, and states
-in the blueprint; keep component instances, props, and slot assignments in
-`page-bindings.json`. Use the selected Pattern geometry and actual content
-width, and design for the user's task rather than the component list.
-Read `references/page-design-guidance.md` and
-`references/page-blueprint-design.md` as directed by that route.
+Pattern Runtime owns pane order, shell geometry, slots, surfaces, scroll
+regions, dividers, minimum window, and Titlebar placement. Page content fills
+declared slots; page CSS must not override Pattern geometry or component
+internals. Use canonical Tokens and semantic icon aliases. Unknown icon
+aliases stop the binding. Align related content on shared visual axes without
+adding a second pane inset. For Pattern B, the renderer owns primary
+navigation, secondary list, and main detail insets. For repeated disclosures,
+use the `tui-disclosure-group` parent gap rather than per-instance margins.
+Read the selected layout reference and `packages/pattern-runtime/README.md`.
 
-When resolving task context, use the canonical task route ID when the request
-is ambiguous. `--task-route <route-id>` selects a specific task route while
-preserving the original `--task` description. Ambiguous terms must return their
-candidate IDs instead of selecting the first route. Unknown tasks require an
-explicit approved Pattern and capability list; never infer a Pattern from a
-component inventory.
+A Secondary Page is a page frame choice: `continuation` retains the current
+shell and replaces its owning content; `new-page` uses a standalone frame.
+Opening it from a button does not make it a Dialog. The matching Semi-modal
+size Token may size a `new-page` host without changing the page type. Read
+`references/components/page-composition.md` when composing overlays and
+secondary flows.
 
-Before binding components, inspect the selected Context Packet, exact Pattern
-references, supported component inputs, and canonical icon aliases. Do not read
-the entire component or Token registry when a targeted entry is sufficient.
+## Preview, Pixso, and maintenance
 
-## 3. Shared implementation rules
+Start managed services with
+`node skill-support/scripts/start-text-to-ui-services.mjs start`. Show the
+first interactive preview after source and layout checks, then revise that
+same artifact from browser feedback. Build success alone does not prove runtime
+behavior or visual alignment. For Pixso, follow the selected route and
+`references/pixso-execution-invariants.md`; read back native nodes, component
+links, Variables, and icons after import.
 
-- The Pattern renderer owns shell geometry, pane order, slots, scroll regions,
-  surfaces, dividers, and minimum window. Page content fills declared slots;
-  it does not recreate the shell.
-- Treat the opening trigger and Secondary Page layout as separate choices: a
-  button can pop up a Secondary Page without making it a Dialog. Secondary
-  Pages have two forms: `continuation` keeps the primary shell and replaces
-  only the owning right/main content; `new-page` opens the standalone page
-  frame through Secondary Page Runtime. Frame choice and presentation size are
-  independent: when a user requests modal sizing for a `new-page`, size its host
-  with the matching Semi-modal size Token (L is `--width-modal-lg`, 800px)
-  without replacing the Secondary Page Runtime with a Dialog. For mail
-  composition, read
-  `references/domains/email-workbench.md` and use `new-page`; reserve Dialog
-  and `open-overlay` for genuinely transient decisions or content that must
-  keep the background visible.
-- Resolve UI in this order: real target-framework component, matching
-  canonical component contract, then Token-based custom composition for a
-  capability the library does not provide. Use mapped/registered Pixso
-  components for reuse. A Pixso target marked `excluded` is not a missing
-  library component: for Dropdown Menu, compose the required menu directly
-  from Token-bound native nodes and never import or reference a reusable master.
-  Record registry evidence for custom work.
-- For a new Web page, resolve `component-selection.json` from the current
-  Context Packet, bindings, and recipes before generation. The generator
-  verifies its registry and input hashes and stops on `extend-existing`,
-  `new-shared`, or `blocked`. Extend an existing component's contract and
-  HTML/React/Vue adapters before retrying; a page-owned business composite
-  may contain registered controls but must not redraw them. Read
-  `references/web-component-reuse-gate.md` for the strict three-framework gate.
-- Page CSS uses canonical Tokens and styles declared business-content groups.
-  It must not override component internals, add a second pane inset, or redraw
-  Pattern-owned borders, dividers, Titlebars, or navigation.
-- In page-owned content groups, align related elements on shared visual axes:
-  use consistent edges or text baselines, and check the perceived alignment of
-  mixed icons and text at the rendered size. Keep labels, values, and actions
-  visually connected to the content they serve; avoid elements stranded by
-  arbitrary gaps. Follow `references/page-design-guidance.md` without changing
-  Pattern-owned insets or component internals.
-- If a Pattern boundary is draggable, keep its visible separator as the same
-  single `--layout-navigation-divider-width` (0.5px) stroke in `--color-border`
-  as a fixed boundary. The pointer/keyboard hit target may be wider but remains
-  transparent; resize behavior and the separator belong to Pattern Runtime,
-  not page CSS.
-- Pattern B pane spacing is renderer-owned beyond the Titlebar: the primary
-  pane supplies its top rhythm and Sidebar slot inset, the Secondary List
-  scroll body supplies its 16px/8px/0px surface inset, and Main Detail supplies
-  its 24px/16px/0px content inset. Page groups fill these areas without another
-  pane-padding wrapper. Verify computed pane and slot insets in rendered HTML.
-- Parent composition owns spacing between disclosure instances: second-level
-  Sidebar groups use a `--space-5` (16px) gap, and repeated Accordion or
-  Collapsible instances use the `tui-disclosure-group` wrapper with the same
-  `--space-5` gap. Keep the individual `.tui-disclosure` internal
-  trigger-to-content gap at `--space-1` (2px); never add per-instance margins.
-- The shared shadow Tokens have nine standard contexts: the outer surfaces of
-  Snackbar, Tooltip, Popover, Hover Card, Dialog, Alert Dialog, Semi-modal,
-  Dropdown Menu, and Context Menu. Follow `assets/design-system/design.md`
-  §4.6 for the exact roles. Other components and page surfaces normally use
-  no shadow; a project-specific exception needs an explicit design rule and
-  must not become a general Text-to-UI shadow Token role.
-- Resolve icons through the registered semantic aliases. Unknown aliases stop
-  the owning binding; do not substitute raw icon names, Unicode, or hand-drawn
-  glyphs.
-- Keep Pattern, component, Token, and behavior contracts authoritative across
-  HTML, React, Vue, and Pixso. Follow
-  `references/layouts/framework-layout-routing.md`, the selected Pattern
-  references, `references/components/page-composition.md`, and
-  `references/components/titlebar-segments.md` when applicable.
-
-New pages use `scripts/generate-compliant-page.mjs`. It owns route/context
-receipts, layout-contract creation, strict framework compilation, and atomic
-output. Do not repair generated HTML, React, Vue, or CSS by hand after a failed
-gate. For HTML, verify the exact browser artifact and its component evidence.
-Use `references/workflows/fast-preview.md` for the first interactive review;
-release checks follow only after the user approves the direction.
-
-For browser previews and generated pages, use `@text-to-ui/pattern-runtime`
-and `@text-to-ui/secondary-page-runtime` for their contracted shells. The
-renderer owns regions and geometry; callers provide declared slot content.
-Read `packages/pattern-runtime/README.md` for its callable APIs; Pattern
-geometry and Titlebar composition remain in the selected layout references.
-
-Visual contrast/parity comparisons are not default generation blockers when
-canonical Tokens and components are used. Run broader visual review when the
-user asks for an audit or release-readiness assessment.
-
-## 4. Preview and Pixso
-
-Start the managed Preview Hub, Component Gallery, and Pixso Bridge through:
-
-```bash
-node skill-support/scripts/start-text-to-ui-services.mjs start
-```
-
-Do not start a per-page server on `4173` or terminate an unknown service to
-free a port; use the managed service entry.
-
-For new HTML/React/Vue pages, show an early interactive preview after source
-and layout checks. Keep the preview running for browser comments and iterate on
-the same artifact until the user approves the direction.
-
-For Pixso execution, read `references/pixso-execution-invariants.md`. For
-component/Token mapping or HTML-to-Pixso conversion, use the matching Pixso
-route and read its named mapping/import references. Do not redesign an
-approved source when the request is an import.
-
-## 5. Skill maintenance and completion
-
-The normative entry is the repository-root `SKILL.md`; its supporting rules
-and scripts live in `skill-support/`. A separately installed copy is not an
-authoring source. For Skill maintenance, work in the repository, inspect
-existing changes, rebuild and validate
-the relevant indexes, and run source checks before synchronizing mirrors.
-Follow `references/routes/skill-maintenance.md` and, for a major update,
-`references/governance/major-version-update-checklist.md`. Never edit a
-delivery mirror as the source of truth.
-
-Report the delivered artifact paths, the selected workflow, validation status,
-and any remaining limitation. Stop at the failed gate and report it; do not
-silently switch workflows or reuse an unapproved generated page as a design
-reference.
+Maintain root `SKILL.md`, `skill-support/`, and `packages/` as source. Rebuild
+indexes and plugin artifacts, validate the changed behavior, then synchronize
+managed mirrors with `pnpm skill:sync` and verify with `pnpm skill:check`.
+Follow `references/routes/skill-maintenance.md` and the major-version
+checklist when applicable. Do not author in `skill/` or an installed mirror.
+Report the selected route, delivered paths, checks performed, and unresolved
+limitations. Stop at failed gates rather than silently changing workflows.

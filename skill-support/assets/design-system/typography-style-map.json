@@ -30,11 +30,7 @@
     {"htmlToken":"body-s","htmlCssPrefix":"--type-body-s","pixsoStyle":"$style/Typography/Body_S","fontSize":12,"lineHeight":14,"fontWeight":400},
     {"htmlToken":"caption-m","htmlCssPrefix":"--type-caption-m","pixsoStyle":"$style/Typography/Caption_M","fontSize":10,"lineHeight":12,"fontWeight":400}
   ],
-  "legacyTokens": [
-    {"htmlToken":"caption-l","status":"deprecated","pixsoStyle":null,"migration":"Use body-s for 12px supporting text or caption-m for 10px supporting text; do not create a new Pixso Caption_L style."}
-  ],
   "excludedPixsoStyles": [
-    {"prefix":"$style/Typography/Component/","reason":"Imported native-component internal text or icon-font dependency; never select for new page text."},
-    {"note":"Legacy Body_YaHei14 and Body_YaHei16 had zero live references and were deleted from Pixso during typography cleanup."}
+    {"prefix":"$style/Typography/Component/","reason":"Imported native-component internal text or icon-font dependency; never select for new page text."}
   ]
 }

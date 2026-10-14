@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "kind": "text-to-ui-pixso-agent-capabilities",
   "kernelVersion": "5.0.0",
-  "protocolVersions": [3, 4],
-  "operationPlanVersions": [1, 5],
+  "protocolVersions": [4],
+  "operationPlanVersions": [5],
   "executorProtocol": 1,
   "capabilities": [
     "node.create",

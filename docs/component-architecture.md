@@ -30,7 +30,7 @@ pnpm dlx shadcn@latest init --preset b1aIcEaeG --base aria --template vite
 
 ## 视觉来源优先级
 
-组件包不重新发明一套 CSS。`packages/component-styles/src/index.css` 是 HTML、React、Vue 共用的 canonical CSS 入口，`packages/tokens/` 提供共享设计变量，`apps/component-gallery/` 是唯一正式的组件预览与验收环境。`packages/component-contracts/src/components.css` 只保留兼容导入。
+组件包不重新发明一套 CSS。`packages/component-styles/src/index.css` 是 HTML、React、Vue 共用的 canonical CSS 入口，`packages/tokens/` 提供共享设计变量，`apps/component-gallery/` 是正式的组件预览与验收环境。
 
 `packages/component-contracts/src/components.json` 是组件契约唯一可编辑源。`components-runtime.js`、验收 manifest 和交付镜像都是确定性投影，文件头或校验会明确它们的生成来源；禁止直接维护这些副本。组件的公开身份始终是 `logicalName`，运行时 `id`、`fixtureId`、视觉选择器只服务内部渲染和测试，不能被业务页面或 Pixso 映射直接拼接使用。
 

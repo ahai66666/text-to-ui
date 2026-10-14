@@ -3,7 +3,7 @@
   "generatedFrom": [
     {
       "path": "package.json",
-      "sha256": "eaeefc7889d9b5e96d21cc450764d33405ac60cd3027e7311e6266bcfaa6a6bb"
+      "sha256": "21e2a132ba9ef95944baf91b9deb8e37c5487a393717bae655c4a1959c9fe74e"
     }
   ],
   "modes": {
@@ -120,6 +120,7 @@
     "skill:package": "node tools/package-skill.mjs",
     "skill:package:check": "node tools/package-skill.mjs --check",
     "skill:offline:package": "node tools/package-offline-skill.mjs",
-    "skill:offline:package:check": "node tools/package-offline-skill.mjs --check"
+    "skill:offline:package:check": "node tools/package-offline-skill.mjs --check",
+    "compact:check": "node tools/validate-compact-html.mjs"
   }
 }

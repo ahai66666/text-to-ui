@@ -137,7 +137,7 @@ const secondaryRuntime = createSecondaryPageRuntime({
   mode: "runtime",
   slots: {
     navigation: "<nav>导航</nav>",
-    titlebar: renderHtmlComponent("titlebar", { paneTitle: "项目设置", size: "large", layout: "two-column", paneRole: "final-pane", mainContentLeading: { id: "back", label: "返回项目", icon: "navigation/back", buttonType: "icon" } }),
+    titlebar: renderHtmlComponent("titlebar", { paneTitle: "项目设置", size: "large", layout: "two-column", segmentRole: "final-pane", mainContentLeading: { id: "back", label: "返回项目", icon: "navigation/back", buttonType: "icon" } }),
     content: "<main>内容</main>"
   }
 }).render();
@@ -146,7 +146,7 @@ assert.match(secondaryRuntime, /data-size="large"/);
 const secondaryNewPageRuntime = createSecondaryPageRuntime({
   layout: "new-page",
   mode: "runtime",
-  slots: { titlebar: renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", paneRole: "global" }), content: "<main>内容</main>" }
+  slots: { titlebar: renderHtmlComponent("titlebar", { label: "项目设置", size: "small", layout: "standalone", segmentRole: "global" }), content: "<main>内容</main>" }
 }).render();
 assert.match(secondaryNewPageRuntime, /data-size="small"/);
 assert.match(secondaryNewPageRuntime, /data-secondary-page-layout="new-page"/);

@@ -1,2 +1,0 @@
-/* Backward-compatible import for existing consumers. Canonical rules live in component-styles. */
-@import url("../../component-styles/src/index.css");

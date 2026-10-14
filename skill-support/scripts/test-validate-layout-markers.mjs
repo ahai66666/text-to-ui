@@ -11,7 +11,7 @@ const artifactPath = path.join(temp, 'index.html');
 const sourcePath = path.join(temp, 'main.js');
 const validator = path.resolve('skill-support/scripts/validate-layout-markers.mjs');
 const contract = { pattern: 'pattern-b-three-pane', paneOrder: ['primary-navigation', 'secondary-list', 'main-detail'] };
-const source = 'const root = document.createElement("main"); root.dataset.tuiPattern = "pattern-b-three-pane"; root.dataset.tuiPaneOrder = "primary-navigation secondary-list main-detail"; navigation.dataset.tuiPaneRole = "primary-navigation"; list.dataset.tuiPaneRole = "secondary-list"; detail.dataset.tuiPaneRole = "main-detail"; renderHtmlComponent("titlebar", { layout: "three-column", paneRole: "final-pane", mainDetailActions: [] });';
+const source = 'const root = document.createElement("main"); root.dataset.tuiPattern = "pattern-b-three-pane"; root.dataset.tuiPaneOrder = "primary-navigation secondary-list main-detail"; navigation.dataset.tuiPaneRole = "primary-navigation"; list.dataset.tuiPaneRole = "secondary-list"; detail.dataset.tuiPaneRole = "main-detail"; renderHtmlComponent("titlebar", { layout: "three-column", segmentRole: "final-pane", mainDetailActions: [] });';
 fs.writeFileSync(contractPath, JSON.stringify(contract));
 fs.writeFileSync(artifactPath, '<!doctype html><main id="app"></main>');
 fs.writeFileSync(sourcePath, source);

@@ -30,9 +30,8 @@ const packageByFramework = {
   vue: "@text-to-ui/components-vue",
 };
 
-if (![1, 2, 3].includes(manifest.schemaVersion)) failures.push("schemaVersion must equal 1, 2, or 3");
-const strictSource = manifest.schemaVersion >= 2 || manifest.enforcement === "strict-source";
-if (manifest.schemaVersion === 2 && manifest.targetFramework !== "html") failures.push("strict-source schemaVersion 2 supports html only");
+if (manifest.schemaVersion !== 3) failures.push("component usage requires schemaVersion 3");
+const strictSource = true;
 if (!packageByFramework[manifest.targetFramework]) failures.push("targetFramework must be html, react, or vue");
 if (manifest.previousOutputReuse !== false) failures.push("previousOutputReuse must be false unless a separately approved continuation contract is used");
 
@@ -65,7 +64,7 @@ if (!fs.existsSync(registryPath)) failures.push(`component registry not found: $
 let registry = [];
 const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
 let selectionReceipt = null;
-if (manifest.schemaVersion === 3) {
+{
   const selection = manifest.selection;
   const selectionPath = selection?.path ? path.resolve(path.dirname(manifestPath), selection.path) : null;
   if (!selectionPath || !fs.existsSync(selectionPath)) failures.push("strict Web usage requires a component selection receipt");
@@ -123,7 +122,7 @@ for (const [index, usage] of registered.entries()) {
     if (manifest.targetFramework !== "html" && !usage.exportName) failures.push(`registered[${index}].exportName is required in strict-source mode`);
     if (!usage.usage) failures.push(`registered[${index}].usage is required in strict-source mode`);
     if (!Number.isInteger(usage.requiredCallSites) || usage.requiredCallSites < 1) failures.push(`registered[${index}].requiredCallSites must be a positive integer`);
-    if (manifest.schemaVersion === 3) for (const id of String(usage.usage ?? "").split(/,\s*/).filter(Boolean)) {
+    for (const id of String(usage.usage ?? "").split(/,\s*/).filter(Boolean)) {
       if (!selectionReceipt?.entries?.some((item) => item.id === id && item.logicalName === usage.logicalName && item.decision === "reuse")) failures.push(`registered component ${usage.logicalName} lacks a matching reuse selection for ${id}`);
     }
   }
@@ -253,4 +252,4 @@ if (failures.length > 0) {
   warnings.forEach((warning) => console.error(`warning: ${warning}`));
   process.exit(1);
 }
-console.log(JSON.stringify({ ok: true, validationStage, deliveryStatus: validationStage === "release" ? "release-ready" : (warnings.length ? "preview-ready-with-provisional-components" : "preview-ready"), enforcement: strictSource ? "strict-source" : "legacy-import", targetFramework: manifest.targetFramework, componentPackage: expectedPackage, registeredCount: registered.length, contractBasedCount: contractBased.length, customCount: custom.length, sourceFileCount: sourceFiles.length, styleFileCount: styleFiles.length, warnings }, null, 2));
+console.log(JSON.stringify({ ok: true, validationStage, deliveryStatus: validationStage === "release" ? "release-ready" : (warnings.length ? "preview-ready-with-provisional-components" : "preview-ready"), enforcement: "strict-source", targetFramework: manifest.targetFramework, componentPackage: expectedPackage, registeredCount: registered.length, contractBasedCount: contractBased.length, customCount: custom.length, sourceFileCount: sourceFiles.length, styleFileCount: styleFiles.length, warnings }, null, 2));

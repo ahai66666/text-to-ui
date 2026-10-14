@@ -10,7 +10,7 @@ if (!manifestPath || !evidencePath) { console.error("Usage: validate-runtime-com
 const manifest = JSON.parse(fs.readFileSync(path.resolve(manifestPath), "utf8"));
 const evidence = JSON.parse(fs.readFileSync(path.resolve(evidencePath), "utf8"));
 const failures = [];
-if (![2, 3].includes(manifest.schemaVersion) || manifest.enforcement !== "strict-source") failures.push("runtime reuse validation requires a strict-source schemaVersion 2 or 3 manifest");
+if (manifest.schemaVersion !== 3 || manifest.enforcement !== "strict-source") failures.push("runtime reuse validation requires a strict-source schemaVersion 3 manifest");
 if (evidence.schemaVersion !== 1 || !Array.isArray(evidence.components)) failures.push("runtime evidence must use schemaVersion 1 and contain components");
 if (evidence.pattern !== manifest.layout?.pattern) failures.push(`runtime Pattern mismatch: expected ${manifest.layout?.pattern ?? "unknown"}, found ${evidence.pattern ?? "missing"}`);
 if (evidence.structureDigest !== manifest.layout?.structureDigest) failures.push(`runtime structureDigest mismatch: expected ${manifest.layout?.structureDigest ?? "missing"}, found ${evidence.structureDigest ?? "missing"}`);

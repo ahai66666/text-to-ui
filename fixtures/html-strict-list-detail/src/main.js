@@ -1,5 +1,6 @@
 import "@text-to-ui/tokens";
 import "@text-to-ui/components-html/styles.css";
+import "@text-to-ui/components-html/pattern-shell.css";
 import { collectHtmlComponentEvidence, renderHtmlComponent } from "@text-to-ui/components-html";
 import "./page.css";
 
@@ -35,7 +36,7 @@ export function renderTaskWorkbench(root) {
     component("list-card", { title: "整理设计系统文档", description: "明天", trailingText: "待处理" })
   );
   detail.append(
-    component("titlebar", { paneTitle: "任务详情", layout: "three-column", paneRole: "final-pane", mainDetailActions: [{ id: "save", label: "保存", icon: "action/save", buttonType: "icon" }], size: "medium" }),
+    component("titlebar", { paneTitle: "任务详情", layout: "three-column", segmentRole: "final-pane", mainDetailActions: [{ id: "save", label: "保存", icon: "action/save", buttonType: "icon" }], size: "medium" }),
     component("checkbox", { label: "标记为完成", description: "同步到任务记录", checked: false })
   );
   shell.append(navigation, list, detail);

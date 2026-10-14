@@ -29,7 +29,7 @@ const state = { plan: null, bridgeRevision: null, generating: false, cancelReque
 const launchCommand = String(pixso.command ?? "open");
 let componentSyncBusy = false;
 const pluginProtocolVersion = 4;
-const operationPlanVersions = [1, 5];
+const operationPlanVersions = [5];
 const agentCapabilities = [
   "node.create", "node.update", "node.move", "node.replace", "node.delete",
   "layout.auto", "layout.absolute", "layout.stroke-edges", "text.resize-modes",

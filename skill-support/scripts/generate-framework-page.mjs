@@ -137,7 +137,7 @@ const bindings = rawBindings.map((binding, index) => {
     throw new Error(`${binding.logicalName}: business-page Sidebar requires explicit options.items or options.groups; gallery defaults are not allowed`);
   }
   for (const [key, expected] of Object.entries(selectionRule?.requiredOptions ?? {})) {
-    const actual = canonicalComponent.id === "titlebar" && key === "paneRole" ? options.segmentRole ?? options.paneRole : options?.[key];
+    const actual = options?.[key];
     if (actual !== expected) throw new Error(`${binding.logicalName}: semanticContext '${semanticContext}' requires options.${key}=${JSON.stringify(expected)}`);
   }
   const resolvedBindingSlot = binding.patternSlot ?? binding.slot ?? null;
@@ -401,9 +401,9 @@ const validatePatternBTitleLayer = () => {
   if (!isTitlebarBinding(primaryTitlebar) || !["global-titlebar", "primary-navigation-titlebar"].includes(primaryTitlebar.semanticContext)) {
     throw new Error("Pattern B global-title-layer must use the registered Titlebar/Default binding with semanticContext global-titlebar or primary-navigation-titlebar");
   }
-  const primaryRole = primaryTitlebar.options.segmentRole ?? primaryTitlebar.options.paneRole;
+  const primaryRole = primaryTitlebar.options.segmentRole;
   if (primaryRole !== "primary-navigation" || primaryTitlebar.options.layout !== "three-column") {
-    throw new Error("Pattern B primary-navigation title segment requires Titlebar layout=three-column and paneRole/segmentRole=primary-navigation");
+    throw new Error("Pattern B primary-navigation title segment requires Titlebar layout=three-column and segmentRole=primary-navigation");
   }
   if (primaryTitlebar.options.showWindowControls === true) {
     throw new Error("Pattern B primary-navigation Titlebar cannot own window controls; only the final segment may show them");
@@ -432,9 +432,9 @@ const validatePatternBTitleLayer = () => {
     throw new Error(`Pattern B main-detail-title must resolve to exactly one final Titlebar binding; found ${finalTitlebars.length}`);
   }
   const finalTitlebar = finalTitlebars[0];
-  const finalRole = finalTitlebar.options.segmentRole ?? finalTitlebar.options.paneRole;
+  const finalRole = finalTitlebar.options.segmentRole;
   if (!isTitlebarBinding(finalTitlebar) || finalTitlebar.semanticContext !== "main-detail-titlebar" || finalTitlebar.options.layout !== "three-column" || !["main-detail", "final-pane"].includes(finalRole)) {
-    throw new Error("Pattern B main-detail-title requires registered Titlebar/Default with semanticContext main-detail-titlebar, layout=three-column, and paneRole/segmentRole=main-detail");
+    throw new Error("Pattern B main-detail-title requires registered Titlebar/Default with semanticContext main-detail-titlebar, layout=three-column, and segmentRole=main-detail");
   }
   if (finalTitlebar.options.showWindowControls === false || finalTitlebar.slots?.actions === false) {
     throw new Error("Pattern B final Titlebar owns the minimize, maximize, and close controls; window controls cannot be disabled");
@@ -935,16 +935,17 @@ const groupedUsage = new Map();
       unresolvedParity: binding.readiness.unresolvedDimensions
     });
   }
+  if (!selectionReceipt) throw new Error("Component usage v3 requires --component-selection");
   const usageManifest = {
     $schema: path.relative(path.dirname(path.resolve(componentUsagePath)), path.join(context.repository.root, "skill-support/assets/design-system/component-usage.schema.json")),
-    schemaVersion: selectionReceipt ? 3 : 2,
+    schemaVersion: 3,
     targetFramework: framework,
     enforcement: "strict-source",
-    ...(selectionReceipt ? { selection: {
+    selection: {
       path: path.relative(path.dirname(path.resolve(componentUsagePath)), path.resolve(componentSelectionPath)),
       sha256: sha256(fs.readFileSync(componentSelectionPath)),
       registryDigest: selectionReceipt.registryDigest
-    } } : {}),
+    },
     registry: "packages/component-contracts/src/components.json",
     sourceRoots: [...new Set([
       path.relative(path.resolve(context.repository.root), absoluteOutputPath),

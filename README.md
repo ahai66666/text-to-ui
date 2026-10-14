@@ -1,5 +1,7 @@
 # Text-to-UI：HarmonyOS PC 设计开发协同系统
 
+> 需要只含 HTML 组件的独立版本，请使用 [Text-to-UI Compact](https://github.com/ahai66666/text-to-ui-skill-compact)。清理分支的变更见 [v3.0.0 说明](docs/releases/text-to-ui-v3.0.0.md)。
+
 `text-to-ui` 不是一个只把文字生成成页面的工具，也不是单独的一套组件库。它是连接需求分析、设计系统、跨框架 UI 组件实现、Pixso 设计稿、组件验收和页面生成流程的协同桥梁。
 
 它让设计师不再只交付一张静态效果图，也让开发者不再针对每个页面重复还原基础组件。双方围绕同一套组件契约、Tokens、图标、状态和交互规则工作，并通过真实的 HTML、React、Vue 运行时验证结果。

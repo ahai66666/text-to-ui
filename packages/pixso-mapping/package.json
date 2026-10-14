@@ -1,6 +1,6 @@
 {
   "name": "@text-to-ui/pixso-mapping",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "type": "module",
   "exports": {".": "./index.json", "./index.json": "./index.json", "./resolve": "./resolve.js"}

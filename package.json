@@ -86,6 +86,7 @@
     "skill:package": "node tools/package-skill.mjs",
     "skill:package:check": "node tools/package-skill.mjs --check",
     "skill:offline:package": "node tools/package-offline-skill.mjs",
-    "skill:offline:package:check": "node tools/package-offline-skill.mjs --check"
+    "skill:offline:package:check": "node tools/package-offline-skill.mjs --check",
+    "compact:check": "node tools/validate-compact-html.mjs"
   }
 }

@@ -59,7 +59,7 @@
       "context": "main-detail-titlebar",
       "logicalName": "Titlebar/Default",
       "rendererKey": "titlebar",
-      "requiredOptions": { "paneRole": "main-detail", "layout": "three-column" },
+      "requiredOptions": { "segmentRole": "main-detail", "layout": "three-column" },
       "requiredSlot": "main-detail-title"
     },
     {
@@ -67,7 +67,7 @@
       "context": "primary-navigation-titlebar",
       "logicalName": "Titlebar/Default",
       "rendererKey": "titlebar",
-      "requiredOptions": { "paneRole": "primary-navigation" }
+      "requiredOptions": { "segmentRole": "primary-navigation" }
     },
     {
       "capabilities": ["titlebar", "global-titlebar"],

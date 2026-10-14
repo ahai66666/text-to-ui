@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "title": "项目工作台",
+  "blueprint": {
+    "task": "查看项目并创建项目",
+    "contentGroups": ["项目导航", "项目操作"],
+    "interactions": ["创建项目"]
+  },
+  "patternId": "pattern-a-two-pane",
+  "slots": {
+    "global-title-layer": [
+      { "component": "titlebar", "options": { "label": "项目工作台", "size": "small", "layout": "standalone", "segmentRole": "global" } }
+    ],
+    "primary-navigation-shell": [
+      { "component": "sidebar", "options": { "items": [{ "label": "全部项目", "selected": true }] } }
+    ]
+  },
+  "regionContent": {
+    "main-content": [
+      { "component": "button", "options": { "label": "新建项目", "variant": "primary" } }
+    ]
+  }
+}

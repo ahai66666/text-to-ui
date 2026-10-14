@@ -1,8 +1,9 @@
 /** The Pattern owns segment order/width; this contract owns segment content. */
 export function resolveTitlebarSegment(options = {}) {
+  if ('paneRole' in options) throw new Error('Titlebar paneRole is removed; use segmentRole');
   const layout = options.layout ?? 'standalone';
   const size = options.size ?? 'large';
-  const segmentRole = options.segmentRole ?? options.paneRole ?? 'global';
+  const segmentRole = options.segmentRole ?? 'global';
   const paneRole = ['main-detail', 'main-content'].includes(segmentRole) ? 'final-pane' : segmentRole === 'secondary-list' ? 'secondary-pane' : segmentRole;
   if (!['global', 'primary-navigation', 'secondary-pane', 'final-pane'].includes(paneRole)) throw new Error(`Unknown Titlebar segment role: ${segmentRole}`);
   if (!['standalone', 'two-column', 'three-column'].includes(layout)) throw new Error(`Unknown Titlebar layout: ${layout}`);
@@ -10,7 +11,7 @@ export function resolveTitlebarSegment(options = {}) {
   const slots = options.slots ?? {};
   if (!slots || typeof slots !== 'object' || Array.isArray(slots)) throw new Error('Titlebar slots must be an object');
   const isFirstLevel = ['global', 'primary-navigation'].includes(paneRole);
-  const supported = isFirstLevel ? ['logo', 'leading', 'label', ...(paneRole === 'global' ? ['actions'] : [])] : paneRole === 'secondary-pane' ? ['logo', 'secondary-pane-content'] : paneRole === 'final-pane' ? ['logo', ...(layout === 'two-column' ? ['main-content-leading', 'main-content-title'] : layout === 'three-column' ? ['main-detail-actions'] : []), 'actions'] : [];
+  const supported = isFirstLevel ? ['logo', 'label', ...(paneRole === 'global' ? ['actions'] : [])] : paneRole === 'secondary-pane' ? ['logo', 'secondary-pane-content'] : paneRole === 'final-pane' ? ['logo', ...(layout === 'two-column' ? ['main-content-leading', 'main-content-title'] : layout === 'three-column' ? ['main-detail-actions'] : []), 'actions'] : [];
   for (const key of Object.keys(slots)) if (!supported.includes(key)) throw new Error(`Titlebar slot ${key} is not available in ${layout}/${segmentRole}`);
   for (const key of ['label', 'main-content-title']) if (key in slots && typeof slots[key] !== 'string') throw new Error(`Titlebar slot ${key} requires text`);
   if ('main-content-leading' in slots) {
@@ -19,8 +20,6 @@ export function resolveTitlebarSegment(options = {}) {
     if (action.buttonType !== undefined && !['icon', 'icon-text-ghost'].includes(action.buttonType)) throw new Error('Titlebar main-content-leading buttonType must be icon or icon-text-ghost');
   }
   if ('logo' in slots && (!slots.logo || typeof slots.logo !== 'object' || Array.isArray(slots.logo) || typeof slots.logo.src !== 'string')) throw new Error('Titlebar logo requires { src, alt? }');
-  if ('leading' in slots && (!slots.leading || typeof slots.leading !== 'object' || Array.isArray(slots.leading) || typeof slots.leading.src !== 'string')) throw new Error('Titlebar leading requires { src, alt? }');
-  if ('logo' in slots && 'leading' in slots) throw new Error('Titlebar accepts one logo slot; use slots.logo (leading is a compatibility alias)');
   if ('main-detail-actions' in slots && !Array.isArray(slots['main-detail-actions'])) throw new Error('Titlebar main-detail-actions requires an action array');
   if ('main-detail-actions' in slots) {
     const ids = new Set();
@@ -40,7 +39,7 @@ export function resolveTitlebarSegment(options = {}) {
   if (typeof showWindowControls !== 'boolean') throw new Error('showWindowControls requires a boolean');
   if (showWindowControls && !['global', 'final-pane'].includes(paneRole)) throw new Error('Window controls belong to the final Titlebar segment only');
   if (isFirstLevel && options.showLogo === false) throw new Error('First-level Titlebar segments must show the logo');
-  const logoSlot = slots.logo ?? slots.leading;
+  const logoSlot = slots.logo;
   const showLogo = options.showLogo ?? (isFirstLevel || Boolean(logoSlot));
   if (typeof showLogo !== 'boolean') throw new Error('showLogo requires a boolean');
   return { ...options, size, layout, paneRole, segmentRole, label: slots.label ?? options.label, paneTitle: slots['main-content-title'] ?? options.paneTitle,
@@ -60,7 +59,8 @@ export function createTitlebarSegments(pattern, content = {}) {
     if (['paneRole', 'segmentRole', 'layout'].some(key => key in configured)) throw new Error('Pattern owns segment placement; supply content only');
     if ((configured.size ?? 'large') === 'small') throw new Error('Pattern title segments cannot use Titlebar_S; small Titlebar only supports standalone layout');
     const role = index === 0 ? 'primary-navigation' : index === roles.length - 1 ? 'final-pane' : 'secondary-pane';
-    return { ...resolveTitlebarSegment({ ...configured, layout: roles.length === 2 ? 'two-column' : 'three-column', segmentRole: role }), region };
+    const { paneRole: _resolvedPaneRole, ...canonicalConfig } = resolveTitlebarSegment({ ...configured, layout: roles.length === 2 ? 'two-column' : 'three-column', segmentRole: role });
+    return { ...canonicalConfig, region };
   });
 }
 

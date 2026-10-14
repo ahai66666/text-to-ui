@@ -10,7 +10,7 @@
         "type": { "const": "HELLO" },
         "sessionId": { "type": "string", "minLength": 1 },
         "kernelVersion": { "type": "string", "minLength": 1 },
-        "protocolVersion": { "type": "integer", "minimum": 3 },
+        "protocolVersion": { "const": 4 },
         "operationPlanVersions": { "type": "array", "items": { "type": "integer" } },
         "capabilities": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "revision": { "type": "string" }

@@ -12,8 +12,8 @@ Use this mode to reach the first real, interactive browser page quickly. It is a
 3. Use `generate-compliant-page.mjs` as the single generation entry point. It
    resolves `layout-contract.json`, verifies route/context material receipts,
    validates the blueprint, content recipes, bindings, composition CSS and
-   schemaVersion 2 `component-usage.json`, then calls the strict framework
-   generator with atomic output. React/Vue retain the compatibility manifest.
+   schemaVersion 3 `component-usage.json`, then calls the strict framework
+   generator with atomic output.
    The lower-level `generate-framework-page.mjs` command is for maintenance and
    regression fixtures only.
 5. Import real target-framework components. Use contract implementation only for indexed library misses; use Token-based custom work only after both searches miss.

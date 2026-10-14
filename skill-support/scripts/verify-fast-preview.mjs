@@ -101,6 +101,6 @@ console.log(JSON.stringify({
   deliveryStatus: provisionalComponents.length ? 'preview-only-provisional-components' : 'preview-ready-release-check-required',
   provisionalComponents,
   artifact, framework: context.request.framework,
-  enforcement: componentUsage.enforcement ?? 'legacy-import',
+  enforcement: componentUsage.enforcement,
   remainingManualChecks: context.browserChecks
 }, null, 2));

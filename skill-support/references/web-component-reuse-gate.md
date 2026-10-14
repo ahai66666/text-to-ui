@@ -75,14 +75,8 @@ additionally requires all of the following:
   expected logical name, count, region, state, and required slots;
 - page-owned CSS passes the Token audit.
 
-Run the generator before page code:
-
-```bash
-node skill-support/scripts/generate-html-component-skeleton.mjs \
-  --context context-packet.json --layout-contract layout-contract.json \
-  --bindings component-bindings.json \
-  --out src/component-skeleton.js --manifest component-usage.json
-```
+Use `generate-compliant-page.mjs` to produce the page and its v3 usage manifest
+from the confirmed Context Packet and component selection receipt.
 
 The following are markers only and never prove reuse by themselves:
 
@@ -148,32 +142,12 @@ may be used only as evidence when explicitly authorized. New requests start
 from the confirmed requirements, current registry, current Tokens, and current
 production adapters.
 
-## Minimal manifest
+## Usage manifest
 
-```json
-{
-  "schemaVersion": 1,
-  "targetFramework": "html",
-  "registry": "packages/component-contracts/src/components.json",
-  "sourceRoots": ["apps/example/src"],
-  "registered": [
-    {
-      "logicalName": "Button/Primary/Default",
-      "usage": "primary action"
-    }
-  ],
-  "contractBased": [],
-  "custom": [],
-  "previousOutputReuse": false
-}
-```
-
-This schemaVersion 1 example is historical compatibility only. New HTML,
-React, and Vue pages use schemaVersion 3 with `enforcement: "strict-source"`,
-the selection receipt hash, a framework-specific renderer factory/export,
-`requiredCallSites`, `expectedRuntimeCount`, and declared regions/runtime slots.
-Historical HTML schemaVersion 2 artifacts remain valid but are not emitted by
-the one-shot route.
+HTML, React, and Vue pages use schemaVersion 3 with
+`enforcement: "strict-source"`, the selection receipt hash, a framework-specific
+renderer factory/export, `requiredCallSites`, `expectedRuntimeCount`, and
+declared regions/runtime slots. Earlier usage manifests are rejected.
 
 Validate it from the Monorepo root:
 

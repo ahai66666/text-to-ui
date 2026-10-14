@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 const packageCss = read("packages/component-styles/src/index.css");
-const compatibilityCss = read("packages/component-contracts/src/components.css");
 const gallery = read("apps/component-gallery/index.html");
 const galleryCss = read("apps/component-gallery/gallery.css");
 const galleryRuntime = read("apps/component-gallery/preview.js");
@@ -73,7 +72,6 @@ requireText(galleryRuntime, 'import "../../packages/components-html/src/styles.c
 requireText(galleryRuntime, 'import "./framework-runtime.css"', "component gallery runtime stylesheet entry");
 requireText(galleryRuntime, 'import "./gallery.css"', "component gallery shell stylesheet entry");
 if (galleryCss.includes("@import")) failures.push("component gallery shell CSS must not contain unresolved imports");
-requireText(compatibilityCss, "../../component-styles/src/index.css", "component contract compatibility stylesheet");
 
 if (Object.values(iconAliases.aliases).some((entry) => entry.source === "harmonyos")) failures.push("HarmonyOS icon aliases are forbidden; use pinned Lucide or an approved special asset");
 if (sprite.includes("data-harmonyos-symbol")) failures.push("component icon sprite still contains HarmonyOS symbols");

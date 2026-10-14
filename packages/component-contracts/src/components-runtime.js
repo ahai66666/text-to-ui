@@ -6303,7 +6303,6 @@ export default {
         "paneTitle",
         "size",
         "layout",
-        "paneRole",
         "segmentRole",
         "slots",
         "showWindowControls",
@@ -6319,7 +6318,6 @@ export default {
       ],
       "slots": [
         "logo",
-        "leading",
         "label",
         "secondary-pane-content",
         "main-content-title",
@@ -6482,19 +6480,6 @@ export default {
           "defaultPlacement": "final-pane-leading-slot",
           "leadingInsetToken": "layout/main-title-leading-padding"
         },
-        "leading": {
-          "cardinality": "0..1",
-          "valueType": "image-object",
-          "activeRoles": [
-            "global",
-            "primary-navigation"
-          ],
-          "fields": [
-            "src",
-            "alt"
-          ],
-          "deprecatedAliasFor": "logo"
-        },
         "label": {
           "cardinality": "0..1",
           "valueType": "text",
@@ -6511,6 +6496,19 @@ export default {
             "final-pane"
           ],
           "implementation": "component-owned-window-controls"
+        },
+        "leading": {
+          "cardinality": "0..1",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "deprecatedAliasFor": "logo"
         }
       },
       "layoutRules": {

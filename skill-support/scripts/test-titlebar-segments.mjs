@@ -35,10 +35,10 @@ assert.deepEqual(configs.map(s => s.showWindowControls), [false, false, true]);
 assert.equal(resolveTitlebarSegment({ layout: 'standalone', segmentRole: 'global' }).showLogo, true);
 assert.equal(resolveTitlebarSegment({ layout: 'two-column', segmentRole: 'main-content' }).showLogo, false);
 assert.equal(resolveTitlebarSegment({ layout: 'two-column', segmentRole: 'main-content', showLogo: true, slots: { logo: { src: '/detail.svg', alt: '详情' } } }).showLogo, true);
-assert.equal(resolveTitlebarSegment({ segmentRole: 'primary-navigation', slots: { leading: { src: '/legacy.svg', alt: '旧 Logo' } } }).logoSrc, '/legacy.svg');
+assert.throws(() => resolveTitlebarSegment({ segmentRole: 'primary-navigation', slots: { leading: { src: '/legacy.svg' } } }), /not available/);
 assert.equal(resolveTitlebarSegment({ segmentRole: 'main-content', showLogo: false, slots: { logo: { src: '/detail.svg', alt: '详情' } } }).showLogo, false);
 assert.throws(() => resolveTitlebarSegment({ segmentRole: 'primary-navigation', showLogo: false }), /first-level.*logo/i);
-assert.throws(() => resolveTitlebarSegment({ segmentRole: 'primary-navigation', slots: { logo: { src: '/logo.svg' }, leading: { src: '/legacy.svg' } } }), /one logo slot/i);
+assert.throws(() => resolveTitlebarSegment({ paneRole: 'primary-navigation' }), /use segmentRole/);
 assert.throws(() => resolveTitlebarSegment({ segmentRole: 'secondary-list', slots: { label: '错位' } }), /not available/);
 assert.doesNotThrow(() => resolveTitlebarSegment({ layout: 'three-column', segmentRole: 'secondary-list', slots: { 'secondary-pane-content': { component: 'search', props: { placeholder: '搜索项目' } } } }));
 assert.throws(() => resolveTitlebarSegment({ layout: 'three-column', segmentRole: 'secondary-list', slots: { 'secondary-pane-content': { component: 'input' } } }), /registered Search/);
@@ -47,7 +47,7 @@ assert.throws(() => createTitlebarSegments(pattern, { 'main-detail': { layout: '
 assert.throws(() => resolveTitlebarSegment({ size: 'small', layout: 'two-column', segmentRole: 'main-content' }), /Titlebar_S.*standalone/);
 assert.throws(() => resolveTitlebarSegment({ size: 'small', layout: 'three-column', segmentRole: 'main-detail' }), /Titlebar_S.*standalone/);
 assert.throws(() => createTitlebarSegments(pattern, { 'main-detail': { size: 'small' } }), /Titlebar_S.*standalone/);
-assert.doesNotThrow(() => resolveTitlebarSegment({ size: 'small', layout: 'standalone', paneRole: 'final-pane', paneTitle: '项目设置' }));
+assert.doesNotThrow(() => resolveTitlebarSegment({ size: 'small', layout: 'standalone', segmentRole: 'final-pane', paneTitle: '项目设置' }));
 assert.throws(() => resolveTitlebarSegment({ segmentRole: 'main-detail', slots: { actions: '<button>close</button>' } }), /boolean/);
 const twoPattern = registry.patterns.find(p => p.id === 'pattern-a-two-pane');
 const twoConfigs = createTitlebarSegments(twoPattern, { 'main-content': { slots: { 'main-content-leading': { id: 'back', label: '返回', icon: 'navigation/back' }, 'main-content-title': '项目详情', actions: false } } });
@@ -117,12 +117,12 @@ try {
     assert.match(twoMarkup, /data-icon-size="24"/);
     assert.doesNotMatch(twoMarkup, /data-action="close"/);
     assert.equal((await render({ size: 'large', layout: 'two-column', segmentRole: 'main-content', showLogo: true, slots: { logo: { src: '/detail.svg', alt: '详情' }, 'main-content-title': '项目详情' } })).match(/data-slot="logo"/g)?.length ?? 0, 1, `${framework} configurable final logo slot`);
-    const smallStandalone = await render({ size: 'small', layout: 'standalone', paneRole: 'final-pane', paneTitle: '项目设置' });
+    const smallStandalone = await render({ size: 'small', layout: 'standalone', segmentRole: 'final-pane', paneTitle: '项目设置' });
     assert.match(smallStandalone, /项目设置/);
     assert.match(smallStandalone, /data-slot="main-content-title"[^>]*data-typography-role="subtitle-m"/);
     assert.match(smallStandalone, /data-action="close"/);
     assert.doesNotMatch(smallStandalone, /data-slot="logo"/);
-    const largeStandalone = await render({ size: 'large', layout: 'standalone', paneRole: 'final-pane', paneTitle: '项目设置' });
+    const largeStandalone = await render({ size: 'large', layout: 'standalone', segmentRole: 'final-pane', paneTitle: '项目设置' });
     assert.match(largeStandalone, /data-slot="main-content-title"[^>]*data-typography-role="title-s"/);
   }
 } finally { fs.rmSync(temp, { recursive: true, force: true }); }

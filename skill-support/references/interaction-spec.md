@@ -150,7 +150,7 @@ Use the lightest overlay that supports the task:
 
 ## 9. Forms And Validation
 
-- **PROJECT:** Use the approved client text hierarchy: Body_L (16px / 20px / Regular 400) for visible primary content and standard 40px controls; Body_M (14px / 16px / Regular 400) for secondary copy and Checkbox, Radio, or Switch labels; Body_S (12px / 14px / Regular 400) for references, helpers, status labels, and supporting prompts; Caption_M (10px / 12px / Regular 400) only for extremely small auxiliary notes. Tabs and 28px Small Buttons also use Body_M. `Caption_L` is deprecated.
+- **PROJECT:** Use the approved client text hierarchy: Body_L (16px / 20px / Regular 400) for visible primary content and standard 40px controls; Body_M (14px / 16px / Regular 400) for secondary copy and Checkbox, Radio, or Switch labels; Body_S (12px / 14px / Regular 400) for references, helpers, status labels, and supporting prompts; Caption_M (10px / 12px / Regular 400) only for extremely small auxiliary notes. Tabs and 28px Small Buttons also use Body_M.
 
 - **PROJECT:** Table headers use muted Body_M (14px / 16px / Regular 400). Table data cells use Body_L (16px / 20px / Regular 400) with Regular 400 weight; neither is bold by default. Status and helper text use Body_S.
 

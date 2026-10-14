@@ -3,6 +3,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import crypto from "node:crypto";
+import { componentPackageDigest } from "./component-selection.mjs";
 import { collectHtmlComponentEvidence, renderHtmlComponent } from "../../packages/components-html/src/index.js";
 
 const sidebar = renderHtmlComponent("sidebar", { items: [{ label: "收件箱", count: 23, selected: true }, { label: "草稿", count: 3 }] });
@@ -28,10 +30,16 @@ fs.mkdirSync(sourceDir, { recursive: true });
 const repoRelativeSource = path.relative(process.cwd(), sourceDir);
 const layoutContractPath = path.join(temp, "layout-contract.json");
 fs.writeFileSync(layoutContractPath, JSON.stringify({ pattern: "pattern-b-three-pane", paneOrder: ["primary-navigation", "secondary-list", "main-detail"] }));
+const sha256 = (value) => crypto.createHash("sha256").update(value).digest("hex");
+const registryDigest = sha256(fs.readFileSync("packages/component-contracts/src/components.json"));
+const selectionPath = path.join(temp, "component-selection.json");
+const selection = { targetFramework: "html", registryDigest, packageDigest: componentPackageDigest(process.cwd(), "html"), entries: [{ id: "global title", logicalName: "Titlebar/Default", decision: "reuse" }] };
+fs.writeFileSync(selectionPath, JSON.stringify(selection));
 const manifest = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   targetFramework: "html",
   enforcement: "strict-source",
+  selection: { path: "component-selection.json", sha256: sha256(fs.readFileSync(selectionPath)), registryDigest },
   registry: "packages/component-contracts/src/components.json",
   sourceRoots: [repoRelativeSource],
   layout: { contractPath: "layout-contract.json", pattern: "pattern-b-three-pane", paneOrder: ["primary-navigation", "secondary-list", "main-detail"], patternDigest: "test-pattern", structureDigest: "test-structure" },
@@ -68,7 +76,7 @@ fs.writeFileSync(evidencePath, JSON.stringify({ schemaVersion: 1, url: "http://1
   { region: "primary-navigation", display: "block", bounds: { x: 0, y: 0, width: 240, height: 720 } },
   { region: "secondary-list", display: "block", bounds: { x: 240, y: 0, width: 360, height: 720 } },
   { region: "main-detail", display: "block", bounds: { x: 600, y: 0, width: 600, height: 720 } }
-] }, customRegions: [], contractRegions: [], unclassifiedInteractive: [], components: [{ rendererKey: "titlebar", logicalName: "Titlebar/Default", state: "default", variant: "medium", region: null, slots: ["label"], visible: true }] }));
+] }, customRegions: [], contractRegions: [], unclassifiedInteractive: [], components: [{ rendererKey: "titlebar", logicalName: "Titlebar/Default", framework: "html", state: "default", variant: "medium", region: null, slots: ["label"], visible: true }] }));
 const runtimeGood = spawnSync(process.execPath, [runtimeValidator, "--manifest", manifestPath, "--evidence", evidencePath], { encoding: "utf8" });
 assert.equal(runtimeGood.status, 0, runtimeGood.stderr);
 for (const framework of ["react", "vue"]) {

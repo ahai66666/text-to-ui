@@ -3,11 +3,11 @@
   "generatedFrom": [
     {
       "path": "packages/component-contracts/src/components.json",
-      "sha256": "9a5087e9cade4cf2b161b00cdb4e70e4756892141e73298b7c5ef256c17fdb11"
+      "sha256": "f25b66969a7295b39103d090ed0c638aa55845cb7b19f55e6619049b7fad358a"
     },
     {
       "path": "packages/component-contracts/src/parity-manifest.json",
-      "sha256": "95eb301c53e9e73553c0d06e184a82a24f85f1cd746f31bbe535b099b564dc91"
+      "sha256": "cea9b6a5d51978f26a8b13820fd2d234a35e5e963a85760f6ffa3e2ae20a2447"
     },
     {
       "path": "skill-support/references/index/capability-aliases.source.json",
@@ -4038,7 +4038,6 @@
         "paneTitle",
         "size",
         "layout",
-        "paneRole",
         "segmentRole",
         "slots",
         "showWindowControls",
@@ -4054,7 +4053,6 @@
       ],
       "slots": [
         "logo",
-        "leading",
         "label",
         "secondary-pane-content",
         "main-content-title",
@@ -4217,19 +4215,6 @@
           "defaultPlacement": "final-pane-leading-slot",
           "leadingInsetToken": "layout/main-title-leading-padding"
         },
-        "leading": {
-          "cardinality": "0..1",
-          "valueType": "image-object",
-          "activeRoles": [
-            "global",
-            "primary-navigation"
-          ],
-          "fields": [
-            "src",
-            "alt"
-          ],
-          "deprecatedAliasFor": "logo"
-        },
         "label": {
           "cardinality": "0..1",
           "valueType": "text",
@@ -4246,6 +4231,19 @@
             "final-pane"
           ],
           "implementation": "component-owned-window-controls"
+        },
+        "leading": {
+          "cardinality": "0..1",
+          "valueType": "image-object",
+          "activeRoles": [
+            "global",
+            "primary-navigation"
+          ],
+          "fields": [
+            "src",
+            "alt"
+          ],
+          "deprecatedAliasFor": "logo"
         }
       },
       "behaviors": [

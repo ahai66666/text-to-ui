@@ -696,7 +696,6 @@
       "variantAxes": [],
       "slots": [
         "logo",
-        "leading",
         "label",
         "secondary-pane-content",
         "main-content-title",

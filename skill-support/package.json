@@ -1,6 +1,6 @@
 {
   "name": "text-to-ui-skill",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "Local dependencies used by the Text to UI component and icon system.",
   "license": "UNLICENSED",
@@ -52,7 +52,6 @@
     "pixso:official-adapter": "node scripts/pixso-official-adapter.mjs",
     "pixso:official-adapter:test": "node scripts/test-pixso-official-adapter.mjs",
     "pixso:plugin:build": "node scripts/build-pixso-unified-agent-plugin.mjs",
-    "pixso:plugin:build:legacy": "node scripts/build-pixso-native-renderer-plugin.mjs",
     "pixso:plugin:test": "node scripts/test-pixso-unified-agent-plugin.mjs",
     "pixso:plugin:publish": "node scripts/pixso-plugin-bridge.mjs publish",
     "services:start": "node scripts/start-text-to-ui-services.mjs start",

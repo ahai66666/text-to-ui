@@ -1,7 +1,7 @@
 {
   "sourceRoots": ["fixtures/html-strict-list-detail/src"],
   "componentBindings": [
-    { "id": "detail-titlebar", "logicalName": "Titlebar/Default", "semanticContext": "main-detail-titlebar", "options": { "layout": "three-column", "paneRole": "main-detail" }, "usage": "任务详情全局标题", "region": "detail", "slot": "main-detail-title", "expectedRuntimeCount": 1 },
+    { "id": "detail-titlebar", "logicalName": "Titlebar/Default", "semanticContext": "main-detail-titlebar", "options": { "layout": "three-column", "segmentRole": "main-detail" }, "usage": "任务详情全局标题", "region": "detail", "slot": "main-detail-title", "expectedRuntimeCount": 1 },
     { "id": "task-navigation", "logicalName": "Sidebar Item/Default", "usage": "任务分类导航", "semanticContext": "secondary-navigation", "behaviorId": "select-task-category", "options": { "items": [{ "label": "任务", "icon": "navigation/grid", "selected": true }] }, "region": "navigation", "expectedRuntimeCount": 1 },
     { "id": "task-search", "logicalName": "Search/White Surface/Default", "semanticContext": "secondary-list-search", "behaviorId": "filter-tasks", "options": { "surface": "white" }, "usage": "任务搜索", "region": "list", "slot": "secondary-list-title", "expectedRuntimeCount": 1 },
     { "id": "task-rows", "logicalName": "List Item/White Surface/Default", "semanticContext": "repeated-list-row", "usage": "任务列表行", "region": "list", "expectedRuntimeCount": 2 },

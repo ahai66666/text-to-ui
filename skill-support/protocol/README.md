@@ -5,8 +5,8 @@ component and Token mapping, icon selection, page rules, and acceptance remain
 in the Text-to-UI source tree. Codex publishes declarative Operation Plans; the
 plugin never downloads or evaluates arbitrary JavaScript.
 
-Protocol v4 supports legacy Operation Plan v1 during migration and prefers the
-capability-negotiated Operation Plan v5 contract. A plan may execute only when
+Protocol v4 requires the capability-negotiated Operation Plan v5 contract.
+A plan may execute only when
 the connected agent reports every required capability. Missing capabilities
 fail closed with an explicit read-only compatibility result.
 

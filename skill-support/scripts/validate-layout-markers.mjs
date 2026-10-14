@@ -51,7 +51,7 @@ if (evidencePaths.length > 0) {
 }
 if (contract.pattern === 'pattern-b-three-pane') {
   if (!/["']?layout["']?\s*:\s*["']three-column["']/.test(source)) failures.push('Pattern B Titlebar must use layout="three-column"');
-  if (!/["']?paneRole["']?\s*:\s*["']final-pane["']/.test(source)) failures.push('Pattern B final Titlebar must declare paneRole="final-pane"');
+  if (!/["']?segmentRole["']?\s*:\s*["'](?:main-detail|final-pane)["']/.test(source)) failures.push('Pattern B final Titlebar must declare segmentRole="main-detail"');
   if (!/(mainDetailActions|main-detail-actions)/.test(source)) failures.push('Pattern B must bind the third-pane global actions to main-detail-actions');
 }
 

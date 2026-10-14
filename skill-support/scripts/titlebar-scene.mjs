@@ -5,7 +5,7 @@ import path from "node:path";
 const digest = (value) => crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
 const isTitlebar = (binding) => binding?.rendererKey === "titlebar" || binding?.logicalName === "Titlebar/Default";
 const isSearch = (binding) => binding?.rendererKey === "search" || binding?.logicalName === "Search/White Surface/Default";
-const roleFor = (binding) => binding?.options?.segmentRole ?? binding?.options?.paneRole ?? null;
+const roleFor = (binding) => binding?.options?.segmentRole ?? null;
 
 export function readTitlebarSceneContracts({ repositoryRoot }) {
   const sourcePath = path.join(repositoryRoot, "skill-support/assets/design-system/titlebar-scene-contracts.json");
