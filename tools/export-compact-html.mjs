@@ -88,5 +88,15 @@ const sourceCommit = git(["rev-parse", "HEAD"]);
 const sourceBranch = git(["branch", "--show-current"]);
 const sourceVersion = JSON.parse(fs.readFileSync(path.join(source, "skill-support/package.json"), "utf8")).version;
 const manifest = files.sort().map((file) => ({ path: file, sha256: sha256(path.join(out, file)), bytes: fs.statSync(path.join(out, file)).size }));
-writeJson("PROVENANCE.json", { schemaVersion: 1, sourceRepository: "https://github.com/ahai66666/text-to-ui", sourceBranch, sourceCommit, sourceVersion, fileCount: manifest.length, expandedBytes: manifest.reduce((sum, item) => sum + item.bytes, 0), files: manifest });
-console.log(JSON.stringify({ ok: true, out, sourceCommit, files: manifest.length, expandedBytes: manifest.reduce((sum, item) => sum + item.bytes, 0) }, null, 2));
+const payloadBytes = manifest.reduce((sum, item) => sum + item.bytes, 0);
+const provenance = { schemaVersion: 1, sourceRepository: "https://github.com/ahai66666/text-to-ui", sourceBranch, sourceCommit, sourceVersion, fileCount: manifest.length + 1, manifestedFileCount: manifest.length, expandedBytes: 0, files: manifest };
+// The provenance manifest does not hash itself, but its size belongs in the
+// published expanded total. Recompute until the decimal size is stable.
+for (let index = 0; index < 4; index += 1) {
+  writeJson("PROVENANCE.json", provenance);
+  const expandedBytes = payloadBytes + fs.statSync(path.join(out, "PROVENANCE.json")).size;
+  if (expandedBytes === provenance.expandedBytes) break;
+  provenance.expandedBytes = expandedBytes;
+}
+writeJson("PROVENANCE.json", provenance);
+console.log(JSON.stringify({ ok: true, out, sourceCommit, files: provenance.fileCount, expandedBytes: provenance.expandedBytes }, null, 2));
