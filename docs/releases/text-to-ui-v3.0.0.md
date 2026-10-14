@@ -17,6 +17,6 @@
 
 运行 `node tools/export-compact-html.mjs --out <空目录>`，从当前清理分支导出独立仓库。导出包只含 HTML 组件、组件契约、样式、Token、Pattern、精简 Skill 和活跃 Pixso 插件。组件目录只报告 HTML 就绪状态；生成命令默认使用 HTML，拒绝框架参数。
 
-导出目录包含 `PROVENANCE.json`，记录源分支、源提交、版本、逐文件校验值和展开体积。在导出目录运行 `pnpm scaffold -- --out <项目目录>` 创建独立项目，再按其 README 生成页面。该项目使用内置 HTML 适配器，不依赖完整仓库路径。
+导出目录包含 `PROVENANCE.json`，记录源分支、源提交、版本、逐文件校验值和展开体积。在导出目录运行 `node scripts/scaffold-project.mjs --project <项目目录>` 创建独立项目，再按其 README 生成页面。该项目使用内置 HTML 适配器，不依赖完整仓库路径。
 
 完整仓库执行 `pnpm compact:check`，会在临时目录导出、安装、生成并构建 HTML 页面，同时检查禁用框架引用和 3.3 MiB ZIP 上限。发布 ZIP 不提交到源码仓库。
